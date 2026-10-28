@@ -1,0 +1,136 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.ct-info-card {
+  position: relative;
+  @include card-column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-md);
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  isolation: isolate;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: var(--border-radius);
+    background-color: color-mix(in srgb, var(--color-white) 14%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  // Soft geometric blocks on hover (Figma pattern)
+  &::before {
+    inset-block-start: -15%;
+    inset-inline-end: -20%;
+    width: 70%;
+    height: 65%;
+    transform: rotate(-12deg);
+  }
+
+  &::after {
+    inset-block-end: -25%;
+    inset-inline-start: -15%;
+    width: 75%;
+    height: 70%;
+    transform: rotate(18deg);
+  }
+
+  &:hover {
+    background-color: var(--color-brand);
+    border-color: var(--color-white);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--color-primary) 18%, transparent);
+
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+
+    .ct-info-card-icon-wrap {
+      background-color: var(--color-primary);
+      box-shadow: -12px 18px 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
+    }
+
+    .ct-info-card-icon {
+      background-color: var(--color-white);
+    }
+
+    .ct-info-card-title,
+    .ct-info-card-description {
+      color: var(--color-white);
+    }
+  }
+
+  &:hover:dir(ltr) {
+    .ct-info-card-icon-wrap {
+      box-shadow: 12px 18px 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
+    }
+  }
+}
+
+.ct-info-card-icon-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--color-background);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.ct-info-card-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary);
+  mask: var(--ct-info-card-icon) center / contain no-repeat;
+  -webkit-mask: var(--ct-info-card-icon) center / contain no-repeat;
+  transition: background-color 0.3s ease;
+}
+
+.ct-info-card-body {
+  position: relative;
+  z-index: 1;
+  @include flex-column-xs;
+  width: 100%;
+  margin-block-start: auto;
+}
+
+.ct-info-card-title {
+  margin: 0;
+  font-size: 16px ;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.ct-info-card-description {
+  @include body-tiny;
+  margin: 0;
+  color: var(--color-text-tertiary);
+  transition: color 0.3s ease;
+}
+
+@include below(767.98px) {
+  .ct-info-card-title {
+    font-size: 1.5rem;
+  }
+}

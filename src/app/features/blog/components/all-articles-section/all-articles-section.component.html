@@ -1,0 +1,91 @@
+<section class="all-articles" aria-labelledby="all-articles-title">
+  <div class="container">
+    <div class="all-articles-intro">
+      <ct-divider [label]="data().label | translate" />
+      <h2 id="all-articles-title" class="all-articles-title">
+        {{ data().title | translate }}
+      </h2>
+    </div>
+    <div class="row g-2 align-items-start">
+      <div class="col-lg-2">
+        
+
+        <aside class="all-articles-filters" [attr.aria-label]="data().title | translate">
+          <button
+            type="button"
+            class="all-articles-all"
+            [class.is-active]="selectedCategoryId() === null"
+            (click)="selectCategory(null)"
+          >
+            {{ data().allLabel | translate }}
+          </button>
+
+          <ul class="all-articles-categories">
+            @for (category of data().categories; track category.id) {
+              <li>
+                <button
+                  type="button"
+                  class="all-articles-category"
+                  [class.is-active]="selectedCategoryId() === category.id"
+                  (click)="selectCategory(category.id)"
+                >
+                  {{ category.label | translate }}
+                </button>
+              </li>
+            }
+          </ul>
+        </aside>
+      </div>
+
+      <div class="col-lg-10">
+        @if (visibleArticles().length) {
+          <div class="row g-3">
+            @for (article of visibleArticles(); track article.id) {
+              <div class="col-md-6 col-xl-4 d-flex">
+                <ct-compact-article-card [article]="article" [revealOnHover]="true" />
+              </div>
+            }
+          </div>
+        } @else {
+          <p class="all-articles-empty">{{ 'blog.empty' | translate }}</p>
+        }
+
+        @if (totalPages() > 1) {
+          <nav class="all-articles-pagination" [attr.aria-label]="'blog.pagination.label' | translate">
+            <button
+              type="button"
+              class="all-articles-page"
+              [disabled]="currentPage() === 1"
+              [attr.aria-label]="'blog.pagination.previous' | translate"
+              (click)="goTo(currentPage() - 1)"
+            >
+              <span class="all-articles-page-icon all-articles-page-icon-prev" aria-hidden="true"></span>
+            </button>
+
+            @for (page of pages(); track page) {
+              <button
+                type="button"
+                class="all-articles-page"
+                [class.is-active]="page === currentPage()"
+                [attr.aria-current]="page === currentPage() ? 'page' : null"
+                (click)="goTo(page)"
+              >
+                {{ page }}
+              </button>
+            }
+
+            <button
+              type="button"
+              class="all-articles-page"
+              [disabled]="currentPage() === totalPages()"
+              [attr.aria-label]="'blog.pagination.next' | translate"
+              (click)="goTo(currentPage() + 1)"
+            >
+              <span class="all-articles-page-icon all-articles-page-icon-next" aria-hidden="true"></span>
+            </button>
+          </nav>
+        }
+      </div>
+    </div>
+  </div>
+</section>

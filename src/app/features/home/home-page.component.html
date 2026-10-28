@@ -1,0 +1,90 @@
+@if (home.hero.isPublished) {
+  <ct-hero-section [data]="home.hero" />
+}
+
+@if (home.clients.isPublished) {
+  <ct-clients-section
+    [logos]="home.clients.logos"
+    [label]="'home.clients.brand' | translate"
+    [title]="'home.clients.title' | translate"
+  />
+}
+
+@if (home.video.isPublished) {
+  <ct-video-section
+    [imageSrc]="home.video.imageSrc"
+    [videoUrl]="home.video.videoUrl"
+  />
+}
+
+@if (home.vision.isPublished) {
+  <ct-content-media-section [data]="home.vision" />
+}
+
+@if (home.about.isPublished) {
+  <ct-content-media-section
+    [data]="home.about"
+    [showButton]="true"
+    [buttonLabel]="'home.aboutCta' | translate"
+  />
+}
+
+@if (home.services.isPublished) {
+  <ct-services-section
+    [showBackground]="true"
+    [label]="'home.services.label' | translate"
+    [title]="'home.services.title' | translate"
+    [services]="home.services.items"
+  />
+}
+
+@if (home.products.isPublished) {
+  <ct-products-section
+    [label]="'home.products.label' | translate"
+    [title]="'home.products.title' | translate"
+    [products]="home.products.items"
+  />
+}
+
+@if (home.journey.isPublished) {
+  <ct-journey-section
+    [label]="'home.journey.label' | translate"
+    [title]="'home.journey.title' | translate"
+    [cards]="home.journey.cards"
+  />
+}
+
+@if (home.features.isPublished) {
+  <ct-features-section
+    [label]="'home.features.label' | translate"
+    [title]="'home.features.title' | translate"
+    [features]="home.features.items"
+  />
+}
+
+@if (home.projects.isPublished) {
+  <ct-projects-section
+    [label]="'home.projects.label' | translate"
+    [title]="'home.projects.title' | translate"
+    [projects]="home.projects.items"
+  />
+}
+
+@if (home.testimonials.isPublished) {
+  <ct-testimonials-section
+    [label]="'home.testimonials.label' | translate"
+    [title]="'home.testimonials.title' | translate"
+    [testimonials]="home.testimonials.items"
+  />
+}
+
+@if (home.faq.isPublished) {
+  <ct-faq-section
+    [label]="'home.faq.label' | translate"
+    [title]="'home.faq.title' | translate"
+    [items]="home.faq.items"
+    [linkLabel]="'common.viewAllFaq' | translate"
+    linkRoute="/faq"
+    value="cms"
+  />
+}

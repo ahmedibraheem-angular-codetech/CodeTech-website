@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "hero": {
+      "title": "Success stories that reflect the impact of our digital solutions",
+      "description": "Discover how CodeTech helped government entities and companies build digital systems and products that solve real challenges, improve operational efficiency, and deliver measurable results.",
+      "cta": "Start your project"
+    },
+    "list": {
+      "label": "Our Projects"
+    }
+  }
+}

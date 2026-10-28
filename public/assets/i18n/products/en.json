@@ -1,0 +1,12 @@
+{
+  "products": {
+    "hero": {
+      "title": "Digital solutions designed to grow your business",
+      "description": "Explore CodeTech products built to simplify operations, improve efficiency, and support digital transformation across sectors.",
+      "button": "Explore products",
+      "contact": "Contact us"
+    },
+    "notFound": "Product not found",
+    "back": "Back to products"
+  }
+}

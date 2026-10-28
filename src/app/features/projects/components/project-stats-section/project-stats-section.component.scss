@@ -1,0 +1,302 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-stats {
+  padding-block: var(--space-section);
+}
+
+.project-stats-intro {
+  @include stack-start;
+  margin-bottom: var(--space-lg);
+}
+
+.project-stats-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.project-stats-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: var(--space-cards);
+  @include reset-list;
+}
+
+.project-stat {
+  position: relative;
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  justify-content: space-between;
+  min-width: calc(var(--space-xl) * 3.5);
+  min-height: calc(var(--space-section) + var(--space-xl) * 3);
+  padding: var(--space-cards);
+  overflow: hidden;
+  border: 1px solid var(--color-background);
+  border-radius: 1rem;
+  background-color: var(--color-white);
+  animation: project-stat-rise 0.7s ease backwards;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.project-stat:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.project-stat:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.project-stat:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.project-stat-brand {
+  border: 0;
+  border-radius: 20px;
+  color: var(--color-white);
+  background-color: #1c81d3;
+  
+}
+
+.project-stat-brand-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+:dir(rtl) .project-stat-brand-head {
+  flex-direction: row-reverse;
+}
+
+.project-stat-media {
+  justify-content: flex-start;
+  gap: var(--space-xs);
+  border: 0;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.project-stat-photo {
+  position: absolute;
+  inset: 0;
+  @include media-cover;
+  pointer-events: none;
+  transition: transform 0.45s ease;
+}
+
+.project-stat-media .project-stat-photo {
+  inset: auto;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  width: 68%;
+  height: 78%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.project-stat-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.project-stat-media .project-stat-shade {
+  background-color: color-mix(in srgb, var(--color-primary) 29%, transparent);
+}
+
+.project-stat-top,
+.project-stat-value {
+  position: relative;
+  z-index: 1;
+}
+
+.project-stat-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-stat-top-avatars .project-stat-avatars,
+.project-stat-top-avatars .project-stat-note {
+  margin-inline-start: auto;
+}
+
+.project-stat-media .project-stat-value {
+  order: -1;
+}
+
+.project-stat-brand .project-stat-title {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+.project-stat-title {
+  @include body-small;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.project-stat-brand .project-stat-title,
+.project-stat-media .project-stat-title {
+  color: var(--color-white);
+}
+
+.project-stat-media .project-stat-title {
+  @include body-tiny;
+  max-width: calc(var(--space-xl) * 2 + var(--space-sm));
+  color: var(--color-white);
+}
+
+.project-stat-note {
+  @include body-tiny;
+  direction: ltr;
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+}
+
+.project-stat-icon {
+  @include inline-flex-center-none;
+  width: calc(var(--space-lg) + var(--space-sm));
+  height: calc(var(--space-lg) + var(--space-sm));
+}
+
+.project-stat-icon img {
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+  transition: transform 0.35s ease;
+}
+
+.project-stat-brand .project-stat-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.project-stat-avatars {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+.project-stat-avatars img {
+  @include stat-avatar;
+}
+
+.project-stat-avatars img:first-child {
+  margin-inline-start: 0;
+}
+
+.project-stat-value {
+  @include stat-value;
+}
+
+.project-stat-brand .project-stat-value,
+.project-stat-media .project-stat-value {
+  color: var(--color-white);
+}
+
+.project-stat:hover {
+  transform: translateY(calc(var(--space-xs) * -1));
+  box-shadow: 0 var(--space-xs) var(--space-md) color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.project-stat:hover .project-stat-photo {
+  transform: scale(1.06);
+}
+
+.project-stat:hover .project-stat-value {
+  color: var(--color-brand);
+}
+
+.project-stat-brand:hover .project-stat-value,
+.project-stat-media:hover .project-stat-value {
+  color: var(--color-white);
+}
+
+.project-stat:hover .project-stat-icon img {
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.project-stat-brand:hover .project-stat-icon img {
+  transform: none;
+}
+
+.project-stat:hover .project-stat-avatars img:nth-child(2) {
+  transform: translateX(calc(var(--space-xs) * -0.35));
+}
+
+.project-stat:hover .project-stat-avatars img:nth-child(3) {
+  transform: translateX(calc(var(--space-xs) * -0.7));
+}
+
+:dir(ltr) .project-stat:hover .project-stat-avatars img:nth-child(2) {
+  transform: translateX(calc(var(--space-xs) * 0.35));
+}
+
+:dir(ltr) .project-stat:hover .project-stat-avatars img:nth-child(3) {
+  transform: translateX(calc(var(--space-xs) * 0.7));
+}
+
+@keyframes project-stat-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-cards));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@include below(991.98px) {
+  .project-stat {
+    flex-basis: calc(50% - var(--space-cards));
+  }
+
+  .project-stat-value {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .project-stat {
+    flex-basis: 100%;
+  }
+}
+
+@include reduced-motion {
+  .project-stat,
+  .project-stat-photo,
+  .project-stat-value,
+  .project-stat-icon img,
+  .project-stat-avatars img {
+    animation: none;
+    transition: none;
+  }
+
+  .project-stat:hover,
+  .project-stat:hover .project-stat-photo,
+  .project-stat:hover .project-stat-icon img,
+  .project-stat:hover .project-stat-avatars img {
+    transform: none;
+  }
+}

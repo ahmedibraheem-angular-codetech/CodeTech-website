@@ -1,0 +1,43 @@
+<section class="project-screens" [attr.aria-label]="data().title">
+  <div class="container">
+    <div class="project-screens-gallery">
+      <div class="project-screens-thumbs-clip">
+      <div #thumbsRoot class="swiper project-screens-thumbs">
+        <div class="swiper-wrapper">
+          @for (item of data().items; track item.id) {
+            <div class="swiper-slide project-screens-thumb-slide">
+              <button type="button" class="project-screens-thumb" [attr.aria-label]="item.imageAlt">
+                <img
+                  class="project-screens-thumb-image"
+                  [src]="item.imageSrc"
+                  [alt]="item.imageAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+      </div>
+
+      <div #mainRoot class="swiper project-screens-main">
+        <div class="swiper-wrapper">
+          @for (item of data().items; track item.id) {
+            <div class="swiper-slide project-screens-main-slide">
+              <article class="project-screens-main-card">
+                <img
+                  class="project-screens-main-image"
+                  [src]="item.imageSrc"
+                  [alt]="item.imageAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

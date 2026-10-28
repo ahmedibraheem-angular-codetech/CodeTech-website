@@ -1,0 +1,93 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.services-section {
+  padding-block: var(--space-section);
+  background-color: transparent;
+}
+
+.services-section-inner {
+  width: 100%;
+}
+
+.services-header {
+  @include flex-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-section-heading-content);
+}
+
+.services-header-intro {
+  min-width: 0;
+}
+
+.services-title {
+  @include section-heading-title;
+  margin: 0;
+  color: var(--color-primary);
+  padding-bottom: 0;
+}
+
+.services-header-arrows {
+  flex-shrink: 0;
+}
+
+.services-slider-wrap {
+  padding-inline: 0;
+}
+
+.services-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.services-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+.services-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-cards);
+  height: 100%;
+}
+
+.services-column ct-info-card {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+:host.services-section-with-bg .services-section {
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 80%, transparent) 0%,
+      color-mix(in srgb, var(--color-primary) 75%, transparent) 100%
+    ),
+    url('/assets/images/home/code-tech-service-bg.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+:host.services-section-with-bg .services-title {
+  color: var(--color-white);
+}
+
+:host.services-section-with-bg .services-header {
+  margin-bottom: var(--space-lg);
+}
+
+@include below(767.98px) {
+  .services-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .services-title {
+    font-size: var(--font-title);
+  }
+
+  :host ::ng-deep .services-swiper .ct-info-card {
+    min-height: 16rem;
+  }
+}

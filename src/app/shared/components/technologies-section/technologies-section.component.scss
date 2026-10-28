@@ -1,0 +1,107 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.technologies-section {
+  padding-bottom: var(--space-section);
+}
+
+.technologies-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 var(--space-md);
+  padding-bottom: 0;
+}
+
+.technologies-list {
+  @include flex-column-sm;
+  @include reset-list;
+}
+
+.technologies-list-item {
+  @include body-small;
+  @include check-list-item;
+}
+
+.technologies-check {
+  @include icon-double-check;
+}
+
+.technologies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 4.75rem));
+  grid-auto-rows: 4.75rem;
+  justify-content: center;
+  gap: var(--space-sm);
+  @include reset-list;
+}
+
+.technologies-tile {
+  display: grid;
+  place-items: center;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.technologies-tile-empty {
+  opacity: 0.55;
+}
+
+.technologies-tile-filled {
+  animation-name: technologies-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.technologies-icon {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  object-fit: contain;
+}
+
+@keyframes technologies-float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.7rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@include reduced-motion {
+  .technologies-tile-filled {
+    animation: none;
+  }
+}
+
+@include below(991.98px) {
+  .technologies-grid {
+    grid-template-columns: repeat(5, minmax(0, 4rem));
+    grid-auto-rows: 4rem;
+    margin-block-start: var(--space-md);
+  }
+}
+
+@include below(575.98px) {
+  .technologies-title {
+    font-size: var(--font-title);
+  }
+
+  .technologies-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: var(--space-xs);
+  }
+
+  .technologies-tile {
+    aspect-ratio: 1;
+  }
+
+  .technologies-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}

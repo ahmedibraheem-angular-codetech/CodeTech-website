@@ -1,0 +1,77 @@
+<section
+  class="content-media-section"
+  [attr.aria-labelledby]="data().id + '-title'"
+>
+  <div class="container">
+    <div class="content-media-card">
+      <div class="row align-items-stretch g-3">
+        
+
+        <div class="col-md-6 d-flex">
+          <div class="content-media-visual">
+            <img
+              class="content-media-image"
+              [src]="data().imageSrc"
+              [alt]="data().imageAlt | translate"
+              loading="lazy"
+              decoding="async"
+            />
+
+            @if (data().trustBadge; as badge) {
+              <div class="content-media-trust d-flex align-items-center justify-content-center" role="note">
+                <div class="content-media-avatars" aria-hidden="true">
+                  @for (avatar of badge.avatars; track $index; let i = $index) {
+                    <img
+                      class="content-media-avatar"
+                      [src]="avatar"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      [style.z-index]="badge.avatars.length - i"
+                    />
+                  }
+                </div>
+                <span class="content-media-trust-label">{{ badge.label | translate }}</span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="content-media-copy ">
+            <ct-divider [label]="data().label | translate" />
+
+            <h2 [id]="data().id + '-title'" class="content-media-title">
+              {{ data().title | translate }}
+            </h2>
+
+            <p class="content-media-description">
+              {{ data().description | translate }}
+            </p>
+
+            <ul class="content-media-list">
+              @for (item of data().items; track $index) {
+                <li class="content-media-list-item">
+                  <span class="content-media-check" aria-hidden="true"></span>
+                  <span>{{ item | translate }}</span>
+                </li>
+              }
+            </ul>
+
+            @if (showButton()) {
+              <ct-button
+                class="content-media-cta"
+                [label]="buttonLabel()"
+                [icon]="buttonIcon()"
+                variant="primary"
+                layout="spread"
+                fontWeight="500"
+                (clicked)="onCtaClick()"
+              />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

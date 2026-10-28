@@ -1,0 +1,12 @@
+<ct-page-hero
+  [title]="'blog.hero.title' | translate"
+  [description]="'blog.hero.description' | translate"
+/>
+
+@if (blog.featured.isPublished) {
+  <ct-featured-articles-section [data]="blog.featured" />
+}
+
+@if (blog.listing.isPublished) {
+  <ct-all-articles-section [data]="blog.listing" />
+}

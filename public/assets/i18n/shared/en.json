@@ -1,0 +1,75 @@
+{
+  "common": {
+    "prev": "Previous",
+    "next": "Next",
+    "viewAllFaq": "View all questions"
+  },
+  "header": {
+    "logoAlt": "CodeTech",
+    "nav": {
+      "home": "Home",
+      "about": "About CodeTech",
+      "services": "Services",
+      "products": "Products",
+      "blog": "Blog",
+      "contact": "Contact Us"
+    },
+    "cta": "Start your project",
+    "mobile": {
+      "menu": "Navigation menu",
+      "open": "Open menu",
+      "close": "Close menu"
+    },
+    "lang": {
+      "ar": "عربي",
+      "en": "English"
+    },
+    "mega": {
+      "promoTitle": "Turn your idea into a real product your customers use every day.",
+      "promoCta": "Start your project",
+      "viewProduct": "View product",
+      "serviceDesc": "A short intro about CodeTech",
+      "productDesc": "A short intro about CodeTech — provided by the team."
+    }
+  },
+  "footer": {
+    "header": {
+      "title": "Your tech partner starts here",
+      "description": "Share your vision, and we’ll turn it into a complete digital solution that combines innovation, quality, and scalability — aligned with your business goals.",
+      "cta": "Start your project"
+    },
+    "brand": {
+      "description": "We build digital solutions that help organizations and companies accelerate digital transformation and growth through technology products and professional services."
+    },
+    "columns": {
+      "quickLinks": "Quick Links",
+      "services": "Our Services",
+      "products": "Our Products"
+    },
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    },
+    "social": {
+      "x": "X",
+      "instagram": "Instagram",
+      "snapchat": "Snapchat",
+      "tiktok": "TikTok",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "© {{year}} CodeTech. All rights reserved."
+  },
+  "notFound": {
+    "title": "Sorry, page not found",
+    "description": "The link you are trying to open is unavailable or has been moved. You can return to the home page and continue browsing.",
+    "home": "Back to home",
+    "illustrationAlt": "Page not found illustration"
+  },
+  "offline": {
+    "title": "No internet connection",
+    "description": "It looks like the internet connection is unavailable right now. Please check your network and try again, or contact us if the problem continues.",
+    "home": "Back to home",
+    "illustrationAlt": "No internet connection illustration"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "header": {
+    "products": {
+      "p1": {
+        "title": "Task Management System",
+        "desc": "A short intro about CodeTech — provided by the team."
+      },
+      "p2": {
+        "title": "Travel & Tourism System",
+        "desc": "A short intro about CodeTech — provided by the team."
+      },
+      "p3": {
+        "title": "IT Service Management System",
+        "desc": "A short intro about CodeTech — provided by the team."
+      }
+    }
+  }
+}

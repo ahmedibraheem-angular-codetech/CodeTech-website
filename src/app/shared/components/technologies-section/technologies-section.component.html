@@ -1,0 +1,50 @@
+<section class="technologies-section" aria-labelledby="technologies-section-title">
+  <div class="container">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-lg-5">
+        <ct-divider [label]="label()" />
+        <h2 id="technologies-section-title" class="technologies-title">
+          {{ title() }}
+        </h2>
+
+        @if (items().length) {
+          <ul class="technologies-list">
+            @for (item of items(); track $index) {
+              <li class="technologies-list-item">
+                <span class="technologies-check" aria-hidden="true"></span>
+                <span>{{ item | translate }}</span>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <div class="col-lg-7">
+        <ul class="technologies-grid">
+          @for (cell of cells(); track cell.id) {
+            <li
+              class="technologies-tile"
+              [class.technologies-tile-filled]="!!cell.tool"
+              [class.technologies-tile-empty]="!cell.tool"
+              [style.grid-column]="cell.col"
+              [style.grid-row]="cell.row"
+              [style.animation-delay]="cell.tool ? cell.delay : null"
+              [style.animation-duration]="cell.tool ? cell.duration : null"
+              [attr.aria-hidden]="cell.tool ? null : true"
+            >
+              @if (cell.tool; as tool) {
+                <img
+                  class="technologies-icon"
+                  [src]="tool.iconSrc"
+                  [alt]="tool.name | translate"
+                  loading="lazy"
+                  decoding="async"
+                />
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

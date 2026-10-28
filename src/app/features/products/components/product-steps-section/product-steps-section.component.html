@@ -1,0 +1,19 @@
+<section class="product-steps" aria-labelledby="product-steps-title">
+  <div class="container">
+    <ct-divider [label]="data().label" />
+
+    <h2 id="product-steps-title" class="product-steps-title">{{ data().title }}</h2>
+
+    <div class="row g-2 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-6">
+      @for (item of data().items; track item.id) {
+        <div class="col">
+          <ct-step-card
+            [number]="item.number"
+            [title]="item.title"
+            [description]="item.description"
+          />
+        </div>
+      }
+    </div>
+  </div>
+</section>

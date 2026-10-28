@@ -1,0 +1,38 @@
+<section class="clients-section" aria-labelledby="clients-section-title">
+  <div class="clients-header container">
+    <div class="clients-header-intro">
+      <ct-divider [label]="label()" />
+      <h2 id="clients-section-title" class="clients-title">
+        {{ title() }}
+      </h2>
+    </div>
+
+    <ct-slider-arrows
+      class="clients-header-arrows"
+      [canPrev]="true"
+      [canNext]="true"
+      (prev)="prev()"
+      (next)="next()"
+    />
+  </div>
+
+  <div #swiperRoot class="swiper clients-swiper">
+    <div class="swiper-wrapper">
+      @for (client of logos(); track client.id) {
+        <div class="swiper-slide clients-slide">
+          <article class="client-card">
+            <img
+              class="client-card-logo"
+              [src]="client.src"
+              [alt]="client.name"
+              width="128"
+              height="100"
+              loading="lazy"
+              decoding="async"
+            />
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section class="projects-section" aria-labelledby="projects-section-title">
+  <div class="container">
+    <div class="projects-header">
+      <div class="projects-header-intro">
+        <ct-divider [label]="label()" />
+        <h2 id="projects-section-title" class="projects-title">
+          {{ title() }}
+        </h2>
+      </div>
+
+      <ct-slider-arrows
+        class="projects-header-arrows"
+        [canPrev]="canPrev()"
+        [canNext]="canNext()"
+        (prev)="prev()"
+        (next)="next()"
+      />
+    </div>
+
+    <div #swiperRoot class="swiper projects-swiper">
+      <div class="swiper-wrapper">
+        @for (project of projects(); track project.id; let i = $index) {
+          <div class="swiper-slide projects-slide">
+            <ct-project-card
+              [data]="project"
+              [link]="link()"
+              [showTools]="showTools()"
+              [active]="activeIndex() === i"
+            />
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

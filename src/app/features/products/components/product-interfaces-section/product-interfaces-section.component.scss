@@ -1,0 +1,214 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-interfaces {
+  padding-block: var(--space-section);
+  background-color: var(--color-white);
+}
+
+
+.product-interfaces-content {
+  @include stack-start-md;
+}
+
+.product-interfaces-intro {
+  @include stack-start;
+}
+
+.product-interfaces-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.product-interfaces-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.product-interfaces-tabs {
+  @include interface-tabs;
+}
+
+.product-interfaces-tabs-row {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  gap: 6px;
+  width: 100%;
+}
+
+.product-interfaces-tab {
+  @include interface-tab;
+}
+
+.product-interfaces-tab:hover {
+  color: var(--color-brand);
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.product-interfaces-tab-active,
+.product-interfaces-tab-active:hover {
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-brand) 28%, transparent);
+}
+
+.product-interfaces-tab:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.product-interfaces-about {
+  @include stack-start;
+  box-sizing: border-box;
+  width: 100%;
+  margin-block-start: auto;
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  animation: product-interfaces-about-in 0.45s ease both;
+}
+
+.product-interfaces-about-label {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-small);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.product-interfaces-about-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-button-light);
+  transform-origin: right center;
+  animation: product-interfaces-line-in 0.5s ease 0.08s both;
+}
+
+:dir(ltr) .product-interfaces-about-line {
+  transform-origin: left center;
+}
+
+.product-interfaces-about-description {
+  @include body-small;
+  margin: 0;
+  color: var(--color-primary);
+  animation: product-interfaces-copy-in 0.45s ease 0.12s both;
+}
+
+.product-interfaces-media-col {
+  display: flex;
+  justify-content: center;
+}
+
+.product-interfaces-media {
+  @include flex-between;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 39.0625rem;
+  height: 30rem;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  animation: product-interfaces-media-in 0.5s ease both;
+}
+
+.product-interfaces-image {
+  display: block;
+  width: 100%;
+  max-width: 37.8125rem;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+}
+
+@keyframes product-interfaces-about-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes product-interfaces-line-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes product-interfaces-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes product-interfaces-media-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@include below(991.98px) {
+  .product-interfaces-title {
+    font-size: var(--font-title);
+  }
+
+  .product-interfaces-media {
+    height: auto;
+    min-height: 18rem;
+  }
+
+  .product-interfaces-image {
+    height: auto;
+  }
+}
+
+@include below(575.98px) {
+  .product-interfaces-tabs-row {
+    flex-wrap: wrap;
+  }
+
+  .product-interfaces-tab {
+    flex: 1 1 calc(50% - 3px);
+  }
+}
+
+@include reduced-motion {
+  .product-interfaces-tab {
+    transition: none;
+  }
+
+  .product-interfaces-tab:hover {
+    transform: none;
+  }
+
+  .product-interfaces-about,
+  .product-interfaces-about-line,
+  .product-interfaces-about-description,
+  .product-interfaces-media {
+    animation: none;
+  }
+}

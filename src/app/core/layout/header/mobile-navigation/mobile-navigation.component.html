@@ -1,0 +1,215 @@
+@if (visible()) {
+  <div
+    class="ct-mobile-drawer-mask"
+    animate.enter="ct-mobile-mask-enter"
+    animate.leave="ct-mobile-mask-leave"
+    aria-hidden="true"
+    (click)="close()"
+  ></div>
+
+  <div
+    #drawerRoot
+    class="ct-mobile-drawer-panel"
+    [class.is-left]="drawerPosition() === 'left'"
+    [class.is-right]="drawerPosition() === 'right'"
+    animate.enter="ct-mobile-drawer-enter"
+    animate.leave="ct-mobile-drawer-leave"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="'header.mobile.menu' | translate"
+    (keydown)="onDialogKeydown($event)"
+  >
+      <div class="ct-mobile-drawer-header">
+        <div class="mobile-nav-top">
+          <a routerLink="/" class="mobile-nav-logo" (click)="onNavigate()">
+            <img
+              src="/assets/images/logo.svg"
+              [alt]="'header.logoAlt' | translate"
+              width="160"
+              height="28"
+            />
+          </a>
+
+          <button
+            type="button"
+            class="mobile-nav-close"
+            [attr.aria-label]="'header.mobile.close' | translate"
+            (click)="close()"
+          >
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="ct-mobile-drawer-content">
+        <nav class="mobile-nav-body" [attr.aria-label]="'header.mobile.menu' | translate">
+          <ul class="mobile-nav-list">
+            @for (link of navLinks; track link.id) {
+              <li class="mobile-nav-item">
+                @if (link.mega) {
+                  <button
+                    type="button"
+                    class="mobile-nav-link mobile-nav-link--toggle"
+                    [class.is-active]="isNavActive(link)"
+                    [class.is-expanded]="openDropdown() === link.mega"
+                    [attr.aria-expanded]="openDropdown() === link.mega"
+                    (click)="toggleDropdown(link.mega)"
+                  >
+                    <span>{{ link.labelKey | translate }}</span>
+                    <span class="mobile-nav-chevron" aria-hidden="true"></span>
+                  </button>
+
+                  <div
+                    class="mobile-nav-dropdown"
+                    [class.is-open]="openDropdown() === link.mega"
+                    [attr.inert]="openDropdown() === link.mega ? null : ''"
+                  >
+                    <div class="mobile-nav-dropdown-inner">
+                      @if (link.mega === 'services') {
+                        <ul class="mobile-nav-sublist">
+                          <li>
+                            <a
+                              class="mobile-nav-sublink"
+                              [routerLink]="link.route"
+                              routerLinkActive="is-active"
+                              [routerLinkActiveOptions]="{ exact: true }"
+                              (click)="onNavigate()"
+                            >
+                              <span class="mobile-nav-sublink-title">
+                                {{ link.labelKey | translate }}
+                              </span>
+                            </a>
+                          </li>
+                          @for (service of services; track service.slug) {
+                            <li>
+                              <a
+                                class="mobile-nav-sublink"
+                                [routerLink]="service.route"
+                                routerLinkActive="is-active"
+                                (click)="onNavigate()"
+                              >
+                                <span class="mobile-nav-sublink-title">
+                                  {{ service.titleKey | translate }}
+                                </span>
+                                <span class="mobile-nav-sublink-desc">
+                                  {{ service.descKey | translate }}
+                                </span>
+                              </a>
+                            </li>
+                          }
+                        </ul>
+                      }
+
+                      @if (link.mega === 'products') {
+                        <ul class="mobile-nav-sublist">
+                          <li>
+                            <a
+                              class="mobile-nav-sublink"
+                              [routerLink]="link.route"
+                              routerLinkActive="is-active"
+                              [routerLinkActiveOptions]="{ exact: true }"
+                              (click)="onNavigate()"
+                            >
+                              <span class="mobile-nav-sublink-title">
+                                {{ link.labelKey | translate }}
+                              </span>
+                            </a>
+                          </li>
+                          @for (product of products; track product.slug) {
+                            <li>
+                              <a
+                                class="mobile-nav-sublink"
+                                [routerLink]="product.route"
+                                routerLinkActive="is-active"
+                                (click)="onNavigate()"
+                              >
+                                <span class="mobile-nav-sublink-title">
+                                  {{ product.titleKey | translate }}
+                                </span>
+                                <span class="mobile-nav-sublink-desc">
+                                  {{ product.descKey | translate }}
+                                </span>
+                              </a>
+                            </li>
+                          }
+                        </ul>
+                      }
+                    </div>
+                  </div>
+                } @else {
+                  <a
+                    class="mobile-nav-link"
+                    [class.is-active]="isNavActive(link)"
+                    [routerLink]="link.route"
+                    (click)="onNavigate()"
+                  >
+                    {{ link.labelKey | translate }}
+                  </a>
+                }
+              </li>
+            }
+          </ul>
+        </nav>
+      </div>
+
+      <div class="ct-mobile-drawer-footer">
+        <div class="mobile-nav-footer">
+          <div class="mobile-nav-lang" [class.is-open]="isLangOpen()">
+            <button
+              type="button"
+              class="mobile-nav-lang-trigger"
+              [attr.aria-expanded]="isLangOpen()"
+              (click)="toggleLang()"
+            >
+              <img
+                class="mobile-nav-flag"
+                [src]="currentLangOption().flagSrc"
+                alt=""
+                width="22"
+                height="22"
+                aria-hidden="true"
+              />
+              <span>{{ currentLangOption().labelKey | translate }}</span>
+              <span class="mobile-nav-chevron" aria-hidden="true"></span>
+            </button>
+
+            <div
+              class="mobile-nav-lang-menu"
+              [class.is-open]="isLangOpen()"
+              [attr.inert]="isLangOpen() ? null : ''"
+            >
+              <div class="mobile-nav-lang-menu-inner">
+                @for (option of langOptions; track option.code) {
+                  <button
+                    type="button"
+                    class="mobile-nav-lang-option"
+                    [class.is-active]="currentLang() === option.code"
+                    (click)="selectLang(option.code)"
+                  >
+                    <img
+                      class="mobile-nav-flag"
+                      [src]="option.flagSrc"
+                      alt=""
+                      width="22"
+                      height="22"
+                      aria-hidden="true"
+                    />
+                    <span>{{ option.labelKey | translate }}</span>
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+
+          <ct-button
+            [label]="'header.cta' | translate"
+            icon="double-alt-arrow-left"
+            variant="primary"
+            layout="spread"
+            width="100%"
+            (clicked)="onCtaClick()"
+          />
+        </div>
+      </div>
+  </div>
+}

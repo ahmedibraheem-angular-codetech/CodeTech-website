@@ -1,0 +1,55 @@
+@use '../../../../styles/abstracts/mixin' as *;
+.page-hero {
+  @include page-hero-shell;
+}
+
+.page-hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 34rem;
+  padding-block-end: var(--space-section);
+}
+
+.page-hero-title {
+  margin: 0;
+  font-size: var(--font-hero);
+  line-height: 1.35;
+  color: var(--color-white);
+  white-space: pre-line;
+}
+
+.page-hero-description {
+  margin: var(--space-md) 0 0;
+  max-width: 40rem;
+  font-size: var(--font-small);
+  line-height: 1.7;
+  color: var(--color-white);
+  white-space: pre-line;
+}
+
+.page-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+@include below(991.98px) {
+  .page-hero-title {
+    font-size: var(--font-section);
+  }
+}
+
+@include below(575.98px) {
+  .page-hero {
+    min-height: 80vh;
+  }
+
+  .page-hero-title {
+    font-size: var(--font-title);
+  }
+}

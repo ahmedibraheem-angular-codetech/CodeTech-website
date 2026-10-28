@@ -1,0 +1,12 @@
+{
+  "faq": {
+    "hero": {
+      "title": "Frequently asked questions",
+      "description": "Short answers to the most common questions about CodeTech services, how we work, and how to reach us."
+    },
+    "section": {
+      "label": "Common questions",
+      "title": "Frequently asked questions"
+    }
+  }
+}

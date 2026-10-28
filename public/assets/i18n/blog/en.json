@@ -1,0 +1,32 @@
+{
+  "blog": {
+    "hero": {
+      "title": "Knowledge Center",
+      "description": "Practical articles and insights on digital transformation, systems, and tech products."
+    },
+    "readArticle": "Read article",
+    "category": "Category",
+    "publishedAt": "Published",
+    "back": "Back to articles",
+    "notFound": "Article not found",
+    "empty": "No articles in this category",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "mock": {
+      "label": "Key articles",
+      "title": "Featured articles",
+      "related": {
+        "label": "You may like",
+        "title": "Related articles"
+      },
+      "listing": {
+        "label": "Latest news",
+        "title": "All articles",
+        "all": "All articles"
+      }
+    }
+  }
+}

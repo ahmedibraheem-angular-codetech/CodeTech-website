@@ -1,0 +1,47 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.industries-section {
+  padding-bottom: var(--space-section);
+}
+
+.industries-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 var(--space-lg);
+  padding-bottom: 0;
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-cards);
+  @include reset-list;
+}
+
+.industries-card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.industries-image {
+  @include media-cover-block;
+  object-position: center;
+}
+
+@include below(991.98px) {
+  .industries-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include below(575.98px) {
+  .industries-title {
+    font-size: var(--font-title);
+  }
+
+  .industries-grid {
+    grid-template-columns: 1fr;
+  }
+}

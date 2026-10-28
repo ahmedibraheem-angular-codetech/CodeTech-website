@@ -1,0 +1,45 @@
+<section class="product-results" aria-labelledby="product-results-title">
+  <div class="container">
+    <div class="product-results-panel">
+      <header
+        class="product-results-header"
+        [style.background-image]="
+          'linear-gradient(0deg, rgba(0, 41, 81, 0.4) 0%, rgba(0, 41, 81, 0.4) 100%), url(' +
+          data().backgroundSrc +
+          ')'
+        "
+      >
+        <ct-divider [label]="data().label" variant="white" />
+        <h2 id="product-results-title" class="product-results-title">{{ data().title }}</h2>
+        <p class="product-results-description">{{ data().description }}</p>
+      </header>
+
+      <div class="product-results-grid">
+        <div class="row g-0">
+          @for (item of data().items; track item.id; let i = $index) {
+            <div
+              class="col-12 col-sm-6 col-lg-4 product-results-cell"
+              [class.product-results-cell-row-end]="i % 3 === 2"
+              [class.product-results-cell-last-row]="i >= 3"
+              [style.animation-delay]="0.06 * (i + 1) + 's'"
+            >
+              <article class="product-results-card">
+                <span class="product-results-card-icon-wrap" aria-hidden="true">
+                  <span
+                    class="product-results-card-icon"
+                    [style.mask-image]="iconMask(item.iconSrc)"
+                    [style.-webkit-mask-image]="iconMask(item.iconSrc)"
+                  ></span>
+                </span>
+                <div class="product-results-card-copy">
+                  <h3 class="product-results-card-title">{{ item.title }}</h3>
+                  <p class="product-results-card-description">{{ item.description }}</p>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

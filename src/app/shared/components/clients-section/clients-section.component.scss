@@ -1,0 +1,56 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.clients-section {
+  padding-block: var(--space-section);
+}
+
+.clients-header {
+  @include flex-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.clients-header-intro {
+  min-width: 0;
+}
+
+.clients-title {
+  @include section-heading-title;
+  margin: 0;
+}
+
+.clients-header-arrows {
+  flex-shrink: 0;
+  margin-bottom: var(--space-section-heading-content);
+}
+
+.clients-swiper {
+  width: 100%;
+  overflow: hidden;
+  padding-inline: max(calc((100% - var(--container)) / 2), var(--space-sm));
+}
+
+.clients-slide {
+  height: auto;
+}
+
+.client-card {
+  @include flex-center;
+  aspect-ratio: 220 / 140;
+  border-radius: var(--border-radius);
+  background-color: var(--color-primary);
+}
+
+.client-card-logo {
+  width: auto;
+  max-width: 55%;
+  height: auto;
+  max-height: 55%;
+  object-fit: contain;
+}
+
+@include below(575.98px) {
+  .clients-title {
+    font-size: var(--font-title);
+  }
+}

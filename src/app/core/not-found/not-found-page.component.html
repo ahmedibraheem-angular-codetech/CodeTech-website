@@ -1,0 +1,31 @@
+<section class="not-found-page" aria-labelledby="not-found-title">
+  <div class="container">
+    <div class="not-found-content">
+      <img
+        class="not-found-illustration"
+        src="/assets/images/not-found/illustration.svg"
+        [alt]="'notFound.illustrationAlt' | translate"
+        width="300"
+        height="300"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <h1 id="not-found-title" class="not-found-title">
+        {{ 'notFound.title' | translate }}
+      </h1>
+
+      <p class="not-found-description">
+        {{ 'notFound.description' | translate }}
+      </p>
+
+      <ct-button
+        [label]="'notFound.home' | translate"
+        variant="light"
+        icon="double-alt-arrow-left"
+        shadowColor=""
+        (clicked)="goHome()"
+      />
+    </div>
+  </div>
+</section>

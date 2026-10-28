@@ -1,0 +1,23 @@
+<ct-page-hero
+  [title]="'contactUs.hero.title' | translate"
+  [description]="'contactUs.hero.description' | translate"
+  [buttonLabel]="'contactUs.hero.cta' | translate"
+/>
+
+<ct-contact-options-section />
+<ct-contact-form-section [services]="services()" [coordinates]="coordinates" />
+
+<ct-contact-channels-section [items]="channels" />
+
+
+<ct-contact-steps-section />
+
+<ct-faq-section
+  [label]="'contactUs.faq.label' | translate"
+  [title]="'contactUs.faq.title' | translate"
+  [items]="faqItems"
+  [linkLabel]="'common.viewAllFaq' | translate"
+  linkRoute="/faq"
+  [value]="faqItems[0]?.id ?? null"
+/>
+

@@ -1,0 +1,84 @@
+<section class="contact-options-section" aria-label="contact options">
+  <div class="contact-options-split" aria-hidden="true">
+    <div class="contact-options-half contact-options-half-project"></div>
+    <div class="contact-options-half contact-options-half-products"></div>
+  </div>
+
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6 ">
+        <article class="contact-option-card  ">
+          <img
+            class="contact-option-icon first-icon"
+            src="/assets/icons/contact-us/plane.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="99"
+            height="99"
+          />
+
+          <div class="contact-option-copy">
+            <ct-divider [label]="'contactUs.options.items.project.category' | translate" />
+
+            <h2 class="contact-option-title">
+              {{ 'contactUs.options.items.project.title' | translate }}
+            </h2>
+
+            <p class="contact-option-description">
+              {{ 'contactUs.options.items.project.description' | translate }}
+            </p>
+
+            <div class="contact-option-actions">
+              <ct-button
+                [label]="'contactUs.options.items.project.buttonLabel' | translate"
+                variant="dark"
+                width="170px"
+                [layout]="'spread'"
+                icon="double-alt-arrow-left"
+              />
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-lg-6">
+        <article class="contact-option-card ">
+          <img
+            class="contact-option-icon "
+            src="/assets/icons/contact-us/cube.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="99"
+            height="99"
+          />
+
+          <div class="contact-option-copy">
+            <ct-divider [label]="'contactUs.options.items.products.category' | translate" />
+
+            <h2 class="contact-option-title">
+              {{ 'contactUs.options.items.products.title' | translate }}
+            </h2>
+
+            <p class="contact-option-description">
+              {{ 'contactUs.options.items.products.description' | translate }}
+            </p>
+
+            <div class="contact-option-actions">
+              <ct-button
+                [label]="'contactUs.options.items.products.buttonLabel' | translate"
+                variant="primary"
+                icon="double-alt-arrow-left"
+                width="170px"
+                [layout]="'spread'"
+              />
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+

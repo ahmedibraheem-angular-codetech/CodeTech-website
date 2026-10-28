@@ -1,0 +1,17 @@
+<ct-page-hero
+  [title]="'blog.details.title' | translate"
+  [description]="'blog.details.description' | translate"
+/>
+
+@if (details(); as page) {
+  <article class="container article-details" [innerHTML]="safeHtml()"></article>
+
+  @if (page.related.isPublished) {
+    <ct-related-articles-section [data]="page.related" />
+  }
+} @else {
+  <section class="container article-missing">
+    <h1 class="article-missing-title">{{ 'blog.notFound' | translate }}</h1>
+    <a class="article-missing-link" routerLink="/blog">{{ 'blog.back' | translate }}</a>
+  </section>
+}

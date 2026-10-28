@@ -1,0 +1,93 @@
+<section
+  class="product-modules"
+  aria-labelledby="product-modules-title"
+  (mouseenter)="pauseAutoplay()"
+  (mouseleave)="resumeAutoplay()"
+>
+  <div class="container">
+    <header class="product-modules-header">
+      <div class="product-modules-intro">
+        <ct-divider [label]="data().label" variant="white" />
+        <h2 id="product-modules-title" class="product-modules-title">{{ data().title }}</h2>
+      </div>
+
+      <ct-slider-arrows
+        [canPrev]="canPrev()"
+        [canNext]="canNext()"
+        (prev)="prev()"
+        (next)="next()"
+      />
+    </header>
+
+    <div class="row g-3 product-modules-body">
+      <nav class="col-12 col-lg-2 product-modules-nav" [attr.aria-label]="data().title">
+        <ul class="product-modules-nav-list">
+          @for (item of data().items; track item.id) {
+            <li>
+              <button
+                type="button"
+                class="product-modules-nav-btn"
+                [class.product-modules-nav-btn-active]="isActive(item)"
+                [attr.aria-current]="isActive(item) ? 'true' : null"
+                (click)="select(item)"
+              >
+                {{ item.navLabel }}
+              </button>
+            </li>
+          }
+        </ul>
+      </nav>
+
+      @for (item of activeItems(); track item.id) {
+        <div class="col-12 col-lg-10">
+          <article class="product-modules-panel">
+            <div class="row g-4">
+              <div class="col-12 col-lg-6 product-modules-copy">
+                <div class="product-modules-copy-top">
+                  <h3 class="product-modules-item-title">{{ item.title }}</h3>
+                  <p class="product-modules-item-description">{{ item.description }}</p>
+
+                  <ul class="row g-2 product-modules-features">
+                    @for (feature of item.features; track feature.id; let i = $index) {
+                      <li class="col-12 col-sm-6" [style.animation-delay]="0.08 * (i + 1) + 's'">
+                        <div class="product-modules-feature">
+                          <span
+                            class="product-modules-feature-icon"
+                            aria-hidden="true"
+                            [style.mask-image]="iconMask(feature.iconSrc)"
+                            [style.-webkit-mask-image]="iconMask(feature.iconSrc)"
+                          ></span>
+                          <div class="product-modules-feature-copy">
+                            <h4 class="product-modules-feature-title">{{ feature.title }}</h4>
+                            <p class="product-modules-feature-description">{{ feature.description }}</p>
+                          </div>
+                        </div>
+                      </li>
+                    }
+                  </ul>
+                </div>
+
+                <button type="button" class="product-modules-link" (click)="exploreClick.emit()">
+                  {{ data().exploreLabel }}
+                  <span class="product-modules-link-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="col-12 col-lg-6 product-modules-media">
+                <img
+                  class="product-modules-image"
+                  [src]="item.imageSrc"
+                  [alt]="item.imageAlt"
+                  width="494"
+                  height="398"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,74 @@
+<section class="project-interfaces" aria-labelledby="project-interfaces-title">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-12 col-md-6 project-interfaces-content">
+        <header class="project-interfaces-intro">
+          <ct-divider [label]="data().label" />
+          <h2 id="project-interfaces-title" class="project-interfaces-title">
+            {{ data().title }}
+          </h2>
+        </header>
+
+        <div class="project-interfaces-tabs" role="tablist" [attr.aria-label]="data().title">
+          @for (row of tabRows(); track $index) {
+            <div class="project-interfaces-tabs-row">
+              @for (item of row; track item.id) {
+                <button
+                  type="button"
+                  class="project-interfaces-tab"
+                  role="tab"
+                  [class.project-interfaces-tab-active]="isActive(item)"
+                  [attr.aria-selected]="isActive(item)"
+                  (click)="select(item)"
+                >
+                  {{ item.tabLabel }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      @for (active of activeItems(); track active.id) {
+        @if (active.images[0]; as image) {
+          <div class="col-12 col-md-6">
+            <figure class="project-interfaces-shot project-interfaces-shot-main">
+              <img
+                class="project-interfaces-image"
+                [src]="image.imageSrc"
+                [alt]="image.imageAlt"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+        }
+      }
+    </div>
+
+    @for (active of activeItems(); track active.id) {
+      <div class="row g-2 project-interfaces-more">
+        @for (image of active.images; track $index) {
+          @if ($index > 0) {
+            <div [class.col-6]="$index === 1" [class.col-md-6]="$index === 1" [class.col-3]="$index > 1" [class.col-md-3]="$index > 1">
+              <figure
+                class="project-interfaces-shot"
+                [class.project-interfaces-shot-a]="$index === 1"
+                [class.project-interfaces-shot-b]="$index === 2"
+                [class.project-interfaces-shot-foot]="$index === 3"
+              >
+                <img
+                  class="project-interfaces-image"
+                  [src]="image.imageSrc"
+                  [alt]="image.imageAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          }
+        }
+      </div>
+    }
+  </div>
+</section>

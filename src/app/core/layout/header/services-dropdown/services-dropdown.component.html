@@ -1,0 +1,57 @@
+@if (isOpen()) {
+  <div class="services-dropdown" role="region" [attr.aria-label]="'header.nav.services' | translate">
+    <aside class="service-promo-wrap">
+      <div class="service-promo">
+        <div class="service-promo-top">
+          <h2 class="service-promo-title">{{ 'header.mega.promoTitle' | translate }}</h2>
+          <ct-button
+            [label]="'header.mega.promoCta' | translate"
+            icon="double-alt-arrow-left"
+            variant="primary"
+            layout="spread"
+            width="115px"
+            height="36px"
+            fontSize="10px"
+            
+            shadowColor="#002951"
+            (clicked)="onCtaClick()"
+          />
+        </div>
+        <img
+          class="service-promo-image"
+          src="/assets/images/header/promo-phone.svg"
+          alt=""
+        />
+      </div>
+    </aside>
+
+    <div class="services-list-wrap">
+      <div class="services-list row g-0">
+        @for (service of services; track service.slug) {
+          <div class="col-md-6">
+            <a
+              class="service-item"
+              [class.service-item-active]="activeSlug() === service.slug"
+              [attr.aria-current]="activeSlug() === service.slug ? 'page' : null"
+              [routerLink]="service.route"
+              (mouseenter)="setActive(service)"
+              (focus)="setActive(service)"
+              (click)="onServiceClick()"
+            >
+              <span class="service-icon" aria-hidden="true">
+                <img [src]="service.icon" alt="" width="22" height="22" />
+              </span>
+              <span class="service-text">
+                <span class="service-title">{{ service.titleKey | translate }}</span>
+                <span class="service-desc">{{ service.descKey | translate }}</span>
+              </span>
+              @if (activeSlug() === service.slug) {
+                <span class="service-arrow" aria-hidden="true"></span>
+              }
+            </a>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,106 @@
+<section class="featured-articles" aria-labelledby="featured-articles-title">
+  <div class="container">
+    <div class="featured-articles-header">
+      <div class="featured-articles-intro">
+        <ct-divider [label]="data().label | translate" />
+        <h2 id="featured-articles-title" class="featured-articles-title">
+          {{ data().title | translate }}
+        </h2>
+      </div>
+
+      <ct-slider-arrows
+        class="featured-articles-arrows"
+        [canPrev]="canPrev()"
+        [canNext]="canNext()"
+        (prev)="prev()"
+        (next)="next()"
+      />
+    </div>
+
+    <div #swiperRoot class="swiper featured-articles-swiper">
+      <div class="swiper-wrapper">
+        @for (slide of slides(); track slide.id) {
+          <div class="swiper-slide featured-articles-slide">
+            <div class="row g-3 align-items-stretch">
+              <div class="col-md-5 d-flex">
+                <article class="featured-card" [attr.aria-labelledby]="'featured-article-' + slide.featured.id">
+                  <a
+                    class="featured-card-link"
+                    [routerLink]="['/blog', slide.featured.seo.slug]"
+                    [attr.aria-label]="('blog.readArticle' | translate) + ' ' + (slide.featured.title | translate)"
+                  >
+                    <img
+                      class="featured-card-image"
+                      [src]="slide.featured.thumbnail.src"
+                      [alt]="slide.featured.thumbnail.alt | translate"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span class="featured-card-badge">{{ slide.featured.category | translate }}</span>
+                    <span class="featured-card-shade" aria-hidden="true"></span>
+
+                    <div class="featured-card-body">
+                      <h3 class="featured-card-title" [id]="'featured-article-' + slide.featured.id">
+                        {{ slide.featured.title | translate }}
+                      </h3>
+                      <p class="featured-card-excerpt">{{ slide.featured.excerpt | translate }}</p>
+
+                      <div class="featured-card-meta">
+                        <span class="featured-card-meta-item">
+                          <span class="featured-card-meta-badge" aria-hidden="true">
+                            <span class="featured-card-icon featured-card-icon-calendar"></span>
+                          </span>
+                          <time [attr.datetime]="slide.featured.publishedAt">
+                            {{ slide.featured.publishedAtLabel | translate }}
+                          </time>
+                        </span>
+                        <span class="featured-card-meta-item">
+                          <span class="featured-card-meta-badge featured-card-meta-badge-clock" aria-hidden="true">
+                            <span class="featured-card-icon featured-card-icon-clock"></span>
+                          </span>
+                          {{ slide.featured.readingTime | translate }}
+                        </span>
+                      </div>
+
+                      <hr class="featured-card-rule" />
+
+                      <div class="featured-card-footer">
+                        <div class="featured-card-author">
+                          <img
+                            class="featured-card-avatar"
+                            [src]="slide.featured.author.avatarSrc"
+                            [alt]="slide.featured.author.avatarAlt | translate"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div>
+                            <p class="featured-card-author-name">{{ slide.featured.author.name | translate }}</p>
+                            <p class="featured-card-author-role">{{ slide.featured.author.role | translate }}</p>
+                          </div>
+                        </div>
+                        <span class="featured-card-read">
+                          {{ 'blog.readArticle' | translate }}
+                          <span class="featured-card-read-icon" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              </div>
+
+              <div class="col-md-7">
+                <div class="row g-3">
+                  @for (article of slide.compact; track article.id) {
+                    <div class="col-md-6 d-flex">
+                      <ct-compact-article-card [article]="article" />
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,100 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.contact-options-section {
+  position: relative;
+  padding-block: var(--space-section);
+}
+
+.contact-options-split {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+}
+
+.contact-options-half {
+  flex: 1 1 50%;
+}
+
+.contact-options-half-project {
+  background-color: var(--color-white);
+}
+
+.contact-options-half-products {
+  background-color: var(--color-background);
+}
+
+.contact-options-section .container {
+  position: relative;
+}
+
+.contact-option-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-md);
+  height: 100%;
+  padding: var(--space-lg);
+  border-radius: var(--border-radius);
+}
+
+.contact-option-icon {
+  flex: none;
+  display: block;
+  width: 98.5px;
+  height: 98.5px;
+  object-fit: contain;
+  opacity: 1;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 10px;
+}
+
+.first-icon {
+  background-color: var(--color-background);
+}
+.contact-option-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  @include stack-start;
+}
+
+.contact-option-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+  font-size: 64px;
+}
+
+.contact-option-description {
+  @include body-small;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.contact-option-actions {
+  display: flex;
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--space-sm);
+}
+
+@include below(991.98px) {
+  .contact-options-split {
+    flex-direction: column;
+  }
+}
+
+@include below(575.98px) {
+  .contact-option-card {
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-md);
+    text-align: center;
+  }
+
+  .contact-option-copy {
+    align-items: center;
+  }
+}

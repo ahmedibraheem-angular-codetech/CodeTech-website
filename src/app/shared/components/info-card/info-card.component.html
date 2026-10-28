@@ -1,0 +1,18 @@
+<article
+  class="ct-info-card"
+  [style.min-height]="minHeight()"
+>
+  @if (iconMask()) {
+    <div class="ct-info-card-icon-wrap" aria-hidden="true">
+      <span
+        class="ct-info-card-icon"
+        [style.--ct-info-card-icon]="iconMask()"
+      ></span>
+    </div>
+  }
+
+  <div class="ct-info-card-body">
+    <h3 class="ct-info-card-title">{{ data().title | translate }}</h3>
+    <p class="ct-info-card-description">{{ data().description | translate }}</p>
+  </div>
+</article>

@@ -1,0 +1,55 @@
+@use '../../../../styles/abstracts/mixin' as *;
+.ct-slider-arrows {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ct-slider-arrow {
+  @include inline-flex-center;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--space-xs);
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.ct-slider-arrow-icon {
+  --ct-arrow-flip: 1;
+
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  mask: url('/assets/icons/double-alt-arrow-left.svg') center / contain no-repeat;
+  -webkit-mask: url('/assets/icons/double-alt-arrow-left.svg') center / contain no-repeat;
+  transform: scaleX(var(--ct-arrow-flip));
+}
+
+// Asset points left (RTL forward). Flip for LTR next / RTL prev.
+.ct-slider-arrow--next:dir(ltr) .ct-slider-arrow-icon {
+  --ct-arrow-flip: -1;
+}
+
+.ct-slider-arrow--prev:dir(rtl) .ct-slider-arrow-icon {
+  --ct-arrow-flip: -1;
+}

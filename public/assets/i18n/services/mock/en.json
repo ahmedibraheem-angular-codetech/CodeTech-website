@@ -1,0 +1,1746 @@
+{
+  "services": {
+    "mock": {
+      "faq": {
+        "items": {
+          "services": {
+            "question": "What services does CodeTech provide?",
+            "answer": "We provide systems and software development, mobile apps, UX/UI design, branding, cloud solutions, system integration, and technical support."
+          },
+          "custom": {
+            "question": "Do you offer custom solutions?",
+            "answer": "Yes. We build tailored solutions around your business needs, with scalability, performance, and daily usability in mind."
+          },
+          "upgrade": {
+            "question": "Can you improve existing systems?",
+            "answer": "Yes. We assess your current systems and improve or integrate them with new solutions without disrupting your work."
+          },
+          "support": {
+            "question": "Do you provide support after launch?",
+            "answer": "Yes. We provide ongoing technical support and maintenance after launch to keep the solution stable and continuously improved."
+          },
+          "cms": {
+            "question": "Can I edit the website content myself after delivery?",
+            "answer": "Yes. We design your website with a very simple Arabic admin panel, and we teach you with a short video how to add products, edit text, or upload new images yourself without needing a developer."
+          }
+        }
+      },
+      "items": {
+        "automation": {
+          "title": "Business Automation",
+          "description": "We turn your operations into automation"
+        },
+        "systems": {
+          "title": "Systems & Software Development",
+          "description": "A short intro about CodeTech"
+        },
+        "websites": {
+          "title": "Website Development",
+          "description": "A short intro about CodeTech"
+        },
+        "mobile": {
+          "title": "Mobile App Development",
+          "description": "A short intro about CodeTech"
+        },
+        "analysis": {
+          "title": "Systems & Requirements Analysis",
+          "description": "A short intro about CodeTech"
+        },
+        "ux": {
+          "title": "UX & UI Design",
+          "description": "A short intro about CodeTech"
+        },
+        "branding": {
+          "title": "Brand Identity Design",
+          "description": "A short intro about CodeTech"
+        },
+        "cloud": {
+          "title": "Cloud Solutions",
+          "description": "A short intro about CodeTech"
+        },
+        "integration": {
+          "title": "Systems Integration",
+          "description": "A short intro about CodeTech"
+        },
+        "support": {
+          "title": "Technical Support & Maintenance",
+          "description": "A short intro about CodeTech"
+        }
+      },
+      "details": {
+        "automation": {
+          "description": "We automate repetitive workflows so your team can focus on higher-value work.",
+          "hero": {
+            "title": "Turn your manual processes into smart automated ones.",
+            "description": "We help organizations automate daily procedures and workflows, connect different systems, and reduce manual work — raising efficiency, increasing productivity, and limiting operational errors."
+          },
+          "whyNeeded": {
+            "label": "Business Automation",
+            "title": "Why do you need business automation?",
+            "imageAlt": "Business automation",
+            "imageCaption": "Business automation helps simplify procedures, speed up delivery, and improve team efficiency.",
+            "items": {
+              "dailyTasks": {
+                "title": "Repeating daily tasks."
+              },
+              "humanErrors": {
+                "title": "Frequent human errors."
+              },
+              "tracking": {
+                "title": "Difficulty tracking operations."
+              },
+              "integration": {
+                "title": "Lack of system interconnection."
+              },
+              "costs": {
+                "title": "High operational costs."
+              }
+            }
+          },
+          "solutions": {
+            "label": "What we offer",
+            "title": "Automation solutions designed for your business needs.",
+            "items": {
+              "workflow": {
+                "title": "Workflow automation",
+                "description": "A description that can be replaced to match the listed title"
+              },
+              "systems": {
+                "title": "Systems integration",
+                "description": "A description that can be replaced to match the listed title"
+              },
+              "notifications": {
+                "title": "Notifications automation",
+                "description": "A description that can be replaced to match the listed title"
+              },
+              "recurring": {
+                "title": "Recurring process automation",
+                "description": "A description that can be replaced to match the listed title"
+              },
+              "approvals": {
+                "title": "Approvals automation",
+                "description": "A description that can be replaced to match the listed title"
+              },
+              "reports": {
+                "title": "Automated reports",
+                "description": "A description that can be replaced to match the listed title"
+              }
+            }
+          },
+          "steps": {
+            "label": "Steps",
+            "title": "Service stages",
+            "cards": {
+              "analyze": {
+                "title": "Analyze current processes",
+                "description": "A description that can be replaced to match the listed title accurately."
+              },
+              "opportunities": {
+                "title": "Identify automation opportunities",
+                "description": "A description that can be replaced to match the listed title accurately."
+              },
+              "design": {
+                "title": "Design the workflow",
+                "description": "A description that can be replaced to match the listed title accurately."
+              },
+              "implement": {
+                "title": "Implement the solutions",
+                "description": "A description that can be replaced to match the listed title accurately."
+              },
+              "test": {
+                "title": "Test and improve",
+                "description": "A description that can be replaced to match the listed title accurately."
+              },
+              "launch": {
+                "title": "Launch and follow up",
+                "description": "A description that can be replaced to match the listed title accurately."
+              }
+            }
+          },
+          "features": {
+            "label": "Our features",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable technical solutions"
+              },
+              "understand": {
+                "title": "Deep understanding of government and enterprise work",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Deep business understanding"
+              },
+              "quality": {
+                "title": "High quality aligned with best practices",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "High quality"
+              },
+              "product": {
+                "title": "Building digital systems and products.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Digital systems and products"
+              },
+              "expertise": {
+                "title": "Systems and software development",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Systems and software development"
+              },
+              "connect": {
+                "title": "Integration with government and global systems.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Systems integration"
+              },
+              "integrate": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable solutions"
+              },
+              "partner": {
+                "title": "Long-term partnership and ongoing support",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "government": "Government"
+            },
+            "items": {
+              "0": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              },
+              "1": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              },
+              "2": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              },
+              "3": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              },
+              "4": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              },
+              "5": {
+                "name": "Wasalni website and app for fast services",
+                "description": "A short introductory description about CodeTech — to be refined later by the team for more accurate wording.",
+                "imageAlt": "Wasalni website interface on a computer screen"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Technologies used",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          },
+          "industries": {
+            "label": "Our sectors",
+            "title": "Target sectors",
+            "items": {
+              "government": {
+                "title": "Government",
+                "imageAlt": "Government sector"
+              },
+              "companies": {
+                "title": "Companies",
+                "imageAlt": "Companies sector"
+              },
+              "health": {
+                "title": "Health",
+                "imageAlt": "Health sector"
+              },
+              "education": {
+                "title": "Education",
+                "imageAlt": "Education sector"
+              },
+              "ecommerce": {
+                "title": "E-commerce",
+                "imageAlt": "E-commerce sector"
+              },
+              "industry": {
+                "title": "Industry",
+                "imageAlt": "Industry sector"
+              },
+              "logistics": {
+                "title": "Logistics",
+                "imageAlt": "Logistics sector"
+              },
+              "tourism": {
+                "title": "Tourism",
+                "imageAlt": "Tourism sector"
+              }
+            }
+          }
+        },
+        "systems": {
+          "hero": {
+            "title": "Custom systems that combine performance, efficiency, and scalability.",
+            "description": "We build tailored software systems that help your business manage operations, raise productivity, and grow sustainably."
+          },
+          "whyNeeded": {
+            "label": "Systems development",
+            "title": "Why do you need a custom system?",
+            "imageAlt": "Systems and software development",
+            "imageCaption": "A custom system unifies your operations, raises efficiency, and gives your team clearer business visibility.",
+            "items": {
+              "efficiency": {
+                "title": "Manual processes that slow daily delivery."
+              },
+              "integration": {
+                "title": "Disconnected systems that do not share data easily."
+              },
+              "visibility": {
+                "title": "Hard to track performance and make decisions."
+              },
+              "scale": {
+                "title": "Off-the-shelf tools do not fit your growth."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "System solutions designed for your business needs.",
+            "items": {
+              "erp": {
+                "title": "ERP systems",
+                "description": "Connect finance, inventory, sales, and operations in one platform."
+              },
+              "crm": {
+                "title": "CRM systems",
+                "description": "Track customers, opportunities, and sales to improve the customer experience."
+              },
+              "hr": {
+                "title": "HR systems",
+                "description": "Manage employees, attendance, and payroll with clear digital workflows."
+              },
+              "inventory": {
+                "title": "Inventory and supply",
+                "description": "Track stock, suppliers, and orders accurately in real time."
+              },
+              "workflow": {
+                "title": "Workflow automation",
+                "description": "Digitize approvals and procedures to reduce delays and errors."
+              },
+              "custom": {
+                "title": "Fully custom systems",
+                "description": "Build software solutions around your specific business needs."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do we execute your project?"
+          },
+          "features": {
+            "label": "Why us",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable solutions"
+              },
+              "understand": {
+                "title": "Deep understanding of organizations and companies",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Business understanding"
+              },
+              "quality": {
+                "title": "High quality with best practices",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "High quality"
+              },
+              "product": {
+                "title": "Systems and digital product development.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Digital products"
+              },
+              "expertise": {
+                "title": "Specialized technical expertise",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Technical expertise"
+              },
+              "connect": {
+                "title": "Integration with systems and platforms.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "System integration"
+              },
+              "integrate": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable solutions"
+              },
+              "partner": {
+                "title": "Long-term partnership and ongoing support",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "system": "System"
+            },
+            "items": {
+              "erp": {
+                "name": "ERP system for an industrial organization",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "ERP system"
+              },
+              "crm": {
+                "name": "CRM system for a services company",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "CRM system"
+              },
+              "inventory": {
+                "name": "Inventory system for a supply chain",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Inventory system"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Technologies used",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          },
+          "industries": {
+            "label": "Our sectors",
+            "title": "Target sectors",
+            "items": {
+              "government": {
+                "title": "Government",
+                "imageAlt": "Government sector"
+              },
+              "companies": {
+                "title": "Companies",
+                "imageAlt": "Companies sector"
+              },
+              "health": {
+                "title": "Health",
+                "imageAlt": "Health sector"
+              },
+              "education": {
+                "title": "Education",
+                "imageAlt": "Education sector"
+              },
+              "services": {
+                "title": "Services",
+                "imageAlt": "Services sector"
+              },
+              "industry": {
+                "title": "Industry",
+                "imageAlt": "Industry sector"
+              },
+              "logistics": {
+                "title": "Logistics",
+                "imageAlt": "Logistics sector"
+              },
+              "tourism": {
+                "title": "Tourism",
+                "imageAlt": "Tourism sector"
+              }
+            }
+          }
+        },
+        "websites": {
+          "hero": {
+            "title": "Websites that combine performance, design, and user experience.",
+            "description": "We design and build fast, secure websites that reflect your brand and support sales, marketing, and customer service with high efficiency."
+          },
+          "whyNeeded": {
+            "label": "Website development",
+            "title": "Why do you need a professional website?",
+            "imageAlt": "Website development",
+            "imageCaption": "A professional website strengthens your digital presence, builds customer trust, and supports business growth.",
+            "items": {
+              "presence": {
+                "title": "Weak digital presence against competitors."
+              },
+              "trust": {
+                "title": "Difficulty building trust with new customers."
+              },
+              "growth": {
+                "title": "Limited sales and marketing channels."
+              },
+              "management": {
+                "title": "Hard to update content and manage the site."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Website solutions designed for your business needs.",
+            "items": {
+              "corporate": {
+                "title": "Corporate websites",
+                "description": "Sites that reflect your brand and present your services clearly and professionally."
+              },
+              "ecommerce": {
+                "title": "E-commerce stores",
+                "description": "Ready-to-sell stores with product, order, and payment management."
+              },
+              "landing": {
+                "title": "Landing pages",
+                "description": "Focused pages that convert visitors into customers in your campaigns."
+              },
+              "portal": {
+                "title": "Customer portals",
+                "description": "Platforms that let customers track orders and services easily."
+              },
+              "cms": {
+                "title": "Content management",
+                "description": "Simple admin panels so you can update text, images, and products yourself."
+              },
+              "supportSite": {
+                "title": "Support and maintenance",
+                "description": "Post-launch monitoring and updates to keep the site stable."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do we execute your project?"
+          },
+          "features": {
+            "label": "Why us",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable solutions"
+              },
+              "understand": {
+                "title": "Deep understanding of organizations and companies",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Business understanding"
+              },
+              "quality": {
+                "title": "High quality with best practices",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "High quality"
+              },
+              "product": {
+                "title": "Website and digital product development.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Digital products"
+              },
+              "expertise": {
+                "title": "Specialized technical expertise",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Technical expertise"
+              },
+              "connect": {
+                "title": "Integration with systems and platforms.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "System integration"
+              },
+              "integrate": {
+                "title": "Scalable technical solutions.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable solutions"
+              },
+              "partner": {
+                "title": "Long-term partnership and ongoing support",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "store": "Store"
+            },
+            "items": {
+              "dates": {
+                "name": "Website for the Wild Dates Store",
+                "description": "A short project summary covering the store idea and scope of work.",
+                "imageAlt": "Wild Dates Store website"
+              },
+              "furniture": {
+                "name": "Website for the Luxury Furniture Store",
+                "description": "A short project summary covering the store idea and scope of work.",
+                "imageAlt": "Luxury Furniture Store website"
+              },
+              "perfume": {
+                "name": "Website for the Perfume Department Store",
+                "description": "A short project summary covering the store idea and scope of work.",
+                "imageAlt": "Perfume store website"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Technologies used",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          },
+          "industries": {
+            "label": "Our sectors",
+            "title": "Target sectors",
+            "items": {
+              "government": {
+                "title": "Government",
+                "imageAlt": "Government sector"
+              },
+              "companies": {
+                "title": "Companies",
+                "imageAlt": "Companies sector"
+              },
+              "health": {
+                "title": "Health",
+                "imageAlt": "Health sector"
+              },
+              "education": {
+                "title": "Education",
+                "imageAlt": "Education sector"
+              },
+              "services": {
+                "title": "Services",
+                "imageAlt": "Services sector"
+              },
+              "industry": {
+                "title": "Industry",
+                "imageAlt": "Industry sector"
+              },
+              "logistics": {
+                "title": "Logistics",
+                "imageAlt": "Logistics sector"
+              },
+              "tourism": {
+                "title": "Tourism",
+                "imageAlt": "Tourism sector"
+              }
+            }
+          }
+        },
+        "mobile": {
+          "hero": {
+            "title": "Mobile apps that combine performance, innovation, and exceptional user experience",
+            "description": "We design and build fast, easy-to-use mobile apps that help your customers engage with your brand anytime, anywhere."
+          },
+          "whyNeeded": {
+            "label": "App development",
+            "title": "Why do you need a mobile app?",
+            "imageAlt": "Mobile app development",
+            "imageCaption": "A mobile app brings you closer to customers, strengthens your presence, and builds lasting loyalty.",
+            "items": {
+              "experience": {
+                "title": "An interactive experience closer to the customer."
+              },
+              "marketing": {
+                "title": "Direct marketing through notifications and offers."
+              },
+              "awareness": {
+                "title": "Stronger brand awareness."
+              },
+              "loyalty": {
+                "title": "Build customer loyalty and retention."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Mobile application development solutions",
+            "items": {
+              "ios": {
+                "title": "iOS apps",
+                "description": "Native apps for iPhone and iPad with high performance and a smooth experience."
+              },
+              "android": {
+                "title": "Android apps",
+                "description": "Reliable Android apps that work across devices and OS versions."
+              },
+              "cross": {
+                "title": "Cross-platform apps",
+                "description": "Cross-platform solutions that reach iOS and Android from one efficient codebase."
+              },
+              "ecommerce": {
+                "title": "E-commerce apps",
+                "description": "Shopping apps that support products, orders, and payments with ease."
+              },
+              "uiux": {
+                "title": "UI/UX design",
+                "description": "Attractive, easy-to-use interfaces that increase engagement and conversion."
+              },
+              "maintenance": {
+                "title": "App maintenance and evolution",
+                "description": "Ongoing updates, fixes, and improvements after launch."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "From idea to the app store"
+          },
+          "features": {
+            "label": "Why us",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Technical expertise in app development.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Technical expertise"
+              },
+              "understand": {
+                "title": "Fast delivery without sacrificing quality",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Fast delivery"
+              },
+              "quality": {
+                "title": "High quality with best practices",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "High quality"
+              },
+              "product": {
+                "title": "Ongoing support after launch.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Ongoing support"
+              },
+              "expertise": {
+                "title": "Security and user data protection",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Data security"
+              },
+              "connect": {
+                "title": "Integration with systems and platforms.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "System integration"
+              },
+              "integrate": {
+                "title": "Smooth interfaces and a distinctive UX.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "User experience"
+              },
+              "partner": {
+                "title": "Long-term partnership and ongoing support",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "app": "App"
+            },
+            "items": {
+              "app1": {
+                "name": "Services app for a startup",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Services app"
+              },
+              "app2": {
+                "name": "E-commerce mobile app",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "E-commerce app"
+              },
+              "app3": {
+                "name": "Bookings and appointments app",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Bookings app"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Tools and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "analysis": {
+          "hero": {
+            "title": "Start your project with a clear plan and precise, stable requirements",
+            "description": "We analyze your business systems and define requirements accurately to reduce risk and ensure successful delivery from day one."
+          },
+          "whyNeeded": {
+            "label": "Systems analysis",
+            "title": "Why do you need systems analysis?",
+            "imageAlt": "Systems and requirements analysis",
+            "imageCaption": "Accurate analysis clarifies the full picture before development and saves time and cost.",
+            "items": {
+              "clarity": {
+                "title": "Unclear requirements that delay delivery."
+              },
+              "scope": {
+                "title": "A project scope that keeps changing."
+              },
+              "risk": {
+                "title": "Technical risks that appear too late."
+              },
+              "alignment": {
+                "title": "A gap between business expectations and delivery."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Systems analysis and requirements solutions for your business needs",
+            "items": {
+              "requirements": {
+                "title": "Requirements gathering and analysis",
+                "description": "Document business and technical requirements clearly and ready for execution."
+              },
+              "process": {
+                "title": "Current process analysis",
+                "description": "Understand existing workflows and uncover improvement points and bottlenecks."
+              },
+              "gap": {
+                "title": "Gap analysis",
+                "description": "Compare the current state to the target and define what to build or improve."
+              },
+              "stakeholders": {
+                "title": "Stakeholder alignment",
+                "description": "Unify vision across teams and leadership before development starts."
+              },
+              "docs": {
+                "title": "Functional specification documents",
+                "description": "Prepare precise specs that design and development teams can rely on."
+              },
+              "roadmap": {
+                "title": "Delivery roadmap",
+                "description": "A clear phased plan for priorities, timeline, and deliverables."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do we run the analysis phase?"
+          },
+          "features": {
+            "label": "What we offer",
+            "title": "So what do we provide?",
+            "items": {
+              "grow": {
+                "title": "A clear project plan from the start.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Clear plan"
+              },
+              "understand": {
+                "title": "Precise, measurable requirements",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Precise requirements"
+              },
+              "quality": {
+                "title": "Lower change risk during development",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Lower risk"
+              },
+              "product": {
+                "title": "Business and technology alignment.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Business alignment"
+              },
+              "expertise": {
+                "title": "Documents ready for the delivery team",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Delivery documents"
+              },
+              "connect": {
+                "title": "A complete view of current systems.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Complete view"
+              },
+              "integrate": {
+                "title": "Clear delivery priorities.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Delivery priorities"
+              },
+              "partner": {
+                "title": "Partnership from analysis through launch",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "analysis": "Analysis"
+            },
+            "items": {
+              "study1": {
+                "name": "Requirements analysis for an ERP system",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Requirements analysis"
+              },
+              "study2": {
+                "name": "Gap study for operational processes",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Gap study"
+              },
+              "study3": {
+                "name": "Functional specs for a services platform",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Functional specs"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Tools and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "ux": {
+          "hero": {
+            "title": "Designing digital experiences that make your products easier and more effective",
+            "description": "We design clear interfaces and user experiences that help people get things done fast and reflect your brand."
+          },
+          "whyNeeded": {
+            "label": "UX design",
+            "title": "Why do you need UI/UX design?",
+            "imageAlt": "UI and UX design",
+            "imageCaption": "Good design raises user satisfaction, increases conversion, and builds stronger brand trust.",
+            "items": {
+              "satisfaction": {
+                "title": "A complex experience that lowers satisfaction."
+              },
+              "conversion": {
+                "title": "Weak interfaces that reduce conversion."
+              },
+              "clarity": {
+                "title": "Hard to understand and use the product."
+              },
+              "retention": {
+                "title": "Weak user retention."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Solutions and choices to suit your needs",
+            "items": {
+              "ecommerce": {
+                "title": "E-commerce design",
+                "description": "Smooth shopping interfaces that raise conversion and simplify the customer journey."
+              },
+              "education": {
+                "title": "Education systems",
+                "description": "Clear learning experiences that support content, interaction, and progress."
+              },
+              "travel": {
+                "title": "Travel and tourism",
+                "description": "Booking and discovery design that helps users decide faster."
+              },
+              "medical": {
+                "title": "Medical apps",
+                "description": "Simple, secure interfaces for appointments and care management."
+              },
+              "ux": {
+                "title": "UX design",
+                "description": "Research, flows, and interfaces centered on user needs."
+              },
+              "ui": {
+                "title": "UI design",
+                "description": "Consistent, attractive visuals that reflect your brand identity."
+              },
+              "marketing": {
+                "title": "Marketing design",
+                "description": "Screens and pages that support campaigns and improve engagement."
+              },
+              "web": {
+                "title": "Web design",
+                "description": "Professional website design that balances beauty and usability."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "Design process"
+          },
+          "features": {
+            "label": "What we offer",
+            "title": "What do we provide?",
+            "items": {
+              "grow": {
+                "title": "User research and insight.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "User research"
+              },
+              "understand": {
+                "title": "User journey maps",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "User journey"
+              },
+              "quality": {
+                "title": "Testable prototypes",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Prototypes"
+              },
+              "product": {
+                "title": "Consistent, development-ready interfaces.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Ready interfaces"
+              },
+              "expertise": {
+                "title": "A unified design system",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Design system"
+              },
+              "connect": {
+                "title": "Usability testing.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Usability testing"
+              },
+              "integrate": {
+                "title": "Cohesive visual identity.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Visual identity"
+              },
+              "partner": {
+                "title": "Partnership from idea to launch",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "app": "App design",
+              "web": "Web design"
+            },
+            "items": {
+              "design1": {
+                "name": "Services app design",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "App design"
+              },
+              "design2": {
+                "name": "Dashboard redesign",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Dashboard"
+              },
+              "design3": {
+                "name": "Corporate website design",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Website design"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Tools and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "branding": {
+          "hero": {
+            "title": "A brand identity that expresses your brand and gives it an unforgettable presence",
+            "description": "We design integrated visual identities that tell your brand story and create a strong, lasting impression on your audience."
+          },
+          "whyNeeded": {
+            "label": "Brand identity",
+            "title": "Why do you need a professional brand identity?",
+            "imageAlt": "Brand identity design",
+            "imageCaption": "A professional identity builds trust, sets you apart, and unifies your presence across every platform.",
+            "items": {
+              "trust": {
+                "title": "Building trust and loyalty."
+              },
+              "distinction": {
+                "title": "Standing out from competitors."
+              },
+              "value": {
+                "title": "Increasing market value."
+              },
+              "consistency": {
+                "title": "Visual consistency across platforms."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Brand identity solutions for your business needs",
+            "items": {
+              "logo": {
+                "title": "Logo design",
+                "description": "A distinctive logo that reflects your brand personality and stays memorable."
+              },
+              "visual": {
+                "title": "Visual identity",
+                "description": "A complete visual system for colors, typography, and graphic elements."
+              },
+              "strategy": {
+                "title": "Brand strategy",
+                "description": "Define your brand position, message, and voice in the market."
+              },
+              "packaging": {
+                "title": "Packaging design",
+                "description": "Packaging that elevates the experience and stands out on the shelf."
+              },
+              "digital": {
+                "title": "Digital branding",
+                "description": "Apply the identity across digital platforms and social media."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do we build your brand identity?"
+          },
+          "features": {
+            "label": "Deliverables",
+            "title": "What will you receive?",
+            "items": {
+              "grow": {
+                "title": "Visual identity guide.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Identity guide"
+              },
+              "understand": {
+                "title": "Logo in multiple formats",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Logo files"
+              },
+              "quality": {
+                "title": "Stationery designs",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Stationery"
+              },
+              "product": {
+                "title": "Social media templates.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Social templates"
+              },
+              "expertise": {
+                "title": "Typography and colors",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Typography and colors"
+              },
+              "connect": {
+                "title": "Print designs.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Print designs"
+              },
+              "integrate": {
+                "title": "Original source files.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Source files"
+              },
+              "partner": {
+                "title": "Technical and consultative support",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Support"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "branding": "Branding"
+            },
+            "items": {
+              "brand1": {
+                "name": "Visual identity for a services company",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Visual identity"
+              },
+              "brand2": {
+                "name": "Brand rebuild",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Brand rebuild"
+              },
+              "brand3": {
+                "name": "Digital identity for a startup platform",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Digital identity"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Tools and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "cloud": {
+          "hero": {
+            "title": "Flexible, precise cloud solutions that support your business growth with confidence",
+            "description": "We build and manage secure, scalable cloud infrastructure that helps you cut costs and raise performance and stability."
+          },
+          "whyNeeded": {
+            "label": "Cloud solutions",
+            "title": "Why do you need cloud solutions?",
+            "imageAlt": "Cloud solutions",
+            "imageCaption": "The cloud gives you more flexibility, lower cost, and more stable performance as your business grows.",
+            "items": {
+              "cost": {
+                "title": "Lower operating costs."
+              },
+              "scale": {
+                "title": "Fast scalability as demand grows."
+              },
+              "security": {
+                "title": "Stronger protection for data and systems."
+              },
+              "performance": {
+                "title": "Better performance and service stability."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Our prominent cloud solutions",
+            "items": {
+              "migration": {
+                "title": "Cloud migration",
+                "description": "Move your systems safely while reducing downtime and risk."
+              },
+              "infrastructure": {
+                "title": "Cloud infrastructure",
+                "description": "Design and set up flexible, scalable cloud environments."
+              },
+              "devops": {
+                "title": "DevOps and CI/CD",
+                "description": "Automate deployment and monitoring to ship faster with confidence."
+              },
+              "security": {
+                "title": "Cloud security",
+                "description": "Protection, identity, and access controls aligned with best practices."
+              },
+              "backup": {
+                "title": "Backup and recovery",
+                "description": "Backup and restore plans that keep business continuity intact."
+              },
+              "managed": {
+                "title": "Managed cloud",
+                "description": "Ongoing monitoring, optimization, and maintenance for your cloud."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do cloud solutions work?"
+          },
+          "features": {
+            "label": "What we offer",
+            "title": "What do our technologies provide?",
+            "items": {
+              "grow": {
+                "title": "On-demand scalability.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalability"
+              },
+              "understand": {
+                "title": "More efficient operating cost",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Cost efficiency"
+              },
+              "quality": {
+                "title": "High availability and stable services",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "High availability"
+              },
+              "product": {
+                "title": "Advanced data protection.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Data protection"
+              },
+              "expertise": {
+                "title": "Automated deploy and monitoring",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Automated deploy"
+              },
+              "connect": {
+                "title": "Integration with your current systems.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "System integration"
+              },
+              "integrate": {
+                "title": "Improved application performance.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Improved performance"
+              },
+              "partner": {
+                "title": "Ongoing support and operations",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Ongoing support"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "cloud": "Cloud"
+            },
+            "items": {
+              "cloud1": {
+                "name": "Enterprise systems cloud migration",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Cloud migration"
+              },
+              "cloud2": {
+                "name": "DevOps setup for a services platform",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "DevOps setup"
+              },
+              "cloud3": {
+                "name": "Managed cloud for a production environment",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Managed cloud"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Platforms and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "integration": {
+          "hero": {
+            "title": "Connect your systems in an integrated workspace",
+            "description": "We connect your systems and apps into one environment that cuts manual work and raises data accuracy and operational efficiency."
+          },
+          "whyNeeded": {
+            "label": "Systems integration",
+            "title": "Why move to systems integration?",
+            "imageAlt": "Systems integration",
+            "imageCaption": "Integration unifies your data, speeds up operations, and gives your team clearer visibility across every system.",
+            "items": {
+              "silos": {
+                "title": "Disconnected systems that do not share data."
+              },
+              "manual": {
+                "title": "Manual entry that slows work and adds errors."
+              },
+              "errors": {
+                "title": "Conflicting data across platforms."
+              },
+              "visibility": {
+                "title": "Hard to track operations from one place."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Integration solutions for your systems and business needs",
+            "items": {
+              "api": {
+                "title": "API integration",
+                "description": "Connect systems through secure, stable interfaces for real-time data exchange."
+              },
+              "thirdparty": {
+                "title": "Third-party app integration",
+                "description": "Connect your current tools like payments, inventory, and marketing smoothly."
+              },
+              "cloud": {
+                "title": "Cloud integration",
+                "description": "Connect cloud services with your local or hybrid systems."
+              },
+              "data": {
+                "title": "Data sync and unification",
+                "description": "A unified data source that reduces conflicts and improves reporting quality."
+              },
+              "workflow": {
+                "title": "Workflow integration",
+                "description": "Automate task flow between systems to reduce delays."
+              },
+              "legacy": {
+                "title": "Legacy system linking",
+                "description": "Integrate legacy systems with modern solutions without disrupting work."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How do we run the integration process?"
+          },
+          "features": {
+            "label": "Why us",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Expertise in complex system linking.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Integration expertise"
+              },
+              "understand": {
+                "title": "Secure and reliable solutions",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Secure solutions"
+              },
+              "quality": {
+                "title": "Fewer manual errors",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Fewer errors"
+              },
+              "product": {
+                "title": "A unified view of operations.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Unified view"
+              },
+              "expertise": {
+                "title": "Scalable integration",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Scalable integration"
+              },
+              "connect": {
+                "title": "Ongoing support after launch.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Ongoing support"
+              },
+              "integrate": {
+                "title": "Compatible with your current tools.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Tool compatibility"
+              },
+              "partner": {
+                "title": "Long-term technical partnership",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "integration": "Integration"
+            },
+            "items": {
+              "integ1": {
+                "name": "ERP integration with a sales platform",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "ERP integration"
+              },
+              "integ2": {
+                "name": "Payment and inventory systems linking",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Payment and inventory integration"
+              },
+              "integ3": {
+                "name": "Data sync between cloud systems",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Data sync"
+              }
+            }
+          },
+          "technologies": {
+            "label": "Our tools",
+            "title": "Partners and technologies",
+            "items": {
+              "0": "A short introductory note about CodeTech — to be written later by the team.",
+              "1": "A short introductory note about CodeTech — to be written later by the team."
+            },
+            "tools": {
+              "flutter": "Flutter",
+              "dart": "Dart",
+              "node": "Node.js",
+              "laravel": "Laravel"
+            }
+          }
+        },
+        "support": {
+          "hero": {
+            "title": "Continuous technical support and maintenance to keep your systems stable and reliable",
+            "description": "We monitor your systems, fix issues, and keep them updated so performance and reliability last over time."
+          },
+          "whyNeeded": {
+            "label": "Technical support",
+            "title": "Why do you need support and maintenance?",
+            "imageAlt": "Technical support and maintenance",
+            "imageCaption": "Ongoing support protects your systems from downtime and keeps security and performance strong over time.",
+            "items": {
+              "issues": {
+                "title": "Technical issues that appear without warning."
+              },
+              "security": {
+                "title": "Ongoing need for protection and security updates."
+              },
+              "updates": {
+                "title": "Systems that fall behind on updates."
+              },
+              "performance": {
+                "title": "Performance drops as usage grows."
+              }
+            }
+          },
+          "solutions": {
+            "label": "Our solutions",
+            "title": "Support and maintenance",
+            "items": {
+              "monitoring": {
+                "title": "Continuous monitoring",
+                "description": "Track system health to catch issues before they affect your business."
+              },
+              "incidents": {
+                "title": "Incident response",
+                "description": "Resolve outages quickly with clear priorities and defined response times."
+              },
+              "maintenance": {
+                "title": "Routine maintenance",
+                "description": "Regular checks and improvements to keep systems stable."
+              },
+              "updates": {
+                "title": "Updates and upgrades",
+                "description": "Apply needed updates safely without disrupting operations."
+              },
+              "security": {
+                "title": "Security support",
+                "description": "Track vulnerabilities and apply the right protection measures."
+              },
+              "performance": {
+                "title": "Performance optimization",
+                "description": "Analyze bottlenecks and improve system efficiency as usage grows."
+              }
+            }
+          },
+          "steps": {
+            "label": "Work stages",
+            "title": "How are support requests managed?"
+          },
+          "features": {
+            "label": "Why us",
+            "title": "Why CodeTech?",
+            "items": {
+              "grow": {
+                "title": "Fast incident response.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Fast response"
+              },
+              "understand": {
+                "title": "Specialized technical expertise",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Technical expertise"
+              },
+              "quality": {
+                "title": "Continuous preventive maintenance",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Preventive maintenance"
+              },
+              "product": {
+                "title": "Clear status reports.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Status reports"
+              },
+              "expertise": {
+                "title": "Ongoing security and protection",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Ongoing security"
+              },
+              "connect": {
+                "title": "Direct communication channels.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Communication channels"
+              },
+              "integrate": {
+                "title": "Flexible support plans.",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Support plans"
+              },
+              "partner": {
+                "title": "Long-term partnership",
+                "description": "A description that can be replaced to match the listed title accurately.",
+                "imageAlt": "Long-term partnership"
+              }
+            }
+          },
+          "projects": {
+            "label": "Our projects",
+            "title": "Related projects",
+            "flags": {
+              "support": "Support"
+            },
+            "items": {
+              "support1": {
+                "name": "Annual support contract for a services platform",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Support contract"
+              },
+              "support2": {
+                "name": "Maintenance and optimization for an operations system",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "System maintenance"
+              },
+              "support3": {
+                "name": "Monitoring and response for a production environment",
+                "description": "A short project summary covering the idea and scope of work.",
+                "imageAlt": "Production monitoring"
+              }
+            }
+          },
+          "industries": {
+            "label": "Our sectors",
+            "title": "Sectors we serve",
+            "items": {
+              "government": {
+                "title": "Government",
+                "imageAlt": "Government sector"
+              },
+              "companies": {
+                "title": "Companies",
+                "imageAlt": "Companies sector"
+              },
+              "health": {
+                "title": "Health",
+                "imageAlt": "Health sector"
+              },
+              "education": {
+                "title": "Education",
+                "imageAlt": "Education sector"
+              },
+              "services": {
+                "title": "Services",
+                "imageAlt": "Services sector"
+              },
+              "industry": {
+                "title": "Industry",
+                "imageAlt": "Industry sector"
+              },
+              "logistics": {
+                "title": "Logistics",
+                "imageAlt": "Logistics sector"
+              },
+              "tourism": {
+                "title": "Tourism",
+                "imageAlt": "Tourism sector"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "header": {
+    "services": {
+      "automation": {
+        "title": "Business Automation",
+        "desc": "We turn your operations into automation"
+      },
+      "systems": {
+        "title": "Systems & Software Development",
+        "desc": "A short intro about CodeTech"
+      },
+      "websites": {
+        "title": "Website Development",
+        "desc": "A short intro about CodeTech"
+      },
+      "mobile": {
+        "title": "Mobile App Development",
+        "desc": "A short intro about CodeTech"
+      },
+      "analysis": {
+        "title": "Systems & Requirements Analysis",
+        "desc": "A short intro about CodeTech"
+      },
+      "ux": {
+        "title": "UX & UI Design",
+        "desc": "A short intro about CodeTech"
+      },
+      "branding": {
+        "title": "Brand Identity Design",
+        "desc": "A short intro about CodeTech"
+      },
+      "cloud": {
+        "title": "Cloud Solutions",
+        "desc": "A short intro about CodeTech"
+      },
+      "integration": {
+        "title": "Systems Integration",
+        "desc": "A short intro about CodeTech"
+      },
+      "support": {
+        "title": "Technical Support & Maintenance",
+        "desc": "A short intro about CodeTech"
+      }
+    }
+  }
+}

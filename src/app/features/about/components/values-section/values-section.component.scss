@@ -1,0 +1,102 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.values-section {
+  padding-bottom: var(--space-section);
+}
+
+.values-panel {
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: 36px;
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.values-heading {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+}
+
+.values-swiper {
+  width: 100%;
+  padding-block: var(--space-md);
+  overflow: visible;
+}
+
+.values-slide {
+  width: 17.5rem;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.values-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 26rem;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  transition: opacity 0.3s ease;
+}
+
+.values-slide:not(.swiper-slide-active) .values-card {
+  opacity: 0.72;
+}
+
+.values-card-media {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 14rem;
+  padding: 1px;
+}
+
+.values-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.values-card-copy {
+  @include flex-column-xs;
+  padding: var(--space-xs);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  margin: 0 var(--space-sm) var(--space-sm);
+  border: 2px solid #EEF1F5;
+}
+ 
+.values-card-title { 
+  margin: 0;
+  font-size: var(--sub-heading);
+  font-weight: 700;
+  line-height: 29.68px;
+  color: var(--color-primary);
+}
+
+.values-card-description {
+  @include body-tiny;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+@include below(575.98px) {
+  .values-panel {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .values-heading {
+    font-size: var(--font-title);
+  }
+
+  .values-slide {
+    width: 15rem;
+  }
+
+  .values-card {
+    min-height: 22rem;
+  }
+}

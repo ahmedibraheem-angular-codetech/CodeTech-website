@@ -1,0 +1,120 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-features {
+  padding-block: var(--space-section);
+}
+
+.project-features-panel {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.project-features-header {
+  @include section-header;
+}
+
+.project-features-intro {
+  @include stack-start;
+  min-width: 0;
+}
+
+.project-features-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-features-arrows {
+  flex: none;
+}
+
+.project-features-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-features-slide {
+  display: flex;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.project-features-card {
+  @include card-column;
+  gap: var(--space-sm);
+  width: 100%;
+  min-height: 17.5rem;
+  padding: var(--space-md);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease;
+}
+
+.project-features-card:hover,
+.project-features-card:focus-within {
+  border-color: var(--color-brand);
+  background-color: color-mix(in srgb, var(--color-brand) 8%, var(--color-white));
+}
+
+.project-features-card:hover .project-features-card-title,
+.project-features-card:focus-within .project-features-card-title {
+  color: var(--color-primary);
+}
+
+.project-features-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-features-card-title {
+  margin: 0;
+  font-size:16px;
+  font-weight: 700;
+  line-height: 32.1px;
+  color: var(--color-text-secondary);
+  transition: color 0.35s ease;
+}
+
+.project-features-card-text {
+  @include body-tiny;
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-text-tertiary);
+}
+
+.project-features-media {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin-top: auto;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: var(--color-background);
+}
+
+.project-features-image {
+  display: block;
+  width: 100%;
+  max-height: 8.5rem;
+  object-fit: contain;
+}
+
+@include below(767.98px) {
+  .project-features-panel {
+    padding: var(--space-md);
+  }
+
+  .project-features-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .project-features-title {
+    font-size: var(--font-title);
+  }
+}

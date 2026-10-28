@@ -1,0 +1,12 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+.project-missing {
+  padding-block: 9.5rem var(--space-section);
+}
+
+.project-missing-title {
+  @include missing-title;
+}
+
+.project-missing-link {
+  @include missing-link;
+}

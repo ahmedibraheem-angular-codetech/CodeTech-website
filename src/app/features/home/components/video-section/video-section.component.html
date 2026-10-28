@@ -1,0 +1,25 @@
+<section
+  class="home-video-section"
+  [attr.aria-label]="'home.video.label' | translate"
+>
+  <div class="container video-container">
+    <div class="video-mosaic">
+      <img
+        class="video-mosaic-image"
+        [src]="imageSrc()"
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+
+      <button
+        type="button"
+        class="video-play"
+        [attr.aria-label]="'home.video.play' | translate"
+        (click)="onPlay()"
+      >
+        <span class="video-play-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>

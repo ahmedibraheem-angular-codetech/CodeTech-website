@@ -1,0 +1,74 @@
+@if (hero(); as hero) {
+  <ct-product-hero-section [data]="hero" (ctaClick)="goToContact()" />
+
+  @if (stats(); as stats) {
+    <ct-product-stats-section [data]="stats" />
+  }
+
+  @if (challenges(); as challenges) {
+    <ct-product-challenges-section [data]="challenges" />
+  }
+
+  @if (solution(); as solution) {
+    <ct-product-solution-section [data]="solution" (ctaClick)="goToContact()" />
+  }
+
+  @if (choose(); as choose) {
+    <ct-product-reasons-section [data]="choose" />
+  }
+
+  @if (features(); as features) {
+    <ct-product-features-section [data]="features" />
+  }
+
+  @if (modules(); as modules) {
+    <ct-product-modules-section [data]="modules" (exploreClick)="goToContact()" />
+  }
+
+  @if (offer(); as offer) {
+    <ct-product-offer-section [data]="offer" />
+  }
+
+  @if (results(); as results) {
+    <ct-product-results-section [data]="results" />
+  }
+
+  @if (interfaces(); as interfaces) {
+    <ct-product-interfaces-section [data]="interfaces" />
+  }
+
+  @if (steps(); as steps) {
+    <ct-product-steps-section [data]="steps" />
+  }
+
+  @if (industries(); as industries) {
+    <ct-product-industries-section [data]="industries" />
+  }
+
+  @if (technologies(); as technologies) {
+    <ct-technologies-section
+      [label]="technologies.label"
+      [title]="technologies.title"
+      [items]="technologies.items"
+      [tools]="technologies.tools"
+    />
+  }
+
+  @if (faq(); as faq) {
+    <ct-faq-section
+      [label]="faq.label"
+      [title]="faq.title"
+      [items]="faq.items"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="faq.items[0]?.id ?? null"
+    />
+  }
+} @else {
+  <section class="product-missing">
+    <div class="container">
+      <h1 class="product-missing-title">{{ missing().title }}</h1>
+      <a class="product-missing-link" routerLink="/products">{{ missing().back }}</a>
+    </div>
+  </section>
+}

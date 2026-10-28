@@ -1,0 +1,151 @@
+<header
+  class="ct-header"
+  (mouseenter)="cancelClose()"
+  (mouseleave)="scheduleClose()"
+>
+  <div class="ct-header__bar">
+    <a routerLink="/" class="ct-header__logo" (click)="closeMega(); closeLangMenu()">
+      <img
+        src="/assets/images/logo.svg"
+        [alt]="'header.logoAlt' | translate"
+        width="190"
+        height="34"
+      />
+    </a>
+
+    <nav class="ct-header__nav" [attr.aria-label]="'header.logoAlt' | translate">
+      <ul class="ct-header__nav-list">
+        @for (link of navLinks; track link.id) {
+          <li class="ct-header__nav-item">
+            @if (link.mega) {
+              <a
+                class="ct-header__nav-link ct-header__nav-link--mega"
+                [class.is-active]="isNavActive(link)"
+                [class.is-open]="openMega() === link.mega"
+                [routerLink]="link.route"
+                [attr.aria-current]="isNavActive(link) ? 'page' : null"
+                [attr.aria-expanded]="openMega() === link.mega"
+                [attr.aria-haspopup]="true"
+                (mouseenter)="openMegaOnHover(link.mega)"
+                (click)="closeMega(); closeLangMenu()"
+              >
+                <span class="ct-header__nav-label">{{ link.labelKey | translate }}</span>
+                <span class="ct-header__nav-icon" aria-hidden="true"></span>
+              </a>
+            } @else {
+              <a
+                class="ct-header__nav-link"
+                [class.is-active]="isNavActive(link)"
+                [routerLink]="link.route"
+                [attr.aria-current]="isNavActive(link) ? 'page' : null"
+                (mouseenter)="closeMega()"
+                (click)="closeMega(); closeLangMenu()"
+              >
+                <span class="ct-header__nav-label">{{ link.labelKey | translate }}</span>
+              </a>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="ct-header__actions">
+      <div class="ct-header__lang" [class.is-open]="isLangOpen()">
+        <button
+          type="button"
+          class="ct-header__lang-trigger"
+          [attr.aria-expanded]="isLangOpen()"
+          [attr.aria-haspopup]="true"
+          (click)="toggleLangMenu($event)"
+        >
+          <img
+            class="ct-header__flag"
+            [src]="currentLangOption().flagSrc"
+            alt=""
+            width="22"
+            height="22"
+            aria-hidden="true"
+          />
+          <span>{{ currentLangOption().labelKey | translate }}</span>
+          <img
+            class="ct-header__lang-chevron"
+            src="/assets/icons/chevron-down.svg"
+            alt=""
+            width="16"
+            height="16"
+            aria-hidden="true"
+          />
+        </button>
+
+        @if (isLangOpen()) {
+          <ul class="ct-header__lang-menu" role="listbox">
+            @for (option of langOptions; track option.code) {
+              <li role="option" [attr.aria-selected]="currentLang() === option.code">
+                <button
+                  type="button"
+                  class="ct-header__lang-option"
+                  [class.is-active]="currentLang() === option.code"
+                  (click)="selectLang(option.code, $event)"
+                >
+                  <img
+                    class="ct-header__flag"
+                    [src]="option.flagSrc"
+                    alt=""
+                    width="22"
+                    height="22"
+                    aria-hidden="true"
+                  />
+                  <span>{{ option.labelKey | translate }}</span>
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <ct-button
+        class="ct-header__cta"
+        [label]="'header.cta' | translate"
+        icon="double-alt-arrow-left"
+        variant="primary"
+        layout="spread"
+        width="170px"
+        (clicked)="onCtaClick()"
+      />
+
+      <button
+        type="button"
+        class="ct-header__menu-btn"
+        [class.is-open]="isMobileNavOpen()"
+        [attr.aria-expanded]="isMobileNavOpen()"
+        [attr.aria-label]="
+          (isMobileNavOpen() ? 'header.mobile.close' : 'header.mobile.open') | translate
+        "
+        (click)="toggleMobileNav($event)"
+      >
+        <span class="ct-header__menu-bar" aria-hidden="true"></span>
+        <span class="ct-header__menu-bar" aria-hidden="true"></span>
+        <span class="ct-header__menu-bar" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="ct-header__mega">
+    <ct-services-dropdown
+      [isOpen]="isServicesOpen()"
+      (closed)="closeMega()"
+      (ctaClicked)="onCtaClick()"
+    />
+    <ct-products-dropdown
+      [isOpen]="isProductsOpen()"
+      (closed)="closeMega()"
+    />
+  </div>
+
+</header>
+
+<ct-mobile-navigation
+  [visible]="isMobileNavOpen()"
+  (visibleChange)="isMobileNavOpen.set($event)"
+  (ctaClicked)="onCtaClick()"
+/>

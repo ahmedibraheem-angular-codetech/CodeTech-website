@@ -1,0 +1,33 @@
+<section
+  class="solutions-section"
+  aria-labelledby="solutions-section-title"
+>
+  <div class="container">
+    <div class="solutions-panel">
+      <div class="solutions-header">
+        <ct-divider [label]="data().label | translate" />
+        <h2 id="solutions-section-title" class="solutions-title">
+          {{ data().title | translate }}
+        </h2>
+      </div>
+
+      <div class="solutions-grid">
+        <div class="row g-0">
+          @for (item of data().items; track item.id; let i = $index) {
+            <div
+              class="col-12 col-md-4 solutions-grid-cell"
+              [class.solutions-grid-cell-first]="i === 0"
+            >
+              <ct-info-card
+                class="solutions-info-card"
+                [icon]="item.iconSrc"
+                [minHeight]="'13rem'"
+                [data]="{ title: item.title, description: item.description }"
+              />
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

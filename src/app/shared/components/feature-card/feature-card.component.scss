@@ -1,0 +1,82 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  padding: var(--space-md);
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: var(--color-primary);
+    pointer-events: none;
+    opacity: 0;
+
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+
+  &:hover {
+    &::after {
+    opacity: 0.55;
+
+    }
+
+    
+  }
+}
+
+.feature-card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  @include media-cover;
+}
+
+.feature-card-body {
+  position: relative;
+  z-index: 2;
+  @include flex-column-xs;
+}
+
+.feature-card-title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--color-white);
+  transition: color 0.4s ease;
+}
+
+.feature-card-description {
+  @include body-tiny;
+  @include line-clamp(3);
+  color: var(--color-white);
+  transition: color 0.4s ease;
+}
+
+@include reduced-motion {
+  .feature-card::after,
+  .feature-card-title,
+  .feature-card-description {
+    transition: none;
+  }
+}
+
+@include below(767.98px) {
+  .feature-card {
+    min-height: 18rem;
+  }
+}

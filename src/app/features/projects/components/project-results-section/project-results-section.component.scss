@@ -1,0 +1,161 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-results {
+  padding-block: var(--space-section);
+}
+
+.project-results-panel {
+  padding: var(--space-lg);
+  border-radius: 1.75rem;
+  background-color: var(--color-background);
+}
+
+.project-results-intro {
+  @include stack-start;
+  margin-bottom: var(--space-lg);
+}
+
+.project-results-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.project-results-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    'errors productivity speed time'
+    'errors experience speed performance';
+  gap: 0.85rem;
+  direction: ltr;
+}
+
+.project-results-card {
+  @include card-column;
+  gap: var(--space-md);
+  min-height: 11.5rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background-color: var(--color-white);
+}
+
+:dir(rtl) .project-results-card {
+  direction: rtl;
+}
+
+.project-results-card-time {
+  grid-area: time;
+}
+
+.project-results-card-performance {
+  grid-area: performance;
+  background-color: #eef3f8;
+}
+
+.project-results-card-speed {
+  grid-area: speed;
+  background-color: #002951;
+  background-image:
+    linear-gradient(165deg, rgb(0 41 81 / 35%) 0%, rgb(2 24 46 / 72%) 100%),
+    url('/assets/images/page-hero-bg.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+}
+
+.project-results-card-productivity {
+  grid-area: productivity;
+  background-color: #2b74ea;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 22%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 22%) 1px, transparent 1px);
+  background-size: 1.15rem 1.15rem;
+  color: var(--color-white);
+}
+
+.project-results-card-experience {
+  grid-area: experience;
+}
+
+.project-results-card-errors {
+  grid-area: errors;
+}
+
+.project-results-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.project-results-value {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: 500;
+  line-height: 29.679px;
+}
+
+.project-results-card-speed .project-results-value,
+.project-results-card-productivity .project-results-value {
+  color: var(--color-white);
+}
+
+.project-results-icon {
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+}
+
+.project-results-label {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 29.679px;
+}
+
+.project-results-card-speed .project-results-label,
+.project-results-card-productivity .project-results-label {
+  color: rgb(255 255 255 / 88%);
+}
+
+@include below(991.98px) {
+  .project-results-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'time performance'
+      'speed speed'
+      'productivity experience'
+      'errors errors';
+  }
+
+  .project-results-title {
+    font-size: var(--font-title);
+  }
+
+  .project-results-panel {
+    padding: var(--space-md);
+  }
+}
+
+@include below(575.98px) {
+  .project-results-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'time'
+      'performance'
+      'speed'
+      'productivity'
+      'experience'
+      'errors';
+  }
+}

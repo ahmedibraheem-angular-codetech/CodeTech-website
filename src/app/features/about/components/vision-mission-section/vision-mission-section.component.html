@@ -1,0 +1,62 @@
+<section
+  class="vision-mission-section"
+  aria-labelledby="about-vision-mission-title"
+>
+  <div class="container">
+    <ct-divider [label]="label()" />
+
+    <h3 id="about-vision-mission-title" class="vision-mission-heading">
+      {{ title() }}
+    </h3>
+
+    <div class="row g-3 g-lg-4">
+      <div class="col-12 col-lg-6 d-flex">
+        <article class="vision-mission-card vision-mission-card-vision">
+          <div class="vision-mission-card-body">
+            <header class="vision-mission-card-header">
+              <span class="vision-mission-card-icon vision-mission-card-icon-vision" aria-hidden="true"></span>
+              <h3 class="vision-mission-card-title">{{ visionTitle() }}</h3>
+            </header>
+
+            <ul class="vision-mission-list">
+              @for (item of data().vision.items; track $index) {
+                <li class="vision-mission-list-item">
+                  <span class="vision-mission-check vision-mission-check-vision" aria-hidden="true"></span>
+                  <span>{{ item | translate }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <p class="vision-mission-summary">
+            {{ data().vision.summary | translate }}
+          </p>
+        </article>
+      </div>
+
+      <div class="col-12 col-lg-6 d-flex">
+        <article class="vision-mission-card vision-mission-card-mission">
+          <div class="vision-mission-card-body">
+            <header class="vision-mission-card-header">
+              <span class="vision-mission-card-icon vision-mission-card-icon-mission" aria-hidden="true"></span>
+              <h3 class="vision-mission-card-title">{{ missionTitle() }}</h3>
+            </header>
+
+            <ul class="vision-mission-list">
+              @for (item of data().mission.items; track $index) {
+                <li class="vision-mission-list-item">
+                  <span class="vision-mission-check vision-mission-check-mission" aria-hidden="true"></span>
+                  <span>{{ item | translate }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <p class="vision-mission-summary">
+            {{ data().mission.summary | translate }}
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+<section class="product-industries" aria-labelledby="product-industries-title">
+  <div class="container">
+    <div class="product-industries-panel">
+      <header class="product-industries-header">
+        <div class="product-industries-intro">
+          <ct-divider [label]="data().label" />
+          <h2 id="product-industries-title" class="product-industries-title">
+            {{ data().title }}
+          </h2>
+        </div>
+
+        <ct-slider-arrows
+          [canPrev]="canPrev()"
+          [canNext]="canNext()"
+          (prev)="prev()"
+          (next)="next()"
+        />
+      </header>
+
+      <div #swiperRoot class="swiper product-industries-swiper">
+        <div class="swiper-wrapper">
+          @for (item of data().items; track item.id) {
+            <div class="swiper-slide product-industries-slide">
+              <article class="product-industries-card">
+                <img
+                  class="product-industries-image"
+                  [src]="item.imageSrc"
+                  [alt]="item.imageAlt"
+                  width="240"
+                  height="320"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <h3 class="product-industries-card-title">{{ item.title }}</h3>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+<section class="project-featured" aria-labelledby="project-featured-title">
+  <div class="container">
+    <header class="project-featured-intro">
+      <ct-divider [label]="data().label" />
+      <h2 id="project-featured-title" class="project-featured-title">{{ data().title }}</h2>
+    </header>
+
+    <ul class="project-featured-list">
+      @for (item of data().items; track item.id) {
+        <li class="project-featured-card">
+          <img
+            class="project-featured-image"
+            [src]="item.imageSrc"
+            [alt]="item.imageAlt"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="project-featured-shade" aria-hidden="true"></span>
+
+          @if (item.badge) {
+            <span class="project-featured-badge">{{ item.badge }}</span>
+          }
+
+          <div class="project-featured-content">
+            <div class="project-featured-copy">
+              <h3 class="project-featured-name">{{ item.title }}</h3>
+              <p class="project-featured-description">{{ item.description }}</p>
+
+              @if (item.tags.length) {
+                <ul class="project-featured-tags">
+                  @for (tag of item.tags; track tag.id) {
+                    <li class="project-featured-tag">
+                      @if (tag.iconSrc) {
+                        <img
+                          class="project-featured-tag-icon"
+                          [src]="tag.iconSrc"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      }
+                      <span>{{ tag.label }}</span>
+                    </li>
+                  }
+                </ul>
+              }
+            </div>
+
+            <ct-button
+              class="project-featured-cta"
+              [label]="item.ctaLabel"
+              icon="double-alt-arrow-left"
+              (clicked)="onCtaClick(item)"
+            />
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<div
+  class="ct-divider"
+  [class.ct-divider-white]="variant() === 'white'"
+  role="presentation"
+>
+<span class="ct-divider-line" aria-hidden="true"></span>
+
+  <span class="ct-divider-mark" aria-hidden="true"></span>
+
+  @if (label()) {
+    <span class="ct-divider-label">{{ label() }}</span>
+  }
+
+</div>

@@ -1,0 +1,58 @@
+<section class="product-list" id="product-list" aria-labelledby="product-list-title">
+  <div class="container">
+    <header class="product-list-intro">
+      <ct-divider [label]="data().label" />
+      <h2 id="product-list-title" class="product-list-title">{{ data().title }}</h2>
+    </header>
+
+    <div class="product-list-items">
+      @for (item of data().items; track item.id; let index = $index) {
+        <article class="product-list-card">
+          <div class="row g-3 g-lg-4 align-items-stretch">
+            <div class="col-lg-6">
+              <div class="product-list-body">
+                <h3 class="product-list-card-title">{{ item.title }}</h3>
+                <p class="product-list-card-description">{{ item.description }}</p>
+
+                <ul class="product-list-features">
+                  @for (feature of item.features; track feature.id) {
+                    <li class="product-list-feature">
+                      <span class="product-list-feature-icon" aria-hidden="true">
+                        <img [src]="feature.iconSrc" alt="" />
+                      </span>
+                      <div class="product-list-feature-copy">
+                        <h4 class="product-list-feature-title">{{ feature.title }}</h4>
+                        <p class="product-list-feature-description">{{ feature.description }}</p>
+                      </div>
+                    </li>
+                  }
+                </ul>
+
+                <a class="product-list-link" [routerLink]="['/products', item.id]">
+                  {{ data().exploreLabel }}
+                  <span class="product-list-link-icon" aria-hidden="true"></span>
+
+                </a>
+              </div>
+            </div>
+
+            <div
+              class="col-lg-6 product-list-media-col"
+              [class.product-list-media-first]="index % 2 === 1"
+            >
+              <div class="product-list-media">
+                <img
+                  class="product-list-image"
+                  [src]="item.imageSrc"
+                  [alt]="item.imageAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<ct-page-hero
+  [title]="'services.hero.title' | translate"
+  [description]="'services.hero.description' | translate"
+  [buttonLabel]="'services.hero.cta' | translate"
+/>
+
+<ct-services-section
+  [showBackground]="false"
+  [label]="'services.list.label' | translate"
+  [title]="'services.list.title' | translate"
+  [services]="servicesList.items"
+/>
+
+@if (servicesList.faq.isPublished) {
+  <ct-faq-section
+    [label]="'services.faq.label' | translate"
+    [title]="'services.faq.title' | translate"
+    [items]="servicesList.faq.items"
+    [linkLabel]="'common.viewAllFaq' | translate"
+    linkRoute="/faq"
+    value="cms"
+  />
+}

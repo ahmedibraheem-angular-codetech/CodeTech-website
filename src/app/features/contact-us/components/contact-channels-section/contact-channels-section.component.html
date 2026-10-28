@@ -1,0 +1,53 @@
+<section class="contact-channels-section" aria-labelledby="contact-channels-title">
+  <div class="contact-channels-split" aria-hidden="true">
+    <div class="contact-channels-half contact-channels-half-copy"></div>
+    <div class="contact-channels-half contact-channels-half-cards"></div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center justify-content-between g-4">
+      <div class="col-lg-5">
+        <h2 id="contact-channels-title" class="contact-channels-title">
+          {{ 'contactUs.channels.title' | translate }}
+        </h2>
+        <p class="contact-channels-description">
+          {{ 'contactUs.channels.description' | translate }}
+        </p>
+      </div>
+
+      <div class="col-lg-6 contact-channels-column contact-channels-column--cards">
+        <div class="row g-2">
+          @for (item of items(); track item.id) {
+            <div class="col-md-4">
+              <a
+                class="contact-channel-card"
+                [href]="item.href"
+                [attr.data-channel]="item.id"
+                [attr.target]="isExternal(item.href) ? '_blank' : null"
+                [attr.rel]="isExternal(item.href) ? 'noopener noreferrer' : null"
+              >
+                <span class="contact-channel-icon" [attr.data-channel]="item.id">
+                  <img
+                    [src]="item.iconSrc"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    width="75"
+                    height="75"
+                  />
+                </span>
+
+                <span class="contact-channel-meta">
+                  <span class="contact-channel-label">
+                    {{ item.label | translate }}
+                  </span>
+                  <span class="contact-channel-value" dir="ltr">{{ item.value | translate }}</span>
+                </span>
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,48 @@
+{
+  "contactUs": {
+    "faq": {
+      "items": {
+        "response": {
+          "question": "How long does it take to get a reply?",
+          "answer": "We review your request as soon as possible and contact you through the right channel to arrange the next step."
+        },
+        "channels": {
+          "question": "Can I reach you directly by WhatsApp or phone?",
+          "answer": "Yes. You can contact us by phone, email, or WhatsApp, and we will reply as soon as possible."
+        },
+        "start": {
+          "question": "What should I send when starting a new project?",
+          "answer": "Share a short description of your need, your goals, and any documents or examples that help us understand the scope."
+        },
+        "consult": {
+          "question": "Is the initial consultation free?",
+          "answer": "Yes. We start by discussing your needs to understand the project and suggest the best path before sending an offer."
+        },
+        "remote": {
+          "question": "Do you work with clients outside Riyadh?",
+          "answer": "Yes. We work with organizations across Saudi Arabia and beyond through the appropriate communication channels."
+        }
+      }
+    },
+    "channels": {
+      "items": {
+        "phone": {
+          "value": "+966 55 298 3389"
+        },
+        "email": {
+          "value": "ceo@codetech-sa.com"
+        },
+        "whatsapp": {
+          "value": "+966 55 298 3389"
+        }
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "phone": "+900 00-204-0000",
+      "email": "CodeTech@gmail.com",
+      "location": "Kingdom of Saudi Arabia"
+    }
+  }
+}

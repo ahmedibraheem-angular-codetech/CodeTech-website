@@ -1,0 +1,21 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.features-section {
+  padding-block: var(--space-section);
+}
+
+.features-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+}
+
+@include below(575.98px) {
+  .features-title {
+    font-size: var(--font-title);
+  }
+}
+
+.features-section-container {
+  background-color: var(--color-background);
+  border-radius: 36px;
+}

@@ -1,0 +1,57 @@
+<section
+  class="overview-section"
+  aria-labelledby="about-overview-philosophy-title"
+>
+  <div class="container">
+    <div class="overview-panel">
+      <div class="row align-items-stretch g-3">
+        <div class="col-12 col-lg-6 d-flex">
+          <div class="overview-visual">
+            <img
+              class="overview-image"
+              [src]="data().imageSrc"
+              [alt]="data().imageAlt | translate"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="overview-cards">
+            <article class="overview-card">
+              <h2
+                id="about-overview-philosophy-title"
+                class="overview-card-title"
+              >
+                {{ philosophyTitle() }}
+              </h2>
+
+              <ul class="overview-list">
+                @for (item of data().philosophyItems; track $index) {
+                  <li class="overview-list-item">
+                    <span class="overview-check" aria-hidden="true"></span>
+                    <span>{{ item | translate }}</span>
+                  </li>
+                }
+              </ul>
+            </article>
+
+            <article class="overview-card">
+              <h2 class="overview-card-title">{{ marketTitle() }}</h2>
+
+              <ul class="overview-list overview-list--grid">
+                @for (item of data().marketItems; track $index) {
+                  <li class="overview-list-item">
+                    <span class="overview-check" aria-hidden="true"></span>
+                    <span>{{ item | translate }}</span>
+                  </li>
+                }
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

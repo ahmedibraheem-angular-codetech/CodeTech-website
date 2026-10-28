@@ -1,0 +1,174 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.founder-section {
+  padding-block: var(--space-section);
+}
+
+.founder-heading {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+}
+
+.container-fix {
+  box-sizing: border-box;
+  width: min(1032px, calc(100% - var(--space-lg)));
+  max-width: 1032px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.founder-visual {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background-color: var(--color-background);
+  isolation: isolate;
+}
+
+.founder-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 22rem;
+  object-fit: contain;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+.founder-visual:hover .founder-image {
+  transform: scale(1.04);
+}
+
+.founder-info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  width: 100%;
+  min-height: 100%;
+  padding: var(--space-xl) var(--space-lg);
+  overflow: hidden;
+  border-radius: 1.75rem;
+  background-color: var(--color-primary);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: var(--color-white);
+}
+
+.founder-info-body {
+  @include stack-start-md;
+}
+
+.founder-name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--font-section);
+  font-weight: 700;
+  line-height: 120%;
+  color: var(--color-white);
+}
+
+.founder-description {
+  @include body-small;
+  margin: 0;
+  color: color-mix(in srgb, var(--color-white) 88%, transparent);
+}
+
+.founder-quote {
+  display: flex;
+  align-items: center;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  background-color: var(--color-brand);
+}
+
+.founder-quote-mark {
+  display: flex;
+  flex: none;
+  align-items: center;
+}
+
+.founder-quote-mark svg {
+  display: block;
+}
+
+.founder-quote-text {
+  @include body-small;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-white);
+}
+
+@include reduced-motion {
+  .founder-image {
+    transition: none;
+  }
+}
+
+@include above(992px) {
+  .container-fix {
+    height: 453px;
+  }
+
+  .container-fix > .col-lg-6 {
+    height: 100%;
+  }
+
+  .founder-image {
+    min-height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  .founder-visual,
+  .founder-info {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+@include below(991.98px) {
+  .founder-name {
+    font-size: var(--font-title);
+  }
+
+  .founder-info {
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+}
+
+@include below(575.98px) {
+  .founder-heading {
+    font-size: var(--font-title);
+  }
+
+  .founder-visual,
+  .founder-info {
+    border-radius: var(--border-radius);
+  }
+
+  .founder-image {
+    min-height: 18rem;
+  }
+
+  .founder-info {
+    padding: var(--space-md);
+  }
+
+  .founder-quote {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

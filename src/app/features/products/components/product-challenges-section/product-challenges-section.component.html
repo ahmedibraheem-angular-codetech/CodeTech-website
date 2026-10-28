@@ -1,0 +1,35 @@
+<section class="product-challenges" aria-labelledby="product-challenges-title">
+  <div class="container">
+    <header class="product-challenges-intro">
+      <ct-divider [label]="data().label" />
+      <h2 id="product-challenges-title" class="product-challenges-title">{{ data().title }}</h2>
+    </header>
+
+    <ul class="product-challenges-grid">
+      @for (item of data().items; track item.id) {
+        <li
+          class="product-challenges-item"
+          [class.product-challenges-item-dark]="item.tone === 'dark'"
+          [class.product-challenges-item-brand]="item.tone === 'brand'"
+          [attr.data-id]="item.id"
+        >
+          <article class="product-challenges-card">
+            <span class="product-challenges-icon-wrap" aria-hidden="true">
+              <span
+                class="product-challenges-icon"
+                [style.mask-image]="iconMask(item.iconSrc)"
+                [style.-webkit-mask-image]="iconMask(item.iconSrc)"
+              ></span>
+            </span>
+            <div class="product-challenges-copy">
+              <h3 class="product-challenges-card-title">{{ item.title }}</h3>
+              @if (item.description) {
+                <p class="product-challenges-card-description">{{ item.description }}</p>
+              }
+            </div>
+          </article>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

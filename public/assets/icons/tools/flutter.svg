@@ -1,0 +1,17 @@
+<svg width="33" height="41" viewBox="0 0 33 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_flutter)">
+<path d="M19.9272 0.000976562L0 19.978L6.17995 26.047L32.161 0.000976562H19.9272ZM19.8011 18.3344L9.08075 29.0815L15.2607 35.4034L21.4407 29.2079L32.161 18.3344H19.8011Z" fill="#47C5FB"/>
+<path d="M15.2598 35.402L19.9263 40.0801H32.1601L21.4397 29.2065L15.2598 35.402Z" fill="#00569E"/>
+<path d="M9.08008 29.0802L15.1339 23.0112L21.44 29.2066L15.26 35.4021L9.08008 29.0802Z" fill="#00B5F8"/>
+<path d="M15.2598 35.403L20.4307 33.6329L20.9352 29.7134L15.2598 35.403Z" fill="url(#paint0_flutter)" fill-opacity="0.8"/>
+</g>
+<defs>
+<linearGradient id="paint0_flutter" x1="15.4868" y1="31.2496" x2="19.5698" y2="32.7167" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_flutter">
+<rect width="32.3679" height="40.0806" fill="white"/>
+</clipPath>
+</defs>
+</svg>

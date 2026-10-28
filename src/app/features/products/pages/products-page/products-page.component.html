@@ -1,0 +1,30 @@
+<ct-page-hero
+  [title]="'products.hero.title' | translate"
+  [description]="'products.hero.description' | translate"
+  [buttonLabel]="'products.hero.button' | translate"
+  [secondaryLabel]="'products.hero.contact' | translate"
+  secondaryIcon="phone-calling"
+  (ctaClick)="scrollToProducts()"
+  (secondaryClick)="goToContact()"
+/>
+
+<ct-product-list-section [data]="productList()" />
+
+
+<ct-product-reasons-section [data]="productReasons()" />
+
+<ct-industries-section
+  [label]="productIndustries().label"
+  [title]="productIndustries().title"
+  [items]="productIndustries().items"
+/>
+
+<ct-faq-section
+  [label]="productFaq().label"
+  [title]="productFaq().title"
+  [items]="productFaq().items"
+  [linkLabel]="'common.viewAllFaq' | translate"
+  linkRoute="/faq"
+  [value]="productFaq().items[0]?.id ?? null"
+/>
+

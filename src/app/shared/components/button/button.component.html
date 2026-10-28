@@ -1,0 +1,27 @@
+<button
+  [class]="buttonClass()"
+  [type]="type()"
+  [disabled]="disabled()"
+  [style.--ct-btn-font-size]="fontSize() || null"
+  [style.--ct-btn-font-weight]="fontWeight() || null"
+  [style.--ct-btn-bg]="color() || null"
+  [style.--ct-btn-color]="textColor() || null"
+  [style.--ct-btn-shadow]="resolvedShadowColor() || null"
+  [style.--ct-btn-width]="width() || null"
+  [style.--ct-btn-height]="height() || null"
+  (click)="onClick()"
+>
+  @if (label()) {
+    <span class="ct-button__label">{{ label() }}</span>
+  }
+
+  @if (iconSrc()) {
+    <span
+      class="ct-button__icon"
+      [class.ct-button__icon--directional]="isDirectionalIcon()"
+      [style.--ct-btn-icon]="'url(\'' + iconSrc() + '\')'"
+      aria-hidden="true"
+    ></span>
+  }
+ 
+</button>

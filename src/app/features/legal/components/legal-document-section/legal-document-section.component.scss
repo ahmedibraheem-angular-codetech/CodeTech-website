@@ -1,0 +1,98 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.legal-document-section {
+  padding-block: var(--space-section);
+  background-color: var(--color-white);
+}
+
+.legal-document-html {
+  max-width: 56rem;
+  margin-inline: auto;
+  color: var(--color-text-secondary);
+}
+
+.legal-document-html :where(h2) {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-primary);
+}
+
+.legal-document-html :where(h3) {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-body);
+  font-size: var(--font-small);
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-primary);
+}
+
+.legal-document-html :where(p) {
+  @include body-tiny;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text-secondary);
+}
+
+.legal-document-html :where(ul) {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+.legal-document-html :where(li) {
+  @include body-small;
+  margin: 0 0 var(--space-xs);
+  color: var(--color-text-secondary);
+}
+
+.legal-document-html :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.legal-document-html :where(.legal-block) {
+  padding-block: var(--space-lg);
+}
+
+.legal-document-html :where(.legal-block:first-child) {
+  padding-block-start: 0;
+}
+
+.legal-document-html :where(.legal-block:last-child) {
+  border-block-end: 0;
+  padding-block-end: 0;
+}
+
+.legal-document-html :where(.legal-columns) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.legal-document-html :where(.legal-contact) {
+  @include flex-column-sm;
+  @include reset-list;
+}
+
+.legal-document-html :where(.legal-contact li) {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.legal-document-html :where(.legal-contact img) {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+@include below(767.98px) {
+  .legal-document-html :where(.legal-columns) {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}

@@ -1,0 +1,49 @@
+:root {
+  // colors
+  --color-primary: #002951;
+  --color-primary-light: #004783;
+  --color-brand: #1c81d3;
+  --color-white: #ffffff;
+  --color-background: #f7f7f7;
+  --color-text: #002951;
+  --color-text-secondary: #576e8a;
+  --color-text-tertiary: #6f8bac;
+  --color-button-light: #dce3eb;
+
+  // font families 
+  --font-heading: 'Milan Display', sans-serif;
+  --font-body: 'Thmanyah Sans', sans-serif;
+
+  // font sizes
+  --font-hero: 3.75rem; // 60px
+  --font-section: 3rem; // 48px
+  --font-title: 2rem; // 32px
+  --font-size-body: 1rem; // 16px
+  --font-small: 0.875rem; // 14px
+  --font-tiny: 0.75rem; // 12px
+
+  // spacing
+  --space-xs: 0.5rem; // 8px
+  --space-sm: 1rem; // 16px
+  --space-md: 1.5rem; // 24px
+  --space-lg: 2rem; // 32px
+  --space-xl: 4rem; // 64px
+  --space-section: 5rem; // 80px
+  --space-section-heading-content: 2.5rem; // 40px
+  --space-cards: 1.25rem; // 20px
+
+  // radius & layout
+  --border-radius: 1.25rem; // 20px
+  --container: 1280px;
+
+  // button
+  --btn-height: 3.5rem; // 56px
+  --btn-min-height: 3.3125rem; // 53px
+  --btn-padding-block: 0.75rem; // 12px
+  --btn-padding-inline: 1.5rem; // 24px
+  --btn-icon-size: 1.5rem; // 24px
+  --btn-shadow-offset: 2px;
+}
+
+$font-heading: 'Milan Display', sans-serif;
+$font-body: 'Thmanyah Sans', sans-serif;

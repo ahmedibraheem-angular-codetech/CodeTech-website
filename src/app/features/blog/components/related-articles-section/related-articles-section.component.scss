@@ -1,0 +1,59 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.related-articles {
+  padding-bottom: var(--space-section);
+}
+
+.related-articles-panel {
+  @include surface-panel;
+}
+
+.related-articles-header {
+  @include section-header;
+}
+
+.related-articles-intro {
+  @include stack-start;
+  min-width: 0;
+}
+
+.related-articles-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.related-articles-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.related-articles-arrows {
+  flex: none;
+}
+
+.related-articles-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.related-articles-slide {
+  display: flex;
+  height: auto;
+  box-sizing: border-box;
+}
+
+@include below(767.98px) {
+  .related-articles-panel {
+    padding: var(--space-md);
+  }
+
+  .related-articles-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .related-articles-title {
+    font-size: var(--font-title);
+  }
+}

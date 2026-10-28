@@ -1,0 +1,58 @@
+{
+  "home": {
+    "ctaStart": "Start your project",
+    "ctaExplore": "Explore our services",
+    "clients": {
+      "brand": "Our success",
+      "title": "Our clients"
+    },
+    "video": {
+      "label": "CodeTech video",
+      "play": "Play video"
+    },
+    "aboutCta": "Learn more about us",
+    "journey": {
+      "label": "Our journey",
+      "title": "Working with CodeTech"
+    },
+    "projects": {
+      "label": "Our projects",
+      "title": "Latest projects"
+    },
+    "testimonials": {
+      "label": "Our clients",
+      "title": "Client testimonials",
+      "play": "Play client testimonial video"
+    },
+    "faq": {
+      "label": "Common questions",
+      "title": "Frequently asked questions"
+    },
+    "features": {
+      "label": "Our features",
+      "title": "Why CodeTech?"
+    },
+    "products": {
+      "label": "Highest quality",
+      "title": "Our technical products",
+      "cta": "View product"
+    },
+    "services": {
+      "label": "What we offer",
+      "title": "CodeTech Services"
+    },
+    "brand": "CodeTech",
+    "title": "We Develop Digital Solutions That help Your Business Growth",
+    "description": "We help organizations and companies develop their systems, automate operations, and build digital products that support digital transformation and deliver lasting value.",
+    "vision": {
+      "label": "Kingdom Vision",
+      "title": "Aligned with Vision 2030",
+      "description": "We help enable digital transformation with technology solutions that support Vision 2030 goals and improve business efficiency."
+    },
+    "about": {
+      "label": "About",
+      "title": "About CodeTech",
+      "description": "We build digital solutions that help organizations and companies accelerate digital transformation and growth through technology products and professional services."
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-features {
+  padding-block: var(--space-section);
+}
+
+.product-features-panel {
+  @include surface-panel;
+}
+
+.product-features-intro {
+  @include stack-start;
+  margin-bottom: var(--space-section-heading-content);
+}
+
+.product-features-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.product-features-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.product-features-grid {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+}
+
+.product-features-cell {
+  border-inline-end: 1px solid var(--color-button-light);
+  border-block-end: 1px solid var(--color-button-light);
+}
+
+.product-features-card {
+  display: flex;
+  height: 100%;
+}
+
+:host ::ng-deep .product-features-card .ct-info-card {
+  border-radius: 0;
+  border-color: transparent;
+  background-color: var(--color-white);
+  box-shadow: none;
+}
+
+@include above(992px) {
+  .product-features-cell-row-end {
+    border-inline-end: none;
+  }
+
+  .product-features-cell-last-row {
+    border-block-end: none;
+  }
+}
+
+@include below(991.98px) {
+  .product-features-cell {
+    border-inline-end: none;
+  }
+
+  .product-features-cell:last-child {
+    border-block-end: none;
+  }
+
+  .product-features-title {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .product-features-panel {
+    padding: var(--space-md);
+  }
+}

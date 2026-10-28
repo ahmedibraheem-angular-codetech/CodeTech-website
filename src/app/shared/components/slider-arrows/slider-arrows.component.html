@@ -1,0 +1,21 @@
+<div class="ct-slider-arrows" [attr.data-variant]="variant()">
+  <button
+    type="button"
+    class="ct-slider-arrow ct-slider-arrow--prev"
+    [disabled]="!canPrev()"
+    [attr.aria-label]="'common.prev' | translate"
+    (click)="onPrev()"
+  >
+    <span class="ct-slider-arrow-icon" aria-hidden="true"></span>
+  </button>
+
+  <button
+    type="button"
+    class="ct-slider-arrow ct-slider-arrow--next"
+    [disabled]="!canNext()"
+    [attr.aria-label]="'common.next' | translate"
+    (click)="onNext()"
+  >
+    <span class="ct-slider-arrow-icon" aria-hidden="true"></span>
+  </button>
+</div>

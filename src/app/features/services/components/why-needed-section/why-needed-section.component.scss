@@ -1,0 +1,141 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.why-needed-section {
+  padding-block: var(--space-section);
+}
+
+.why-needed-panel {
+  @include surface-panel;
+}
+
+.why-needed-visual {
+  position: relative;
+  height: 100%;
+  min-height: 22rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.why-needed-image {
+  @include media-cover-block;
+  object-position: center;
+  border-radius: var(--border-radius);
+}
+
+.why-needed-caption {
+  position: absolute;
+  inset-inline: 10px;
+  inset-block-end: var(--space-sm);
+  margin: 0;
+  padding: 12px 6px;
+  border-radius: 14px;
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  @include body-small;
+  font-weight: 400;
+}
+
+.why-needed-copy {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.why-needed-title {
+  @include section-heading-title;
+  margin: 0 0 var(--space-md);
+  padding-bottom: 0;
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+}
+
+.why-needed-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-cards);
+  @include reset-list;
+}
+
+.why-needed-card {
+  @include stack-start;
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.why-needed-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.why-needed-card:hover,
+.why-needed-card:focus-within {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--color-primary) 24%, transparent);
+}
+
+.why-needed-card-icon-wrap {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background-color: color-mix(in srgb, var(--color-primary) 8%, var(--color-white));
+  transition: background-color 0.25s ease;
+}
+
+.why-needed-card-icon {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--color-primary);
+  mask-image: var(--why-needed-icon);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: var(--why-needed-icon);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: background-color 0.25s ease;
+}
+
+.why-needed-card:hover .why-needed-card-icon-wrap,
+.why-needed-card:focus-within .why-needed-card-icon-wrap {
+  background-color: var(--color-brand);
+}
+
+.why-needed-card:hover .why-needed-card-icon,
+.why-needed-card:focus-within .why-needed-card-icon {
+  background-color: var(--color-white);
+}
+
+.why-needed-card-title {
+  @include sub-heading;
+  font-weight: 500;
+  line-height: 140%;
+  color: var(--color-text-secondary);
+}
+
+@include below(575.98px) {
+  .why-needed-panel {
+    padding: var(--space-md);
+  }
+
+  .why-needed-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .why-needed-card:last-child {
+    grid-column: auto;
+  }
+
+  .why-needed-visual {
+    min-height: 16rem;
+  }
+}

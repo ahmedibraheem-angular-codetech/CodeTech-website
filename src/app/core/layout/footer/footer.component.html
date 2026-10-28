@@ -1,0 +1,175 @@
+<footer class="ct-footer">
+    <div class="container mb-5">
+    <ct-footer-header (ctaClicked)="onCtaClick()" />
+
+    </div>
+
+    <div class="ct-footer-panel">
+        <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4">
+          <div class="ct-footer-brand">
+            <a routerLink="/" class="ct-footer-logo">
+              <img
+                class="ct-footer-logo-img"
+                src="/assets/images/footer-logo.png"
+                [alt]="'header.logoAlt' | translate"
+                width="341"
+                height="63"
+              />
+            </a>
+
+            <p class="ct-footer-brand-desc">
+              {{ 'footer.brand.description' | translate }}
+            </p>
+
+            <ul class="ct-footer-contact">
+              @for (item of contactItems; track item.id) {
+                <li>
+                  @if (item.href) {
+                    <a class="ct-footer-contact-item" [href]="item.href">
+                      <img
+                        class="ct-footer-contact-icon"
+                        [src]="item.icon"
+                        alt=""
+                        width="28"
+                        height="28"
+                        aria-hidden="true"
+                      />
+                      <span>{{ item.labelKey | translate }}</span>
+                    </a>
+                  } @else {
+                    <span class="ct-footer-contact-item">
+                      <img
+                        class="ct-footer-contact-icon"
+                        [src]="item.icon"
+                        alt=""
+                        width="28"
+                        height="28"
+                        aria-hidden="true"
+                      />
+                      <span>{{ item.labelKey | translate }}</span>
+                    </span>
+                  }
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <h2 class="ct-footer-heading">{{ 'footer.columns.quickLinks' | translate }}</h2>
+          <ul class="ct-footer-links">
+            @for (link of quickLinks; track link.id) {
+              <li>
+                <a class="ct-footer-link" [routerLink]="link.route">
+                  <img
+                    class="ct-footer-link-icon"
+                    src="/assets/icons/footer/link-arrow.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    aria-hidden="true"
+                  />
+                  <span >{{ link.labelKey | translate }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="ct-footer-heading">{{ 'footer.columns.services' | translate }}</h2>
+          <ul class="ct-footer-links">
+            @for (link of serviceLinks; track link.id) {
+              <li>
+                <a class="ct-footer-link" [routerLink]="link.route">
+                  <img
+                    class="ct-footer-link-icon"
+                    src="/assets/icons/footer/link-arrow.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    aria-hidden="true"
+                  />
+                  <span>{{ link.labelKey | translate }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="col-md-3">
+          <h2 class="ct-footer-heading">{{ 'footer.columns.products' | translate }}</h2>
+          <ul class="ct-footer-links">
+            @for (link of productLinks; track link.id) {
+              <li>
+                <a class="ct-footer-link" [routerLink]="link.route">
+                  <img
+                    class="ct-footer-link-icon"
+                    src="/assets/icons/footer/link-arrow.svg"
+                    alt=""
+                    width="28"
+                    height="28"
+                    aria-hidden="true"
+                  />
+                  <span>{{ link.labelKey | translate }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+
+  <div class="ct-footer-bottom">
+      <div class="container-fluid">
+        <div class="row align-items-center gy-3 py-3">
+        <div class="col-md-4">
+          <ul class="ct-footer-legal">
+            @for (link of legalLinks; track link.id) {
+              <li>
+                <a class="ct-footer-legal-link" [routerLink]="link.route">
+                  {{ link.labelKey | translate }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <ul class="ct-footer-social">
+            @for (item of socialLinks; track item.id) {
+              <li>
+                <a
+                  class="ct-footer-social-link"
+                  [href]="item.href"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  [attr.aria-label]="item.labelKey | translate"
+                >
+                  <img
+                    class="ct-footer-social-icon"
+                    [src]="item.icon"
+                    alt=""
+                    width="44"
+                    height="44"
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="col-md-4">
+          <p class="ct-footer-copyright">
+            {{ 'footer.copyright' | translate: { year: currentYear } }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

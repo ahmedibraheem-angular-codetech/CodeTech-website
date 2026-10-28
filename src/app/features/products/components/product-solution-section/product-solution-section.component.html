@@ -1,0 +1,44 @@
+<section class="product-solution" aria-labelledby="product-solution-title">
+  <div class="container">
+    <div class="product-solution-panel">
+      <div class="product-solution-copy">
+        <div class="product-solution-heading">
+          <h2 id="product-solution-title" class="product-solution-title">{{ data().title }}</h2>
+
+          <ul class="product-solution-points">
+            @for (point of data().points; track point.id) {
+              <li class="product-solution-point">
+                <span class="product-solution-check" aria-hidden="true"></span>
+                <span>{{ point.label }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <ct-button
+          class="product-solution-action"
+          [label]="data().buttonLabel"
+          variant="primary"
+          icon="double-alt-arrow-left"
+          layout="spread"
+          fontWeight="700"
+          height="var(--btn-min-height)"
+          shadowColor="#000"
+          (clicked)="ctaClick.emit()"
+        />
+      </div>
+
+      <div class="product-solution-media">
+        <img
+          class="product-solution-image"
+          [src]="data().imageSrc"
+          [alt]="data().imageAlt"
+          width="646"
+          height="702"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>

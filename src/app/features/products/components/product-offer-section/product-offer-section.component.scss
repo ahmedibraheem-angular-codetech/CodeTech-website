@@ -1,0 +1,220 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-offer {
+  padding-block: var(--space-section);
+  background-color: var(--color-background);
+}
+
+.product-offer-intro {
+  @include stack-start;
+}
+
+.product-offer-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.product-offer-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.product-offer-grid {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  outline: 1px solid var(--color-button-light);
+  outline-offset: -1px;
+}
+
+.product-offer-cell {
+  border-inline-end: 1px solid var(--color-button-light);
+  border-block-end: 1px solid var(--color-button-light);
+  animation: product-offer-rise 0.55s ease both;
+}
+
+.product-offer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  box-sizing: border-box;
+  min-height: 13.9375rem;
+  height: 100%;
+  padding-block: 1.75rem;
+  padding-inline: var(--space-sm);
+  overflow: hidden;
+  background-color: var(--color-white);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-offer-card-media-only {
+  justify-content: flex-start;
+}
+
+.product-offer-card-media {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  z-index: 0;
+  width: 58%;
+  max-width: 15rem;
+  height: 100%;
+  margin-block: auto;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.45s ease;
+}
+
+.product-offer-card-icon-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: var(--color-background);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-offer-card-icon {
+  @include card-mask-icon;
+}
+
+.product-offer-card-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  max-width: 100%;
+}
+
+.product-offer-card-media-only .product-offer-card-copy {
+  width: 12rem;
+  max-width: 100%;
+}
+
+.product-offer-card-title {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.product-offer-card-description {
+  @include body-small;
+  margin: 0;
+  color:#324153;
+  transition: color 0.3s ease;
+}
+
+.product-offer-card:hover {
+  background-color: var(--color-background);
+  transform: translateY(calc(var(--space-xs) * -0.5));
+}
+
+.product-offer-card:hover .product-offer-card-icon-wrap {
+  background-color: var(--color-white);
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.product-offer-card:hover .product-offer-card-icon {
+  background-color: var(--color-brand);
+}
+
+.product-offer-card:hover .product-offer-card-title {
+  color: var(--color-brand);
+}
+
+.product-offer-card:hover .product-offer-card-media {
+  opacity: 0.65;
+  transform: scale(1.04);
+}
+
+@keyframes product-offer-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-cards));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include above(576px) {
+  .product-offer-cell-row-end {
+    border-inline-end: none;
+  }
+
+  .product-offer-cell-last-row {
+    border-block-end: none;
+  }
+}
+
+@include below(991.98px) {
+  .product-offer-title {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .product-offer-cell {
+    border-inline-end: none;
+  }
+
+  .product-offer-cell:last-child {
+    border-block-end: none;
+  }
+
+  .product-offer-card {
+    min-height: 12rem;
+    padding-block: var(--space-md);
+    padding-inline: var(--space-sm);
+  }
+
+  .product-offer-card-media {
+    width: 50%;
+  }
+
+  .product-offer-card-media-only .product-offer-card-copy {
+    max-width: 100%;
+  }
+}
+
+@include reduced-motion {
+  .product-offer-cell {
+    animation: none;
+  }
+
+  .product-offer-card,
+  .product-offer-card-icon-wrap,
+  .product-offer-card-icon,
+  .product-offer-card-title,
+  .product-offer-card-description,
+  .product-offer-card-media {
+    transition: none;
+  }
+
+  .product-offer-card:hover,
+  .product-offer-card:hover .product-offer-card-icon-wrap,
+  .product-offer-card:hover .product-offer-card-media {
+    transform: none;
+  }
+}

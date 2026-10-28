@@ -1,0 +1,47 @@
+{
+  "blog": {
+    "mock": {
+      "date": "25 September 2026",
+      "time": "20 min read",
+      "imageAlt": "Cover image for a digital solutions article",
+      "author": {
+        "name": "Mohammed Ezzeldin",
+        "role": "Digital transformation lead",
+        "bio": "Mohammed leads system analysis and digital product teams, turning operating procedures into clearer and faster experiences.",
+        "alt": "Portrait of Mohammed Ezzeldin"
+      },
+      "growth": {
+        "title": "How do custom digital solutions help companies grow today?",
+        "category": "Technology and digital transformation",
+        "excerpt": "As technology moves faster, digital solutions have become essential to growing the business and improving the customer experience. See why custom systems help companies reach their goals with less friction.",
+        "keywords": "digital transformation, custom systems, customer experience",
+        "seo": "How custom digital solutions help companies grow and improve the customer experience."
+      },
+      "compact": {
+        "title": "Systems and requirements analysis",
+        "category": "Government",
+        "excerpt": "A short introduction to how CodeTech writes about systems, products, and the work behind a digital service.",
+        "keywords": "systems analysis, requirements, government",
+        "seo": "A short introduction to systems and requirements analysis."
+      },
+      "listing": {
+        "categories": {
+          "digital": "Digital transformation",
+          "software": "Software development",
+          "ux": "User experience design",
+          "ai": "Artificial intelligence",
+          "cloud": "Cloud computing",
+          "projects": "Project management",
+          "news": "Company news"
+        }
+      },
+      "trust": {
+        "title": "How can public organizations build platforms people trust?",
+        "excerpt": "Trust starts with a clear service and a fast path to completion. This article covers what makes a government platform easy to use and easy to follow.",
+        "keywords": "government platforms, trust, digital services",
+        "seo": "What makes a government platform clear enough for people to finish a request."
+      },
+      "story": "<p>Digital products are no longer an extra for companies that want to grow. As customer expectations and market speed change, a custom system is what separates a scattered experience from work that moves smoothly.</p><p>At CodeTech we start from the organization's need, then turn that need into a clear product: a platform, an application, or an operating system the team uses every day.</p><h2>Why have digital solutions become necessary?</h2><p>Off-the-shelf systems serve the general case, then stall when internal procedures differ. A custom solution follows the real way of working, cuts repetition, and gives management a clearer picture of performance.</p><h2>Stages of a successful digital solution</h2><ol><li><h3>Analyze project requirements</h3><p>We learn the goals, the users, and the current procedures, then define the first release so delivery stays clear and measurable.</p></li><li><h3>Design the user experience</h3><p>We map the journey and the screens in language the team understands, and make sure each step saves time instead of adding it.</p></li><li><h3>Build the technical solution</h3><p>We develop the interfaces, services, and database on a structure that can grow later without rebuilding the product.</p></li><li><h3>Test and launch</h3><p>We review quality with real users, then launch gradually with training and a close watch on stability after go-live.</p></li></ol><blockquote><p>A good system does not only add another screen. It turns a process that used to take days into steps that can finish on the same day.</p><cite>CodeTech team</cite></blockquote><h2>A practical comparison of traditional systems and digital solutions</h2><table><thead><tr><th>Criteria</th><th>Traditional systems</th><th>Custom digital solutions</th></tr></thead><tbody><tr><td>Speed</td><td>Scattered steps and manual follow-up</td><td>One path that closes the request in one place</td></tr><tr><td>Data accuracy</td><td>Many files and mismatched copies</td><td>One updated source for every team</td></tr><tr><td>User experience</td><td>Generic screens that miss the real workflow</td><td>An interface built on the actual user journey</td></tr><tr><td>Room to grow</td><td>Hard to add a new service</td><td>A structure ready to expand with the business</td></tr></tbody></table><figure><img src=\"/assets/images/fake-image/blog2.png\" alt=\"Close view of a digital system interface\" loading=\"lazy\" decoding=\"async\" /><figcaption>An operations screen that helps the team follow the work from one place.</figcaption></figure>"
+    }
+  }
+}

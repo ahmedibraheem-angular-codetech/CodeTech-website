@@ -1,0 +1,16 @@
+<ct-header />
+
+<main
+  id="main-content"
+  class="ct-page"
+  [class.ct-page-leave]="pagePhase() === 'leave'"
+  [class.ct-page-enter]="pagePhase() === 'enter'"
+>
+  @if (network.isOnline()) {
+    <router-outlet />
+  } @else {
+    <ct-offline-page />
+  }
+</main>
+
+<ct-footer />

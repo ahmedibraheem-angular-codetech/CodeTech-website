@@ -1,0 +1,141 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+.product-solution {
+  padding-block: calc(var(--space-section) * 2) var(--space-section);
+}
+
+.product-solution-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7.5rem;
+  padding: var(--space-lg);
+  overflow: visible;
+}
+
+.product-solution-panel::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: 1rem;
+  outline: 1px solid #eef1f5;
+  outline-offset: -1px;
+  background-color: var(--color-background);
+}
+
+.product-solution-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-cards);
+  min-width: 0;
+}
+
+.product-solution-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.product-solution-title {
+  margin: 0;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 3.2rem;
+  text-align: start;
+  text-transform: capitalize;
+}
+
+.product-solution-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  @include reset-list;
+}
+
+.product-solution-point {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  height: 2.75rem;
+  padding-inline: 0.875rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  outline: 1px solid var(--color-background);
+  outline-offset: -1px;
+  background-color: var(--color-white);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--font-tiny);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.product-solution-check {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--color-primary);
+  mask: url('/assets/icons/double-check.svg') center / contain no-repeat;
+  -webkit-mask: url('/assets/icons/double-check.svg') center / contain no-repeat;
+}
+
+
+.product-solution-media {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  align-self: flex-end;
+  margin-block-start: calc((var(--space-lg) + 7.5rem) * -1);
+  margin-block-end: calc((var(--space-md) + 0.5rem) * -1);
+
+}
+
+.product-solution-image {
+  display: block;
+  width: calc(24.5625rem * 646 / 702);
+  height: auto;
+}
+
+@include below(991.98px) {
+  .product-solution {
+    padding-block: var(--space-section);
+  }
+
+  .product-solution-panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-lg);
+  }
+
+  .product-solution-media {
+    order: -1;
+    align-self: center;
+    margin-block: 0;
+  }
+
+  .product-solution-image {
+    width: min(100%, 16rem);
+  }
+
+  .product-solution-point {
+    white-space: normal;
+  }
+
+  .product-solution-title {
+    font-size: var(--font-title);
+    line-height: 1.45;
+  }
+
+  .product-solution-action {
+    align-self: flex-start;
+  }
+}

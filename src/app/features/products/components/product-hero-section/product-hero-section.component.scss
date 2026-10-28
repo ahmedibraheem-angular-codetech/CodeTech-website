@@ -1,0 +1,56 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+.product-hero {
+  @include page-hero-shell;
+}
+
+.product-hero-inner {
+  width: 100%;
+}
+
+.product-hero-copy {
+  @include stack-start-md;
+}
+
+.product-hero-title {
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--color-white);
+  font-size: var(--font-hero);
+}
+
+.product-hero-description {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--font-small);
+  line-height: 1.7;
+  color: var(--color-white);
+}
+
+.product-hero-media {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  border: 10px solid #1C81D394;
+  aspect-ratio: 361 / 208;
+
+  
+}
+
+.product-hero-image {
+  @include media-cover-block;
+}
+
+@include below(991.98px) {
+  .product-hero-title {
+    font-size: var(--font-section);
+  }
+}
+
+@include below(575.98px) {
+  .product-hero {
+    min-height: 80vh;
+  }
+
+  .product-hero-title {
+    font-size: var(--font-title);
+  }
+}

@@ -1,0 +1,111 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.products-section {
+  padding-bottom: var(--space-section);
+  margin-top: var(--space-section);
+}
+
+.products-panel {
+  padding: var(--space-sm);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.products-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 var(--space-md);
+  padding-bottom: 0;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  padding:10px;
+  background-color: var(--color-white);
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-primary);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--color-primary) 18%, transparent);
+
+    .product-card-image {
+      filter: none;
+    }
+
+    .product-card-title,
+    .product-card-description {
+      color: var(--color-white);
+    }
+
+    ::ng-deep .ct-button {
+      --ct-btn-bg: var(--color-brand);
+      --ct-btn-color: var(--color-white);
+    }
+  }
+}
+
+.product-card-media {
+  overflow: hidden;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  aspect-ratio: 16 / 10;
+}
+
+.product-card-image {
+  @include media-cover-block;
+  filter: grayscale(1);
+  transition: filter 0.3s ease;
+}
+
+.product-card-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.product-card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 30px;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.product-card-description {
+  @include body-tiny;
+  margin: 0;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.product-card-cta {
+  display: block;
+  width: 100%;
+  margin-block-start: auto;
+}
+
+@include above(768px) {
+  .products-panel {
+    padding: var(--space-lg);
+  }
+}
+
+@include below(767.98px) {
+  .products-title,
+  .product-card-title {
+    font-size: var(--font-title);
+  }
+
+  .product-card-title {
+    font-size: 1.5rem;
+  }
+}

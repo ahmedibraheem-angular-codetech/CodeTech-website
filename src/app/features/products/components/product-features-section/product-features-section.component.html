@@ -1,0 +1,32 @@
+<section class="product-features" aria-labelledby="product-features-title">
+  <div class="container">
+    <div class="product-features-panel">
+      <div class="product-features-intro">
+        <ct-divider [label]="data().label" />
+        <h2 id="product-features-title" class="product-features-title">{{ data().title }}</h2>
+      </div>
+
+      <div class="product-features-grid">
+        <div class="row g-0">
+          @for (item of data().items; track item.id; let i = $index) {
+            <div
+              class="col-12 product-features-cell"
+              [class.col-md-6]="i < 4"
+              [class.col-lg-3]="i < 4"
+              [class.col-md-4]="i >= 4"
+              [class.product-features-cell-row-end]="isRowEnd(i)"
+              [class.product-features-cell-last-row]="isLastRow(i)"
+            >
+              <ct-info-card
+                class="product-features-card"
+                [icon]="item.iconSrc"
+                [minHeight]="'13rem'"
+                [data]="{ title: item.title, description: item.description }"
+              />
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

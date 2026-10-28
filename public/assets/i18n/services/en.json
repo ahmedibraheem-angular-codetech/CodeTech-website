@@ -1,0 +1,24 @@
+{
+  "services": {
+    "hero": {
+      "title": "Integrated technical solutions that support your business growth with precision and professionalism",
+      "description": "We offer a complete set of digital and technical services — from systems, websites, and apps to business automation, integration, and cloud solutions — to help you build more efficient and scalable solutions.",
+      "cta": "Start your project"
+    },
+    "list": {
+      "label": "What we offer",
+      "title": "CodeTech Services"
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently asked questions"
+    },
+    "detail": {
+      "hero": {
+        "title": "Service details",
+        "description": "Full service content will be connected to the API. This page is ready for the selected service slug.",
+        "cta": "Start your project"
+      }
+    }
+  }
+}

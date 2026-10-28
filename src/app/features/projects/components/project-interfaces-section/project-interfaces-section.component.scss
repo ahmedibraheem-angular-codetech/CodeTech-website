@@ -1,0 +1,133 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-interfaces {
+  padding-block: var(--space-section);
+}
+
+.project-interfaces-content {
+  @include stack-start-md;
+  min-width: 0;
+}
+
+.project-interfaces-more {
+  margin-top: var(--space-md);
+}
+
+.project-interfaces-intro {
+  @include stack-start;
+}
+
+.project-interfaces-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.project-interfaces-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-interfaces-tabs {
+  @include interface-tabs;
+}
+
+.project-interfaces-tabs-row {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+  gap: 6px;
+  width: 100%;
+}
+
+.project-interfaces-tab {
+  @include interface-tab;
+}
+
+.project-interfaces-tab:hover {
+  color: var(--color-brand);
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.project-interfaces-tab-active,
+.project-interfaces-tab-active:hover {
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-brand) 28%, transparent);
+}
+
+.project-interfaces-tab:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.project-interfaces-shot {
+  height: 311px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+  animation: project-interfaces-media-in 0.5s ease both;
+}
+
+.project-interfaces-shot-main {
+  height: 270px;
+}
+
+.project-interfaces-shot-a {
+  animation-delay: 0.08s;
+}
+
+.project-interfaces-shot-b {
+  animation-delay: 0.14s;
+}
+
+.project-interfaces-shot-foot {
+  animation-delay: 0.2s;
+}
+
+.project-interfaces-image {
+  @include media-cover-block;
+}
+
+@keyframes project-interfaces-media-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@include below(991.98px) {
+  .project-interfaces-title {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .project-interfaces-tabs-row {
+    flex-wrap: wrap;
+  }
+
+  .project-interfaces-tab {
+    flex: 1 1 calc(50% - 3px);
+  }
+}
+
+@include reduced-motion {
+  .project-interfaces-tab {
+    transition: none;
+  }
+
+  .project-interfaces-tab:hover {
+    transform: none;
+  }
+
+  .project-interfaces-shot {
+    animation: none;
+  }
+}

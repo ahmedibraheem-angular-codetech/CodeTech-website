@@ -1,0 +1,55 @@
+<section class="product-offer" aria-labelledby="product-offer-title">
+  <div class="container">
+    <div class="row g-4 product-offer-body align-items-center">
+      <div class="col-12 col-lg-4 product-offer-intro">
+        <ct-divider [label]="data().label" />
+        <h2 id="product-offer-title" class="product-offer-title">{{ data().title }}</h2>
+      </div>
+
+      <div class="col-12 col-lg-8">
+        <div class="product-offer-grid">
+          <div class="row g-0">
+            @for (item of data().items; track item.id; let i = $index) {
+              <div
+                class="col-12 col-sm-6 product-offer-cell"
+                [class.product-offer-cell-row-end]="i % 2 === 1"
+                [class.product-offer-cell-last-row]="i >= 2"
+                [style.animation-delay]="0.08 * (i + 1) + 's'"
+              >
+                <article
+                  class="product-offer-card"
+                  [class.product-offer-card-media-only]="!!item.imageSrc"
+                >
+                  @if (item.imageSrc) {
+                    <img
+                      class="product-offer-card-media"
+                      [src]="item.imageSrc"
+                      [alt]="item.imageAlt"
+                      width="240"
+                      height="188"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  } @else {
+                    <span class="product-offer-card-icon-wrap" aria-hidden="true">
+                      <span
+                        class="product-offer-card-icon"
+                        [style.mask-image]="iconMask(item.iconSrc)"
+                        [style.-webkit-mask-image]="iconMask(item.iconSrc)"
+                      ></span>
+                    </span>
+                  }
+
+                  <div class="product-offer-card-copy">
+                    <h3 class="product-offer-card-title">{{ item.title }}</h3>
+                    <p class="product-offer-card-description">{{ item.description }}</p>
+                  </div>
+                </article>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

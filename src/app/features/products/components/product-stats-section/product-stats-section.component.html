@@ -1,0 +1,57 @@
+<section class="product-stats" aria-labelledby="product-stats-title">
+  <div class="container">
+    <header class="product-stats-intro">
+      <ct-divider [label]="data().label" />
+      <h2 id="product-stats-title" class="product-stats-title">{{ data().title }}</h2>
+    </header>
+
+    <ul class="product-stats-grid">
+      @for (item of data().items; track item.id) {
+        <li
+          class="product-stat"
+          [class.product-stat-brand]="item.tone === 'brand'"
+          [class.product-stat-media]="item.tone === 'media'"
+        >
+          @if (item.imageSrc) {
+            <img
+              class="product-stat-photo"
+              [src]="item.imageSrc"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="product-stat-shade" aria-hidden="true"></span>
+          }
+
+          <div class="product-stat-top">
+            @if (item.avatars.length) {
+              <span class="product-stat-title">{{ item.title }}</span>
+              <span class="product-stat-avatars">
+                @for (avatar of item.avatars; track $index) {
+                  <img
+                    [src]="avatar.imageSrc"
+                    [alt]="avatar.imageAlt"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                }
+              </span>
+              @if (item.note) {
+                <span class="product-stat-note">{{ item.note }}</span>
+              }
+            } @else {
+              @if (item.iconSrc) {
+                <span class="product-stat-icon">
+                  <img [src]="item.iconSrc" alt="" />
+                </span>
+              }
+              <span class="product-stat-title">{{ item.title }}</span>
+            }
+          </div>
+
+          <p class="product-stat-value">{{ countLabel(item) }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

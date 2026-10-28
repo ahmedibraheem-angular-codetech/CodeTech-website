@@ -1,0 +1,38 @@
+.ct-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.ct-divider-label {
+  flex: none;
+  font-size: var(--font-tiny);
+  font-weight: 500;
+  line-height: 29.68px;
+  white-space: nowrap;
+  color: var(--color-primary);
+}
+
+.ct-divider-mark {
+  width: 15px;
+  height: 18px;
+  background-color: var(--color-brand);
+  mask: url('/assets/icons/divider-mark.svg') center / contain no-repeat;
+  -webkit-mask: url('/assets/icons/divider-mark.svg') center / contain no-repeat;
+}
+
+.ct-divider-line {
+  min-width: 38px;
+  height: 1px;
+  background-color: var(--color-primary);
+}
+
+.ct-divider-white .ct-divider-label {
+  color: var(--color-white);
+}
+
+.ct-divider-white .ct-divider-mark,
+.ct-divider-white .ct-divider-line {
+  background-color: var(--color-white);
+}

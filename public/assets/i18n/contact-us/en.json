@@ -1,0 +1,97 @@
+{
+  "contactUs": {
+    "hero": {
+      "title": "From idea to implementation, we start here the step",
+      "description": "Share details of your project, and our CodeTech team will review your needs and contact you to determine the most suitable technical solutions.",
+      "cta": "Start your project"
+    },
+    "options": {
+      "items": {
+        "project": {
+          "category": "Services",
+          "title": "Start a new project",
+          "description": "If you want to build a system, website, or app — or improve work processes — tell us what you need so we can define the right starting point together.",
+          "buttonLabel": "Start now"
+        },
+        "products": {
+          "category": "Products",
+          "title": "Product inquiry",
+          "description": "Learn about CodeTech products, discuss fit for your team and business, and explore customization and operation options based on the product.",
+          "buttonLabel": "Inquire now"
+        }
+      }
+    },
+    "channels": {
+      "title": "Need to reach the CodeTech team right away?",
+      "description": "Contact us and we will reply as soon as possible",
+      "items": {
+        "phone": {
+          "label": "Call us:"
+        },
+        "email": {
+          "label": "Email:"
+        },
+        "whatsapp": {
+          "label": "WhatsApp:"
+        }
+      }
+    },
+    "faq": {
+      "label": "Common questions",
+      "title": "Frequently asked questions"
+    },
+    "steps": {
+      "label": "Steps",
+      "title": "What happens after submitting the request?",
+      "items": {
+        "01": {
+          "title": "Request received",
+          "description": "We receive your details and needs so we can start the follow-up."
+        },
+        "02": {
+          "title": "Needs review",
+          "description": "We review the information and identify what is needed to understand the scope of work."
+        },
+        "03": {
+          "title": "Contacting you",
+          "description": "We reach out through the right channel to arrange a discussion of your needs."
+        },
+        "04": {
+          "title": "Project discussion",
+          "description": "We discuss goals, users, priorities, integrations, and the expected timeline."
+        },
+        "05": {
+          "title": "Sending the right offer",
+          "description": "We present an offer covering solution scope, deliverables, cost, timeline, and assumptions."
+        }
+      }
+    },
+    "form": {
+      "title": "Contact form",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "Enter your full name",
+      "organization": "Organization",
+      "organizationPlaceholder": "Enter your company or organization",
+      "phone": "Mobile number",
+      "phonePlaceholder": "Enter your mobile number with the country code",
+      "email": "Email (optional)",
+      "emailPlaceholder": "Enter your email",
+      "service": "Product or service",
+      "servicePlaceholder": "Select a service",
+      "serviceAll": "All services",
+      "brief": "Short project brief (optional)",
+      "briefPlaceholder": "Describe the idea or challenge and the result you want",
+      "submit": "Send request",
+      "error": "Please complete the required fields and check the contact details.",
+      "mapLabel": "CodeTech location",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "successTitle": "Request sent successfully",
+      "successMessage": "We received your details, and the CodeTech team will contact you shortly.",
+      "successAction": "Back to home",
+      "failureTitle": "Could not send the request",
+      "failureMessage": "We could not send the request right now. Please try again in a moment.",
+      "failureAction": "Try again"
+    }
+  }
+}

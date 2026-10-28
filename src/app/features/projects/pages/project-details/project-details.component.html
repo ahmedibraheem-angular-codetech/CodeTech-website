@@ -1,0 +1,53 @@
+@if (hero(); as hero) {
+  <ct-project-hero-section [data]="hero" (ctaClick)="goToContact()" />
+
+  @if (overview(); as overview) {
+    <ct-project-overview-section [data]="overview" />
+  }
+
+  @if (challenges(); as challenges) {
+    <ct-project-challenges-section [data]="challenges" />
+  }
+
+  @if (solution(); as solution) {
+    <ct-project-solution-section [data]="solution" />
+  }
+  @if (screens(); as screens) {
+    <ct-project-screens-section [data]="screens" />
+  }
+  @if (features(); as features) {
+    <ct-project-features-section [data]="features" />
+  }
+
+  @if (interfaces(); as interfaces) {
+    <ct-project-interfaces-section [data]="interfaces" />
+  }
+
+  @if (results(); as results) {
+    <ct-project-results-section [data]="results" />
+  }
+
+  @if (technologies(); as technologies) {
+    <ct-technologies-section
+      [label]="technologies.label"
+      [title]="technologies.title"
+      [items]="technologies.items"
+      [tools]="technologies.tools"
+    />
+  }
+
+  @if (similar(); as similar) {
+    <ct-projects-section
+      [label]="similar.label"
+      [title]="similar.title"
+      [projects]="similar.items"
+    />
+  }
+} @else {
+  <section class="project-missing">
+    <div class="container">
+      <h1 class="project-missing-title">{{ missing().title }}</h1>
+      <a class="project-missing-link" routerLink="/projects">{{ missing().back }}</a>
+    </div>
+  </section>
+}

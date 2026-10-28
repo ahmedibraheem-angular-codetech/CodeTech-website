@@ -1,0 +1,70 @@
+@use '../../../styles/abstracts/mixin' as *;
+.offline-page {
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 12rem);
+  padding-block: var(--space-section);
+  background-color: var(--color-white);
+  height: 100vh;
+}
+
+.offline-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+  justify-content: center;
+}
+
+.offline-illustration {
+  display: block;
+  width: min(100%, 300px);
+  height: auto;
+}
+
+.offline-title {
+  @include status-title;
+}
+
+.offline-description {
+  @include status-description;
+}
+
+.offline-home-btn {
+  @include inline-flex-center;
+  gap: 0.75rem;
+  min-height: var(--btn-height);
+  padding-inline: var(--btn-padding-inline);
+  border: 0;
+  border-radius: var(--border-radius);
+  background-color: var(--color-button-light);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--font-small);
+  font-weight: 700;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.offline-home-icon {
+  flex: none;
+  width: var(--btn-icon-size);
+  height: var(--btn-icon-size);
+}
+
+:host-context([dir='ltr']) .offline-home-icon {
+  transform: scaleX(-1);
+}
+
+@include below(575.98px) {
+  .offline-page {
+    min-height: auto;
+    padding-block: var(--space-xl);
+  }
+
+  .offline-illustration {
+    width: min(100%, 220px);
+  }
+}

@@ -1,0 +1,50 @@
+<section
+  class="why-needed-section"
+  aria-labelledby="why-needed-section-title"
+>
+  <div class="container">
+    <div class="">
+      <div class="row g-5 align-items-stretch">
+        <div class="col-lg-5">
+          <div class="why-needed-visual">
+            <img
+              class="why-needed-image"
+              [src]="data().imageSrc"
+              [alt]="data().imageAlt | translate"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <p class="why-needed-caption">
+              {{ data().imageCaption | translate }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-7 why-needed-panel">
+          <div class="why-needed-copy">
+            <ct-divider [label]="data().label | translate" />
+
+            <h2 id="why-needed-section-title" class="why-needed-title">
+              {{ data().title | translate }}
+            </h2>
+
+            <ul class="why-needed-cards">
+              @for (item of data().items; track item.id) {
+                <li class="why-needed-card">
+                  <span class="why-needed-card-icon-wrap" aria-hidden="true">
+                    <span
+                      class="why-needed-card-icon"
+                      [style.--why-needed-icon]="'url(\'' + item.iconSrc + '\')'"
+                    ></span>
+                  </span>
+                  <span class="why-needed-card-title">{{ item.title | translate }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

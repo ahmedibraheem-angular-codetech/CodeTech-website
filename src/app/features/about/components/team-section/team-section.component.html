@@ -1,0 +1,41 @@
+<section class="team-section" aria-labelledby="about-team-title">
+  <div class="container">
+    <ct-divider [label]="label()" />
+
+    <h2 id="about-team-title" class="team-heading">
+      {{ title() }}
+    </h2>
+
+    <div class="row g-3">
+      @for (member of data().members; track member.id) {
+        <div class="col-6 col-lg-3">
+          <article class="team-card">
+            <img
+              class="team-card-mark"
+              [src]="data().cardBgSrc"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <div class="team-card-copy">
+              <span class="team-card-role">{{ member.role | translate }}</span>
+              <h3 class="team-card-name">{{ member.name | translate }}</h3>
+            </div>
+
+            <div class="team-card-media">
+              <img
+                class="team-card-image"
+                [src]="member.imageSrc"
+                [alt]="member.imageAlt | translate"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

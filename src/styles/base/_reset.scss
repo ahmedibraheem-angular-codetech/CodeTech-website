@@ -1,0 +1,27 @@
+*, *::before, *::after { box-sizing: border-box; }
+html, body { min-height: 100%; scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0px; }
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #1c81d3 #eef3f8;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #eef3f8;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #1c81d3;
+  border-radius: 999px;
+}
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+button, input, textarea, select { color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+

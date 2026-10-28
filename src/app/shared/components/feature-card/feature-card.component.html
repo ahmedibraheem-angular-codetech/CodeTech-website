@@ -1,0 +1,14 @@
+<article class="feature-card">
+  <img
+    class="feature-card-image"
+    [src]="data().imageSrc"
+    [alt]="data().imageAlt | translate"
+    loading="lazy"
+    decoding="async"
+  />
+
+  <div class="feature-card-body">
+    <h3 class="feature-card-title">{{ data().title | translate }}</h3>
+    <p class="feature-card-description">{{ data().description | translate }}</p>
+  </div>
+</article>

@@ -1,0 +1,44 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.projects-section {
+  padding-bottom: var(--space-section);
+}
+
+.projects-header {
+  @include section-header;
+}
+
+.projects-header-intro {
+  min-width: 0;
+}
+
+.projects-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+  padding-bottom: 0;
+}
+
+.projects-header-arrows {
+  flex-shrink: 0;
+}
+
+.projects-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.projects-slide {
+  height: auto;
+  box-sizing: border-box;
+}
+
+@include below(767.98px) {
+  .projects-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .projects-title {
+    font-size: var(--font-title);
+  }
+}

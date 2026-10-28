@@ -1,0 +1,119 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.content-media-section {
+  padding-bottom: var(--space-section);
+}
+
+.content-media-card {
+  border-radius: var(--border-radius);
+
+}
+
+.content-media-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  background-color: var(--color-background);
+  padding: 40px;
+  border-radius: var(--border-radius);
+
+}
+
+.content-media-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+  padding-bottom: var(--space-sm);
+}
+
+.content-media-description {
+  @include body-small;
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+.content-media-list {
+  @include flex-column-sm;
+  @include reset-list;
+}
+
+.content-media-list-item {
+  @include body-small;
+  @include check-list-item;
+}
+
+.content-media-check {
+  @include icon-double-check;
+}
+
+.content-media-cta {
+  display: inline-flex;
+  margin-block-start: var(--space-md);
+}
+
+.content-media-visual {
+  position: relative;
+
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 18rem;
+  border-radius: var(--border-radius);
+}
+
+.content-media-image {
+  @include absolute-cover-image;
+}
+
+.content-media-trust {
+  
+  position: absolute;
+  top:95%;
+  right: 2%;
+
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.content-media-avatars {
+  display: flex;
+  flex: none;
+}
+
+.content-media-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  object-fit: cover;
+
+  & + & {
+    margin-inline-start: -0.5rem;
+  }
+}
+
+.content-media-trust-label {
+  @include body-tiny;
+  font-weight: 500;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+@include above(768px) {
+
+
+  .content-media-visual {
+    min-height: 100%;
+  }
+}
+
+@include below(767.98px) {
+  .content-media-title {
+    font-size: var(--font-title);
+  }
+
+  .content-media-trust-label {
+    white-space: normal;
+  }
+}

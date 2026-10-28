@@ -1,0 +1,38 @@
+<section class="values-section" aria-labelledby="about-values-title">
+  <div class="container">
+    <div class="values-panel">
+      <ct-divider [label]="label()" />
+
+      <h2 id="about-values-title" class="values-heading">
+        {{ title() }}
+      </h2>
+
+      <div #swiperRoot class="swiper values-swiper">
+        <div class="swiper-wrapper">
+          @for (item of data().items; track item.id) {
+            <div class="swiper-slide values-slide">
+              <article class="values-card">
+                <div class="values-card-media">
+                  <img
+                    class="values-card-image"
+                    [src]="item.imageSrc"
+                    [alt]="item.imageAlt | translate"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="values-card-copy">
+                  <h3 class="values-card-title">{{ item.title | translate }}</h3>
+                  <p class="values-card-description">
+                    {{ item.description | translate }}
+                  </p>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

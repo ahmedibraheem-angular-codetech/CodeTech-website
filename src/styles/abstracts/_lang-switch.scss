@@ -1,0 +1,97 @@
+// Soft page motion when switching Arabic ↔ English.
+
+html.ct-lang-switching {
+  overflow-x: hidden;
+}
+
+html.ct-lang-switching body {
+  pointer-events: none;
+}
+
+html.ct-lang-leave body {
+  animation: ct-lang-leave 0.2s ease forwards;
+}
+
+html.ct-lang-enter body {
+  animation: ct-lang-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+html[data-lang-to='ar'].ct-lang-leave body {
+  animation-name: ct-lang-leave-to-ar;
+}
+
+html[data-lang-to='en'].ct-lang-leave body {
+  animation-name: ct-lang-leave-to-en;
+}
+
+html[data-lang-to='ar'].ct-lang-enter body {
+  animation-name: ct-lang-enter-ar;
+}
+
+html[data-lang-to='en'].ct-lang-enter body {
+  animation-name: ct-lang-enter-en;
+}
+
+@keyframes ct-lang-leave {
+  to {
+    opacity: 0;
+    transform: translate3d(0, 0.35rem, 0);
+  }
+}
+
+@keyframes ct-lang-leave-to-ar {
+  to {
+    opacity: 0;
+    transform: translate3d(-0.85rem, 0, 0);
+  }
+}
+
+@keyframes ct-lang-leave-to-en {
+  to {
+    opacity: 0;
+    transform: translate3d(0.85rem, 0, 0);
+  }
+}
+
+@keyframes ct-lang-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.35rem, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ct-lang-enter-ar {
+  from {
+    opacity: 0;
+    transform: translate3d(0.85rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes ct-lang-enter-en {
+  from {
+    opacity: 0;
+    transform: translate3d(-0.85rem, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.ct-lang-leave body,
+  html.ct-lang-enter body {
+    animation: none;
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "faq": {
+    "items": {
+      "services": {
+        "question": "What services does CodeTech provide?",
+        "answer": "We provide systems and software development, mobile apps, UX/UI design, branding, cloud solutions, system integration, and technical support."
+      },
+      "custom": {
+        "question": "Do you offer custom solutions?",
+        "answer": "Yes. We build tailored solutions around your business needs, with scalability, performance, and daily usability in mind."
+      },
+      "upgrade": {
+        "question": "Can you improve existing systems?",
+        "answer": "Yes. We assess your current systems and improve or integrate them with new solutions without disrupting your work."
+      },
+      "support": {
+        "question": "Do you provide support after launch?",
+        "answer": "Yes. We provide ongoing technical support and maintenance after launch to keep the solution stable and continuously improved."
+      },
+      "cms": {
+        "question": "Can I edit the website content myself after delivery?",
+        "answer": "Yes. We design your website with a simple Arabic admin panel and show you how to add content and edit text and images yourself."
+      },
+      "response": {
+        "question": "How long does it take to get a reply?",
+        "answer": "We review your request as soon as possible and contact you through the right channel to arrange the next step."
+      },
+      "channels": {
+        "question": "Can I reach you directly by WhatsApp or phone?",
+        "answer": "Yes. You can contact us by phone, email, or WhatsApp, and we will reply as soon as possible."
+      },
+      "start": {
+        "question": "What should I send when starting a new project?",
+        "answer": "Share a short description of your need, your goals, and any documents or examples that help us understand the scope."
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<section
+  class="products-section"
+  aria-labelledby="products-section-title"
+>
+  <div class="container">
+    <div class="products-panel">
+      <ct-divider [label]="label()" />
+
+      <h2 id="products-section-title" class="products-title">
+        {{ title() }}
+      </h2>
+
+      <div class="row g-4">
+        @for (product of products(); track product.id) {
+          <div class="col-md-4">
+            <article class="product-card">
+              <div class="product-card-media">
+                <img
+                  class="product-card-image"
+                  [src]="product.imageSrc"
+                  [alt]="product.imageAlt | translate"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="product-card-body">
+                <h3 class="product-card-title">
+                  {{ product.title | translate }}
+                </h3>
+                <p class="product-card-description text-end">
+                  {{ product.description | translate }}
+                </p>
+
+                <ct-button
+                  class="product-card-cta"
+                  [label]="'home.products.cta' | translate"
+                  icon="double-alt-arrow-left"
+                  variant="light"
+                  layout="spread"
+                  fontWeight="500"
+                  width="100%"
+                />
+              </div>
+            </article>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

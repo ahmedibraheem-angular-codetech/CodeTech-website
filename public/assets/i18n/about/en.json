@@ -1,0 +1,51 @@
+{
+  "about": {
+    "hero": {
+      "title": "Transform your manual operations into smart automated processes",
+      "description": "We help organizations automate daily procedures and operations, connect different systems, and reduce manual intervention — raising efficiency, increasing productivity, and limiting operational errors.",
+      "cta": "Start your project"
+    },
+    "overview": {
+      "philosophy": {
+        "title": "Company philosophy"
+      },
+      "market": {
+        "title": "Target market"
+      }
+    },
+    "visionMission": {
+      "label": "Our vision and mission",
+      "title": "Toward a thriving digital future",
+      "vision": {
+        "title": "Our vision"
+      },
+      "mission": {
+        "title": "Our mission"
+      }
+    },
+    "values": {
+      "label": "Principles",
+      "title": "Our values"
+    },
+    "features": {
+      "label": "Our features",
+      "title": "Why CodeTech?"
+    },
+    "services": {
+      "label": "Our services",
+      "title": "What do we offer our clients?"
+    },
+    "clients": {
+      "label": "Our success",
+      "title": "Our clients"
+    },
+    "founder": {
+      "label": "The founder",
+      "title": "Founder and CEO"
+    },
+    "team": {
+      "label": "Behind the scenes",
+      "title": "Our team"
+    }
+  }
+}

@@ -1,0 +1,149 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+.journey-section {
+  padding-block: var(--space-section);
+}
+
+.journey-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 0;
+}
+
+.journey-grid {
+  @include flex-column-sm;
+}
+
+.journey-row {
+  display: flex;
+  gap: var(--space-sm);
+  height: 15.75rem; // 252px row from Figma
+}
+
+.journey-card {
+  box-sizing: border-box;
+  min-width: 0;
+  border-radius: var(--border-radius);
+}
+
+// Basis must exceed padding + border so text and hybrid cards share space equally.
+.journey-card--text,
+.journey-card--hybrid {
+  flex: 1 1 10rem;
+}
+
+// Image cells take their width from the artwork ratio, like Figma.
+.journey-card--image {
+  flex: none;
+  height: 100%;
+  overflow: hidden;
+
+  .journey-card-image {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.journey-card--text {
+  @include card-column;
+  padding: var(--space-md);
+  border: 2px solid var(--color-background);
+  background-color: var(--color-white);
+}
+
+.journey-card--hybrid {
+  @include flex-column-xs;
+
+  .journey-card-media {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background-color: var(--color-primary);
+  }
+
+  .journey-card-image {
+    @include media-cover;
+  }
+
+  .journey-card-number {
+    position: absolute;
+    inset-block-end: var(--space-sm);
+    inset-inline-start: var(--space-sm);
+    background-color: var(--color-white);
+  }
+
+  .journey-card-body {
+    flex: none;
+    padding: var(--space-md);
+    border: 2px solid var(--color-background);
+    border-radius: var(--border-radius);
+    background-color: var(--color-white);
+  }
+}
+
+.journey-card-image {
+  display: block;
+}
+
+.journey-card-number {
+  @include inline-flex-center;
+  align-self: flex-start;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-block-start: var(--space-sm);
+  border-radius: var(--space-xs);
+  background-color: var(--color-background);
+  color: var(--color-text-tertiary);
+  font-size: var(--font-small);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.journey-card-body {
+  @include flex-column-xs;
+}
+
+.journey-card-title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 30px;
+  color: var(--color-primary);
+}
+
+.journey-card-description {
+  @include body-tiny;
+  @include line-clamp(2);
+  color: var(--color-text-secondary);
+}
+
+@include below(991.98px) {
+  .journey-row {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  .journey-card,
+  .journey-card--image {
+    flex: 1 1 calc(50% - var(--space-sm));
+    min-height: 15.75rem;
+  }
+
+  .journey-card--image .journey-card-image {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@include below(575.98px) {
+  .journey-title {
+    font-size: var(--font-title);
+  }
+
+  .journey-card,
+  .journey-card--image {
+    flex-basis: 100%;
+  }
+}

@@ -1,0 +1,101 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+
+.project-challenges-panel {
+  padding: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.project-challenges-header {
+  @include section-header;
+}
+
+.project-challenges-intro {
+  @include stack-start;
+  min-width: 0;
+}
+
+.project-challenges-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-challenges-arrows {
+  flex: none;
+}
+
+.project-challenges-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.project-challenges-slide {
+  display: flex;
+  height: auto;
+  box-sizing: border-box;
+}
+
+.project-challenges-card {
+  @include flex-column-sm;
+  width: 100%;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  transition: background-color 0.4s ease;
+}
+
+.project-challenges-media {
+  display: grid;
+  place-items: end;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  transition: background-color 0.4s ease;
+
+}
+
+.project-challenges-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  transition: filter 0.4s ease;
+}
+
+.project-challenges-card:hover .project-challenges-image,
+.project-challenges-card:focus-within .project-challenges-image {
+  filter: none;
+}
+
+.project-challenges-card-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-primary);
+}
+
+.project-challenges-card-text {
+  @include body-tiny;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+@include below(767.98px) {
+  .project-challenges-panel {
+    padding: var(--space-md);
+  }
+
+  .project-challenges-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .project-challenges-title {
+    font-size: var(--font-title);
+  }
+}

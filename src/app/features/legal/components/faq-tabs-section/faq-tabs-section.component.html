@@ -1,0 +1,94 @@
+<section class="faq-tabs-section" aria-labelledby="faq-tabs-title">
+  <div class="container">
+    <div class="faq-tabs-panel">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-4">
+          <div class="faq-tabs-intro">
+            <ct-divider [label]="'faq.section.label' | translate" />
+            <h2 id="faq-tabs-title" class="faq-tabs-title">
+              {{ 'faq.section.title' | translate }}
+            </h2>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          @if (selected(); as selectedCategory) {
+            <div class="faq-tabs">
+              <div class="faq-tablist">
+                <div class="faq-tablist-content">
+                  <div #tabListRoot class="faq-tablist-list" role="tablist">
+                    @for (category of categories(); track category.id) {
+                      <div
+                        class="faq-tab"
+                        [class.faq-tab-active]="isTabActive(category.id)"
+                        role="tab"
+                        [id]="'faq-tab-' + category.id"
+                        [attr.aria-selected]="isTabActive(category.id)"
+                        [attr.aria-controls]="'faq-panel-' + category.id"
+                        [attr.tabindex]="isTabActive(category.id) ? 0 : -1"
+                        (click)="selectTab(category.id)"
+                        (keydown)="onTabKeydown($event, category.id)"
+                      >
+                        {{ category.label }}
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <div class="faq-tabpanels">
+                <div
+                  class="faq-tabpanel"
+                  role="tabpanel"
+                  [id]="'faq-panel-' + selectedCategory.id"
+                  [attr.aria-labelledby]="'faq-tab-' + selectedCategory.id"
+                >
+                  <div #accordionRoot class="faq-accordion">
+                    @for (item of selectedCategory.items; track item.id) {
+                      <div class="faq-item" [class.faq-item-open]="isOpen(item.id)">
+                        <div
+                          class="faq-item-trigger"
+                          role="button"
+                          tabindex="0"
+                          [attr.aria-expanded]="isOpen(item.id)"
+                          [attr.aria-controls]="'faq-answer-' + item.id"
+                          [id]="'faq-question-' + item.id"
+                          (click)="toggle(item.id)"
+                          (keydown)="onHeaderKeydown($event, item.id)"
+                        >
+                          <span class="faq-item-header">
+                            <span class="faq-item-number" dir="ltr">-{{ item.number }}</span>
+                            <span class="faq-item-question">{{ item.question }}</span>
+                          </span>
+
+                          <span
+                            class="faq-toggle"
+                            [class.faq-toggle--open]="isOpen(item.id)"
+                            aria-hidden="true"
+                          ></span>
+                        </div>
+
+                        <div
+                          class="faq-item-content"
+                          [id]="'faq-answer-' + item.id"
+                          role="region"
+                          [attr.aria-labelledby]="'faq-question-' + item.id"
+                        >
+                          <div class="faq-item-motion">
+                            <div class="faq-item-body">
+                              <p class="faq-item-answer">{{ item.answer }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

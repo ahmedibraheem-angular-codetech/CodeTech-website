@@ -1,0 +1,139 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.contact-channels-section {
+  position: relative;
+  padding-block: var(--space-section);
+  overflow-x: clip;
+}
+
+.contact-channels-split {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+}
+
+.contact-channels-half {
+  flex: 1 1 50%;
+}
+
+.contact-channels-half-copy {
+  background-color: var(--color-white);
+}
+
+.contact-channels-half-cards {
+  background-color: var(--color-background);
+}
+
+.contact-channels-section .container {
+  position: relative;
+}
+
+.contact-channels-column--cards {
+  position: relative;
+  z-index: 0;
+}
+
+.contact-channels-title {
+  margin: 0 0 var(--space-sm);
+  padding-bottom: 0;
+  font-size: 64px;
+  color: var(--color-primary);
+}
+
+.contact-channels-description {
+  @include body-small;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.contact-channel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 55px;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 283px;
+  padding: 20px 16px;
+  border: 1.6px solid var(--color-background);
+  border-radius: 16px;
+  background-color: var(--color-white);
+  text-decoration: none;
+}
+
+.contact-channel-icon {
+  @include flex-center;
+  flex: none;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+}
+
+.contact-channel-icon[data-channel='phone'] {
+  background-color: var(--color-primary-light);
+}
+
+.contact-channel-icon[data-channel='email'] {
+  background-color: var(--color-brand);
+}
+
+.contact-channel-icon[data-channel='whatsapp'] {
+  background-color: #00e510;
+}
+
+.contact-channel-icon img {
+  display: block;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.contact-channel-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.contact-channel-label {
+  @include body-tiny;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+  text-align: center;
+}
+
+.contact-channel-value {
+  @include body-small;
+  color: var(--color-primary);
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+}
+
+.contact-channel-card[data-channel='email'] .contact-channel-value {
+  text-decoration: underline;
+}
+
+@include below(991.98px) {
+  .contact-channels-split {
+    display: none;
+  }
+
+  .contact-channels-section {
+    background-color: var(--color-white);
+  }
+
+  .contact-channels-column--cards::before {
+    @include full-bleed-background;
+  }
+}
+
+@include below(767.98px) {
+  .contact-channel-card {
+    min-height: 0;
+    gap: var(--space-lg);
+  }
+}

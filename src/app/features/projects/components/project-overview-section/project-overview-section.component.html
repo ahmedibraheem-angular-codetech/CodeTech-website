@@ -1,0 +1,89 @@
+<section class="project-overview" aria-labelledby="project-overview-title">
+  <div class="container">
+    <header class="project-overview-intro">
+      <ct-divider [label]="data().label" />
+      <h2 id="project-overview-title" class="project-overview-title">{{ data().title }}</h2>
+    </header>
+
+    <div class="project-overview-grid">
+      <div class="project-overview-stack">
+        <article class="project-overview-card project-overview-goal">
+          <h3 class="project-overview-goal-title">{{ data().goal.title }}</h3>
+          <p class="project-overview-goal-text">{{ data().goal.description }}</p>
+        </article>
+
+        <article class="project-overview-card project-overview-audience">
+          <div class="project-overview-audience-top">
+            <span class="project-overview-audience-label">{{ data().audience.label }}</span>
+            <div class="project-overview-audience-meta">
+              <span class="project-overview-avatars">
+                @for (avatar of data().audience.avatars; track $index) {
+                  <img
+                    [src]="avatar.imageSrc"
+                    [alt]="avatar.imageAlt"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                }
+              </span>
+              <span class="project-overview-clients">{{ data().audience.clientsLabel }}</span>
+            </div>
+          </div>
+          <p class="project-overview-audience-text">{{ data().audience.description }}</p>
+        </article>
+      </div>
+
+      <article class="project-overview-card project-overview-reason">
+        <div class="project-overview-reason-head">
+          <span class="project-overview-reason-label">{{ data().reason.label }}</span>
+          <img
+            class="project-overview-reason-icon"
+            [src]="data().reason.iconSrc"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="project-overview-reason-body">
+          <h3 class="project-overview-reason-title">{{ data().reason.title }}</h3>
+          <p class="project-overview-reason-text">{{ data().reason.description }}</p>
+        </div>
+      </article>
+
+      <article class="project-overview-card project-overview-background">
+        <div class="project-overview-background-body">
+          <h3 class="project-overview-background-title">{{ data().background.title }}</h3>
+          <p class="project-overview-background-text">{{ data().background.description }}</p>
+        </div>
+        <div class="project-overview-background-foot">
+          <span class="project-overview-background-label">{{ data().background.footerLabel }}</span>
+          <span class="project-overview-background-chip" aria-hidden="true">
+            <img
+              [src]="data().background.iconSrc"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </span>
+        </div>
+      </article>
+
+      <article class="project-overview-card project-overview-client">
+        <div class="project-overview-client-head">
+          <span class="project-overview-client-label">{{ data().client.label }}</span>
+          <img
+            class="project-overview-client-icon"
+            [src]="data().client.iconSrc"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="project-overview-client-body">
+          <h3 class="project-overview-client-title">{{ data().client.title }}</h3>
+          <p class="project-overview-client-text">{{ data().client.description }}</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

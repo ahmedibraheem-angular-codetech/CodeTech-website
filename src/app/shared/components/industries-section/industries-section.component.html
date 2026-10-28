@@ -1,0 +1,23 @@
+<section class="industries-section" aria-labelledby="industries-section-title">
+  <div class="container">
+    <ct-divider [label]="label()" />
+    <h2 id="industries-section-title" class="industries-title">
+      {{ title() }}
+    </h2>
+
+    <ul class="industries-grid">
+      @for (item of items(); track item.id) {
+        <li class="industries-card">
+          <img
+            class="industries-image"
+            [src]="item.imageSrc"
+            [alt]="item.imageAlt | translate"
+            loading="lazy"
+            decoding="async"
+          />
+          <h3 class="visually-hidden">{{ item.title | translate }}</h3>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

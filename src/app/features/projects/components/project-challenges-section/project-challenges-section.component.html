@@ -1,0 +1,44 @@
+<section class="project-challenges" aria-labelledby="project-challenges-title">
+  <div class="container">
+    <div class="project-challenges-panel">
+      <div class="project-challenges-header">
+        <div class="project-challenges-intro">
+          <ct-divider [label]="data().label" />
+          <h2 id="project-challenges-title" class="project-challenges-title">
+            {{ data().title }}
+          </h2>
+        </div>
+
+        <ct-slider-arrows
+          class="project-challenges-arrows"
+          [canPrev]="canPrev()"
+          [canNext]="canNext()"
+          (prev)="prev()"
+          (next)="next()"
+        />
+      </div>
+
+      <div #swiperRoot class="swiper project-challenges-swiper">
+        <div class="swiper-wrapper">
+          @for (item of data().items; track item.id) {
+            <div class="swiper-slide project-challenges-slide">
+              <article class="project-challenges-card">
+                <div class="project-challenges-media">
+                  <img
+                    class="project-challenges-image"
+                    [src]="item.imageSrc"
+                    [alt]="item.imageAlt"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <h3 class="project-challenges-card-title">{{ item.title }}</h3>
+                <p class="project-challenges-card-text">{{ item.description }}</p>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

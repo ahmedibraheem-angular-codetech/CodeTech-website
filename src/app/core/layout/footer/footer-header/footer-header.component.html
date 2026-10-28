@@ -1,0 +1,16 @@
+<section class="ct-footer-header col-md-4 pt-5">
+  <h1 class="ct-footer-header-title">
+    {{ title() | translate }}
+  </h1>
+  <p class="ct-footer-header-description">
+    {{ description() | translate }}
+  </p>
+  <ct-button
+    [label]="ctaLabel() | translate"
+    variant="primary"
+    icon="double-alt-arrow-left"
+    layout="spread"
+    fontWeight="500"
+    (clicked)="onCtaClick()"
+  />
+</section>

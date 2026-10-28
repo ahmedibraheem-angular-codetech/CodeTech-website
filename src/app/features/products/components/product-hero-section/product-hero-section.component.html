@@ -1,0 +1,32 @@
+<section class="product-hero" aria-labelledby="product-hero-title">
+  <div class="container product-hero-inner">
+    <div class="row g-4 align-items-center justify-content-between">
+      <div class="col-lg-5">
+        <div class="product-hero-copy">
+          <h1 id="product-hero-title" class="product-hero-title">{{ data().title }}</h1>
+          <p class="product-hero-description">{{ data().description }}</p>
+          <ct-button
+            [label]="data().buttonLabel"
+            variant="dark"
+            icon="double-alt-arrow-left"
+            layout="spread"
+            fontWeight="500"
+            (clicked)="ctaClick.emit()"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="product-hero-media">
+          <img
+            class="product-hero-image"
+            [src]="data().imageSrc"
+            [alt]="data().imageAlt"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

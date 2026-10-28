@@ -1,0 +1,194 @@
+{
+  "about": {
+    "overview": {
+      "imageAlt": "CodeTech building signage",
+      "philosophy": {
+        "items": {
+          "0": "A short intro about CodeTech — provided by the team later.",
+          "1": "A short intro about CodeTech — provided by the team later.",
+          "2": "A short intro about CodeTech — provided by the team later."
+        }
+      },
+      "market": {
+        "items": {
+          "0": "Short text to be replaced later",
+          "1": "Short text to be replaced later",
+          "2": "Short text to be replaced later",
+          "3": "Short text to be replaced later",
+          "4": "Short text to be replaced later",
+          "5": "Short text to be replaced later",
+          "6": "Short text to be replaced later",
+          "7": "Short text to be replaced later",
+          "8": "Short text to be replaced later",
+          "9": "Short text to be replaced later"
+        }
+      }
+    },
+    "visionMission": {
+      "vision": {
+        "items": {
+          "0": "A short intro about CodeTech — provided by the team later.",
+          "1": "A short intro about CodeTech — provided by the team later.",
+          "2": "A short intro about CodeTech — provided by the team later."
+        },
+        "summary": "We aspire to build an integrated digital ecosystem that makes a tangible difference across sectors."
+      },
+      "mission": {
+        "items": {
+          "0": "A short intro about CodeTech — provided by the team later.",
+          "1": "A short intro about CodeTech — provided by the team later.",
+          "2": "A short intro about CodeTech — provided by the team later."
+        },
+        "summary": "Our goal is to enable clients to achieve better results through a faster, smarter digital experience."
+      }
+    },
+    "values": {
+      "items": {
+        "sustainability": {
+          "title": "Sustainability",
+          "description": "We build lasting digital solutions that support growth without wasting effort or resources.",
+          "imageAlt": "Sustainability value"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "Secure, stable systems you can trust to run your operations every day.",
+          "imageAlt": "Reliability value"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "We turn ideas into practical digital products that move your business forward.",
+          "imageAlt": "Innovation value"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Careful craft and clear standards in every stage of design and delivery.",
+          "imageAlt": "Excellence value"
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "High-quality outcomes that meet your goals and stand the test of use.",
+          "imageAlt": "Quality value"
+        }
+      }
+    },
+    "features": {
+      "items": {
+        "grow": {
+          "title": "Solutions that grow with your business",
+          "description": "We build scalable systems that support growth without rebuilding from scratch.",
+          "imageAlt": "Scalable solutions"
+        },
+        "understand": {
+          "title": "We understand your business first",
+          "description": "We start by understanding your reality and needs, then design the right solution.",
+          "imageAlt": "Understanding the business"
+        },
+        "quality": {
+          "title": "Quality you can rely on",
+          "description": "Clear development and testing standards to keep the solution stable and performant.",
+          "imageAlt": "Reliable quality"
+        },
+        "product": {
+          "title": "From idea to a complete digital product",
+          "description": "From idea to launch, we design and build a digital product ready to use.",
+          "imageAlt": "Complete digital product"
+        },
+        "expertise": {
+          "title": "Technical expertise that makes a difference",
+          "description": "A specialized team that chooses the right technologies and delivers them professionally.",
+          "imageAlt": "Technical expertise"
+        },
+        "connect": {
+          "title": "We connect your business to systems and platforms",
+          "description": "Smooth integrations that link your systems to work platforms and external services.",
+          "imageAlt": "System connections"
+        },
+        "integrate": {
+          "title": "We simplify technical complexity for your team",
+          "description": "We turn complex processes into clear systems that are easy for your team to use.",
+          "imageAlt": "Simplified technology"
+        },
+        "partner": {
+          "title": "We build a long-term technical partnership",
+          "description": "We stay with you after launch with support and continuous improvement for lasting growth.",
+          "imageAlt": "Technical partnership"
+        }
+      }
+    },
+    "founder": {
+      "imageAlt": "Eng. Rami Hassan, Founder and CEO of CodeTech",
+      "role": "CEO of CodeTech",
+      "name": "Eng. Rami Hassan",
+      "description": "A short bio about the founder will be provided by the team later. CodeTech builds digital products that help organizations grow with clarity and confidence.",
+      "quote": "We build digital solutions that accelerate your business growth"
+    },
+    "team": {
+      "members": {
+        "leader": {
+          "name": "Eng. Ahmed Abdulaziz Taman",
+          "role": "Team Leader",
+          "imageAlt": "Eng. Ahmed Abdulaziz Taman, Team Leader"
+        },
+        "dev1": {
+          "name": "Ahmed Abdulaziz Taman",
+          "role": "Programmer",
+          "imageAlt": "Ahmed Abdulaziz Taman, Programmer"
+        },
+        "dev2": {
+          "name": "Ahmed Abdulaziz Taman",
+          "role": "Programmer",
+          "imageAlt": "Ahmed Abdulaziz Taman, Programmer"
+        },
+        "dev3": {
+          "name": "Ahmed Abdulaziz Taman",
+          "role": "Programmer",
+          "imageAlt": "Ahmed Abdulaziz Taman, Programmer"
+        }
+      }
+    },
+    "services": {
+      "items": {
+        "automation": {
+          "title": "Business Automation",
+          "description": "We turn manual, repetitive processes into faster digital workflows that cut costs and boost productivity."
+        },
+        "systems": {
+          "title": "Systems & Software Development",
+          "description": "We build custom software solutions around your business needs, ready to scale as you grow."
+        },
+        "websites": {
+          "title": "Website Development",
+          "description": "We build fast, secure websites that reflect your brand and support your business goals."
+        },
+        "mobile": {
+          "title": "Mobile App Development",
+          "description": "We develop smooth, easy-to-use mobile apps for iOS and Android."
+        },
+        "analysis": {
+          "title": "Systems & Requirements Analysis",
+          "description": "We analyze your needs and turn them into clear requirements for successful delivery."
+        },
+        "ux": {
+          "title": "UX & UI Design",
+          "description": "We design clear, engaging experiences that make it easy for customers to use your products."
+        },
+        "branding": {
+          "title": "Brand Identity Design",
+          "description": "We build a cohesive visual identity that expresses your brand values and leaves a strong impression."
+        },
+        "cloud": {
+          "title": "Cloud Solutions",
+          "description": "We deliver flexible, secure cloud architectures that support scale and business continuity."
+        },
+        "integration": {
+          "title": "Systems Integration",
+          "description": "We connect your systems so data flows smoothly and manual work is reduced."
+        },
+        "support": {
+          "title": "Technical Support & Maintenance",
+          "description": "We provide ongoing support and maintenance to keep your digital solutions stable and performing."
+        }
+      }
+    }
+  }
+}

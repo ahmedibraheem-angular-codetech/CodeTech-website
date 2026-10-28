@@ -1,0 +1,12 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-steps {
+  padding-block: var(--space-section);
+  background-color: var(--color-white);
+}
+
+.product-steps-title {
+  @include section-heading-title;
+  margin: var(--space-sm) 0 var(--space-lg);
+  padding-bottom: 0;
+}

@@ -1,0 +1,21 @@
+<section class="contact-steps-section" aria-labelledby="contact-steps-title">
+  <div class="container">
+    <ct-divider [label]="'contactUs.steps.label' | translate" />
+
+    <h2 id="contact-steps-title" class="contact-steps-title">
+      {{ 'contactUs.steps.title' | translate }}
+    </h2>
+
+    <div class="row g-2 row-cols-1 row-cols-sm-2 row-cols-lg-5">
+      @for (step of steps; track step) {
+        <div class="col">
+          <ct-step-card
+            [number]="step"
+            [title]="'contactUs.steps.items.' + step + '.title' | translate"
+            [description]="'contactUs.steps.items.' + step + '.description' | translate"
+          />
+        </div>
+      }
+    </div>
+  </div>
+</section>

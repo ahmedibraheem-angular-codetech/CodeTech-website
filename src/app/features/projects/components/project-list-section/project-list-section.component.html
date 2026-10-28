@@ -1,0 +1,88 @@
+<section id="project-list" class="project-list" aria-labelledby="project-list-title">
+  <div class="container">
+    <div class="project-list-header">
+     <div class="d-flex  justify-content-between align-items-end">
+<div>
+  <ct-divider [label]="'projects.list.label' " />
+  <h2 id="project-list-title" class="project-list-title mt-3">{{ data().title }}</h2>
+</div>
+<ul class="project-list-filters" [attr.aria-label]="data().title">
+        @for (filter of data().filters; track filter.id) {
+          <li>
+            <button
+              type="button"
+              class="project-list-filter"
+              [class.is-active]="activeFilterId() === filter.id"
+              (click)="selectFilter(filter.id)"
+            >
+            @if (filter.iconSrc) {
+              <span
+                class="project-list-filter-icon"
+                aria-hidden="true"
+                [style.mask-image]="iconMask(filter.iconSrc)"
+                [style.-webkit-mask-image]="iconMask(filter.iconSrc)"
+              ></span>
+            }
+              <span>{{ filter.label }}</span>
+              
+            </button>
+          </li>
+        }
+      </ul>
+     </div>
+      
+    </div>
+
+    @if (visibleItems().length) {
+      <div class="row g-3">
+        @for (item of visibleItems(); track item.id) {
+          <div class="col-md-6 col-xl-4 d-flex">
+            <ct-project-card [data]="item" />
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="project-list-empty">{{ data().emptyLabel }}</p>
+    }
+
+    @if (totalPages() > 1) {
+      <nav class="project-list-pagination" [attr.aria-label]="data().paginationLabel">
+        <button
+          type="button"
+          class="project-list-page"
+          [disabled]="currentPage() === 1"
+          [attr.aria-label]="data().prevLabel"
+          (click)="goTo(currentPage() - 1)"
+        >
+          <span class="project-list-page-icon project-list-page-icon-prev" aria-hidden="true"></span>
+        </button>
+
+        @for (token of pageTokens(); track $index) {
+          @if (token === 'ellipsis') {
+            <span class="project-list-page project-list-page-ellipsis" aria-hidden="true">....</span>
+          } @else {
+            <button
+              type="button"
+              class="project-list-page"
+              [class.is-active]="token === currentPage()"
+              [attr.aria-current]="token === currentPage() ? 'page' : null"
+              (click)="goTo(token)"
+            >
+              {{ token }}
+            </button>
+          }
+        }
+
+        <button
+          type="button"
+          class="project-list-page"
+          [disabled]="currentPage() === totalPages()"
+          [attr.aria-label]="data().nextLabel"
+          (click)="goTo(currentPage() + 1)"
+        >
+          <span class="project-list-page-icon project-list-page-icon-next" aria-hidden="true"></span>
+        </button>
+      </nav>
+    }
+  </div>
+</section>

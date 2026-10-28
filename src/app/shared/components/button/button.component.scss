@@ -1,0 +1,202 @@
+@use '../../../../styles/abstracts/mixin' as *;
+.ct-button {
+  --ct-btn-bg: var(--color-brand);
+  --ct-btn-color: var(--color-white);
+  --ct-btn-font-size: var(--font-small);
+  --ct-btn-font-weight: 700;
+  --ct-btn-width: auto;
+  --ct-btn-height: var(--btn-height);
+  --ct-btn-shadow: transparent;
+  // Icon nudge toward reading “forward”: -1 RTL (left), +1 LTR (right)
+  --ct-btn-icon-dir: -1;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+
+  box-sizing: border-box;
+  width: var(--ct-btn-width);
+  min-height: var(--ct-btn-height);
+  height: var(--ct-btn-height);
+  padding-block: 0;
+  padding-inline: var(--btn-padding-inline);
+
+  border: 0;
+  border-radius: var(--border-radius);
+  background-color: var(--ct-btn-bg);
+  color: var(--ct-btn-color);
+
+  font-family: var(--font-body);
+  font-size: var(--ct-btn-font-size);
+  font-weight: var(--ct-btn-font-weight);
+  line-height: 30px;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:dir(ltr) {
+    --ct-btn-icon-dir: 1;
+  }
+
+  &--spread {
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding-inline-start: var(--btn-padding-inline);
+    padding-inline-end: var(--space-lg);
+
+    .ct-button__label {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+  }
+
+  &--shadow {
+    box-shadow:
+      var(--btn-shadow-offset) var(--btn-shadow-offset) 0 var(--ct-btn-shadow);
+    // Shadow slides linearly along reading direction: AR start→end (right→left), EN left→right
+    animation: ct-btn-shadow-slide-rtl 1.8s linear infinite alternate;
+  }
+
+  &--shadow:dir(ltr) {
+    animation-name: ct-btn-shadow-slide-ltr;
+  }
+
+  &--primary {
+    --ct-btn-bg: var(--color-brand);
+    --ct-btn-color: var(--color-white);
+  }
+
+  &--dark {
+    --ct-btn-bg: var(--color-primary);
+    --ct-btn-color: var(--color-white);
+    --ct-btn-shadow: var(--color-brand);
+  }
+
+  &--light {
+    --ct-btn-bg: var(--color-button-light);
+    --ct-btn-color: var(--color-text-secondary);
+    --ct-btn-shadow: var(--color-text-secondary);
+  }
+
+  &__icon {
+    --ct-btn-icon-flip: 1;
+
+    flex: none;
+    display: inline-block;
+    width: var(--btn-icon-size);
+    height: var(--btn-icon-size);
+    background-color: currentColor;
+    mask-image: var(--ct-btn-icon);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-image: var(--ct-btn-icon);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    transform: translateX(0) scaleX(var(--ct-btn-icon-flip));
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    // Idle float toward reading direction: AR right→left, EN left→right
+    animation: ct-btn-icon-float 1.7s ease-in-out infinite;
+  }
+
+  // Arrow assets point left (Arabic forward). Mirror them in English LTR.
+  &:dir(ltr) &__icon--directional {
+    --ct-btn-icon-flip: -1;
+  }
+
+  &__label {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &--center &__label {
+    flex: none;
+  }
+
+  &:hover:not(:disabled) {
+    .ct-button__icon {
+      animation: none;
+      transform: translateX(calc(var(--ct-btn-icon-dir) * 7px))
+        scaleX(var(--ct-btn-icon-flip));
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+
+    .ct-button__icon {
+      animation: none;
+      transform: translateX(calc(var(--ct-btn-icon-dir) * 3px))
+        scaleX(var(--ct-btn-icon-flip));
+    }
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &.ct-button--shadow {
+      animation: none;
+    }
+
+    .ct-button__icon {
+      animation: none; 
+      transition: none;
+    }
+
+    &:hover:not(:disabled) .ct-button__icon,
+    &:active:not(:disabled) .ct-button__icon {
+      transform: scaleX(var(--ct-btn-icon-flip));
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-brand) 55%, white);
+    outline-offset: 3px;
+  }
+}
+
+@keyframes ct-btn-icon-float {
+  0%,
+  100% {
+    transform: translateX(0) scaleX(var(--ct-btn-icon-flip, 1));
+  }
+
+  50% {
+    transform: translateX(calc(var(--ct-btn-icon-dir, -1) * 5px))
+      scaleX(var(--ct-btn-icon-flip, 1));
+  }
+}
+
+@keyframes ct-btn-shadow-slide-rtl {
+  from {
+    box-shadow: 6px var(--btn-shadow-offset) 0 var(--ct-btn-shadow);
+  }
+
+  to {
+    box-shadow: -6px var(--btn-shadow-offset) 0 var(--ct-btn-shadow);
+  }
+}
+
+@keyframes ct-btn-shadow-slide-ltr {
+  from {
+    box-shadow: -6px var(--btn-shadow-offset) 0 var(--ct-btn-shadow);
+  }
+
+  to {
+    box-shadow: 6px var(--btn-shadow-offset) 0 var(--ct-btn-shadow);
+  }
+}

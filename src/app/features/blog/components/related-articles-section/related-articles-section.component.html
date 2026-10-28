@@ -1,0 +1,32 @@
+<section class="related-articles" aria-labelledby="related-articles-title">
+  <div class="container">
+    <div class="related-articles-panel">
+      <div class="related-articles-header">
+        <div class="related-articles-intro">
+          <ct-divider [label]="data().label | translate" />
+          <h2 id="related-articles-title" class="related-articles-title">
+            {{ data().title | translate }}
+          </h2>
+        </div>
+
+        <ct-slider-arrows
+          class="related-articles-arrows"
+          [canPrev]="canPrev()"
+          [canNext]="canNext()"
+          (prev)="prev()"
+          (next)="next()"
+        />
+      </div>
+
+      <div #swiperRoot class="swiper related-articles-swiper">
+        <div class="swiper-wrapper">
+          @for (article of data().articles; track article.id) {
+            <div class="swiper-slide related-articles-slide">
+              <ct-compact-article-card [article]="article" [revealOnHover]="true" />
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

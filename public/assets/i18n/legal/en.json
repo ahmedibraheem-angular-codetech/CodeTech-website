@@ -1,0 +1,16 @@
+{
+  "legal": {
+    "privacy": {
+      "hero": {
+        "title": "Privacy Policy",
+        "description": "This page explains how CodeTech collects, uses, and protects your data when you use our website and services."
+      }
+    },
+    "terms": {
+      "hero": {
+        "title": "Terms & Conditions",
+        "description": "These terms govern your use of the CodeTech website and services. Please read them carefully before continuing."
+      }
+    }
+  }
+}

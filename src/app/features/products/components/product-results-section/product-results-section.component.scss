@@ -1,0 +1,207 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-results {
+  padding-block: var(--space-section);
+  background-color: var(--color-white);
+}
+
+.product-results-panel {
+  overflow: hidden;
+  border-radius: 2rem;
+  background-color: var(--color-background);
+}
+
+.product-results-header {
+  @include stack-start;
+  padding: var(--space-lg);
+  border-radius: 2rem 2rem 0 0;
+  background-color: lightgray;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.product-results-header ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.product-results-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--color-white);
+}
+
+.product-results-description {
+  @include body-small;
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-white);
+}
+
+.product-results-grid {
+  overflow: hidden;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-button-light);
+}
+
+.product-results-cell {
+  animation: product-results-rise 0.55s ease both;
+}
+
+.product-results-cell:nth-child(odd) {
+  background-color: var(--color-background);
+}
+
+.product-results-cell:nth-child(even) {
+  background-color: var(--color-white);
+}
+
+.product-results-card {
+  @include stack-start;
+  box-sizing: border-box;
+  min-height: 12rem;
+  height: 100%;
+  padding: var(--space-md);
+  background-color: inherit;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-results-card-icon-wrap {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  background-color: var(--color-white);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-results-cell:nth-child(even) .product-results-card-icon-wrap {
+  background-color: var(--color-background);
+}
+
+.product-results-card-icon {
+  @include card-mask-icon;
+}
+
+.product-results-card-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+
+.product-results-card-title {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.product-results-card-description {
+  @include body-small;
+  margin: 0;
+  color: #324153;
+  transition: color 0.3s ease;
+}
+
+.product-results-card:hover {
+  transform: translateY(calc(var(--space-xs) * -0.5));
+}
+
+.product-results-card:hover .product-results-card-icon-wrap {
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.product-results-card:hover .product-results-card-icon {
+  background-color: var(--color-brand);
+}
+
+.product-results-card:hover .product-results-card-title {
+  color: var(--color-brand);
+}
+
+@keyframes product-results-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-cards));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include above(992px) {
+  .product-results-cell-row-end {
+    border-inline-end: none;
+  }
+
+  .product-results-cell-last-row {
+    border-block-end: none;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .product-results-cell:nth-child(2n) {
+    border-inline-end: none;
+  }
+
+  .product-results-cell:nth-last-child(-n + 2) {
+    border-block-end: none;
+  }
+}
+
+@include below(991.98px) {
+  .product-results-title {
+    font-size: var(--font-title);
+  }
+
+  .product-results-header {
+    padding: var(--space-md);
+  }
+}
+
+@include below(575.98px) {
+  .product-results-cell {
+    border-inline-end: none;
+  }
+
+  .product-results-cell:last-child {
+    border-block-end: none;
+  }
+
+  .product-results-card {
+    min-height: 10rem;
+    padding: var(--space-sm);
+  }
+}
+
+@include reduced-motion {
+  .product-results-cell {
+    animation: none;
+  }
+
+  .product-results-card,
+  .product-results-card-icon-wrap,
+  .product-results-card-icon,
+  .product-results-card-title,
+  .product-results-card-description {
+    transition: none;
+  }
+
+  .product-results-card:hover,
+  .product-results-card:hover .product-results-card-icon-wrap {
+    transform: none;
+  }
+}

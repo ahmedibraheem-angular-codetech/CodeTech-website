@@ -1,0 +1,122 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+.home-hero {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-image: url('/assets/images/header/hero-home-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.home-hero-row {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: 7.5rem;
+}
+
+.home-hero-copy {
+  min-width: 0;
+}
+
+.hero-titile {
+  margin-bottom: 0.5rem;
+  color: var(--color-white);
+  font-size: 88px;
+  line-height: 135%;
+}
+
+.hero-description {
+  max-width: 40rem;
+}
+
+.hero-buttons {
+  max-width: 100%;
+}
+
+.hero-buttons ct-button {
+  max-width: 100%;
+}
+
+.hero-buttons .ct-button {
+  max-width: 100%;
+}
+
+@include below(1199.98px) {
+  .hero-titile {
+    font-size: 64px;
+  }
+}
+
+@include below(991.98px) {
+  .hero-titile {
+    font-size: 52px;
+  }
+}
+
+@include below(767.98px) {
+  .home-hero-row {
+    padding-top: 6.5rem;
+  }
+
+  .hero-titile {
+    font-size: 40px;
+  }
+
+  .hero-buttons {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .hero-buttons ::ng-deep .ct-button {
+    height: 2.5rem;
+    min-height: 2.5rem;
+    padding-inline: 0.625rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    gap: 0.375rem;
+  }
+
+  .hero-buttons ::ng-deep .ct-button--spread {
+    gap: 0.375rem;
+    padding-inline-start: 0.625rem;
+    padding-inline-end: 0.5rem;
+  }
+
+  .hero-buttons ::ng-deep .ct-button__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@include below(389.98px) {
+  .hero-titile {
+    font-size: 32px;
+  }
+
+  .hero-buttons {
+    gap: 0.375rem;
+  }
+
+  .hero-buttons ::ng-deep .ct-button {
+    padding-inline: 0.5rem;
+    font-size: 0.6875rem;
+  }
+
+  .hero-buttons ::ng-deep .ct-button--spread {
+    gap: 0.25rem;
+    padding-inline-start: 0.5rem;
+    padding-inline-end: 0.375rem;
+  }
+}
+
+@include max-height(30rem) {
+  .home-hero-row {
+    align-items: flex-end;
+    padding-top: 5.5rem;
+  }
+
+  .hero-titile {
+    font-size: 32px;
+  }
+}

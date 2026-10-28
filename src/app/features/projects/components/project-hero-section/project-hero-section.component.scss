@@ -1,0 +1,54 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-hero {
+  @include page-hero-shell;
+}
+
+.project-hero-inner {
+  width: 100%;
+}
+
+.project-hero-copy {
+  @include stack-start-md;
+}
+
+.project-hero-title {
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--color-white);
+  font-size: var(--font-hero);
+  white-space: pre-line;
+}
+
+.project-hero-description {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--font-small);
+  line-height: 1.7;
+  color: var(--color-white);
+}
+
+.project-hero-media {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.project-hero-image {
+  @include media-cover-block;
+}
+
+@include below(991.98px) {
+  .project-hero-title {
+    font-size: var(--font-section);
+  }
+}
+
+@include below(575.98px) {
+  .project-hero {
+    min-height: 80vh;
+  }
+
+  .project-hero-title {
+    font-size: var(--font-title);
+  }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with the production sitemap URL before launch.
+# Sitemap: https://www.codetech.com/sitemap.xml

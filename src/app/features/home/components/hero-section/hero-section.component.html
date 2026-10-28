@@ -1,0 +1,31 @@
+<section class="home-hero">
+  <div class="container">
+    <div class="row home-hero-row align-items-end">
+      <div class="col-12 col-lg-6 col-xl-5 home-hero-copy mb-5">
+        <ct-divider [label]="data().brand | translate" variant="white" />
+        <h1 class="hero-titile">{{ data().title | translate }}</h1>
+
+        <p class="hero-description text-white">
+          {{ data().description | translate }}
+        </p>
+
+        <div class="hero-buttons d-flex gap-3">
+          <ct-button
+            [label]="'home.ctaStart' | translate"
+            variant="dark"
+            icon="double-alt-arrow-left"
+            layout="spread"
+            fontWeight="500"
+          />
+          <ct-button
+            [label]="'home.ctaExplore' | translate"
+            variant="primary"
+            icon="laptop"
+            layout="spread"
+            fontWeight="500"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<section class="testimonials-section" aria-labelledby="testimonials-section-title">
+  <div class="container">
+    <div class="testimonials-header">
+      <div class="testimonials-header-intro">
+        <ct-divider [label]="label()" />
+        <h2 id="testimonials-section-title" class="testimonials-title">
+          {{ title() }}
+        </h2>
+      </div>
+
+      <ct-slider-arrows
+        class="testimonials-header-arrows"
+        [canPrev]="canPrev()"
+        [canNext]="canNext()"
+        (prev)="prev()"
+        (next)="next()"
+      />
+    </div>
+
+    <div #swiperRoot class="swiper testimonials-swiper" (click)="onSwiperClick($event)">
+      <div class="swiper-wrapper">
+        @for (testimonial of testimonials(); track testimonial.id) {
+          <div class="swiper-slide testimonials-slide" [attr.data-id]="testimonial.id">
+            <article class="testimonial-card">
+              <img
+                class="testimonial-card-image"
+                [src]="testimonial.imageSrc"
+                [alt]="testimonial.imageAlt | translate"
+                loading="lazy"
+                decoding="async"
+              />
+
+              <div class="testimonial-card-author">
+                <img
+                  class="testimonial-card-avatar"
+                  [src]="testimonial.avatarSrc"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="testimonial-card-meta">
+                  <span
+                    class="testimonial-card-rating"
+                    role="img"
+                    [attr.aria-label]="testimonial.rating + ' / ' + stars.length"
+                  >
+                    @for (star of stars; track star) {
+                      <img
+                        class="testimonial-card-star"
+                        [src]="
+                          star <= testimonial.rating
+                            ? '/assets/icons/star-filled.svg'
+                            : '/assets/icons/star-empty.svg'
+                        "
+                        alt=""
+                        width="15"
+                        height="14"
+                      />
+                    }
+                  </span>
+                  <p class="testimonial-card-name">{{ testimonial.name | translate }}</p>
+                </div>
+              </div>
+
+              <div class="testimonial-card-footer">
+                <blockquote class="testimonial-card-quote">
+                  {{ testimonial.quote | translate }}
+                </blockquote>
+
+                <button
+                  type="button"
+                  class="testimonial-card-play"
+                  [attr.aria-label]="'home.testimonials.play' | translate"
+                >
+                  <span class="testimonial-card-play-icon" aria-hidden="true"></span>
+                </button>
+              </div>
+            </article>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

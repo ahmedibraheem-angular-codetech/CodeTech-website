@@ -1,0 +1,206 @@
+{
+  "home": {
+    "journey": {
+      "steps": {
+        "analysis": {
+          "title": "Needs analysis",
+          "description": "Initial requirements document and a clear scope"
+        },
+        "planning": {
+          "title": "Planning",
+          "description": "An agreed work plan and delivery milestones"
+        },
+        "design": {
+          "title": "Design",
+          "description": "Approved designs and prototypes ready for build."
+        },
+        "development": {
+          "title": "Development",
+          "description": "Releases ready for review and testing"
+        },
+        "testing": {
+          "title": "Testing",
+          "description": "Test results and closure of agreed feedback"
+        },
+        "launch": {
+          "title": "Launch",
+          "description": "A ready-to-use solution with agreed handover documents."
+        },
+        "support": {
+          "title": "Support & growth",
+          "description": "Ongoing operation and a continuous improvement plan as needed"
+        }
+      }
+    },
+    "projects": {
+      "flags": {
+        "government": "Government"
+      },
+      "items": {
+        "wasalni": {
+          "name": "“Wasalni” website and app for fast services",
+          "description": "A short introductory description about CodeTech, to be written later by the team to express the intended meaning more precisely.",
+          "imageAlt": "Wasalni website shown on a desktop screen"
+        }
+      }
+    },
+    "testimonials": {
+      "items": {
+        "mohamed": {
+          "name": "Mohamed Ezz Eldin",
+          "quote": "\"Amazing work and on-time delivery! The website turned out cleaner and faster than I imagined.\"",
+          "imageAlt": "Photo of client Mohamed Ezz Eldin"
+        }
+      }
+    },
+    "faq": {
+      "items": {
+        "services": {
+          "question": "What services does CodeTech provide?",
+          "answer": "We provide systems and software development, mobile apps, UX/UI design, branding, cloud solutions, system integration, and technical support."
+        },
+        "custom": {
+          "question": "Do you offer custom solutions?",
+          "answer": "Yes. We build tailored solutions around your business needs, with scalability, performance, and daily usability in mind."
+        },
+        "upgrade": {
+          "question": "Can you improve existing systems?",
+          "answer": "Yes. We assess your current systems and improve or integrate them with new solutions without disrupting your work."
+        },
+        "support": {
+          "question": "Do you provide support after launch?",
+          "answer": "Yes. We provide ongoing technical support and maintenance after launch to keep the solution stable and continuously improved."
+        },
+        "cms": {
+          "question": "Can I edit the website content myself after delivery?",
+          "answer": "Yes. We design your website with a very simple Arabic admin panel, and we teach you with a short video how to add products, edit text, or upload new images yourself without needing a developer."
+        }
+      }
+    },
+    "features": {
+      "items": {
+        "grow": {
+          "title": "Solutions that grow with your business",
+          "description": "We build scalable systems that support growth without rebuilding from scratch.",
+          "imageAlt": "Scalable solutions"
+        },
+        "understand": {
+          "title": "We understand your business first",
+          "description": "We start by understanding your reality and needs, then design the right solution.",
+          "imageAlt": "Understanding the business"
+        },
+        "quality": {
+          "title": "Quality you can rely on",
+          "description": "Clear development and testing standards to keep the solution stable and performant.",
+          "imageAlt": "Reliable quality"
+        },
+        "product": {
+          "title": "From idea to a complete digital product",
+          "description": "From idea to launch, we design and build a digital product ready to use.",
+          "imageAlt": "Complete digital product"
+        },
+        "expertise": {
+          "title": "Technical expertise that makes a difference",
+          "description": "A specialized team that chooses the right technologies and delivers them professionally.",
+          "imageAlt": "Technical expertise"
+        },
+        "connect": {
+          "title": "We connect your business to systems and platforms",
+          "description": "Smooth integrations that link your systems to work platforms and external services.",
+          "imageAlt": "System connections"
+        },
+        "integrate": {
+          "title": "We simplify technical complexity for your team",
+          "description": "We turn complex processes into clear systems that are easy for your team to use.",
+          "imageAlt": "Simplified technology"
+        },
+        "partner": {
+          "title": "We build a long-term technical partnership",
+          "description": "We stay with you after launch with support and continuous improvement for lasting growth.",
+          "imageAlt": "Technical partnership"
+        }
+      }
+    },
+    "products": {
+      "items": {
+        "tasks": {
+          "title": "Task Management System",
+          "description": "Our vision is to finance and build an integrated, sustainable ecosystem powered by specialized business solutions across construction...",
+          "imageAlt": "Task Management System"
+        },
+        "travel": {
+          "title": "Travel & Tourism System",
+          "description": "Our vision is to finance and build an integrated, sustainable ecosystem powered by specialized business solutions across construction...",
+          "imageAlt": "Travel & Tourism System"
+        },
+        "itsm": {
+          "title": "IT Service Management System",
+          "description": "Our vision is to finance and build an integrated, sustainable ecosystem powered by specialized business solutions across construction...",
+          "imageAlt": "IT Service Management System"
+        }
+      }
+    },
+    "services": {
+      "automation": {
+        "title": "Business Automation",
+        "description": "We turn manual, repetitive processes into faster digital workflows that cut costs and boost productivity."
+      },
+      "systems": {
+        "title": "Systems & Software Development",
+        "description": "We build custom software solutions around your business needs, ready to scale as you grow."
+      },
+      "websites": {
+        "title": "Website Development",
+        "description": "We build fast, secure websites that reflect your brand and support your business goals."
+      },
+      "mobile": {
+        "title": "Mobile App Development",
+        "description": "We develop smooth, easy-to-use mobile apps for iOS and Android."
+      },
+      "analysis": {
+        "title": "Systems & Requirements Analysis",
+        "description": "We analyze your needs and turn them into clear requirements for successful delivery."
+      },
+      "ux": {
+        "title": "UX & UI Design",
+        "description": "We design clear, engaging experiences that make it easy for customers to use your products."
+      },
+      "branding": {
+        "title": "Brand Identity Design",
+        "description": "We build a cohesive visual identity that expresses your brand values and leaves a strong impression."
+      },
+      "cloud": {
+        "title": "Cloud Solutions",
+        "description": "We deliver flexible, secure cloud architectures that support scale and business continuity."
+      },
+      "integration": {
+        "title": "Systems Integration",
+        "description": "We connect your systems so data flows smoothly and manual work is reduced."
+      },
+      "support": {
+        "title": "Technical Support & Maintenance",
+        "description": "We provide ongoing support and maintenance to keep your digital solutions stable and performing."
+      }
+    },
+    "vision": {
+      "imageAlt": "CodeTech building signage",
+      "items": {
+        "0": "A short intro about CodeTech — provided by the team later.",
+        "1": "A short intro about CodeTech — provided by the team later.",
+        "2": "A short intro about CodeTech — provided by the team later.",
+        "3": "A short intro about CodeTech — provided by the team later.",
+        "4": "A short intro about CodeTech — provided by the team later.",
+        "5": "A short intro about CodeTech — provided by the team later."
+      }
+    },
+    "about": {
+      "imageAlt": "CodeTech building signage",
+      "trust": "Trusted by 50+ companies",
+      "items": {
+        "0": "A short intro about CodeTech — provided by the team later.",
+        "1": "A short intro about CodeTech — provided by the team later.",
+        "2": "A short intro about CodeTech — provided by the team later."
+      }
+    }
+  }
+}

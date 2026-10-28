@@ -1,0 +1,173 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.project-solution {
+  padding-block: var(--space-section);
+}
+
+.project-solution-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.project-solution-intro {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  width: min(100%, 18rem);
+  padding-block-start: var(--space-sm);
+}
+
+.project-solution-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.project-solution-panel {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #eef1f5;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.project-solution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  @include reset-list;
+}
+
+.project-solution-cell {
+  min-width: 0;
+  border-inline-end: 1px solid #eef1f5;
+  border-block-end: 1px solid #eef1f5;
+}
+
+.project-solution-cell-end {
+  border-inline-end: none;
+}
+
+.project-solution-cell-last-row {
+  border-block-end: none;
+}
+
+.project-solution-cell:nth-child(odd) {
+  background-color: var(--color-background);
+}
+
+.project-solution-cell:nth-child(even) {
+  background-color: var(--color-white);
+}
+
+.project-solution-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-height: 14rem;
+  padding: var(--space-md);
+  background-color: transparent;
+}
+
+.project-solution-icon-wrap {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 15px;
+  background-color: var(--color-white);
+  box-shadow: 0 8px 20px rgba(0, 41, 81, 0.08);
+}
+
+.project-solution-icon {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--color-brand);
+  mask: center / contain no-repeat;
+  -webkit-mask: center / contain no-repeat;
+}
+
+.project-solution-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 42.5px;
+  color: var(--color-primary);
+}
+
+.project-solution-card-text {
+  @include body-small;
+  margin: 0;
+  max-width: 16rem;
+  color: var(--color-text-secondary);
+}
+
+.project-solution-media {
+  position: relative;
+  height: 100%;
+  min-height: 14rem;
+  overflow: hidden;
+  background-color: var(--color-primary);
+}
+
+.project-solution-media-image {
+  @include media-cover-block;
+}
+
+@include below(991.98px) {
+  .project-solution-layout {
+    flex-direction: column;
+  }
+
+  .project-solution-intro {
+    width: 100%;
+  }
+
+  .project-solution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-solution-cell-end {
+    border-inline-end: 1px solid #eef1f5;
+  }
+
+  .project-solution-cell:nth-child(2n) {
+    border-inline-end: none;
+  }
+
+  .project-solution-cell-last-row {
+    border-block-end: 1px solid #eef1f5;
+  }
+
+  .project-solution-cell:nth-last-child(-n + 2) {
+    border-block-end: none;
+  }
+
+  .project-solution-title {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .project-solution-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-solution-cell {
+    border-inline-end: none;
+  }
+
+  .project-solution-cell:nth-child(2n) {
+    border-inline-end: none;
+  }
+
+  .project-solution-cell:last-child {
+    border-block-end: none;
+  }
+}

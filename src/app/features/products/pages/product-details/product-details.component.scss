@@ -1,0 +1,12 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+.product-missing {
+  padding-block: 9.5rem var(--space-section);
+}
+
+.product-missing-title {
+  @include missing-title;
+}
+
+.product-missing-link {
+  @include missing-link;
+}

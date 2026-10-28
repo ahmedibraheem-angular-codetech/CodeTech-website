@@ -1,0 +1,39 @@
+@if (isOpen()) {
+  <div class="products-dropdown" role="region" [attr.aria-label]="'header.nav.products' | translate">
+    <div class="products-list row g-2">
+      @for (product of products; track product.slug) {
+        <div class="col-md-4">
+          <article class="product-card">
+            <div class="product-media">
+              <img
+                class="product-image"
+                [src]="product.image"
+                [alt]="product.titleKey | translate"
+                loading="lazy"
+              />
+              <div class="product-layer">
+                <ct-button
+                  [label]="'header.mega.viewProduct' | translate"
+                  icon="double-alt-arrow-left"
+                  variant="light"
+                  layout="spread"
+                  width="140px"
+                  height="36px"
+                  fontSize="12px"
+                  color="#EEF1F5"
+                  textColor="#002951"
+                  shadowColor=""
+                  (clicked)="viewProduct(product)"
+                />
+              </div>
+            </div>
+            <div class="product-body">
+              <h3 class="product-title">{{ product.titleKey | translate }}</h3>
+              <p class="product-desc">{{ product.descKey | translate }}</p>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+}

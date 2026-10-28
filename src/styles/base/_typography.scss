@@ -1,0 +1,50 @@
+@use '../abstracts/tokens' as *;
+@font-face {
+    font-family: 'Milan Display';
+    src: url('../../../public/fonts/milan-display/alfont_com_Milan-Display-Black-Swashes.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Thmanyah Sans';
+    src: url('../../../public/fonts/thmanyah-sans/thmanyahsans-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Thmanyah Sans';
+    src: url('../../../public/fonts/thmanyah-sans/thmanyahsans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Thmanyah Sans';
+    src: url('../../../public/fonts/thmanyah-sans/thmanyahsans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Thmanyah Sans';
+    src: url('../../../public/fonts/thmanyah-sans/thmanyahsans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+h1, h2 {
+    font-family: $font-heading;
+    font-weight: 900;
+}
+
+
+body {
+    font-family: $font-body;
+}
+
+

@@ -1,0 +1,214 @@
+@use '../../../../styles/abstracts/mixin' as *;
+.ct-footer {
+  margin-block-start: var(--space-section);
+  color: var(--color-white);
+  background-color: #00162b;
+  background-image: url('/assets/images/footer-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.ct-footer-panel {
+  margin-block: 2rem 0;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 41, 81, 0.2) 0.82%,
+    #00162b 62.52%
+  );
+  backdrop-filter: blur(8px);
+}
+
+.ct-footer-brand {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 22rem;
+}
+
+.ct-footer-logo {
+  display: inline-flex;
+  width: fit-content;
+  opacity: 1;
+}
+
+.ct-footer-logo-img {
+  display: block;
+  width: 341px;
+  height: 63px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.ct-footer-brand-desc {
+  margin: 0;
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 400;
+  line-height: 1.75;
+  border-bottom: 1.4px solid;
+  border-image-source: linear-gradient(90deg, #1c81d3 14.62%, #ffffff 87.19%);
+  border-image-slice: 1;
+  padding-block-end: 1rem;
+}
+
+.ct-footer-contact {
+  display: grid;
+  gap: 0.85rem;
+  @include reset-list;
+}
+
+.ct-footer-contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ct-footer-contact-item:hover,
+.ct-footer-contact-item:focus-visible {
+  color: #c1e0ed;
+  outline: none;
+}
+
+.ct-footer-contact-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+.ct-footer-heading {
+  width:50%;
+  margin: 0 0 1.25rem;
+  padding-block-end: 0.60rem;
+  
+  color: var(--color-white);
+  font-size: 24px;
+  line-height: 24px;
+  border-bottom: 1.4px solid;
+  border-image-source: linear-gradient(90deg, #1c81d3 14.62%, #ffffff 87.19%);
+  border-image-slice: 1;
+}
+
+.ct-footer-links {
+  display: grid;
+  gap: 0.85rem;
+  @include reset-list;
+}
+
+.ct-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: color-mix(in srgb, var(--color-white) 90%, transparent);
+  font-size: var(--font-small);
+  font-weight: 400;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ct-footer-link:hover,
+.ct-footer-link:focus-visible {
+  color: var(--color-white);
+  outline: none;
+}
+
+.ct-footer-link-icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+.ct-footer-link-icon:dir(ltr) {
+  transform: scaleX(-1);
+}
+
+.ct-footer-bottom {
+  border-block-start: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
+  background: #001021;
+}
+
+.ct-footer-legal,
+.ct-footer-social {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  @include reset-list;
+}
+
+.ct-footer-social {
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.ct-footer-legal-link {
+  color: color-mix(in srgb, var(--color-white) 85%, transparent);
+  font-size: var(--font-small);
+  font-weight: 400;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ct-footer-legal-link:hover,
+.ct-footer-legal-link:focus-visible {
+  color: white;
+  outline: none;
+}
+
+.ct-footer-social-link {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.ct-footer-social-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+}
+
+.ct-footer-social-link:hover,
+.ct-footer-social-link:focus-visible {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.ct-footer-copyright {
+  margin: 0;
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 400;
+  line-height: 1.4;
+  text-align: end;
+}
+
+@include below(767.98px) {
+  .ct-footer-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ct-footer-brand {
+    max-width: none;
+  }
+
+  .ct-footer-legal,
+  .ct-footer-social {
+    justify-content: center;
+  }
+
+  .ct-footer-copyright {
+    text-align: center;
+  }
+}

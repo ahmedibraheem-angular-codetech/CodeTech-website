@@ -1,0 +1,358 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.product-modules {
+  padding-block: var(--space-section);
+  background-color: var(--color-primary);
+  background-image: url('/assets/images/products/modules-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.product-modules-header {
+  @include section-header;
+}
+
+.product-modules-intro {
+  @include stack-start;
+  min-width: 0;
+}
+
+.product-modules-intro ::ng-deep .ct-divider {
+  flex-direction: row-reverse;
+  width: auto;
+}
+
+.product-modules-title {
+  @include section-heading-title;
+  margin: 0;
+  padding-bottom: 0;
+  color: var(--color-white);
+}
+
+.product-modules-nav-list {
+  @include flex-column-xs;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius);
+}
+
+.product-modules-nav-btn {
+  @include flex-center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem var(--space-sm);
+  border: 0;
+  border-radius: 1rem;
+  background-color: color-mix(in srgb, var(--color-primary) 72%, var(--color-brand));
+  color: var(--color-white);
+  font-size: var(--font-tiny);
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-modules-nav-btn:hover {
+  background-color: var(--color-brand);
+  transform: translateX(calc(var(--space-xs) * -0.5));
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+:dir(ltr) .product-modules-nav-btn:hover {
+  transform: translateX(calc(var(--space-xs) * 0.5));
+}
+
+.product-modules-nav-btn-active {
+  background-color: var(--color-brand);
+  transform: translateX(calc(var(--space-xs) * -0.2));
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
+
+:dir(ltr) .product-modules-nav-btn-active {
+  transform: translateX(calc(var(--space-xs) * 0.75));
+}
+
+.product-modules-nav-btn:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.product-modules-panel {
+  height: 100%;
+  padding: var(--space-lg);
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+  animation: product-modules-panel-in 0.55s ease both;
+}
+
+.product-modules-copy {
+  @include card-column;
+  gap: var(--space-md);
+}
+
+.product-modules-copy-top {
+  @include stack-start;
+}
+
+.product-modules-item-title {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: var(--font-title);
+  font-weight: 700;
+  line-height: 1.3;
+  animation: product-modules-rise 0.55s ease both;
+}
+
+.product-modules-item-description {
+  @include body-small;
+  margin: 0;
+  color: var(--color-text-secondary);
+  animation: product-modules-rise 0.55s ease 0.06s both;
+}
+
+.product-modules-features {
+  width: 100%;
+  margin: var(--space-xs) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-modules-features > li {
+  animation: product-modules-rise 0.55s ease both;
+}
+
+.product-modules-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  height: 100%;
+  padding: var(--space-sm);
+  border-radius: 1rem;
+  background-color: var(--color-background);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-modules-feature:hover {
+  transform: translateY(calc(var(--space-xs) * -1));
+  background-color: var(--color-white);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.product-modules-feature-icon {
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-block-start: 0.125rem;
+  background-color: var(--color-text-secondary);
+  mask: center / contain no-repeat;
+  -webkit-mask: center / contain no-repeat;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.product-modules-feature:hover .product-modules-feature-icon {
+  background-color: var(--color-brand);
+  transform: translateY(calc(var(--space-xs) * -0.25));
+}
+
+.product-modules-feature-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.product-modules-feature-title {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: var(--font-small);
+  font-weight: 500;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.product-modules-feature:hover .product-modules-feature-title {
+  color: var(--color-brand);
+}
+
+.product-modules-feature-description {
+  @include body-tiny;
+  margin: 0;
+  color: var(--color-text-tertiary);
+}
+
+.product-modules-link {
+  display: inline-flex;
+  align-self: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-brand);
+  font-family: var(--font-body);
+  font-size: var(--font-small);
+  font-weight: 500;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.product-modules-link:hover {
+  color: var(--color-primary);
+}
+
+.product-modules-link:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+.product-modules-link-icon {
+  @include arrow-link-icon;
+}
+
+.product-modules-link:hover .product-modules-link-icon {
+  transform: translateX(calc(var(--space-xs) * -0.5)) translateY(calc(var(--space-xs) * -0.35));
+}
+
+:dir(ltr) .product-modules-link-icon {
+  transform: scaleX(-1);
+}
+
+:dir(ltr) .product-modules-link:hover .product-modules-link-icon {
+  transform: scaleX(-1) translateX(calc(var(--space-xs) * -0.5)) translateY(calc(var(--space-xs) * -0.35));
+}
+
+.product-modules-media {
+  overflow: hidden;
+  border-radius: calc(var(--border-radius) - 0.25rem);
+  background-color: var(--color-background);
+  animation: product-modules-rise 0.6s ease 0.1s both;
+}
+
+.product-modules-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  object-fit: contain;
+  object-position: top center;
+  transition: transform 0.45s ease;
+}
+
+.product-modules-media:hover .product-modules-image {
+  transform: scale(1.04);
+}
+
+@keyframes product-modules-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-cards));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes product-modules-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-sm));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include below(991.98px) {
+  .product-modules-nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-modules-nav-btn:hover,
+  .product-modules-nav-btn-active,
+  :dir(ltr) .product-modules-nav-btn:hover,
+  :dir(ltr) .product-modules-nav-btn-active {
+    transform: none;
+  }
+
+  .product-modules-media {
+    order: -1;
+  }
+
+  .product-modules-title {
+    font-size: var(--font-title);
+  }
+}
+
+@include below(575.98px) {
+  .product-modules-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .product-modules-nav-list {
+    grid-template-columns: 1fr;
+  }
+
+  .product-modules-panel {
+    padding: var(--space-md);
+  }
+
+  .product-modules-link {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+@include reduced-motion {
+  .product-modules-panel,
+  .product-modules-item-title,
+  .product-modules-item-description,
+  .product-modules-features > li,
+  .product-modules-media {
+    animation: none;
+  }
+
+  .product-modules-nav-btn,
+  .product-modules-feature,
+  .product-modules-feature-icon,
+  .product-modules-feature-title,
+  .product-modules-link,
+  .product-modules-link-icon,
+  .product-modules-image {
+    transition: none;
+  }
+
+  .product-modules-nav-btn:hover,
+  .product-modules-nav-btn-active,
+  :dir(ltr) .product-modules-nav-btn:hover,
+  :dir(ltr) .product-modules-nav-btn-active,
+  .product-modules-feature:hover,
+  .product-modules-feature:hover .product-modules-feature-icon,
+  .product-modules-link:hover .product-modules-link-icon,
+  :dir(ltr) .product-modules-link:hover .product-modules-link-icon,
+  .product-modules-media:hover .product-modules-image {
+    transform: none;
+  }
+}

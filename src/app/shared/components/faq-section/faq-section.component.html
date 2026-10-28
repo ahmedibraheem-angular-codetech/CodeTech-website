@@ -1,0 +1,63 @@
+<section class="faq-section" aria-labelledby="faq-section-title">
+  <div class="container">
+    <div class="faq-panel">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-4">
+          <div class="faq-intro">
+            <ct-divider [label]="label()" />
+            <h2 id="faq-section-title" class="faq-title">{{ title() }}</h2>
+
+            @if (linkLabel()) {
+              <a class="faq-view-link" [routerLink]="linkRoute()">
+                {{ linkLabel() }}
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div #accordionRoot class="faq-accordion">
+            @for (item of items(); track item.id) {
+              <div class="faq-item" [class.faq-item-open]="isOpen(item.id)">
+                <div
+                  class="faq-item-trigger"
+                  role="button"
+                  tabindex="0"
+                  [attr.aria-expanded]="isOpen(item.id)"
+                  [attr.aria-controls]="'faq-answer-' + item.id"
+                  [id]="'faq-question-' + item.id"
+                  (click)="toggle(item.id)"
+                  (keydown)="onHeaderKeydown($event, item.id)"
+                >
+                  <span class="faq-item-header">
+                    <span class="faq-item-number" dir="ltr">-{{ item.number }}</span>
+                    <span class="faq-item-question">{{ item.question | translate }}</span>
+                  </span>
+
+                  <span
+                    class="faq-toggle"
+                    [class.faq-toggle--open]="isOpen(item.id)"
+                    aria-hidden="true"
+                  ></span>
+                </div>
+
+                <div
+                  class="faq-item-content"
+                  [id]="'faq-answer-' + item.id"
+                  role="region"
+                  [attr.aria-labelledby]="'faq-question-' + item.id"
+                >
+                  <div class="faq-item-motion">
+                    <div class="faq-item-body">
+                      <p class="faq-item-answer">{{ item.answer | translate }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

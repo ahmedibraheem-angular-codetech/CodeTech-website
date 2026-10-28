@@ -1,0 +1,49 @@
+<section class="project-solution" aria-labelledby="project-solution-title">
+  <div class="container">
+    <div class="project-solution-layout">
+      <header class="project-solution-intro">
+        <ct-divider [label]="data().label" />
+        <h2 id="project-solution-title" class="project-solution-title">{{ data().title }}</h2>
+      </header>
+
+      <div class="project-solution-panel">
+        <ul class="project-solution-grid">
+          @for (item of data().items; track item.id; let i = $index) {
+            <li
+              class="project-solution-cell"
+              [class.project-solution-cell-media]="isMedia(item.imageSrc)"
+              [class.project-solution-cell-end]="i % 3 === 2"
+              [class.project-solution-cell-last-row]="i >= 3"
+            >
+              @if (isMedia(item.imageSrc)) {
+                <article class="project-solution-media" [attr.aria-label]="item.title">
+                  <img
+                    class="project-solution-media-image"
+                    [src]="item.imageSrc"
+                    [alt]="item.imageAlt"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </article>
+              } @else {
+                <article class="project-solution-card">
+                  @if (item.iconSrc) {
+                    <span class="project-solution-icon-wrap" aria-hidden="true">
+                      <span
+                        class="project-solution-icon"
+                        [style.mask-image]="iconMask(item.iconSrc)"
+                        [style.-webkit-mask-image]="iconMask(item.iconSrc)"
+                      ></span>
+                    </span>
+                  }
+                  <h3 class="project-solution-card-title">{{ item.title }}</h3>
+                  <p class="project-solution-card-text">{{ item.description }}</p>
+                </article>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

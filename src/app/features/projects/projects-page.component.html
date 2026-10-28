@@ -1,0 +1,18 @@
+<ct-page-hero
+  [title]="'projects.hero.title' | translate"
+  [description]="'projects.hero.description' | translate"
+  [buttonLabel]="'projects.hero.cta' | translate"
+  (ctaClick)="goToContact()"
+/>
+
+<ct-project-stats-section [data]="stats()" />
+
+<ct-project-featured-section [data]="featured()" (ctaClick)="openCaseStudy($event)" />
+
+<ct-project-list-section [data]="list()" />
+
+<ct-journey-section
+  [label]="journey().label"
+  [title]="journey().title"
+  [cards]="journey().cards"
+/>

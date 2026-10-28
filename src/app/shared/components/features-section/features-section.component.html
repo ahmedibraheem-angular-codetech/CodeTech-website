@@ -1,0 +1,17 @@
+<section class="features-section" aria-labelledby="features-section-title">
+  <div class="container features-section-container p-sm-5">
+    <ct-divider [label]="label()" />
+
+    <h2 id="features-section-title" class="features-title">
+      {{ title() }}
+    </h2>
+
+    <div class="row g-4">
+      @for (feature of features(); track feature.id) {
+        <div class="col-md-6 col-lg-3">
+          <ct-feature-card [data]="feature" />
+        </div>
+      }
+    </div>
+  </div>
+</section>

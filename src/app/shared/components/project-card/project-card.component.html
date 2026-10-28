@@ -1,0 +1,52 @@
+<article class="project-card">
+  <div class="project-card-media">
+    <img
+      class="project-card-image"
+      [src]="data().imageSrc"
+      [alt]="data().imageAlt | translate"
+      loading="lazy"
+      decoding="async"
+    />
+
+    @if (flag(); as flag) {
+      <span class="project-card-flag">
+        @if (flag.icon) {
+          <span
+            class="project-card-icon"
+            aria-hidden="true"
+            [style.--ct-project-icon]="iconMask(flag.icon)"
+          ></span>
+        }
+        {{ flag.label | translate }}
+      </span>
+    }
+  </div>
+
+  <div class="project-card-body">
+    <h3 class="project-card-name">
+      @if (link(); as link) {
+        <a class="project-card-link" [routerLink]="link">{{ data().name | translate }}</a>
+      } @else {
+        {{ data().name | translate }}
+      }
+    </h3>
+    <p class="project-card-description">{{ data().description | translate }}</p>
+
+    @if (tools().length) {
+      <ul class="project-card-tools">
+        @for (tool of tools(); track tool.id) {
+          <li class="project-card-tool">
+            @if (tool.icon) {
+              <span
+                class="project-card-icon"
+                aria-hidden="true"
+                [style.--ct-project-icon]="iconMask(tool.icon)"
+              ></span>
+            }
+            {{ tool.name | translate }}
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</article>

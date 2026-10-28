@@ -1,0 +1,75 @@
+@if (detail(); as service) {
+  <ct-page-hero
+    [title]="service.hero.title | translate"
+    [description]="service.hero.description | translate"
+    [buttonLabel]="'services.detail.hero.cta' | translate"
+  />
+
+  @if (service.whyNeeded !== null) {
+    <ct-why-needed-section [data]="service.whyNeeded" />
+  }
+
+  @if (service.solutions !== null) {
+    <ct-solutions-section [data]="service.solutions" />
+  }
+
+  @if (service.steps !== null) {
+    <ct-journey-section
+      [label]="service.steps.label | translate"
+      [title]="service.steps.title | translate"
+      [cards]="service.steps.cards"
+    />
+  }
+
+  @if (service.features !== null) {
+    <ct-features-section
+      [label]="service.features.label | translate"
+      [title]="service.features.title | translate"
+      [features]="service.features.items"
+    />
+  }
+
+  @if (service.technologies !== null) {
+    <ct-technologies-section
+      [label]="service.technologies.label | translate"
+      [title]="service.technologies.title | translate"
+      [items]="service.technologies.items"
+      [tools]="service.technologies.tools"
+    />
+  }
+
+  @if (service.projects !== null) {
+    <ct-projects-section
+      [label]="service.projects.label | translate"
+      [title]="service.projects.title | translate"
+      [projects]="service.projects.items"
+    />
+  }
+
+ 
+
+  @if (service.industries !== null) {
+    <ct-industries-section
+      [label]="service.industries.label | translate"
+      [title]="service.industries.title | translate"
+      [items]="service.industries.items"
+    />
+  }
+
+  @if (service.faqs !== null) {
+    <ct-faq-section
+      [label]="'services.faq.label' | translate"
+      [title]="'services.faq.title' | translate"
+      [items]="service.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="service.faqs[0]?.id ?? null"
+    />
+  }
+} @else {
+  <ct-page-hero
+    [title]="'services.detail.hero.title' | translate"
+    [description]="'services.detail.hero.description' | translate"
+    [buttonLabel]="'services.detail.hero.cta' | translate"
+  />
+}

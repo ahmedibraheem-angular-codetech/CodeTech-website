@@ -1,0 +1,67 @@
+<section class="journey-section" aria-labelledby="journey-section-title">
+  <div class="container">
+    <ct-divider [label]="label()" />
+    <h2 id="journey-section-title" class="journey-title">{{ title() }}</h2>
+
+    <div class="journey-grid">
+      @for (row of rows(); track $index) {
+        <div class="journey-row">
+          @for (card of row; track card.id) {
+            @switch (card.type) {
+              @case ('image') {
+                <div class="journey-card journey-card--image">
+                  <img
+                    class="journey-card-image"
+                    [src]="card.imageSrc"
+                    [alt]="(card.imageAlt ?? '') | translate"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              }
+
+              @case ('hybrid') {
+                <article class="journey-card journey-card--hybrid">
+                  <div class="journey-card-media">
+                    <img
+                      class="journey-card-image"
+                      [src]="card.imageSrc"
+                      [alt]="(card.imageAlt ?? '') | translate"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    @if (card.number) {
+                      <span class="journey-card-number">{{ card.number }}</span>
+                    }
+                  </div>
+
+                  <div class="journey-card-body">
+                    <h3 class="journey-card-title">{{ (card.title ?? '') | translate }}</h3>
+                    <p class="journey-card-description">
+                      {{ (card.description ?? '') | translate }}
+                    </p>
+                  </div>
+                </article>
+              }
+
+              @default {
+                <article class="journey-card journey-card--text">
+                  @if (card.number) {
+                    <span class="journey-card-number">{{ card.number }}</span>
+                  }
+
+                  <div class="journey-card-body">
+                    <h3 class="journey-card-title">{{ (card.title ?? '') | translate }}</h3>
+                    <p class="journey-card-description">
+                      {{ (card.description ?? '') | translate }}
+                    </p>
+                  </div>
+                </article>
+              }
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

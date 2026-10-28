@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="320" viewBox="0 0 280 320" fill="none">
+  <defs>
+    <linearGradient id="statGlass" x1="40" y1="300" x2="90" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06325c"/>
+      <stop offset="0.42" stop-color="#1c81d3"/>
+      <stop offset="1" stop-color="#e7f6ff"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 150L62 118L86 300L34 312Z" fill="url(#statGlass)" opacity="0.8"/>
+  <path d="M96 48L148 28L168 308L108 318Z" fill="url(#statGlass)"/>
+  <path d="M186 132L232 112L248 304L196 310Z" fill="url(#statGlass)" opacity="0.72"/>
+</svg>

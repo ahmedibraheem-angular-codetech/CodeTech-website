@@ -1,0 +1,45 @@
+<section
+  class="services-section"
+  aria-labelledby="services-section-title"
+>
+  <div class="services-section-inner">
+    <div class="services-header container">
+      <div class="services-header-intro">
+        <ct-divider
+          [label]="label()"
+          [variant]="showBackground() ? 'white' : 'brand'"
+        />
+        <h2 id="services-section-title" class="services-title">
+          {{ title() }}
+        </h2>
+      </div>
+
+      <ct-slider-arrows
+        class="services-header-arrows"
+        [canPrev]="canPrev()"
+        [canNext]="canNext()"
+        (prev)="prev()"
+        (next)="next()"
+      />
+    </div>
+
+    <div class="container services-slider-wrap">
+      <div #swiperRoot class="swiper services-swiper">
+        <div class="swiper-wrapper">
+          @for (column of serviceColumns(); track $index) {
+            <div class="swiper-slide services-slide">
+              <div class="services-column">
+                @for (service of column; track service.id) {
+                  <ct-info-card
+                    [icon]="service.icon"
+                    [data]="{ title: service.title, description: service.description }"
+                  />
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

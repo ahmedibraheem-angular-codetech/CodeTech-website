@@ -1,0 +1,36 @@
+<section class="page-hero" [attr.aria-labelledby]="title() ? 'page-hero-title' : null">
+  <div class="container page-hero-inner">
+    @if (title()) {
+      <h1 id="page-hero-title" class="page-hero-title">{{ title() }}</h1>
+    }
+
+    @if (description()) {
+      <p class="page-hero-description">{{ description() }}</p>
+    }
+
+    @if (buttonLabel() || secondaryLabel()) {
+      <div class="page-hero-actions">
+        @if (buttonLabel()) {
+          <ct-button
+            [label]="buttonLabel()"
+            variant="dark"
+            icon="double-alt-arrow-left"
+            layout="spread"
+            fontWeight="500"
+            (clicked)="onCtaClick()"
+          />
+        }
+
+        @if (secondaryLabel()) {
+          <ct-button
+            [label]="secondaryLabel()"
+            [icon]="secondaryIcon()"
+            variant="primary"
+            fontWeight="500"
+            (clicked)="onSecondaryClick()"
+          />
+        }
+      </div>
+    }
+  </div>
+</section>

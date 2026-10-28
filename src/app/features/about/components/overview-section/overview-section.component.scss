@@ -1,0 +1,80 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.overview-section {
+  padding-block: var(--space-section);
+}
+
+.overview-panel {
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+}
+
+.overview-visual {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 18rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.overview-image {
+  @include absolute-cover-image;
+}
+
+.overview-cards {
+  @include flex-column-sm;
+  height: 100%;
+}
+
+.overview-card {
+  @include surface-panel;
+}
+
+.overview-card-title {
+  @include section-heading-title;
+  margin: 0 0 var(--space-md);
+  padding-bottom: 0;
+  font-size: var(--font-title);
+}
+
+.overview-list {
+  @include flex-column-sm;
+  @include reset-list;
+}
+
+.overview-list--grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-md);
+  row-gap: var(--space-sm);
+}
+
+.overview-list-item {
+  @include body-small;
+  @include check-list-item;
+}
+
+.overview-check {
+  @include icon-double-check;
+}
+
+@include above(992px) {
+  .overview-visual {
+    min-height: 100%;
+  }
+}
+
+@include below(575.98px) {
+  .overview-panel {
+    padding: var(--space-sm);
+  }
+
+  .overview-card {
+    padding: var(--space-md);
+  }
+
+  .overview-list--grid {
+    grid-template-columns: 1fr;
+  }
+}

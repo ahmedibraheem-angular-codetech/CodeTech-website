@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ClientsSectionComponent } from '../../shared/components/clients-section/clients-section.component';
 import { FeaturesSectionComponent } from '../../shared/components/features-section/features-section.component';
@@ -31,5 +32,11 @@ import { ABOUT_PAGE } from './mocup/about.mock';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutPageComponent {
+  private readonly router = inject(Router);
+
   readonly about = ABOUT_PAGE;
+
+  goToContact(): void {
+    void this.router.navigateByUrl('/contact-us#contact-form');
+  }
 }

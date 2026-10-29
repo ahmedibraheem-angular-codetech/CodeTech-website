@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FaqSectionComponent } from '../../../../shared/components/faq-section/faq-section.component';
 import { PageHeroComponent } from '../../../../shared/components/page-hero/page-hero.component';
@@ -18,5 +19,11 @@ import { SERVICES_LIST } from '../../mocup/services-list.mock';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesPageComponent {
+  private readonly router = inject(Router);
+
   readonly servicesList = SERVICES_LIST;
+
+  goToContact(): void {
+    void this.router.navigateByUrl('/contact-us#contact-form');
+  }
 }

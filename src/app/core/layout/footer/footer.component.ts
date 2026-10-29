@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FooterHeaderComponent } from './footer-header/footer-header.component';
 import {
@@ -20,6 +20,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
+  private readonly router = inject(Router);
+
   readonly quickLinks = FOOTER_QUICK_LINKS;
   readonly serviceLinks = FOOTER_SERVICE_LINKS;
   readonly productLinks = FOOTER_PRODUCT_LINKS;
@@ -29,6 +31,6 @@ export class FooterComponent {
   readonly currentYear = new Date().getFullYear();
 
   onCtaClick(): void {
-    // Hook for start-project CTA navigation.
+    void this.router.navigateByUrl('/contact-us#contact-form');
   }
 }

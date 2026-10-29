@@ -40,7 +40,7 @@ export class ProjectsPageComponent {
   readonly journey = computed(() => getProjectJourneySection(this.language.currentLang()));
 
   goToContact(): void {
-    void this.router.navigateByUrl('/contact-us');
+    void this.router.navigateByUrl('/contact-us#contact-form');
   }
 
   openCaseStudy(item: ProjectFeaturedItem): void {

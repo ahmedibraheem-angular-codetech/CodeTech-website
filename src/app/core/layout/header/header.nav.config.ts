@@ -38,6 +38,7 @@ export const HEADER_NAV_LINKS: readonly NavLinkItem[] = [
     route: '/products',
     mega: 'products',
   },
+  { id: 'projects', labelKey: 'header.nav.projects', route: '/projects' },
   { id: 'blog', labelKey: 'header.nav.blog', route: '/blog' },
   { id: 'contact', labelKey: 'header.nav.contact', route: '/contact-us' },
 ] as const;

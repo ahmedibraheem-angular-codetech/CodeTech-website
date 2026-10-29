@@ -1,11 +1,33 @@
 <section class="page-hero" [attr.aria-labelledby]="title() ? 'page-hero-title' : null">
   <div class="container page-hero-inner">
     @if (title()) {
-      <h1 id="page-hero-title" class="page-hero-title">{{ title() }}</h1>
+      <h1 id="page-hero-title" class="page-hero-title">
+        @for (line of titleLines(); track $index) {
+          <span class="page-hero-line">
+            @for (word of line.words; track $index + word) {
+              <span class="page-hero-word" [style.animation-delay.s]="titleDelay(line.offset + $index)">{{ word }}</span>
+              @if (!$last) {
+                <span class="page-hero-word-gap">{{ ' ' }}</span>
+              }
+            }
+          </span>
+        }
+      </h1>
     }
 
     @if (description()) {
-      <p class="page-hero-description">{{ description() }}</p>
+      <p class="page-hero-description">
+        @for (line of descriptionLines(); track $index) {
+          <span class="page-hero-line">
+            @for (word of line.words; track $index + word) {
+              <span class="page-hero-word" [style.animation-delay.s]="descriptionDelay(line.offset + $index)">{{ word }}</span>
+              @if (!$last) {
+                <span class="page-hero-word-gap">{{ ' ' }}</span>
+              }
+            }
+          </span>
+        }
+      </p>
     }
 
     @if (buttonLabel() || secondaryLabel()) {

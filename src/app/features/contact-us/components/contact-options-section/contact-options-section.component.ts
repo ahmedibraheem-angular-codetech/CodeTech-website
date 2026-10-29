@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
@@ -11,4 +11,10 @@ import { DividerComponent } from '../../../../shared/components/divider/divider.
   styleUrl: './contact-options-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactOptionsSectionComponent {}
+export class ContactOptionsSectionComponent {
+  readonly formClick = output<void>();
+
+  goToForm(): void {
+    this.formClick.emit();
+  }
+}

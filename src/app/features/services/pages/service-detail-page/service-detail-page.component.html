@@ -3,6 +3,7 @@
     [title]="service.hero.title | translate"
     [description]="service.hero.description | translate"
     [buttonLabel]="'services.detail.hero.cta' | translate"
+    (ctaClick)="goToContact()"
   />
 
   @if (service.whyNeeded !== null) {
@@ -71,5 +72,6 @@
     [title]="'services.detail.hero.title' | translate"
     [description]="'services.detail.hero.description' | translate"
     [buttonLabel]="'services.detail.hero.cta' | translate"
+    (ctaClick)="goToContact()"
   />
 }

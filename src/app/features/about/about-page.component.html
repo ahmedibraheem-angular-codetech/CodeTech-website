@@ -2,6 +2,7 @@
   [title]="'about.hero.title' | translate"
   [description]="'about.hero.description' | translate"
   [buttonLabel]="'about.hero.cta' | translate"
+  (ctaClick)="goToContact()"
 />
 
 @if (about.overview.isPublished) {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { map } from 'rxjs';
 import { FaqSectionComponent } from '../../../../shared/components/faq-section/faq-section.component';
@@ -35,6 +35,7 @@ import { ServiceDetail } from '../../model/service-detail.model';
 })
 export class ServiceDetailPageComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly slug = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
@@ -44,4 +45,8 @@ export class ServiceDetailPageComponent {
   readonly detail = computed<ServiceDetail | null>(() =>
     getServiceDetailBySlug(this.slug()),
   );
+
+  goToContact(): void {
+    void this.router.navigateByUrl('/contact-us#contact-form');
+  }
 }

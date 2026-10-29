@@ -36,7 +36,7 @@ interface LangOption {
   readonly flagSrc: string;
 }
 
-const DESKTOP_NAV_QUERY = '(min-width: 1033px)';
+const DESKTOP_NAV_QUERY = '(min-width: 1280px)';
 const FOCUSABLE_SELECTOR = [
   'a[href]',
   'button:not([disabled])',

@@ -2,9 +2,10 @@
   [title]="'contactUs.hero.title' | translate"
   [description]="'contactUs.hero.description' | translate"
   [buttonLabel]="'contactUs.hero.cta' | translate"
+  (ctaClick)="goToForm()"
 />
 
-<ct-contact-options-section />
+<ct-contact-options-section (formClick)="goToForm()" />
 <ct-contact-form-section [services]="services()" [coordinates]="coordinates" />
 
 <ct-contact-channels-section [items]="channels" />

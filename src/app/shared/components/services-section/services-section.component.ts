@@ -105,12 +105,16 @@ export class ServicesSectionComponent {
 
   private applyDirection(dir: 'rtl' | 'ltr'): void {
     const swiper = this.swiper;
-    if (!swiper || swiper.destroyed) {
+    if (!swiper || swiper.destroyed || swiper.el.dir === dir) {
       return;
     }
 
+    swiper.slides.forEach((slide) => {
+      slide.style.marginLeft = '';
+      slide.style.marginRight = '';
+    });
     swiper.changeLanguageDirection(dir);
-    swiper.update();
+    swiper.slideTo(0, 0);
     this.syncNavState();
   }
 

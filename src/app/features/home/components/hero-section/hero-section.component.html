@@ -3,10 +3,22 @@
     <div class="row home-hero-row align-items-end">
       <div class="col-12 col-lg-6 col-xl-5 home-hero-copy mb-5">
         <ct-divider [label]="data().brand | translate" variant="white" />
-        <h1 class="hero-titile">{{ data().title | translate }}</h1>
+        <h1 class="hero-titile">
+          @for (word of titleWords(); track $index + word) {
+            <span class="hero-word" [style.animation-delay.s]="titleDelay($index)">{{ word }}</span>
+            @if (!$last) {
+              <span class="hero-word-gap">{{ ' ' }}</span>
+            }
+          }
+        </h1>
 
         <p class="hero-description text-white">
-          {{ data().description | translate }}
+          @for (word of descriptionWords(); track $index + word) {
+            <span class="hero-word" [style.animation-delay.s]="descriptionDelay($index)">{{ word }}</span>
+            @if (!$last) {
+              <span class="hero-word-gap">{{ ' ' }}</span>
+            }
+          }
         </p>
 
         <div class="hero-buttons d-flex gap-3">
@@ -16,6 +28,7 @@
             icon="double-alt-arrow-left"
             layout="spread"
             fontWeight="500"
+            (clicked)="goToContact()"
           />
           <ct-button
             [label]="'home.ctaExplore' | translate"
@@ -23,6 +36,7 @@
             icon="laptop"
             layout="spread"
             fontWeight="500"
+            (clicked)="goToServices()"
           />
         </div>
       </div>

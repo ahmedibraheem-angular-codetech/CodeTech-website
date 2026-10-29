@@ -12,16 +12,16 @@
 .ct-header {
   position: relative;
   width: 100%;
-  max-width: var(--container);
   margin-inline: auto;
+  padding-inline: 0;
   animation: ct-header-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   &__bar {
     @include flex-between;
-    gap: var(--space-md);
+    gap: 0.5rem;
     min-height:112px;
     padding-block: 0.625rem;
-    padding-inline: var(--space-md);
+    padding-inline: 0.75rem;
     border-radius: 36px;
     background: #002951d1;
     color: var(--color-white);
@@ -33,7 +33,7 @@
 
   &__nav {
     flex: 1 1 auto;
-    min-width: 0;
+    min-width: max-content;
     display: flex;
     justify-content: center;
   }
@@ -41,9 +41,9 @@
   &__nav-list {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 0.25rem;
+    gap: 0;
     @include reset-list;
   }
 
@@ -100,6 +100,7 @@
 
     &--mega {
       appearance: none;
+      margin-inline: 0.5rem;
     }
   }
 
@@ -149,7 +150,7 @@
     flex: none;
     display: inline-flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: 0.5rem;
   }
 
   &__lang {
@@ -310,7 +311,13 @@
   }
 
   &__logo {
+    flex: none;
     transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+    img {
+      width: 140px;
+      height: auto;
+    }
 
     &:hover {
       transform: translateY(-1px);
@@ -330,30 +337,7 @@
   }
 }
 
-@media (max-width: 1100px) and (min-width: 1033px) {
-  .ct-header__bar {
-    flex-wrap: wrap;
-    border-radius: var(--border-radius);
-    padding-block: var(--space-sm);
-  }
-
-  .ct-header__nav {
-    order: 3;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .ct-header__nav-list {
-    justify-content: flex-start;
-  }
-
-  .ct-header__mega {
-    inset-block-start: calc(100% + 0.75rem);
-    width: 100%;
-  }
-}
-
-@include below(1032px) {
+@include below(1279px) {
   .ct-header__bar {
     min-height: 4.5rem;
     border-radius: 1.25rem;

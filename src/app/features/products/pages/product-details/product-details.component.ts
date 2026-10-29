@@ -131,6 +131,6 @@ export class ProductDetailsComponent {
   );
 
   goToContact(): void {
-    void this.router.navigateByUrl('/contact-us');
+    void this.router.navigateByUrl('/contact-us#contact-form');
   }
 }

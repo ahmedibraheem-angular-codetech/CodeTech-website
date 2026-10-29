@@ -147,6 +147,7 @@ export class HeaderComponent {
     this.closeMega();
     this.closeLangMenu();
     this.closeMobileNav();
+    void this.router.navigateByUrl('/contact-us#contact-form');
   }
 
   toggleMobileNav(event?: Event): void {

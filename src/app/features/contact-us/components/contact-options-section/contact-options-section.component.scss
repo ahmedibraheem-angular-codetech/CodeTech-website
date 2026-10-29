@@ -48,10 +48,29 @@
   background-color: var(--color-white);
   border-radius: var(--border-radius);
   padding: 10px;
+  animation: contact-option-float 3.2s ease-in-out infinite;
 }
 
 .first-icon {
   background-color: var(--color-background);
+  animation-delay: 0.6s;
+}
+
+@keyframes contact-option-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.7rem);
+  }
+}
+
+@include reduced-motion {
+  .contact-option-icon {
+    animation: none;
+  }
 }
 .contact-option-copy {
   flex: 1 1 auto;

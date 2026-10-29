@@ -14,8 +14,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideClientHydration(withEventReplay()),
     provideTranslateService({
-      lang: 'en',
-      fallbackLang: 'en',
+      lang: 'ar',
+      fallbackLang: 'ar',
       loader: provideTranslateHttpLoader({
         resources: [
           { prefix: '/assets/i18n/shared/', suffix: '.json' },

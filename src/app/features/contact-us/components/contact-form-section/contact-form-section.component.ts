@@ -52,7 +52,7 @@ export class ContactFormSectionComponent {
     fullName: ['', Validators.required],
     organizationName: ['', Validators.required],
     phone: ['', Validators.required],
-    email: [''],
+    email: ['', Validators.email],
     serviceIds: [[] as string[]],
     brief: [''],
   });

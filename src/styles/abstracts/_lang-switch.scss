@@ -84,10 +84,10 @@ html[data-lang-to='en'].ct-lang-enter body {
   }
 
   to {
-    opacity: 1;
+    opacity: 1; 
     transform: translate3d(0, 0, 0);
   }
-}
+} 
 
 @media (prefers-reduced-motion: reduce) {
   html.ct-lang-leave body,

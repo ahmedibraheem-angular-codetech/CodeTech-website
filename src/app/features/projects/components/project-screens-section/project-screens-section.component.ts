@@ -1,5 +1,4 @@
 import {
-  afterEveryRender,
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
@@ -36,6 +35,8 @@ export class ProjectScreensSectionComponent {
   private mainSwiper: Swiper | undefined;
   private thumbsSwiper: Swiper | undefined;
   private mobileQuery: MediaQueryList | undefined;
+  private swiperKey = '';
+  private destroyed = false;
 
   readonly data = input.required<ProjectScreensSection>();
 
@@ -43,36 +44,47 @@ export class ProjectScreensSectionComponent {
     afterNextRender(() => {
       this.mobileQuery = window.matchMedia('(max-width: 767.98px)');
       this.mobileQuery.addEventListener('change', this.onViewportChange);
+      this.mountSwiper();
+      this.swiperKey = this.currentSwiperKey();
 
       runInInjectionContext(this.injector, () => {
         effect(() => {
-          this.language.isRtl();
-          this.data().items;
-          untracked(() => this.refreshSwiper());
+          const key = this.currentSwiperKey();
+          untracked(() => this.remountIfNeeded(key));
         });
       });
 
       this.destroyRef.onDestroy(() => {
+        this.destroyed = true;
         this.mobileQuery?.removeEventListener('change', this.onViewportChange);
         this.destroySwipers();
       });
     });
+  }
 
-    afterEveryRender(() => {
-      const thumbsHost = this.thumbsRoot()?.nativeElement;
-      const mainHost = this.mainRoot()?.nativeElement;
-      if (!thumbsHost || !mainHost) {
-        return;
-      }
+  private currentSwiperKey(): string {
+    const dir = this.language.isRtl() ? 'rtl' : 'ltr';
+    const slides = this.data()
+      .items.map((item) => `${item.id}:${item.imageSrc}`)
+      .join('|');
 
-      const thumbsReady =
-        this.thumbsSwiper &&
-        !this.thumbsSwiper.destroyed &&
-        this.thumbsSwiper.el === thumbsHost;
-      const mainReady =
-        this.mainSwiper && !this.mainSwiper.destroyed && this.mainSwiper.el === mainHost;
+    return `${dir}:${slides}`;
+  }
 
-      if (thumbsReady && mainReady) {
+  private remountIfNeeded(key: string): void {
+    const alive =
+      !!this.mainSwiper &&
+      !this.mainSwiper.destroyed &&
+      !!this.thumbsSwiper &&
+      !this.thumbsSwiper.destroyed;
+
+    if (alive && key === this.swiperKey) {
+      return;
+    }
+
+    this.swiperKey = key;
+    queueMicrotask(() => {
+      if (this.destroyed || this.swiperKey !== key) {
         return;
       }
 
@@ -81,24 +93,11 @@ export class ProjectScreensSectionComponent {
     });
   }
 
-  private refreshSwiper(): void {
-    const main = this.mainSwiper;
-    const thumbs = this.thumbsSwiper;
-    if (!main || main.destroyed || !thumbs || thumbs.destroyed) {
+  private readonly onViewportChange = (): void => {
+    if (this.destroyed) {
       return;
     }
 
-    queueMicrotask(() => {
-      thumbs.update();
-      main.update();
-
-      if (main.autoplay?.running && main.autoplay.paused) {
-        main.autoplay.resume();
-      }
-    });
-  }
-
-  private readonly onViewportChange = (): void => {
     this.destroySwipers();
     this.mountSwiper();
   };

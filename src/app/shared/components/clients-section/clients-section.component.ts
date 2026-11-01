@@ -19,6 +19,10 @@ import { DividerComponent } from '../divider/divider.component';
 import { SliderArrowsComponent } from '../slider-arrows/slider-arrows.component';
 import { ClientLogo } from './clients-section.config';
 
+const MARQUEE_SPEED = 8000;
+const STEP_SPEED = 400;
+const RESUME_DELAY = 800;
+
 @Component({
   selector: 'ct-clients-section',
   standalone: true,
@@ -35,6 +39,9 @@ export class ClientsSectionComponent {
     viewChild.required<ElementRef<HTMLElement>>('swiperRoot');
 
   private swiper: Swiper | undefined;
+  private resumeTimer: ReturnType<typeof setTimeout> | null = null;
+  private manualPause = false;
+  private ignoreTransitionEnd = false;
 
   readonly logos = input<ClientLogo[]>([]);
   readonly label = input('');
@@ -52,6 +59,7 @@ export class ClientsSectionComponent {
       });
 
       this.destroyRef.onDestroy(() => {
+        this.clearResumeTimer();
         this.swiper?.destroy(true, true);
         this.swiper = undefined;
       });
@@ -59,11 +67,11 @@ export class ClientsSectionComponent {
   }
 
   prev(): void {
-    this.swiper?.slidePrev();
+    this.step(-1);
   }
 
   next(): void {
-    this.swiper?.slideNext();
+    this.step(1);
   }
 
   private applyDirection(dir: 'rtl' | 'ltr'): void {
@@ -86,7 +94,7 @@ export class ClientsSectionComponent {
       slidesPerView: 5,
       spaceBetween: 30,
       rewind: true,
-      speed: 8000,
+      speed: MARQUEE_SPEED,
       grabCursor: true,
       autoplay: {
         delay: 0,
@@ -98,6 +106,81 @@ export class ClientsSectionComponent {
         768: { slidesPerView: 3, spaceBetween: 24 },
         992: { slidesPerView: 5, spaceBetween: 30 },
       },
+      on: {
+        transitionEnd: () => this.onTransitionEnd(),
+      },
     });
+  }
+
+  private step(direction: 1 | -1): void {
+    const swiper = this.swiper;
+    if (!swiper || swiper.destroyed) {
+      return;
+    }
+
+    this.clearResumeTimer();
+    this.manualPause = true;
+    swiper.autoplay?.stop();
+    this.releaseCurrentTransition(swiper);
+    swiper.params.speed = STEP_SPEED;
+
+    const count = swiper.slides.length;
+    let target = swiper.activeIndex + direction;
+    if (target >= count) {
+      target = 0;
+    }
+    if (target < 0) {
+      target = count - 1;
+    }
+
+    const moved = swiper.slideTo(target, STEP_SPEED);
+    if (!moved) {
+      this.scheduleResume();
+    }
+  }
+
+  private releaseCurrentTransition(swiper: Swiper): void {
+    if (!swiper.animating) {
+      return;
+    }
+
+    this.ignoreTransitionEnd = true;
+    swiper.wrapperEl.style.transitionDuration = '0ms';
+    swiper.setTranslate(swiper.getTranslate());
+    swiper.animating = false;
+    this.ignoreTransitionEnd = false;
+  }
+
+  private onTransitionEnd(): void {
+    if (this.ignoreTransitionEnd || !this.manualPause || this.swiper?.animating) {
+      return;
+    }
+
+    this.scheduleResume();
+  }
+
+  private scheduleResume(): void {
+    this.clearResumeTimer();
+    this.resumeTimer = setTimeout(() => {
+      this.resumeTimer = null;
+      this.manualPause = false;
+
+      const swiper = this.swiper;
+      if (!swiper || swiper.destroyed) {
+        return;
+      }
+
+      swiper.params.speed = MARQUEE_SPEED;
+      swiper.autoplay?.start();
+    }, RESUME_DELAY);
+  }
+
+  private clearResumeTimer(): void {
+    if (this.resumeTimer === null) {
+      return;
+    }
+
+    clearTimeout(this.resumeTimer);
+    this.resumeTimer = null;
   }
 }

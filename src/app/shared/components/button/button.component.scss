@@ -1,4 +1,15 @@
 @use '../../../../styles/abstracts/mixin' as *;
+
+:host(.ct-spread-fit) .ct-button--spread {
+  gap: 0.25rem;
+  padding-inline: 0.25rem;
+}
+
+:host(.ct-spread-fit) .ct-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
 .ct-button {
   --ct-btn-bg: var(--color-brand);
   --ct-btn-color: var(--color-white);
@@ -54,7 +65,10 @@
 
     .ct-button__label {
       flex: 1 1 auto;
-      text-align: center;
+      min-width: 0;
+      overflow: hidden;
+      text-align: start;
+      text-overflow: ellipsis;
     }
   }
 

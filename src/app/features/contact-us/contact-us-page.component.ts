@@ -36,9 +36,12 @@ export class ContactUsPageComponent {
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private scrollTimer: number | null = null;
+  private hashScrollStarted = false;
 
   constructor() {
     const destroyRef = inject(DestroyRef);
+    destroyRef.onDestroy(() => this.clearScrollTimer());
 
     afterNextRender(() => this.scrollToFormIfRequested());
 
@@ -56,32 +59,39 @@ export class ContactUsPageComponent {
   readonly services = computed(() => CONTACT_SERVICES[this.language.currentLang()]);
 
   goToForm(): void {
-    this.scrollToForm();
+    this.scrollToForm('smooth');
   }
 
-  private scrollToFormIfRequested(remaining = 12): void {
+  private scrollToFormIfRequested(): void {
+    if (!this.shouldScrollToForm() || this.hashScrollStarted) {
+      return;
+    }
+
+    this.hashScrollStarted = true;
+    this.scrollWhenReady();
+  }
+
+  private scrollWhenReady(remaining = 20): void {
     const view = this.document.defaultView;
     if (!view) {
       return;
     }
 
-    const section = this.document.getElementById('contact-form');
-    const ready = this.shouldScrollToForm() && (section?.getBoundingClientRect().height ?? 0) > 0;
+    this.clearScrollTimer();
 
+    const section = this.document.getElementById('contact-form');
+    const ready = (section?.getBoundingClientRect().height ?? 0) > 0;
     if (!ready) {
       if (remaining > 0) {
-        view.setTimeout(() => this.scrollToFormIfRequested(remaining - 1), 50);
+        this.scrollTimer = view.setTimeout(() => this.scrollWhenReady(remaining - 1), 50);
       }
       return;
     }
 
-    this.scrollToForm();
-
-    const headerBottom = this.document.querySelector('ct-header')?.getBoundingClientRect().bottom ?? 0;
-    const formTop = section?.getBoundingClientRect().top ?? 0;
-    if (remaining > 0 && formTop > headerBottom + 48) {
-      view.setTimeout(() => this.scrollToFormIfRequested(remaining - 1), 50);
-    }
+    this.scrollTimer = view.setTimeout(() => {
+      this.scrollTimer = null;
+      this.scrollToForm('auto');
+    }, 0);
   }
 
   private shouldScrollToForm(): boolean {
@@ -89,16 +99,38 @@ export class ContactUsPageComponent {
     return this.route.snapshot.fragment === 'contact-form' || hash === 'contact-form';
   }
 
-  private scrollToForm(): void {
+  private scrollToForm(behavior: ScrollBehavior): void {
+    const view = this.document.defaultView;
     const section = this.document.getElementById('contact-form');
-    if (!section) {
+    if (!view || !section) {
       return;
     }
 
-    const reduceMotion =
-      this.document.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reduceMotion = view.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const resolved: ScrollBehavior = reduceMotion ? 'auto' : behavior;
+    const headerHeight = this.document.querySelector('ct-header')?.getBoundingClientRect().height ?? 0;
+    const top = section.getBoundingClientRect().top + view.scrollY - headerHeight - 16;
+    const root = this.document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
 
-    section.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    if (resolved === 'auto') {
+      root.style.scrollBehavior = 'auto';
+    }
+
+    view.scrollTo({ top: Math.max(0, top), behavior: resolved });
+
+    if (resolved === 'auto') {
+      root.style.scrollBehavior = previousBehavior;
+    }
+  }
+
+  private clearScrollTimer(): void {
+    if (this.scrollTimer === null) {
+      return;
+    }
+
+    this.document.defaultView?.clearTimeout(this.scrollTimer);
+    this.scrollTimer = null;
   }
 }
 

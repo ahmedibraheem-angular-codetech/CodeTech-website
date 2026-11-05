@@ -21,7 +21,7 @@
 .ct-header-bar {
   @include flex-between;
   gap: 0.5rem;
-  min-height: 112px;
+  min-height: 82px;
   padding-block: 0.625rem;
   padding-inline: 0.75rem;
   border-radius: 36px;
@@ -59,7 +59,7 @@
   gap: 0.35rem;
   min-height: 2.5rem;
   padding-inline: 28px;
-  padding-block: 10px;
+  padding-block: 8px;
   border: 0;
   border-radius: 16px;
   background: transparent;

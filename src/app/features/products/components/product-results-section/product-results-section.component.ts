@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductResultsSection } from '../../model/products.model';
+import { ProductIconItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-results-section',
@@ -11,9 +11,10 @@ import { ProductResultsSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductResultsSectionComponent {
-  readonly data = input.required<ProductResultsSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductIconItem[]>([]);
+  /** Decorative header background — static UI asset. */
+  readonly backgroundSrc = '/assets/images/products/modules-bg.jpg';
 
-  iconMask(src: string): string {
-    return `url('${src}')`;
-  }
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductListSection } from '../../model/products.model';
+import { ProductListItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-list-section',
@@ -12,5 +12,8 @@ import { ProductListSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListSectionComponent {
-  readonly data = input.required<ProductListSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly exploreLabel = input('');
+  readonly products = input<ProductListItem[]>([]);
 }

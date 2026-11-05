@@ -1,5 +1,6 @@
+import { ApiFile } from '../../../core/api/api.model';
+
 export interface ClientLogo {
-  id: string;
-  name: string;
-  src: string;
+  id: number;
+  logo: ApiFile | null;
 }

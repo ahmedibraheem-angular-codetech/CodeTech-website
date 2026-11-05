@@ -1,20 +1,13 @@
-export interface ProjectTool {
-  id: string;
-  name: string;
-  icon?: string;
-}
-
-export interface ProjectFlag {
-  label: string;
-  icon?: string;
-}
+import { ApiFile, ApiProjectTag } from '../../../core/api/api.model';
 
 export interface ProjectCardData {
-  id: string;
-  name: string;
+  id: number;
+  slug: string;
+  title: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
-  tools?: ProjectTool[];
-  flag?: ProjectFlag;
+  thumbnail: ApiFile | null;
+  thumbnail_alt: string | null;
+  cover?: ApiFile | null;
+  cover_alt?: string | null;
+  tags?: ApiProjectTag[];
 }

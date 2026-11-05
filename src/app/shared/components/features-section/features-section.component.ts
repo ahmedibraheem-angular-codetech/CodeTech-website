@@ -15,4 +15,6 @@ export class FeaturesSectionComponent {
   readonly label = input('');
   readonly title = input('');
   readonly features = input<FeatureItem[]>([]);
+  /** Static i18n content passes translation keys; API content is already localized. */
+  readonly translateKeys = input(false);
 }

@@ -2,17 +2,22 @@
   class="ct-info-card"
   [style.min-height]="minHeight()"
 >
-  @if (iconMask()) {
+  @if (icon()) {
     <div class="ct-info-card-icon-wrap" aria-hidden="true">
-      <span
+      <img
         class="ct-info-card-icon"
-        [style.--ct-info-card-icon]="iconMask()"
-      ></span>
+        [src]="icon()"
+        alt=""
+        width="24"
+        height="24"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   }
 
   <div class="ct-info-card-body">
-    <h3 class="ct-info-card-title">{{ data().title | translate }}</h3>
-    <p class="ct-info-card-description">{{ data().description | translate }}</p>
+    <h3 class="ct-info-card-title">{{ data().title }}</h3>
+    <p class="ct-info-card-description">{{ data().description }}</p>
   </div>
 </article>

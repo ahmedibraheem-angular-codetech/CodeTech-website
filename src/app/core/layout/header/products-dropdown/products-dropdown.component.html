@@ -1,14 +1,14 @@
 @if (isOpen()) {
   <div class="products-dropdown" role="region" [attr.aria-label]="'header.nav.products' | translate">
     <div class="products-list row g-2">
-      @for (product of products; track product.slug) {
+      @for (product of list(); track product.id) {
         <div class="col-md-4">
           <article class="product-card">
             <div class="product-media">
               <img
                 class="product-image"
-                [src]="product.image"
-                [alt]="product.titleKey | translate"
+                [src]="product.imageUrl"
+                [alt]="product.title"
                 loading="lazy"
               />
               <div class="product-layer">
@@ -29,8 +29,8 @@
               </div>
             </div>
             <div class="product-body">
-              <h3 class="product-title">{{ product.titleKey | translate }}</h3>
-              <p class="product-desc">{{ product.descKey | translate }}</p>
+              <h3 class="product-title">{{ product.title }}</h3>
+              <p class="product-desc">{{ product.description }}</p>
             </div>
           </article>
         </div>

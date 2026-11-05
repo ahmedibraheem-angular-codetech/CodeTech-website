@@ -7,8 +7,8 @@
   <div class="container">
     <header class="product-modules-header">
       <div class="product-modules-intro">
-        <ct-divider [label]="data().label" variant="white" />
-        <h2 id="product-modules-title" class="product-modules-title">{{ data().title }}</h2>
+        <ct-divider [label]="label()" variant="white" />
+        <h2 id="product-modules-title" class="product-modules-title">{{ title() }}</h2>
       </div>
 
       <ct-slider-arrows
@@ -20,9 +20,9 @@
     </header>
 
     <div class="row g-3 product-modules-body">
-      <nav class="col-12 col-lg-2 product-modules-nav" [attr.aria-label]="data().title">
+      <nav class="col-12 col-lg-2 product-modules-nav" [attr.aria-label]="title()">
         <ul class="product-modules-nav-list">
-          @for (item of data().items; track item.id) {
+          @for (item of items(); track item.id) {
             <li>
               <button
                 type="button"
@@ -31,7 +31,7 @@
                 [attr.aria-current]="isActive(item) ? 'true' : null"
                 (click)="select(item)"
               >
-                {{ item.navLabel }}
+                {{ item.title }}
               </button>
             </li>
           }
@@ -45,21 +45,27 @@
               <div class="col-12 col-lg-6 product-modules-copy">
                 <div class="product-modules-copy-top">
                   <h3 class="product-modules-item-title">{{ item.title }}</h3>
-                  <p class="product-modules-item-description">{{ item.description }}</p>
+                  <p class="product-modules-item-description">{{ item.short_description }}</p>
 
                   <ul class="row g-2 product-modules-features">
                     @for (feature of item.features; track feature.id; let i = $index) {
                       <li class="col-12 col-sm-6" [style.animation-delay]="0.08 * (i + 1) + 's'">
                         <div class="product-modules-feature">
-                          <span
-                            class="product-modules-feature-icon"
-                            aria-hidden="true"
-                            [style.mask-image]="iconMask(feature.iconSrc)"
-                            [style.-webkit-mask-image]="iconMask(feature.iconSrc)"
-                          ></span>
+                          @if (feature.icon?.url) {
+                            <img
+                              class="product-modules-feature-icon"
+                              [src]="feature.icon!.url"
+                              alt=""
+                              width="24"
+                              height="24"
+                              loading="lazy"
+                              decoding="async"
+                              aria-hidden="true"
+                            />
+                          }
                           <div class="product-modules-feature-copy">
                             <h4 class="product-modules-feature-title">{{ feature.title }}</h4>
-                            <p class="product-modules-feature-description">{{ feature.description }}</p>
+                            <p class="product-modules-feature-description">{{ feature.short_description }}</p>
                           </div>
                         </div>
                       </li>
@@ -68,21 +74,23 @@
                 </div>
 
                 <button type="button" class="product-modules-link" (click)="exploreClick.emit()">
-                  {{ data().exploreLabel }}
+                  {{ exploreLabel() }}
                   <span class="product-modules-link-icon" aria-hidden="true"></span>
                 </button>
               </div>
 
               <div class="col-12 col-lg-6 product-modules-media">
-                <img
-                  class="product-modules-image"
-                  [src]="item.imageSrc"
-                  [alt]="item.imageAlt"
-                  width="494"
-                  height="398"
-                  loading="lazy"
-                  decoding="async"
-                />
+                @if (item.image?.url) {
+                  <img
+                    class="product-modules-image"
+                    [src]="item.image?.url"
+                    [alt]="item.title"
+                    width="494"
+                    height="398"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                }
               </div>
             </div>
           </article>

@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { ProductModuleItem, ProductModulesSection } from '../../model/products.model';
+import { ProductModule } from '../../models/products-api.model';
 
 const AUTOPLAY_DELAY_MS = 4000;
 
@@ -35,13 +35,16 @@ export class ProductModulesSectionComponent {
   private paused = false;
   private reducedMotion = false;
 
-  readonly data = input.required<ProductModulesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly exploreLabel = input('');
+  readonly items = input<ProductModule[]>([]);
   readonly exploreClick = output<void>();
 
   private readonly activeIndex = signal(0);
 
   readonly activeItem = computed(() => {
-    const items = this.data().items;
+    const items = this.items();
     if (!items.length) {
       return null;
     }
@@ -54,12 +57,12 @@ export class ProductModulesSectionComponent {
     return item ? [item] : [];
   });
 
-  readonly canPrev = computed(() => this.data().items.length > 1);
-  readonly canNext = computed(() => this.data().items.length > 1);
+  readonly canPrev = computed(() => this.items().length > 1);
+  readonly canNext = computed(() => this.items().length > 1);
 
   constructor() {
     effect(() => {
-      const items = this.data().items;
+      const items = this.items();
       untracked(() => {
         if (!items.length) {
           this.activeIndex.set(0);
@@ -67,8 +70,7 @@ export class ProductModulesSectionComponent {
           return;
         }
 
-        const requestsIndex = items.findIndex((item) => item.id === 'requests');
-        this.activeIndex.set(requestsIndex >= 0 ? requestsIndex : 0);
+        this.activeIndex.set(0);
         this.restartAutoplay();
       });
     });
@@ -81,8 +83,8 @@ export class ProductModulesSectionComponent {
     });
   }
 
-  select(item: ProductModuleItem): void {
-    const index = this.data().items.findIndex((entry) => entry.id === item.id);
+  select(item: ProductModule): void {
+    const index = this.items().findIndex((entry) => entry.id === item.id);
     if (index < 0) {
       return;
     }
@@ -91,7 +93,7 @@ export class ProductModulesSectionComponent {
     this.restartAutoplay();
   }
 
-  isActive(item: ProductModuleItem): boolean {
+  isActive(item: ProductModule): boolean {
     return this.activeItem()?.id === item.id;
   }
 
@@ -113,12 +115,8 @@ export class ProductModulesSectionComponent {
     this.restartAutoplay();
   }
 
-  iconMask(src: string): string {
-    return `url('${src}')`;
-  }
-
   private step(delta: number): void {
-    const total = this.data().items.length;
+    const total = this.items().length;
     if (total < 2) {
       return;
     }
@@ -134,7 +132,7 @@ export class ProductModulesSectionComponent {
       return;
     }
 
-    if (this.data().items.length < 2) {
+    if (this.items().length < 2) {
       return;
     }
 

@@ -1,5 +1,9 @@
 <section class="terms-document-section">
   <div class="container">
-    <div class="terms-document-html" [innerHTML]="safeContent()"></div>
+    <p class="terms-document-updated">
+      {{ 'legal.updatedAt' | translate }}:
+      <time [attr.datetime]="updatedAt()">{{ updatedAt() | localizedDate: lang() }}</time>
+    </p>
+    <div class="terms-document-html" [innerHTML]="content()"></div>
   </div>
 </section>

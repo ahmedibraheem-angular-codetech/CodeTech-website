@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { ProjectHero } from '../../model/projects.model';
+import { ProjectDetail } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-hero-section',
@@ -11,7 +11,15 @@ import { ProjectHero } from '../../model/projects.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectHeroSectionComponent {
-  readonly data = input.required<ProjectHero>();
+  readonly project = input.required<ProjectDetail>();
+  readonly buttonLabel = input('');
 
   readonly ctaClick = output<void>();
+
+  readonly imageSrc = computed(
+    () => this.project().cover?.url ?? this.project().thumbnail?.url ?? '',
+  );
+  readonly imageAlt = computed(
+    () => this.project().cover_alt ?? this.project().thumbnail_alt ?? this.project().title,
+  );
 }

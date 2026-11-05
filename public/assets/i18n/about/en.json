@@ -25,11 +25,80 @@
     },
     "values": {
       "label": "Principles",
-      "title": "Our values"
+      "title": "Our values",
+      "items": {
+        "sustainability": {
+          "title": "Sustainability",
+          "description": "We build lasting digital solutions that support growth without wasting effort or resources.",
+          "imageAlt": "Sustainability value"
+        },
+        "reliability": {
+          "title": "Reliability",
+          "description": "Secure, stable systems you can trust to run your operations every day.",
+          "imageAlt": "Reliability value"
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "We turn ideas into practical digital products that move your business forward.",
+          "imageAlt": "Innovation value"
+        },
+        "excellence": {
+          "title": "Excellence",
+          "description": "Careful craft and clear standards in every stage of design and delivery.",
+          "imageAlt": "Excellence value"
+        },
+        "quality": {
+          "title": "Quality",
+          "description": "High-quality outcomes that meet your goals and stand the test of use.",
+          "imageAlt": "Quality value"
+        }
+      }
     },
     "features": {
       "label": "Our features",
-      "title": "Why CodeTech?"
+      "title": "Why CodeTech?",
+      "items": {
+        "grow": {
+          "title": "Solutions that grow with your business",
+          "description": "We build scalable systems that support growth without rebuilding from scratch.",
+          "imageAlt": "Scalable solutions"
+        },
+        "understand": {
+          "title": "We understand your business first",
+          "description": "We start by understanding your reality and needs, then design the right solution.",
+          "imageAlt": "Understanding the business"
+        },
+        "quality": {
+          "title": "Quality you can rely on",
+          "description": "Clear development and testing standards to keep the solution stable and performant.",
+          "imageAlt": "Reliable quality"
+        },
+        "product": {
+          "title": "From idea to a complete digital product",
+          "description": "From idea to launch, we design and build a digital product ready to use.",
+          "imageAlt": "Complete digital product"
+        },
+        "expertise": {
+          "title": "Technical expertise that makes a difference",
+          "description": "A specialized team that chooses the right technologies and delivers them professionally.",
+          "imageAlt": "Technical expertise"
+        },
+        "connect": {
+          "title": "We connect your business to systems and platforms",
+          "description": "Smooth integrations that link your systems to work platforms and external services.",
+          "imageAlt": "System connections"
+        },
+        "integrate": {
+          "title": "We simplify technical complexity for your team",
+          "description": "We turn complex processes into clear systems that are easy for your team to use.",
+          "imageAlt": "Simplified technology"
+        },
+        "partner": {
+          "title": "We build a long-term technical partnership",
+          "description": "We stay with you after launch with support and continuous improvement for lasting growth.",
+          "imageAlt": "Technical partnership"
+        }
+      }
     },
     "services": {
       "label": "Our services",

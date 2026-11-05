@@ -63,6 +63,8 @@
   inset: 0;
   z-index: -2;
   @include media-cover;
+  object-position: center top;
+  transform-origin: center top;
   transition: transform 0.4s ease;
 }
 

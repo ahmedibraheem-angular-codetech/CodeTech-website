@@ -1,27 +1,28 @@
 <section class="all-articles" aria-labelledby="all-articles-title">
   <div class="container">
      <div class="my-2">
-      <ct-divider [label]="data().label | translate" />
+      <ct-divider [label]="'blog.listing.label' | translate" />
       <h2 id="all-articles-title" class="all-articles-title">
-        {{ data().title | translate }}
+        {{ 'blog.listing.title' | translate }}
       </h2>
      </div>
    <div class="row g-2 align-items-start">
       <div class="col-lg-2">
         
 
-        <aside class="all-articles-filters" [attr.aria-label]="data().title | translate">
+        <aside class="all-articles-filters" [attr.aria-label]="'blog.listing.title' | translate">
           <button
             type="button"
             class="all-articles-all"
             [class.is-active]="selectedCategoryId() === null"
+            [attr.aria-pressed]="selectedCategoryId() === null"
             (click)="selectCategory(null)"
           >
-            {{ data().allLabel | translate }}
+            {{ 'blog.listing.all' | translate }}
           </button>
 
           <ul class="all-articles-categories">
-            @for (category of data().categories; track category.id) {
+            @for (category of categories(); track category.id) {
               <li>
                 <button
                   type="button"
@@ -29,7 +30,7 @@
                   [class.is-active]="selectedCategoryId() === category.id"
                   (click)="selectCategory(category.id)"
                 >
-                  {{ category.label | translate }}
+                  {{ category.name }}
                 </button>
               </li>
             }
@@ -38,16 +39,26 @@
       </div>
 
       <div class="col-lg-10">
-        @if (visibleArticles().length) {
+        @if (status() === 'loading') {
+          <div class="row g-3" aria-busy="true" aria-label="Loading">
+            @for (item of skeletonItems; track item) {
+              <div class="col-md-6 col-xl-4 d-flex">
+                <ct-skeleton width="100%" height="24rem" radius="1rem" />
+              </div>
+            }
+          </div>
+        } @else if (status() === 'error') {
+          <ct-page-error-state (retry)="retry()" />
+        } @else if (status() === 'empty') {
+          <p class="all-articles-empty">{{ 'blog.empty' | translate }}</p>
+        } @else {
           <div class="row g-3">
-            @for (article of visibleArticles(); track article.id) {
+            @for (article of articles(); track article.id) {
               <div class="col-md-6 col-xl-4 d-flex">
                 <ct-compact-article-card [article]="article" [revealOnHover]="true" />
               </div>
             }
           </div>
-        } @else {
-          <p class="all-articles-empty">{{ 'blog.empty' | translate }}</p>
         }
 
         @if (totalPages() > 1) {

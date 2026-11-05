@@ -2,9 +2,9 @@
   <div class="container">
     <div class="featured-articles-header">
       <div class="">
-        <ct-divider [label]="data().label | translate" />
+        <ct-divider [label]="label()" />
         <h2 id="featured-articles-title" class="featured-articles-title">
-          {{ data().title | translate }}
+          {{ title() }}
         </h2>
       </div>
 
@@ -26,39 +26,41 @@
                 <article class="featured-card" [attr.aria-labelledby]="'featured-article-' + slide.featured.id">
                   <a
                     class="featured-card-link"
-                    [routerLink]="['/blog', slide.featured.seo.slug]"
-                    [attr.aria-label]="('blog.readArticle' | translate) + ' ' + (slide.featured.title | translate)"
+                    [routerLink]="['/blog', slide.featured.slug]"
+                    [attr.aria-label]="('blog.readArticle' | translate) + ' ' + slide.featured.title"
                   >
-                    <img
-                      class="featured-card-image"
-                      [src]="slide.featured.thumbnail.src"
-                      [alt]="slide.featured.thumbnail.alt | translate"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span class="featured-card-badge">{{ slide.featured.category | translate }}</span>
+                    @if (slide.featured.thumbnail?.url; as thumbnailUrl) {
+                      <img
+                        class="featured-card-image"
+                        [src]="thumbnailUrl"
+                        [alt]="slide.featured.thumbnail_alt ?? ''"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    }
+                    <span class="featured-card-badge">{{ slide.featured.category.name }}</span>
                     <span class="featured-card-shade" aria-hidden="true"></span>
 
                     <div class="featured-card-body">
                       <h3 class="featured-card-title" [id]="'featured-article-' + slide.featured.id">
-                        {{ slide.featured.title | translate }}
+                        {{ slide.featured.title }}
                       </h3>
-                      <p class="featured-card-excerpt">{{ slide.featured.excerpt | translate }}</p>
+                      <p class="featured-card-excerpt">{{ slide.featured.excerpt }}</p>
 
                       <div class="featured-card-meta">
                         <span class="featured-card-meta-item">
                           <span class="featured-card-meta-badge" aria-hidden="true">
                             <span class="featured-card-icon featured-card-icon-calendar"></span>
                           </span>
-                          <time [attr.datetime]="slide.featured.publishedAt">
-                            {{ slide.featured.publishedAtLabel | translate }}
+                          <time [attr.datetime]="slide.featured.published_at">
+                            {{ slide.featured.published_at | localizedDate: lang() }}
                           </time>
                         </span>
                         <span class="featured-card-meta-item">
                           <span class="featured-card-meta-badge featured-card-meta-badge-clock" aria-hidden="true">
                             <span class="featured-card-icon featured-card-icon-clock"></span>
                           </span>
-                          {{ slide.featured.readingTime | translate }}
+                          {{ 'blog.readingTime' | translate: { count: slide.featured.reading_time_minutes } }}
                         </span>
                       </div>
 
@@ -66,16 +68,17 @@
 
                       <div class="featured-card-footer">
                         <div class="featured-card-author">
-                          <img
-                            class="featured-card-avatar"
-                            [src]="slide.featured.author.avatarSrc"
-                            [alt]="slide.featured.author.avatarAlt | translate"
-                            loading="lazy"
-                            decoding="async"
-                          />
+                          @if (slide.featured.author.photo?.url; as photoUrl) {
+                            <img
+                              class="featured-card-avatar"
+                              [src]="photoUrl"
+                              [alt]="slide.featured.author.name"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          }
                           <div>
-                            <p class="featured-card-author-name">{{ slide.featured.author.name | translate }}</p>
-                            <p class="featured-card-author-role">{{ slide.featured.author.role | translate }}</p>
+                            <p class="featured-card-author-name">{{ slide.featured.author.name }}</p>
                           </div>
                         </div>
                         <span class="featured-card-read">

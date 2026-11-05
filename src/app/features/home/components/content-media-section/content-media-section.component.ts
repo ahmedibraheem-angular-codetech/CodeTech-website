@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import {
   ButtonComponent,
   CtButtonIcon,
@@ -10,7 +9,7 @@ import { HomeContentMediaSection } from '../../model/home.model';
 @Component({
   selector: 'ct-content-media-section',
   standalone: true,
-  imports: [DividerComponent, ButtonComponent, TranslatePipe],
+  imports: [DividerComponent, ButtonComponent],
   templateUrl: './content-media-section.component.html',
   styleUrl: './content-media-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -63,10 +63,6 @@
       box-shadow: -12px 18px 0 color-mix(in srgb, var(--color-primary) 35%, transparent);
     }
 
-    .ct-info-card-icon {
-      background-color: var(--color-white);
-    }
-
     .ct-info-card-title,
     .ct-info-card-description {
       color: var(--color-white);
@@ -99,10 +95,7 @@
   display: block;
   width: 24px;
   height: 24px;
-  background-color: var(--color-primary);
-  mask: var(--ct-info-card-icon) center / contain no-repeat;
-  -webkit-mask: var(--ct-info-card-icon) center / contain no-repeat;
-  transition: background-color 0.3s ease;
+  object-fit: contain;
 }
 
 .ct-info-card-body {

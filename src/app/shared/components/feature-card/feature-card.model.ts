@@ -1,6 +1,3 @@
-export interface FeatureCardData {
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-}
+import { FeatureItem } from '../features-section/features-section.model';
+
+export type FeatureCardData = FeatureItem;

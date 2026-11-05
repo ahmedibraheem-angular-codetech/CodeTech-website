@@ -2,23 +2,42 @@
   [title]="'contactUs.hero.title' | translate"
   [description]="'contactUs.hero.description' | translate"
   [buttonLabel]="'contactUs.hero.cta' | translate"
-  (ctaClick)="goToForm()"
+  (ctaClick)="selectIntent('project')"
 />
 
-<ct-contact-options-section (formClick)="goToForm()" />
-<ct-contact-form-section [services]="services()" [coordinates]="coordinates" />
+<ct-contact-options-section (intentSelect)="selectIntent($event)" />
 
-<ct-contact-channels-section [items]="channels" />
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="30rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="8rem" radius="1rem" />
+      <ct-skeleton width="100%" height="8rem" radius="1rem" />
+      <ct-skeleton width="100%" height="8rem" radius="1rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as contact) {
+  <ct-contact-form-section
+    [intent]="intent()"
+    [services]="contact.services"
+    [products]="contact.products"
+    [contact]="contact.contact"
+  />
 
+  <ct-contact-channels-section [contact]="contact.contact" />
 
-<ct-contact-steps-section />
+  <ct-contact-steps-section />
 
-<ct-faq-section
-  [label]="'contactUs.faq.label' | translate"
-  [title]="'contactUs.faq.title' | translate"
-  [items]="faqItems"
-  [linkLabel]="'common.viewAllFaq' | translate"
-  linkRoute="/faq"
-  [value]="faqItems[0]?.id ?? null"
-/>
-
+  @if (contact.faqs.length) {
+    <ct-faq-section
+      [label]="'contactUs.faq.label' | translate"
+      [title]="'contactUs.faq.title' | translate"
+      [items]="contact.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="contact.faqs[0]?.id ?? null"
+    />
+  }
+}

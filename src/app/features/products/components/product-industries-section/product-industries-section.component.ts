@@ -18,7 +18,7 @@ import { Autoplay } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { ProductIndustriesSection } from '../../model/products.model';
+import { ProductSector } from '../../models/products-api.model';
 
 const MAX_SLIDES_PER_VIEW = 4.5;
 
@@ -38,7 +38,9 @@ export class ProductIndustriesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<ProductIndustriesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductSector[]>([]);
 
   readonly canPrev = signal(false);
   readonly canNext = signal(true);
@@ -54,7 +56,7 @@ export class ProductIndustriesSectionComponent {
         });
 
         effect(() => {
-          this.data().items;
+          this.items();
           untracked(() => this.remountSwiper());
         });
       });
@@ -105,7 +107,7 @@ export class ProductIndustriesSectionComponent {
     this.destroySwiper();
 
     const dir = this.language.isRtl() ? 'rtl' : 'ltr';
-    const loop = this.canUseLoop(this.data().items.length);
+    const loop = this.canUseLoop(this.items().length);
     host.setAttribute('dir', dir);
 
     this.swiper = new Swiper(host, {

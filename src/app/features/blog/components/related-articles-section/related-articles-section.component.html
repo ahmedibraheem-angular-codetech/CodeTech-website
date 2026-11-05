@@ -3,9 +3,9 @@
     <div class="related-articles-panel">
       <div class="related-articles-header">
         <div class="related-articles-intro">
-          <ct-divider [label]="data().label | translate" />
+          <ct-divider [label]="label()" />
           <h2 id="related-articles-title" class="related-articles-title">
-            {{ data().title | translate }}
+            {{ title() }}
           </h2>
         </div>
 
@@ -20,7 +20,7 @@
 
       <div #swiperRoot class="swiper related-articles-swiper">
         <div class="swiper-wrapper">
-          @for (article of data().articles; track article.id) {
+          @for (article of articles(); track article.id) {
             <div class="swiper-slide related-articles-slide">
               <ct-compact-article-card [article]="article" [revealOnHover]="true" />
             </div>

@@ -6,7 +6,7 @@
   <div class="ct-header-bar">
     <a routerLink="/" class="ct-header-logo" (click)="closeMega(); closeLangMenu()">
       <img
-        src="/assets/images/logo.svg"
+        [src]="logoUrl"
         [alt]="'header.logoAlt' | translate"
         width="140"
         height="25"
@@ -133,11 +133,13 @@
   <div class="ct-header-mega">
     <ct-services-dropdown
       [isOpen]="isServicesOpen()"
+      [items]="serviceMenuItems()"
       (closed)="closeMega()"
       (ctaClicked)="onCtaClick()"
     />
     <ct-products-dropdown
       [isOpen]="isProductsOpen()"
+      [items]="productMenuItems()"
       (closed)="closeMega()"
     />
   </div>
@@ -146,6 +148,9 @@
 
 <ct-mobile-navigation
   [visible]="isMobileNavOpen()"
+  [logoUrl]="logoUrl"
+  [itemsServices]="serviceMenuItems()"
+  [itemsProducts]="productMenuItems()"
   (visibleChange)="isMobileNavOpen.set($event)"
   (ctaClicked)="onCtaClick()"
 />

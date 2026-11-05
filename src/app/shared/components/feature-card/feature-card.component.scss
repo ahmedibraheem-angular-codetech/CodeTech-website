@@ -37,6 +37,10 @@
   }
 }
 
+.feature-card-no-image {
+  background-color: var(--color-primary);
+}
+
 .feature-card-image {
   position: absolute;
   inset: 0;

@@ -3,4 +3,12 @@
   [description]="'faq.hero.description' | translate"
 />
 
-<ct-faq-tabs-section [categories]="categories()" />
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="20rem" radius="1rem" />
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as faq) {
+  <ct-faq-tabs-section [categories]="faq.categories" />
+}

@@ -89,7 +89,10 @@
 }
 
 .product-results-card-icon {
-  @include card-mask-icon;
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
 }
 
 .product-results-card-copy {
@@ -120,10 +123,6 @@
 
 .product-results-card:hover .product-results-card-icon-wrap {
   transform: translateY(calc(var(--space-xs) * -0.25));
-}
-
-.product-results-card:hover .product-results-card-icon {
-  background-color: var(--color-brand);
 }
 
 .product-results-card:hover .product-results-card-title {

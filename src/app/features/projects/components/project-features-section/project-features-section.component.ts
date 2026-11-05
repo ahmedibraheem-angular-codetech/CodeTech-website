@@ -18,7 +18,7 @@ import { Autoplay, Grid } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { ProjectFeaturesSection } from '../../model/projects.model';
+import { ProjectFeature } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-features-section',
@@ -36,7 +36,9 @@ export class ProjectFeaturesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<ProjectFeaturesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input.required<ProjectFeature[]>();
 
   readonly canPrev = signal(true);
   readonly canNext = signal(true);
@@ -52,7 +54,7 @@ export class ProjectFeaturesSectionComponent {
         });
 
         effect(() => {
-          this.data().items;
+          this.items();
           untracked(() => this.refreshSwiper());
         });
       });

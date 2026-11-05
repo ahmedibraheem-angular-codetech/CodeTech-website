@@ -1,9 +1,10 @@
-/** Card payload for the shared services slider (UI input, not an API envelope). */
+import { ApiFile } from '../../../core/api/api.model';
+
+/** Service card from Laravel API lists (home, about, services page). */
 export interface ServiceCardItem {
-  id: string;
-  /** Route segment for `/services/:slug`. */
-  slug: string;
-  icon: string;
-  title: string;
+  id: number;
+  slug: string | null;
+  name: string;
   description: string;
+  icon: ApiFile | null;
 }

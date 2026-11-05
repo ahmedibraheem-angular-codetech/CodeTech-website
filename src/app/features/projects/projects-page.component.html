@@ -5,14 +5,50 @@
   (ctaClick)="goToContact()"
 />
 
-<ct-project-stats-section [data]="stats()" />
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <div class="d-flex flex-wrap gap-3">
+      <ct-skeleton width="12rem" height="10rem" radius="1rem" />
+      <ct-skeleton width="12rem" height="10rem" radius="1rem" />
+      <ct-skeleton width="12rem" height="10rem" radius="1rem" />
+      <ct-skeleton width="12rem" height="10rem" radius="1rem" />
+    </div>
+    <div class="mt-4">
+      <ct-skeleton width="100%" height="20rem" radius="1rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as projects) {
+  @if (projects.sections.stats_visible && projects.stats.length) {
+    <ct-project-stats-section
+      [label]="'projects.stats.label' | translate"
+      [title]="'projects.stats.title' | translate"
+      [items]="projects.stats"
+    />
+  }
 
-<ct-project-featured-section [data]="featured()" (ctaClick)="openCaseStudy($event)" />
+  @if (projects.featured; as featured) {
+    <ct-project-featured-section
+      [label]="'projects.featured.label' | translate"
+      [title]="'projects.featured.title' | translate"
+      [ctaLabel]="'projects.featured.cta' | translate"
+      [project]="featured"
+      (ctaClick)="openCaseStudy($event)"
+    />
+  }
 
-<ct-project-list-section [data]="list()" />
+  @if (projects.sections.projects_visible) {
+    <ct-project-list-section [services]="projects.services" />
+  }
 
-<ct-journey-section
-  [label]="journey().label"
-  [title]="journey().title"
-  [cards]="journey().cards"
-/>
+  <ct-journey-section
+    [label]="'home.journey.label' | translate"
+    [title]="'home.journey.title' | translate"
+    [cards]="journeyCards"
+    
+  />
+}
+
+
+<div class="container-fluid"></div>

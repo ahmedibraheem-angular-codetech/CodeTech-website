@@ -9,7 +9,7 @@
     <div class="row g-4">
       @for (feature of features(); track feature.id) {
         <div class="col-md-6 col-lg-3">
-          <ct-feature-card [data]="feature" />
+          <ct-feature-card [data]="feature" [translateKeys]="translateKeys()" />
         </div>
       }
     </div>

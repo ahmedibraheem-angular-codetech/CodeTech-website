@@ -13,7 +13,6 @@
             width="115px"
             height="36px"
             fontSize="10px"
-            
             shadowColor="#002951"
             (clicked)="onCtaClick()"
           />
@@ -28,7 +27,7 @@
 
     <div class="services-list-wrap">
       <div class="services-list row g-0">
-        @for (service of services; track service.slug) {
+        @for (service of list(); track service.id) {
           <div class="col-md-6">
             <a
               class="service-item"
@@ -40,11 +39,11 @@
               (click)="onServiceClick()"
             >
               <span class="service-icon" aria-hidden="true">
-                <img [src]="service.icon" alt="" width="22" height="22" />
+                <img [src]="service.iconUrl" alt="" width="22" height="22" loading="lazy" />
               </span>
               <span class="service-text">
-                <span class="service-title">{{ service.titleKey | translate }}</span>
-                <span class="service-desc">{{ service.descKey | translate }}</span>
+                <span class="service-title">{{ service.name }}</span>
+                <span class="service-desc">{{ service.description }}</span>
               </span>
               @if (activeSlug() === service.slug) {
                 <span class="service-arrow" aria-hidden="true"></span>

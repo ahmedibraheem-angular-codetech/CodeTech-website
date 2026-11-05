@@ -16,7 +16,7 @@ export type AppLanguage = 'en' | 'ar';
 
 const COOKIE_NAME = 'lang';
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
-const DEFAULT_LANGUAGE: AppLanguage = 'ar';
+export const DEFAULT_LANGUAGE: AppLanguage = 'ar';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +76,10 @@ export class LanguageService {
     if (!this.isBrowser) {
       return;
     }
-    this.document.cookie = `${COOKIE_NAME}=${lang}; path=/; max-age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax`;
+
+    const isSecure = this.document.defaultView?.location?.protocol === 'https:';
+    const secureFlag = isSecure ? '; Secure' : '';
+    this.document.cookie = `${COOKIE_NAME}=${lang}; path=/; max-age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax${secureFlag}`;
   }
 
   private applyLang(lang: AppLanguage): Observable<InterpolatableTranslationObject> {

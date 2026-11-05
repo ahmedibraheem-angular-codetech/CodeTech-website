@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import type { FaqCategory } from '../../model/faq-category.model';
+import type { FaqCategory } from '../../models/legal-api.model';
 
 @Component({
   selector: 'ct-faq-tabs-section',
@@ -23,11 +23,11 @@ export class FaqTabsSectionComponent {
   private readonly tabListRoot = viewChild<ElementRef<HTMLElement>>('tabListRoot');
   private readonly accordionRoot = viewChild<ElementRef<HTMLElement>>('accordionRoot');
 
-  /** Categories payload. Swap the mock for the FAQ API response later. */
+  /** Categories from GET /pages/faq. */
   readonly categories = input.required<FaqCategory[]>();
 
-  readonly activeTab = signal<string>('');
-  readonly openItem = signal<string | number | null>(null);
+  readonly activeTab = signal<number | null>(null);
+  readonly openItem = signal<number | null>(null);
 
   readonly selected = computed((): FaqCategory | undefined => {
     const categories = this.categories();
@@ -37,33 +37,33 @@ export class FaqTabsSectionComponent {
   readonly accordionValue = computed(() => {
     const selected = this.selected();
     const openItem = this.openItem();
-    if (openItem != null && selected?.items.some((item) => item.id === openItem)) {
+    if (openItem != null && selected?.faqs.some((item) => item.id === openItem)) {
       return openItem;
     }
-    return selected?.items.at(-1)?.id ?? null;
+    return selected?.faqs.at(-1)?.id ?? null;
   });
 
-  isTabActive(id: string): boolean {
+  isTabActive(id: number): boolean {
     return this.selected()?.id === id;
   }
 
-  isOpen(id: string): boolean {
+  isOpen(id: number): boolean {
     return this.accordionValue() === id;
   }
 
-  selectTab(value: string | number | undefined): void {
-    if (value == null || String(value) === (this.selected()?.id ?? '')) {
+  selectTab(id: number): void {
+    if (id === this.selected()?.id) {
       return;
     }
-    this.activeTab.set(String(value));
+    this.activeTab.set(id);
     this.openItem.set(null);
   }
 
-  toggle(id: string): void {
+  toggle(id: number): void {
     this.openItem.set(this.accordionValue() === id ? null : id);
   }
 
-  onTabKeydown(event: KeyboardEvent, id: string): void {
+  onTabKeydown(event: KeyboardEvent, id: number): void {
     switch (event.code) {
       case 'ArrowRight':
         this.focusTab(event.currentTarget as HTMLElement, 1);
@@ -93,7 +93,7 @@ export class FaqTabsSectionComponent {
     event.stopPropagation();
   }
 
-  onHeaderKeydown(event: KeyboardEvent, id: string): void {
+  onHeaderKeydown(event: KeyboardEvent, id: number): void {
     switch (event.code) {
       case 'ArrowDown':
         this.focusHeader(event.currentTarget as HTMLElement, 1);

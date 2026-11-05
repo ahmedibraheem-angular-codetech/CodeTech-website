@@ -63,11 +63,12 @@
     padding-inline-start: var(--btn-padding-inline);
     padding-inline-end: var(--space-lg);
 
+
     .ct-button__label {
       flex: 1 1 auto;
       min-width: 0;
       overflow: hidden;
-      text-align: start;
+      text-align: center;
       text-overflow: ellipsis;
     }
   }

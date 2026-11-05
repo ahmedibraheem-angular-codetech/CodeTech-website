@@ -3,13 +3,13 @@
     <div class="row g-4 align-items-center">
       <div class="col-12 col-md-6 project-interfaces-content">
         <header class="project-interfaces-intro">
-          <ct-divider [label]="data().label" />
+          <ct-divider [label]="label()" />
           <h2 id="project-interfaces-title" class="project-interfaces-title">
-            {{ data().title }}
+            {{ title() }}
           </h2>
         </header>
 
-        <div class="project-interfaces-tabs" role="tablist" [attr.aria-label]="data().title">
+        <div class="project-interfaces-tabs" role="tablist" [attr.aria-label]="title()">
           @for (row of tabRows(); track $index) {
             <div class="project-interfaces-tabs-row">
               @for (item of row; track item.id) {
@@ -21,7 +21,7 @@
                   [attr.aria-selected]="isActive(item)"
                   (click)="select(item)"
                 >
-                  {{ item.tabLabel }}
+                  {{ item.title }}
                 </button>
               }
             </div>
@@ -35,8 +35,8 @@
             <figure class="project-interfaces-shot project-interfaces-shot-main">
               <img
                 class="project-interfaces-image"
-                [src]="image.imageSrc"
-                [alt]="image.imageAlt"
+                [src]="image.image.url"
+                [alt]="active.title"
                 loading="lazy"
                 decoding="async"
               />
@@ -59,8 +59,8 @@
               >
                 <img
                   class="project-interfaces-image"
-                  [src]="image.imageSrc"
-                  [alt]="image.imageAlt"
+                  [src]="image.image.url"
+                  [alt]="active.title"
                   loading="lazy"
                   decoding="async"
                 />

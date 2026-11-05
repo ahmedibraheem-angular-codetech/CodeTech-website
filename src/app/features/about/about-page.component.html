@@ -1,76 +1,76 @@
-<ct-page-hero
-  [title]="'about.hero.title' | translate"
-  [description]="'about.hero.description' | translate"
-  [buttonLabel]="'about.hero.cta' | translate"
-  (ctaClick)="goToContact()"
-/>
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="18rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="12rem" />
+      <ct-skeleton width="100%" height="12rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as about) {
+  <ct-page-hero
+    [title]="'about.hero.title' | translate"
+    [description]="'about.hero.description' | translate"
+    [buttonLabel]="'about.hero.cta' | translate"
+    (ctaClick)="goToContact()"
+  />
 
-@if (about.overview.isPublished) {
   <ct-about-overview-section
-    [data]="about.overview"
+    [data]="about.about"
     [philosophyTitle]="'about.overview.philosophy.title' | translate"
     [marketTitle]="'about.overview.market.title' | translate"
   />
-}
 
-@if (about.features.isPublished) {
   <ct-features-section
     [label]="'about.features.label' | translate"
     [title]="'about.features.title' | translate"
-    [features]="about.features.items"
+    [features]="featureItems"
+    [translateKeys]="true"
   />
-}
 
-
-
-@if (about.visionMission.isPublished) {
   <ct-about-vision-mission-section
-    [data]="about.visionMission"
+    [data]="about.vision_mission"
     [label]="'about.visionMission.label' | translate"
     [title]="'about.visionMission.title' | translate"
     [visionTitle]="'about.visionMission.vision.title' | translate"
     [missionTitle]="'about.visionMission.mission.title' | translate"
   />
-}
 
-@if (about.values.isPublished) {
   <ct-about-values-section
-    [data]="about.values"
+    [items]="valueItems"
     [label]="'about.values.label' | translate"
     [title]="'about.values.title' | translate"
   />
-}
 
-@if (about.clients.isPublished) {
-  <ct-clients-section
-    [logos]="about.clients.logos"
-    [label]="'about.clients.label' | translate"
-    [title]="'about.clients.title' | translate"
-  />
-}
+  @if (about.partners.length) {
+    <ct-clients-section
+      [logos]="about.partners"
+      [label]="'about.clients.label' | translate"
+      [title]="'about.clients.title' | translate"
+    />
+  }
 
-@if (about.founder.isPublished) {
   <ct-about-founder-section
-    [data]="about.founder"
+    [data]="about.ceo"
     [label]="'about.founder.label' | translate"
     [title]="'about.founder.title' | translate"
   />
-}
 
-@if (about.team.isPublished) {
-  <ct-about-team-section
-    [data]="about.team"
-    [label]="'about.team.label' | translate"
-    [title]="'about.team.title' | translate"
-  />
-}
+  @if (about.team.length) {
+    <ct-about-team-section
+      [members]="about.team"
+      [label]="'about.team.label' | translate"
+      [title]="'about.team.title' | translate"
+    />
+  }
 
-@if (about.services.isPublished) {
-  <ct-services-section
-    [showBackground]="false"
-    [label]="'about.services.label' | translate"
-    [title]="'about.services.title' | translate"
-    [services]="about.services.items"
-  />
+  @if (about.services.length) {
+    <ct-services-section
+      [showBackground]="false"
+      [label]="'about.services.label' | translate"
+      [title]="'about.services.title' | translate"
+      [services]="about.services"
+    />
+  }
 }
-

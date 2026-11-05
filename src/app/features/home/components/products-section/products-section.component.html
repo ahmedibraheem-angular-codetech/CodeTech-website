@@ -15,32 +15,36 @@
           <div class="col-md-4">
             <article class="product-card">
               <div class="product-card-media">
-                <img
-                  class="product-card-image"
-                  [src]="product.imageSrc"
-                  [alt]="product.imageAlt | translate"
-                  loading="lazy"
-                  decoding="async"
-                />
+                @if (product.thumbnail?.url) {
+                  <img
+                    class="product-card-image"
+                    [src]="product.thumbnail!.url"
+                    [alt]="product.thumbnail_alt || product.title"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                }
               </div>
 
               <div class="product-card-body">
                 <h3 class="product-card-title">
-                  {{ product.title | translate }}
+                  {{ product.title }}
                 </h3>
                 <p class="product-card-description text-end">
-                  {{ product.description | translate }}
+                  {{ product.short_description || product.description }}
                 </p>
 
-                <ct-button
-                  class="product-card-cta"
-                  [label]="'home.products.cta' | translate"
-                  icon="double-alt-arrow-left"
-                  variant="light"
-                  layout="spread"
-                  fontWeight="500"
-                  width="100%"
-                />
+                <a class="product-card-cta-link" [routerLink]="['/products', product.slug]">
+                  <ct-button
+                    class="product-card-cta"
+                    [label]="'home.products.cta' | translate"
+                    icon="double-alt-arrow-left"
+                    variant="light"
+                    layout="spread"
+                    fontWeight="500"
+                    width="100%"
+                  />
+                </a>
               </div>
             </article>
           </div>

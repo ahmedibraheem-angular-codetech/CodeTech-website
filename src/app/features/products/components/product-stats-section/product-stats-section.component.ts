@@ -12,12 +12,12 @@ import {
   untracked,
 } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductStatItem, ProductStatsSection } from '../../model/products.model';
+import { ProductStat } from '../../models/products-api.model';
 
 const COUNT_DURATION_MS = 1000;
 
 interface CountTarget {
-  id: string;
+  id: number;
   prefix: string;
   suffix: string;
   target: number;
@@ -42,10 +42,12 @@ export class ProductStatsSectionComponent {
   private frame = 0;
   private ready = false;
 
-  readonly data = input.required<ProductStatsSection>();
-  private readonly displayed = signal<Readonly<Record<string, string>>>({});
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductStat[]>([]);
+  private readonly displayed = signal<Readonly<Record<number, string>>>({});
 
-  countLabel(item: ProductStatItem): string {
+  countLabel(item: ProductStat): string {
     const current = this.displayed();
     return item.id in current ? current[item.id] : item.value;
   }
@@ -57,7 +59,7 @@ export class ProductStatsSectionComponent {
     });
 
     effect(() => {
-      this.data();
+      this.items();
       if (!this.ready) {
         return;
       }
@@ -114,7 +116,7 @@ export class ProductStatsSectionComponent {
     const tick = (now: number): void => {
       const progress = Math.min((now - start) / COUNT_DURATION_MS, 1);
       const eased = 1 - (1 - progress) ** 3;
-      const next: Record<string, string> = {};
+      const next: Record<number, string> = {};
 
       for (const target of targets) {
         next[target.id] =
@@ -137,7 +139,7 @@ export class ProductStatsSectionComponent {
   private countTargets(): CountTarget[] {
     const targets: CountTarget[] = [];
 
-    for (const item of this.data().items) {
+    for (const item of this.items()) {
       const target = parseCount(item);
       if (target) {
         targets.push(target);
@@ -160,7 +162,7 @@ export class ProductStatsSectionComponent {
   }
 }
 
-function parseCount(item: ProductStatItem): CountTarget | null {
+function parseCount(item: ProductStat): CountTarget | null {
   const match = /^(\D*?)(\d+(?:\.\d+)?)(.*)$/.exec(item.value.trim());
   if (!match) {
     return null;

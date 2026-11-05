@@ -1,53 +1,101 @@
-@if (hero(); as hero) {
-  <ct-project-hero-section [data]="hero" (ctaClick)="goToContact()" />
-
-  @if (overview(); as overview) {
-    <ct-project-overview-section [data]="overview" />
-  }
-
-  @if (challenges(); as challenges) {
-    <ct-project-challenges-section [data]="challenges" />
-  }
-
-  @if (solution(); as solution) {
-    <ct-project-solution-section [data]="solution" />
-  }
-  @if (screens(); as screens) {
-    <ct-project-screens-section [data]="screens" />
-  }
-  @if (features(); as features) {
-    <ct-project-features-section [data]="features" />
-  }
-
-  @if (interfaces(); as interfaces) {
-    <ct-project-interfaces-section [data]="interfaces" />
-  }
-
-  @if (results(); as results) {
-    <ct-project-results-section [data]="results" />
-  }
-
-  @if (technologies(); as technologies) {
-    <ct-technologies-section
-      [label]="technologies.label"
-      [title]="technologies.title"
-      [items]="technologies.items"
-      [tools]="technologies.tools"
-    />
-  }
-
-  @if (similar(); as similar) {
-    <ct-projects-section
-      [label]="similar.label"
-      [title]="similar.title"
-      [projects]="similar.items"
-    />
-  }
-} @else {
-  <section class="project-missing">
-    <div class="container">
-      <h1 class="project-missing-title">{{ missing().title }}</h1>
-      <a class="project-missing-link" routerLink="/projects">{{ missing().back }}</a>
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="22rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="12rem" radius="1rem" />
+      <ct-skeleton width="100%" height="12rem" radius="1rem" />
+      <ct-skeleton width="100%" height="12rem" radius="1rem" />
     </div>
   </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (status() === 'notFound') {
+  <section class="project-missing">
+    <div class="container">
+      <h1 class="project-missing-title">{{ 'projects.detail.notFound.title' | translate }}</h1>
+      <a class="project-missing-link" routerLink="/projects">
+        {{ 'projects.detail.notFound.back' | translate }}
+      </a>
+    </div>
+  </section>
+} @else if (project(); as project) {
+  <ct-project-hero-section
+    [project]="project"
+    [buttonLabel]="'projects.detail.cta' | translate"
+    (ctaClick)="goToContact()"
+  />
+
+  @if (project.overview_cards.length) {
+    <ct-project-overview-section
+      [label]="'projects.detail.overview.label' | translate"
+      [title]="'projects.detail.overview.title' | translate"
+      [cards]="project.overview_cards"
+    />
+  }
+
+  @if (project.challenges.length) {
+    <ct-project-challenges-section
+      [label]="'projects.detail.challenges.label' | translate"
+      [title]="'projects.detail.challenges.title' | translate"
+      [items]="project.challenges"
+    />
+  }
+
+  @if (project.solutions.length) {
+    <ct-project-solution-section
+      [label]="'projects.detail.solutions.label' | translate"
+      [title]="'projects.detail.solutions.title' | translate"
+      [solutions]="project.solutions"
+      [image]="project.solutions_image"
+      [imageAlt]="project.solutions_image_alt"
+      [imageTitle]="project.solutions_image_title"
+    />
+  }
+
+  @if (project.gallery.length) {
+    <ct-project-screens-section
+      [title]="project.cover_title ?? project.title"
+      [items]="project.gallery"
+    />
+  }
+
+  @if (project.features.length) {
+    <ct-project-features-section
+      [label]="'projects.detail.features.label' | translate"
+      [title]="'projects.detail.features.title' | translate"
+      [items]="project.features"
+    />
+  }
+
+  @if (project.identity_items.length) {
+    <ct-project-interfaces-section
+      [label]="'projects.detail.interfaces.label' | translate"
+      [title]="'projects.detail.interfaces.title' | translate"
+      [items]="project.identity_items"
+    />
+  }
+
+  @if (project.results.length) {
+    <ct-project-results-section
+      [label]="'projects.detail.results.label' | translate"
+      [title]="'projects.detail.results.title' | translate"
+      [items]="project.results"
+    />
+  }
+
+  @if (project.tools.length) {
+    <ct-technologies-section
+      [label]="'projects.detail.technologies.label' | translate"
+      [title]="'projects.detail.technologies.title' | translate"
+      [tools]="project.tools"
+    />
+  }
+
+  @if (project.similar.length) {
+    <ct-projects-section
+      [label]="'projects.detail.similar.label' | translate"
+      [title]="'projects.detail.similar.title' | translate"
+      [projects]="project.similar"
+    />
+  }
 }

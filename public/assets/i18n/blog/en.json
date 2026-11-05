@@ -15,18 +15,20 @@
       "previous": "Previous page",
       "next": "Next page"
     },
-    "mock": {
+    "readingTime": "{{count}} min read",
+    "categoryLabel": "Category",
+    "featured": {
       "label": "Key articles",
-      "title": "Featured articles",
-      "related": {
-        "label": "You may like",
-        "title": "Related articles"
-      },
-      "listing": {
-        "label": "Latest news",
-        "title": "All articles",
-        "all": "All articles"
-      }
+      "title": "Featured articles"
+    },
+    "listing": {
+      "label": "Latest news",
+      "title": "All articles",
+      "all": "All articles"
+    },
+    "related": {
+      "label": "You may like",
+      "title": "Related articles"
     }
   }
 }

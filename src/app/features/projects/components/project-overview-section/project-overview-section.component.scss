@@ -58,6 +58,11 @@
   background-repeat: no-repeat;
 }
 
+.project-overview-goal-label {
+  @include body-small;
+  color: var(--color-white);
+}
+
 .project-overview-goal-title {
   margin: 0;
   font-size: 14px;

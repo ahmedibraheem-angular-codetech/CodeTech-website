@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { ProductHero } from '../../model/products.model';
+import { ApiFile } from '../../../../core/api/api.model';
 
 @Component({
   selector: 'ct-product-hero-section',
@@ -11,7 +11,12 @@ import { ProductHero } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductHeroSectionComponent {
-  readonly data = input.required<ProductHero>();
+  readonly title = input('');
+  readonly description = input('');
+  readonly image = input<ApiFile | null>(null);
+  readonly imageAlt = input<string | null>(null);
+  readonly imageTitle = input('');
+  readonly buttonLabel = input('');
 
   readonly ctaClick = output<void>();
 }

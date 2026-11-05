@@ -1,57 +1,84 @@
 <section id="project-list" class="project-list" aria-labelledby="project-list-title">
   <div class="container">
     <div class="project-list-header">
-     <div class="d-flex  justify-content-between align-items-end">
-<div>
-  <ct-divider [label]="'projects.list.label' " />
-  <h2 id="project-list-title" class="project-list-title mt-3">{{ data().title }}</h2>
-</div>
-<ul class="project-list-filters" [attr.aria-label]="data().title">
-        @for (filter of data().filters; track filter.id) {
+      <div class="d-flex justify-content-between align-items-end">
+        <div>
+          <ct-divider [label]="'projects.list.label' | translate" />
+          <h2 id="project-list-title" class="project-list-title mt-3">
+            {{ 'projects.list.title' | translate }}
+          </h2>
+        </div>
+
+        <ul class="project-list-filters col-md-9" [attr.aria-label]="'projects.list.title' | translate">
           <li>
             <button
               type="button"
               class="project-list-filter"
-              [class.is-active]="activeFilterId() === filter.id"
-              (click)="selectFilter(filter.id)"
+              [class.is-active]="selectedSlug() === null"
+              [attr.aria-pressed]="selectedSlug() === null"
+              (click)="selectFilter(null)"
             >
-            @if (filter.iconSrc) {
-              <span
-                class="project-list-filter-icon"
-                aria-hidden="true"
-                [style.mask-image]="iconMask(filter.iconSrc)"
-                [style.-webkit-mask-image]="iconMask(filter.iconSrc)"
-              ></span>
-            }
-              <span>{{ filter.label }}</span>
-              
+              <span>{{ 'projects.list.all' | translate }}</span>
             </button>
           </li>
-        }
-      </ul>
-     </div>
-      
+          @for (service of filters(); track service.id) {
+            <li>
+              <button
+                type="button"
+                class="project-list-filter"
+                [class.is-active]="selectedSlug() === service.slug"
+                [attr.aria-pressed]="selectedSlug() === service.slug"
+                (click)="selectFilter(service.slug)"
+              >
+                @if (service.icon?.url; as iconUrl) {
+                  <img
+                    class="project-list-filter-icon"
+                    [src]="iconUrl"
+                    alt=""
+                    width="20"
+                    height="20"
+                    loading="lazy"
+                    decoding="async"
+                    aria-hidden="true"
+                  />
+                }
+                <span>{{ service.name }}</span>
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
     </div>
 
-    @if (visibleItems().length) {
-      <div class="row g-3">
-        @for (item of visibleItems(); track item.id) {
+    @if (status() === 'loading') {
+      <div class="row g-3" aria-busy="true" aria-label="Loading">
+        @for (item of skeletonItems; track item) {
           <div class="col-md-6 col-xl-4 d-flex">
-            <ct-project-card [data]="item" />
+            <ct-skeleton width="100%" height="26rem" radius="1rem" />
           </div>
         }
       </div>
+    } @else if (status() === 'error') {
+      <ct-page-error-state (retry)="retry()" />
+    } @else if (status() === 'empty') {
+      <p class="project-list-empty">{{ 'projects.list.empty' | translate }}</p>
     } @else {
-      <p class="project-list-empty">{{ data().emptyLabel }}</p>
+      <div class="row g-3">
+        @for (item of projects(); track item.id) {
+          <div class="col-md-6 col-xl-4 d-flex">
+            <ct-project-card [data]="item" [link]="'/projects/' + item.slug" />
+          </div>
+        }
+      </div>
     }
 
     @if (totalPages() > 1) {
-      <nav class="project-list-pagination" [attr.aria-label]="data().paginationLabel">
+      <nav class="project-list-pagination" [attr.aria-label]="'projects.list.pagination' | translate">
         <button
           type="button"
           class="project-list-page"
           [disabled]="currentPage() === 1"
-          [attr.aria-label]="data().prevLabel"
+          [attr.aria-label]="'projects.list.previous' | translate"
           (click)="goTo(currentPage() - 1)"
         >
           <span class="project-list-page-icon project-list-page-icon-prev" aria-hidden="true"></span>
@@ -77,7 +104,7 @@
           type="button"
           class="project-list-page"
           [disabled]="currentPage() === totalPages()"
-          [attr.aria-label]="data().nextLabel"
+          [attr.aria-label]="'projects.list.next' | translate"
           (click)="goTo(currentPage() + 1)"
         >
           <span class="project-list-page-icon project-list-page-icon-next" aria-hidden="true"></span>

@@ -5,6 +5,7 @@ import {
   HostListener,
   computed,
   inject,
+  input,
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,6 +14,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AppLanguage, LanguageService } from '../../i18n/language.service';
+import {
+  LayoutData,
+  LayoutProductItem,
+  LayoutServiceItem,
+} from '../models/layout.model';
 import {
   HEADER_NAV_LINKS,
   type MegaMenuId,
@@ -27,6 +33,8 @@ interface LangOption {
   readonly labelKey: string;
   readonly flagSrc: string;
 }
+
+const FALLBACK_LOGO = '/assets/images/logo.svg';
 
 @Component({
   selector: 'ct-header',
@@ -48,6 +56,9 @@ export class HeaderComponent {
   private readonly router = inject(Router);
   private readonly host = inject(ElementRef<HTMLElement>);
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+  /** Site chrome payload from GET /layout (services + products drive mega menus). */
+  readonly layout = input<LayoutData | null>(null);
 
   readonly navLinks = HEADER_NAV_LINKS;
   readonly openMega = signal<MegaMenuId | null>(null);
@@ -86,6 +97,48 @@ export class HeaderComponent {
   readonly isServicesOpen = computed(() => this.openMega() === 'services');
   readonly isProductsOpen = computed(() => this.openMega() === 'products');
 
+  /** Header mark stays static — do not use layout site.logo. */
+  readonly logoUrl = FALLBACK_LOGO;
+
+  /** GET /layout → data.services */
+  readonly serviceMenuItems = computed((): LayoutServiceItem[] => {
+    const services = this.layout()?.services;
+    if (!Array.isArray(services)) {
+      return [];
+    }
+
+    return services
+      .filter((service) => typeof service.slug === 'string' && service.slug.length > 0)
+      .map((service) => ({
+        id: service.id,
+        slug: service.slug as string,
+        name: service.name,
+        description: service.description,
+        iconUrl: service.icon?.url ?? '/assets/icons/services/automation.svg',
+        route: `/services/${service.slug}`,
+      }));
+  });
+
+  /** GET /layout → data.products (thumbnail only — never site logo). */
+  readonly productMenuItems = computed((): LayoutProductItem[] => {
+    const products = this.layout()?.products;
+    if (!Array.isArray(products)) {
+      return [];
+    }
+
+    return products
+      .filter((product) => typeof product.slug === 'string' && product.slug.length > 0)
+      .map((product) => ({
+        id: product.id,
+        slug: product.slug,
+        title: product.title,
+        description: product.short_description || product.description,
+        imageUrl:
+          product.thumbnail?.url ?? '/assets/images/header/products/product-1.svg',
+        route: `/products/${product.slug}`,
+      }));
+  });
+
   /** Parent stays active for listing and child detail routes (e.g. /services/:slug). */
   isNavActive(link: NavLinkItem): boolean {
     const path = this.currentUrl().split('?')[0] ?? '';
@@ -99,14 +152,6 @@ export class HeaderComponent {
     this.clearCloseTimer();
     this.isLangOpen.set(false);
     this.openMega.set(id);
-  }
-
-  toggleMega(id: MegaMenuId, event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.clearCloseTimer();
-    this.isLangOpen.set(false);
-    this.openMega.update((current) => (current === id ? null : id));
   }
 
   closeMega(): void {
@@ -186,6 +231,6 @@ export class HeaderComponent {
     if (this.closeTimer !== null) {
       clearTimeout(this.closeTimer);
       this.closeTimer = null;
-    } 
+    }
   }
 }

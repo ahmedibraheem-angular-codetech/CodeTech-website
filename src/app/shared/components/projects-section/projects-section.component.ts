@@ -19,12 +19,13 @@ import { LanguageService } from '../../../core/i18n/language.service';
 import { DividerComponent } from '../divider/divider.component';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { ProjectCardData } from '../project-card/project-card.model';
+import { CardSkeletonComponent } from '../skeleton/card-skeleton.component';
 import { SliderArrowsComponent } from '../slider-arrows/slider-arrows.component';
 
 @Component({
   selector: 'ct-projects-section',
   standalone: true,
-  imports: [DividerComponent, ProjectCardComponent, SliderArrowsComponent],
+  imports: [CardSkeletonComponent, DividerComponent, ProjectCardComponent, SliderArrowsComponent],
   templateUrl: './projects-section.component.html',
   styleUrl: './projects-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,8 +42,11 @@ export class ProjectsSectionComponent {
   readonly label = input('');
   readonly title = input('');
   readonly projects = input<ProjectCardData[]>([]);
-  readonly link = input('/projects');
+  readonly link = input('');
   readonly showTools = input(false);
+  /** Shows shared project-card skeletons while the project list is still loading. */
+  readonly loading = input(false);
+  readonly skeletonSlots = [1, 2, 3];
 
   readonly canPrev = signal(true);
   readonly canNext = signal(true);
@@ -59,15 +63,20 @@ export class ProjectsSectionComponent {
         });
 
         effect(() => {
+          const isLoading = this.loading();
           this.projects();
-          untracked(() => this.refreshSwiper());
+          untracked(() => {
+            if (isLoading) {
+              this.destroySwiper();
+              return;
+            }
+
+            queueMicrotask(() => this.mountSwiper());
+          });
         });
       });
 
-      this.destroyRef.onDestroy(() => {
-        this.swiper?.destroy(true, true);
-        this.swiper = undefined;
-      });
+      this.destroyRef.onDestroy(() => this.destroySwiper());
     });
   }
 
@@ -102,9 +111,28 @@ export class ProjectsSectionComponent {
     });
   }
 
+  private destroySwiper(): void {
+    if (!this.swiper || this.swiper.destroyed) {
+      this.swiper = undefined;
+      return;
+    }
+
+    this.swiper.destroy(true, false);
+    this.swiper = undefined;
+  }
+
   private mountSwiper(): void {
+    if (this.loading()) {
+      return;
+    }
+
     const host = this.swiperRoot()?.nativeElement;
     if (!host) {
+      return;
+    }
+
+    if (this.swiper && !this.swiper.destroyed) {
+      this.refreshSwiper();
       return;
     }
 

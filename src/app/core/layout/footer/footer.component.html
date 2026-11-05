@@ -1,30 +1,33 @@
 <footer class="ct-footer">
-    <div class="container mb-5">
+  <div class="container mb-5">
     <ct-footer-header (ctaClicked)="onCtaClick()" />
+  </div>
 
-    </div>
-
-    <div class="ct-footer-panel">
-        <div class="container">
+  <div class="ct-footer-panel">
+    <div class="container">
       <div class="row gy-4">
         <div class="col-md-4">
           <div class="ct-footer-brand">
             <a routerLink="/" class="ct-footer-logo">
               <img
                 class="ct-footer-logo-img"
-                src="/assets/images/footer-logo.png"
+                [src]="logoUrl"
                 [alt]="'header.logoAlt' | translate"
                 width="341"
                 height="63"
               />
             </a>
 
-            <p class="ct-footer-brand-desc">
-              {{ 'footer.brand.description' | translate }}
-            </p>
+            @if (brandDescription()) {
+              <p class="ct-footer-brand-desc">{{ brandDescription() }}</p>
+            } @else {
+              <p class="ct-footer-brand-desc">
+                {{ 'footer.brand.description' | translate }}
+              </p>
+            }
 
             <ul class="ct-footer-contact">
-              @for (item of contactItems; track item.id) {
+              @for (item of contactItems(); track item.id) {
                 <li>
                   @if (item.href) {
                     <a class="ct-footer-contact-item" [href]="item.href">
@@ -36,7 +39,7 @@
                         height="28"
                         aria-hidden="true"
                       />
-                      <span>{{ item.labelKey | translate }}</span>
+                      <span>{{ item.label }}</span>
                     </a>
                   } @else {
                     <span class="ct-footer-contact-item">
@@ -48,7 +51,7 @@
                         height="28"
                         aria-hidden="true"
                       />
-                      <span>{{ item.labelKey | translate }}</span>
+                      <span>{{ item.label }}</span>
                     </span>
                   }
                 </li>
@@ -71,7 +74,7 @@
                     height="28"
                     aria-hidden="true"
                   />
-                  <span >{{ link.labelKey | translate }}</span>
+                  <span>{{ link.labelKey | translate }}</span>
                 </a>
               </li>
             }
@@ -81,7 +84,7 @@
         <div class="col-md-3">
           <h2 class="ct-footer-heading">{{ 'footer.columns.services' | translate }}</h2>
           <ul class="ct-footer-links">
-            @for (link of serviceLinks; track link.id) {
+            @for (link of serviceLinks(); track link.id) {
               <li>
                 <a class="ct-footer-link" [routerLink]="link.route">
                   <img
@@ -92,7 +95,7 @@
                     height="28"
                     aria-hidden="true"
                   />
-                  <span>{{ link.labelKey | translate }}</span>
+                  <span>{{ link.label }}</span>
                 </a>
               </li>
             }
@@ -102,7 +105,7 @@
         <div class="col-md-3">
           <h2 class="ct-footer-heading">{{ 'footer.columns.products' | translate }}</h2>
           <ul class="ct-footer-links">
-            @for (link of productLinks; track link.id) {
+            @for (link of productLinks(); track link.id) {
               <li>
                 <a class="ct-footer-link" [routerLink]="link.route">
                   <img
@@ -113,7 +116,7 @@
                     height="28"
                     aria-hidden="true"
                   />
-                  <span>{{ link.labelKey | translate }}</span>
+                  <span>{{ link.label }}</span>
                 </a>
               </li>
             }
@@ -121,12 +124,11 @@
         </div>
       </div>
     </div>
-    </div>
-    
+  </div>
 
   <div class="ct-footer-bottom">
-      <div class="container-fluid">
-        <div class="row align-items-center gy-3 py-3">
+    <div class="container-fluid">
+      <div class="row align-items-center gy-3 py-3">
         <div class="col-md-4">
           <ul class="ct-footer-legal">
             @for (link of legalLinks; track link.id) {
@@ -141,7 +143,7 @@
 
         <div class="col-md-4">
           <ul class="ct-footer-social">
-            @for (item of socialLinks; track item.id) {
+            @for (item of socialLinks(); track item.id) {
               <li>
                 <a
                   class="ct-footer-social-link"

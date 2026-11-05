@@ -22,22 +22,26 @@
         @for (testimonial of testimonials(); track testimonial.id) {
           <div class="swiper-slide testimonials-slide" [attr.data-id]="testimonial.id">
             <article class="testimonial-card">
-              <img
-                class="testimonial-card-image"
-                [src]="testimonial.imageSrc"
-                [alt]="testimonial.imageAlt | translate"
-                loading="lazy"
-                decoding="async"
-              />
-
-              <div class="testimonial-card-author">
+              @if (testimonial.photo?.url) {
                 <img
-                  class="testimonial-card-avatar"
-                  [src]="testimonial.avatarSrc"
-                  alt=""
+                  class="testimonial-card-image"
+                  [src]="testimonial.photo!.url"
+                  [alt]="testimonial.client_name"
                   loading="lazy"
                   decoding="async"
                 />
+              }
+
+              <div class="testimonial-card-author">
+                @if (testimonial.photo?.url) {
+                  <img
+                    class="testimonial-card-avatar"
+                    [src]="testimonial.photo!.url"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                }
                 <div class="testimonial-card-meta">
                   <span
                     class="testimonial-card-rating"
@@ -58,13 +62,13 @@
                       />
                     }
                   </span>
-                  <p class="testimonial-card-name">{{ testimonial.name | translate }}</p>
+                  <p class="testimonial-card-name">{{ testimonial.client_name }}</p>
                 </div>
               </div>
 
               <div class="testimonial-card-footer">
                 <blockquote class="testimonial-card-quote">
-                  {{ testimonial.quote | translate }}
+                  {{ testimonial.comment }}
                 </blockquote>
 
                 <button

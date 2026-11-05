@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductOfferSection } from '../../model/products.model';
+import { ProductIconItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-offer-section',
@@ -11,9 +11,8 @@ import { ProductOfferSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductOfferSectionComponent {
-  readonly data = input.required<ProductOfferSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductIconItem[]>([]);
 
-  iconMask(src: string): string {
-    return `url('${src}')`;
-  }
 }

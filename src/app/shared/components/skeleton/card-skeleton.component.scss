@@ -1,0 +1,60 @@
+@use '../../../../styles/abstracts/mixin' as *;
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.card-skeleton-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 22rem;
+  height: 100%;
+  padding: var(--space-md);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.card-skeleton-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.card-skeleton-project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  box-sizing: border-box;
+  height: 100%;
+  padding: var(--space-xs);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
+}
+
+.card-skeleton-media {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  aspect-ratio: 464 / 380;
+}
+
+.card-skeleton-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border: 1px solid var(--color-white);
+  border-radius: var(--border-radius);
+  background-color: var(--color-white);
+}
+
+@include below(767.98px) {
+  .card-skeleton-info {
+    min-height: 16rem;
+  }
+}

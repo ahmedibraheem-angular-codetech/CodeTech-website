@@ -1,9 +1,12 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import {
+  afterEveryRender,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
+  ElementRef,
   HostListener,
   PLATFORM_ID,
   computed,
@@ -11,16 +14,32 @@ import {
   inject,
   input,
   signal,
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import type { ContactCoordinates } from '../../model/contact-channel.model';
-import type { ContactRequest, ContactServiceOption } from '../../model/contact-form.model';
+import {
+  ContactInfo,
+  ContactIntent,
+  ContactProductOption,
+  ContactServiceOption,
+  ContactSubmissionResponse,
+  ContactValidationError,
+} from '../../models/contact-api.model';
+import { ContactService } from '../../services/contact.service';
+
+type SubmitResult = 'success' | 'error' | 'rateLimited';
+type FormField = 'name' | 'organization' | 'phone' | 'email' | 'optionId' | 'message';
+
+const MAP_HOSTS: readonly string[] = ['www.google.com', 'google.com', 'maps.google.com'];
+const MIN_ZOOM = 8;
+const MAX_ZOOM = 18;
+const DEFAULT_ZOOM = 14;
 
 @Component({
   selector: 'ct-contact-form-section',
@@ -32,6 +51,7 @@ import type { ContactRequest, ContactServiceOption } from '../../model/contact-f
 })
 export class ContactFormSectionComponent {
   private readonly formBuilder = inject(FormBuilder);
+  private readonly contactService = inject(ContactService);
   private readonly language = inject(LanguageService);
   private readonly sanitizer = inject(DomSanitizer);
   private readonly changeDetector = inject(ChangeDetectorRef);
@@ -40,21 +60,74 @@ export class ContactFormSectionComponent {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
 
+  readonly intent = input.required<ContactIntent>();
   readonly services = input.required<ContactServiceOption[]>();
-  readonly coordinates = input.required<ContactCoordinates>();
+  readonly products = input.required<ContactProductOption[]>();
+  readonly contact = input.required<ContactInfo>();
 
-  readonly zoom = signal(14);
-  readonly servicesOpen = signal(false);
-  readonly serviceIds = signal<string[]>([]);
-  readonly submitResult = signal<'success' | 'error' | null>(null);
+  readonly zoom = signal(DEFAULT_ZOOM);
+  readonly optionsOpen = signal(false);
+  readonly submitting = signal(false);
+  readonly submitResult = signal<SubmitResult | null>(null);
+  readonly reference = signal<string | null>(null);
+  readonly retryAfterSeconds = signal<number | null>(null);
+  readonly serverErrors = signal<Readonly<Record<string, string>>>({});
 
   readonly form = this.formBuilder.nonNullable.group({
-    fullName: ['', Validators.required],
-    organizationName: ['', Validators.required],
+    name: ['', Validators.required],
+    organization: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.email],
-    serviceIds: [[] as string[]],
-    brief: [''],
+    optionId: [null as number | null, Validators.required],
+    message: [''],
+    website: [''],
+  });
+
+  /** Options for the single select: services for a project request, products for an inquiry. */
+  readonly options = computed(() =>
+    this.intent() === 'project'
+      ? this.services().map((service) => ({ id: service.id, label: service.name }))
+      : this.products().map((product) => ({ id: product.id, label: product.title })),
+  );
+
+  readonly selectedLabel = computed(() => {
+    const selectedId = this.selectedId();
+    return this.options().find((option) => option.id === selectedId)?.label ?? '';
+  });
+
+  readonly selectedId = signal<number | null>(null);
+
+  readonly mapEmbedUrl = computed<SafeResourceUrl | null>(() => {
+    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
+    if (!url) {
+      return null;
+    }
+
+    if (url.pathname.startsWith('/maps/embed')) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url.toString());
+    }
+
+    const query = url.searchParams.get('query') ?? url.searchParams.get('q');
+    if (!query) {
+      return null;
+    }
+
+    const embed = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${this.zoom()}&hl=${this.language.currentLang()}&output=embed`;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(embed);
+  });
+
+  private readonly resultRoot = viewChild<ElementRef<HTMLElement>>('resultRoot');
+  private resultNode: HTMLElement | null = null;
+
+  readonly mapLinkUrl = computed(() => {
+    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
+    return url ? url.toString() : null;
+  });
+
+  /** Zoom only applies to query based embeds; ready-made embed URLs keep their own zoom. */
+  readonly canZoom = computed(() => {
+    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
+    return !!url && !url.pathname.startsWith('/maps/embed');
   });
 
   constructor() {
@@ -62,102 +135,116 @@ export class ContactFormSectionComponent {
       this.changeDetector.markForCheck();
     });
 
+    this.form.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
+      if (Object.keys(this.serverErrors()).length) {
+        this.serverErrors.set({});
+      }
+    });
+
+    effect(() => {
+      this.intent();
+      this.selectedId.set(null);
+      this.form.controls.optionId.reset(null);
+      this.optionsOpen.set(false);
+    });
+
     effect(() => {
       this.syncPageScroll(this.submitResult() !== null);
     });
 
+    afterEveryRender(() => this.attachResultToPage());
+
     this.destroyRef.onDestroy(() => {
       this.syncPageScroll(false);
+      this.resultNode?.remove();
+      this.resultNode = null;
     });
   }
 
-  readonly mapUrl = computed(() => {
-    const { latitude, longitude } = this.coordinates();
-    const url = `https://maps.google.com/maps?q=${latitude},${longitude}&z=${this.zoom()}&hl=${this.language.currentLang()}&output=embed`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  });
-
-  readonly allSelected = computed(() => {
-    const services = this.services();
-    if (!services.length) {
-      return false;
+  /** Keep the dialog centered on the viewport, outside transformed page content. */
+  private attachResultToPage(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
     }
 
-    const selected = new Set(this.serviceIds());
-    return services.every((service) => selected.has(service.id));
-  });
+    const node = this.resultRoot()?.nativeElement ?? null;
+    this.resultNode = node;
+    if (!node || node.parentElement === this.document.body) {
+      return;
+    }
 
-  readonly selectedSummary = computed(() => {
-    const selected = new Set(this.serviceIds());
-    const labels = this.services()
-      .filter((service) => selected.has(service.id))
-      .map((service) => service.label);
-
-    return {
-      name: labels[0] ?? '',
-      count: labels.length,
-    };
-  });
-
-  isInvalid(name: 'fullName' | 'organizationName' | 'phone'): boolean {
-    const control = this.form.controls[name];
-    return control.invalid && control.touched;
+    this.document.body.appendChild(node);
   }
 
-  isServiceSelected(id: string): boolean {
-    return this.serviceIds().includes(id);
+  isInvalid(field: FormField): boolean {
+    const control = this.form.controls[field];
+    return (control.invalid && control.touched) || !!this.serverError(field);
   }
 
-  toggleServices(): void {
-    this.servicesOpen.update((open) => !open);
+  serverError(field: FormField): string | null {
+    return this.serverErrors()[this.apiField(field)] ?? null;
   }
 
-  toggleAllServices(): void {
-    const next = this.allSelected() ? [] : this.services().map((service) => service.id);
-    this.serviceIds.set(next);
-    this.form.controls.serviceIds.setValue(next);
+  toggleOptions(): void {
+    this.optionsOpen.update((open) => !open);
   }
 
-  toggleService(id: string): void {
-    const next = this.serviceIds().includes(id)
-      ? this.serviceIds().filter((item) => item !== id)
-      : [...this.serviceIds(), id];
-
-    this.serviceIds.set(next);
-    this.form.controls.serviceIds.setValue(next);
+  selectOption(id: number): void {
+    this.selectedId.set(id);
+    this.form.controls.optionId.setValue(id);
+    this.form.controls.optionId.markAsTouched();
+    this.optionsOpen.set(false);
   }
 
   zoomIn(): void {
-    this.zoom.update((value) => Math.min(value + 1, 18));
+    this.zoom.update((value) => Math.min(value + 1, MAX_ZOOM));
   }
 
   zoomOut(): void {
-    this.zoom.update((value) => Math.max(value - 1, 8));
+    this.zoom.update((value) => Math.max(value - 1, MIN_ZOOM));
   }
 
   submit(): void {
     this.form.markAllAsTouched();
-    this.servicesOpen.set(false);
+    this.optionsOpen.set(false);
     this.changeDetector.markForCheck();
 
-    if (this.form.invalid) {
+    if (this.form.invalid || this.submitting()) {
       return;
     }
 
     const value = this.form.getRawValue();
-    const request: ContactRequest = {
-      fullName: value.fullName.trim(),
-      organizationName: value.organizationName.trim(),
+    const optionId = value.optionId;
+    if (optionId === null) {
+      return;
+    }
+
+    const common = {
+      name: value.name.trim(),
+      organization: value.organization.trim(),
       phone: value.phone.trim(),
-      email: value.email.trim(),
-      serviceIds: value.serviceIds,
-      brief: value.brief.trim(),
+      email: value.email.trim() || null,
+      message: value.message.trim() || null,
+      website: value.website,
     };
 
-    console.log(request);
-    this.serviceIds.set([]);
-    this.form.reset();
-    this.submitResult.set('success');
+    this.submitting.set(true);
+
+    const request$ =
+      this.intent() === 'project'
+        ? this.contactService.submitProjectRequest({ ...common, service_id: optionId })
+        : this.contactService.submitInquiry({ ...common, product_id: optionId });
+
+    request$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: (response) => {
+        this.submitting.set(false);
+        this.onSuccess(response.body);
+      },
+      error: (error: unknown) => {
+        this.submitting.set(false);
+        this.onFailure(error);
+      },
+    });
   }
 
   closeResult(): void {
@@ -177,6 +264,67 @@ export class ContactFormSectionComponent {
   onEscape(): void {
     if (this.submitResult()) {
       this.closeResult();
+    }
+  }
+
+  private onSuccess(body: ContactSubmissionResponse | null): void {
+    this.reference.set(body?.data?.reference ?? null);
+    this.selectedId.set(null);
+    this.form.reset();
+    this.submitResult.set('success');
+  }
+
+  private onFailure(error: unknown): void {
+    if (!(error instanceof HttpErrorResponse)) {
+      this.submitResult.set('error');
+      return;
+    }
+
+    if (error.status === 422) {
+      this.applyValidationErrors(error.error as ContactValidationError | null);
+      return;
+    }
+
+    if (error.status === 429) {
+      const retryAfter = Number(error.headers.get('Retry-After'));
+      this.retryAfterSeconds.set(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter : null);
+      this.submitResult.set('rateLimited');
+      return;
+    }
+
+    this.submitResult.set('error');
+  }
+
+  private applyValidationErrors(body: ContactValidationError | null): void {
+    const errors: Record<string, string> = {};
+
+    for (const [field, messages] of Object.entries(body?.errors ?? {})) {
+      if (messages[0]) {
+        errors[field] = messages[0];
+      }
+    }
+
+    this.serverErrors.set(errors);
+    this.form.markAllAsTouched();
+    this.changeDetector.markForCheck();
+  }
+
+  private apiField(field: FormField): string {
+    if (field === 'optionId') {
+      return this.intent() === 'project' ? 'service_id' : 'product_id';
+    }
+
+    return field;
+  }
+
+  private parseGoogleMapsUrl(value: string): URL | null {
+    try {
+      const url = new URL(value);
+      const isGoogleMaps =
+        url.protocol === 'https:' && MAP_HOSTS.includes(url.hostname) && url.pathname.startsWith('/maps');
+      return isGoogleMaps ? url : null;
+    } catch {
+      return null;
     }
   }
 

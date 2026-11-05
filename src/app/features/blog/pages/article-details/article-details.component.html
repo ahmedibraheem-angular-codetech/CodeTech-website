@@ -1,17 +1,81 @@
-<ct-page-hero
-  [title]="'blog.details.title' | translate"
-  [description]="'blog.details.description' | translate"
-/>
-
-@if (details(); as page) {
-  <article class="container article-details" [innerHTML]="safeHtml()"></article>
-
-  @if (page.related.isPublished) {
-    <ct-related-articles-section [data]="page.related" />
-  }
-} @else {
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="28rem" radius="1rem" />
+    <div class="mt-4">
+      <ct-skeleton width="100%" height="1.5rem" />
+    </div>
+    <div class="mt-2">
+      <ct-skeleton width="80%" height="1.5rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (status() === 'notFound') {
   <section class="container article-missing">
     <h1 class="article-missing-title">{{ 'blog.notFound' | translate }}</h1>
     <a class="article-missing-link" routerLink="/blog">{{ 'blog.back' | translate }}</a>
   </section>
+} @else if (article(); as article) {
+  <ct-page-hero [title]="article.title" [description]="article.excerpt" />
+
+  <article class="container article-details">
+    <div class="article-cover">
+      @if (article.cover?.url ?? article.thumbnail?.url; as coverUrl) {
+        <img
+          class="article-cover-image"
+          [src]="coverUrl"
+          [alt]="article.cover_alt ?? article.thumbnail_alt ?? ''"
+          loading="lazy"
+          decoding="async"
+        />
+      }
+      <div class="article-cover-shade" aria-hidden="true"></div>
+      <span class="article-cover-badge">
+        {{ 'blog.categoryLabel' | translate }}: {{ article.category.name }}
+      </span>
+      <div class="article-cover-bar">
+        <div class="article-author">
+          @if (article.author.photo?.url; as photoUrl) {
+            <img
+              class="article-author-avatar"
+              [src]="photoUrl"
+              [alt]="article.author.name"
+              loading="lazy"
+              decoding="async"
+            />
+          }
+          <div>
+            <p class="article-author-name">{{ article.author.name }}</p>
+          </div>
+        </div>
+        <div class="article-meta">
+          <span class="article-meta-item">
+            <span class="article-meta-badge" aria-hidden="true">
+              <span class="article-meta-icon article-meta-icon-calendar"></span>
+            </span>
+            {{ 'blog.publishedAt' | translate }}
+            <time [attr.datetime]="article.published_at">
+              {{ article.published_at | localizedDate: lang() }}
+            </time>
+          </span>
+          <span class="article-meta-item">
+            <span class="article-meta-badge article-meta-badge-clock" aria-hidden="true">
+              <span class="article-meta-icon article-meta-icon-clock"></span>
+            </span>
+            {{ 'blog.readingTime' | translate: { count: article.reading_time_minutes } }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="article-body" [innerHTML]="article.content"></div>
+  </article>
+
+  @if (article.related.length) {
+    <ct-related-articles-section
+      [label]="'blog.related.label' | translate"
+      [title]="'blog.related.title' | translate"
+      [articles]="article.related"
+    />
+  }
 }

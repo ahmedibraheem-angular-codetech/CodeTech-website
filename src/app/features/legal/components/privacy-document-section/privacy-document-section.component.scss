@@ -104,3 +104,49 @@
     padding-block: var(--space-sm) 0;
   }
 }
+
+.privacy-document-updated {
+  @include body-small;
+  margin: 0 0 var(--space-md);
+  color: var(--color-text-tertiary);
+}
+
+:host ::ng-deep .privacy-document-html {
+  max-width: 56rem;
+}
+
+:host ::ng-deep .privacy-document-html p {
+  @include body-small;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+:host ::ng-deep .privacy-document-html strong {
+  @include legal-block-title;
+}
+
+:host ::ng-deep .privacy-document-html hr {
+  margin: var(--space-md) 0;
+  border: 0;
+  border-top: 1px solid var(--color-background);
+  opacity: 1;
+}
+
+:host ::ng-deep .privacy-document-html ul {
+  margin: 0 0 var(--space-sm);
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+:host ::ng-deep .privacy-document-html li {
+  @include body-small;
+  margin: 0 0 6px;
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+}
+
+:host ::ng-deep .privacy-document-html a {
+  color: inherit;
+  text-decoration: underline;
+}

@@ -7,12 +7,12 @@
     </h2>
 
     <div class="row g-3">
-      @for (member of data().members; track member.id) {
+      @for (member of members(); track member.id) {
         <div class="col-6 col-lg-3">
           <article class="team-card">
             <img
               class="team-card-mark"
-              [src]="data().cardBgSrc"
+              [src]="cardBgSrc"
               alt=""
               aria-hidden="true"
               loading="lazy"
@@ -20,18 +20,20 @@
             />
 
             <div class="team-card-copy">
-              <span class="team-card-role">{{ member.role | translate }}</span>
-              <h3 class="team-card-name">{{ member.name | translate }}</h3>
+              <span class="team-card-role">{{ member.job_title }}</span>
+              <h3 class="team-card-name">{{ member.name }}</h3>
             </div>
 
             <div class="team-card-media">
-              <img
-                class="team-card-image"
-                [src]="member.imageSrc"
-                [alt]="member.imageAlt | translate"
-                loading="lazy"
-                decoding="async"
-              />
+              @if (member.photo?.url) {
+                <img
+                  class="team-card-image"
+                  [src]="member.photo?.url"
+                  [alt]="member.name"
+                  loading="lazy"
+                  decoding="async"
+                />
+              }
             </div>
           </article>
         </div>

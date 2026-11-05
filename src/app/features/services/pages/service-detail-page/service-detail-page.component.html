@@ -1,77 +1,89 @@
-@if (detail(); as service) {
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="16rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="12rem" />
+      <ct-skeleton width="100%" height="12rem" />
+    </div>
+  </section>
+} @else if (status() === 'notFound') {
+  <section class="service-missing">
+    <div class="container">
+      <h1 class="service-missing-title">{{ 'services.detail.notFound.title' | translate }}</h1>
+      <a class="service-missing-link" routerLink="/services">{{
+        'services.detail.notFound.back' | translate
+      }}</a>
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (service(); as detail) {
   <ct-page-hero
-    [title]="service.hero.title | translate"
-    [description]="service.hero.description | translate"
+    [title]="detail.name"
+    [description]="detail.description"
     [buttonLabel]="'services.detail.hero.cta' | translate"
     (ctaClick)="goToContact()"
   />
 
-  @if (service.whyNeeded !== null) {
-    <ct-why-needed-section [data]="service.whyNeeded" />
-  }
-
-  @if (service.solutions !== null) {
-    <ct-solutions-section [data]="service.solutions" />
-  }
-
-  @if (service.steps !== null) {
-    <ct-journey-section
-      [label]="service.steps.label | translate"
-      [title]="service.steps.title | translate"
-      [cards]="service.steps.cards"
+  @if (detail.needs.length) {
+    <ct-why-needed-section
+      [label]="'services.detail.whyNeeded.label' | translate"
+      [title]="'services.detail.whyNeeded.title' | translate"
+      [image]="detail.why_image"
+      [imageText]="detail.why_image_text"
+      [needs]="detail.needs"
     />
   }
 
-  @if (service.features !== null) {
+  @if (detail.solutions.length) {
+    <ct-solutions-section
+      [label]="'services.detail.solutions.label' | translate"
+      [title]="'services.detail.solutions.title' | translate"
+      [solutions]="detail.solutions"
+    />
+  }
+
+  @if (detail.stages.length) {
+    <ct-stages-section
+      [label]="'services.detail.stages.label' | translate"
+      [title]="'services.detail.stages.title' | translate"
+      [stages]="detail.stages"
+    />
+  }
+
+  @if (detail.features.length) {
     <ct-features-section
-      [label]="service.features.label | translate"
-      [title]="service.features.title | translate"
-      [features]="service.features.items"
+      [label]="'services.detail.features.label' | translate"
+      [title]="'services.detail.features.title' | translate"
+      [features]="detail.features"
     />
   }
 
-  @if (service.technologies !== null) {
-    <ct-technologies-section
-      [label]="service.technologies.label | translate"
-      [title]="service.technologies.title | translate"
-      [items]="service.technologies.items"
-      [tools]="service.technologies.tools"
-    />
-  }
-
-  @if (service.projects !== null) {
+  @if (detail.projects.length) {
     <ct-projects-section
-      [label]="service.projects.label | translate"
-      [title]="service.projects.title | translate"
-      [projects]="service.projects.items"
+      [label]="'services.detail.projects.label' | translate"
+      [title]="'services.detail.projects.title' | translate"
+      [projects]="detail.projects"
+      link=""
     />
   }
 
- 
-
-  @if (service.industries !== null) {
+  @if (detail.sectors.length) {
     <ct-industries-section
-      [label]="service.industries.label | translate"
-      [title]="service.industries.title | translate"
-      [items]="service.industries.items"
+      [label]="'services.detail.sectors.label' | translate"
+      [title]="'services.detail.sectors.title' | translate"
+      [items]="detail.sectors"
     />
   }
 
-  @if (service.faqs !== null) {
+  @if (detail.faqs.length) {
     <ct-faq-section
       [label]="'services.faq.label' | translate"
       [title]="'services.faq.title' | translate"
-      [items]="service.faqs"
+      [items]="detail.faqs"
       [linkLabel]="'common.viewAllFaq' | translate"
       linkRoute="/faq"
-      [value]="service.faqs[0]?.id ?? null"
+      [value]="detail.faqs[0]?.id ?? null"
     />
   }
-} @else {
-  <ct-page-hero
-    [title]="'services.detail.hero.title' | translate"
-    [description]="'services.detail.hero.description' | translate"
-    [buttonLabel]="'services.detail.hero.cta' | translate"
-    (ctaClick)="goToContact()"
-  />
 }

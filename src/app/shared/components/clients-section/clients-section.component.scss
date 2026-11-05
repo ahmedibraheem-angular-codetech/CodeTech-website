@@ -38,7 +38,7 @@
   @include flex-center;
   aspect-ratio: 220 / 140;
   border-radius: var(--border-radius);
-  background-color: var(--color-primary);
+  border: 1px solid var(--color-button-light);
 }
 
 .client-card-logo {

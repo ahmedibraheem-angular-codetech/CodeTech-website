@@ -2,7 +2,16 @@
   "common": {
     "prev": "Previous",
     "next": "Next",
-    "viewAllFaq": "View all questions"
+    "viewAllFaq": "View all questions",
+    "error": {
+      "title": "Something went wrong",
+      "description": "We could not load this content right now. Please try again.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "title": "No results found",
+      "description": "There is nothing to show here yet."
+    }
   },
   "header": {
     "logoAlt": "CodeTech",

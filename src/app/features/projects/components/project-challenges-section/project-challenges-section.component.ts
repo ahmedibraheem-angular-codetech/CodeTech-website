@@ -18,7 +18,7 @@ import { Autoplay } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { ProjectChallengesSection } from '../../model/projects.model';
+import { ProjectChallenge } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-challenges-section',
@@ -36,7 +36,9 @@ export class ProjectChallengesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<ProjectChallengesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input.required<ProjectChallenge[]>();
 
   readonly canPrev = signal(true);
   readonly canNext = signal(true);
@@ -52,7 +54,7 @@ export class ProjectChallengesSectionComponent {
         });
 
         effect(() => {
-          this.data().items;
+          this.items();
           untracked(() => this.refreshSwiper());
         });
       });

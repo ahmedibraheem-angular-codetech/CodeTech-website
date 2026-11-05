@@ -8,23 +8,50 @@
   (secondaryClick)="goToContact()"
 />
 
-<ct-product-list-section [data]="productList()" />
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="20rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="12rem" />
+      <ct-skeleton width="100%" height="12rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as products) {
+  @if (products.sections.products_visible && products.products.length) {
+    <ct-product-list-section
+      [label]="'products.list.label' | translate"
+      [title]="'products.list.title' | translate"
+      [exploreLabel]="'products.list.explore' | translate"
+      [products]="products.products"
+    />
+  }
 
+  @if (products.sections.why_visible && products.features.length) {
+    <ct-product-reasons-section
+      [label]="'products.why.label' | translate"
+      [title]="'products.why.title' | translate"
+      [items]="products.features"
+    />
+  }
 
-<ct-product-reasons-section [data]="productReasons()" />
+  @if (products.sections.sectors_visible && products.sectors.length) {
+    <ct-industries-section
+      [label]="'products.sectors.label' | translate"
+      [title]="'products.sectors.title' | translate"
+      [items]="products.sectors"
+    />
+  }
 
-<ct-industries-section
-  [label]="productIndustries().label"
-  [title]="productIndustries().title"
-  [items]="productIndustries().items"
-/>
-
-<ct-faq-section
-  [label]="productFaq().label"
-  [title]="productFaq().title"
-  [items]="productFaq().items"
-  [linkLabel]="'common.viewAllFaq' | translate"
-  linkRoute="/faq"
-  [value]="productFaq().items[0]?.id ?? null"
-/>
-
+  @if (products.faqs.length) {
+    <ct-faq-section
+      [label]="'products.faq.label' | translate"
+      [title]="'products.faq.title' | translate"
+      [items]="products.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="products.faqs[0]?.id ?? null"
+    />
+  }
+}

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProjectResultsSection } from '../../model/projects.model';
+import { ProjectResult } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-results-section',
@@ -11,5 +11,17 @@ import { ProjectResultsSection } from '../../model/projects.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectResultsSectionComponent {
-  readonly data = input.required<ProjectResultsSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input.required<ProjectResult[]>();
+
+  /** Grid area class per card position, matching the layout in the SCSS. */
+  readonly areas: readonly string[] = [
+    'time',
+    'performance',
+    'speed',
+    'productivity',
+    'experience',
+    'errors',
+  ];
 }

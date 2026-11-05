@@ -53,6 +53,12 @@
   text-transform: capitalize;
 }
 
+.product-solution-description {
+  @include body-small;
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
 .product-solution-points {
   display: flex;
   flex-wrap: wrap;
@@ -101,8 +107,10 @@
 
 .product-solution-image {
   display: block;
-  width: calc(24.5625rem * 646 / 702);
-  height: auto;
+  width: 20.1875rem;
+  height: 24.75rem;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 @include below(991.98px) {
@@ -123,7 +131,9 @@
   }
 
   .product-solution-image {
-    width: min(100%, 16rem);
+    width: min(100%, 20.1875rem);
+    height: auto;
+    aspect-ratio: 323 / 396;
   }
 
   .product-solution-point {

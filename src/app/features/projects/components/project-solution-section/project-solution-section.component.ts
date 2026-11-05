@@ -1,6 +1,16 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ApiFile } from '../../../../core/api/api.model';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProjectSolutionSection } from '../../model/projects.model';
+import { ProjectSolution } from '../../models/projects-api.model';
+
+/** Grid cell: either a solution card or the media preview (`solution` is null). */
+interface SolutionCell {
+  id: string;
+  solution: ProjectSolution | null;
+}
+
+/** The preview image sits in the fifth cell of the grid. */
+const MEDIA_CELL_INDEX = 4;
 
 @Component({
   selector: 'ct-project-solution-section',
@@ -11,13 +21,24 @@ import { ProjectSolutionSection } from '../../model/projects.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectSolutionSectionComponent {
-  readonly data = input.required<ProjectSolutionSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly solutions = input.required<ProjectSolution[]>();
+  readonly image = input<ApiFile | null>(null);
+  readonly imageAlt = input<string | null>(null);
+  readonly imageTitle = input<string | null>(null);
 
-  iconMask(src: string): string {
-    return `url('${src}')`;
-  }
+  readonly cells = computed<SolutionCell[]>(() => {
+    const cells: SolutionCell[] = this.solutions().map((solution) => ({
+      id: `solution-${solution.id}`,
+      solution,
+    }));
 
-  isMedia(imageSrc: string): boolean {
-    return imageSrc.trim().length > 0;
-  }
+    if (this.image()?.url) {
+      cells.splice(Math.min(MEDIA_CELL_INDEX, cells.length), 0, { id: 'media', solution: null });
+    }
+
+    return cells;
+  });
+
 }

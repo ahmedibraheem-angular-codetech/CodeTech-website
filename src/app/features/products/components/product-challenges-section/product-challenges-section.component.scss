@@ -22,7 +22,6 @@
 .product-challenges-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.52fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: 11rem 7.2rem 3.5rem 12rem;
   gap: var(--space-cards);
   @include reset-list;
 }
@@ -70,10 +69,7 @@
   display: block;
   width: var(--btn-icon-size);
   height: var(--btn-icon-size);
-  background-color: var(--color-primary);
-  mask: center / contain no-repeat;
-  -webkit-mask: center / contain no-repeat;
-  transition: background-color 0.3s ease;
+  object-fit: contain;
 }
 
 .product-challenges-copy {

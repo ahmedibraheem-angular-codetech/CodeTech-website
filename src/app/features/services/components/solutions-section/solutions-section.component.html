@@ -5,24 +5,24 @@
   <div class="container">
     <div class="solutions-panel">
       <div class="solutions-header">
-        <ct-divider [label]="data().label | translate" />
+        <ct-divider [label]="label()" />
         <h2 id="solutions-section-title" class="solutions-title">
-          {{ data().title | translate }}
+          {{ title() }}
         </h2>
       </div>
 
       <div class="solutions-grid">
         <div class="row g-0">
-          @for (item of data().items; track item.id; let i = $index) {
+          @for (item of solutions(); track item.id; let i = $index) {
             <div
               class="col-12 col-md-4 solutions-grid-cell"
               [class.solutions-grid-cell-first]="i === 0"
             >
               <ct-info-card
                 class="solutions-info-card"
-                [icon]="item.iconSrc"
+                [icon]="item.icon?.url ?? ''"
                 [minHeight]="'13rem'"
-                [data]="{ title: item.title, description: item.description }"
+                [data]="{ title: item.title, description: item.short_description }"
               />
             </div>
           }

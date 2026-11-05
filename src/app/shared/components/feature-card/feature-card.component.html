@@ -1,14 +1,24 @@
-<article class="feature-card">
-  <img
-    class="feature-card-image"
-    [src]="data().imageSrc"
-    [alt]="data().imageAlt | translate"
-    loading="lazy"
-    decoding="async"
-  />
+<article
+  class="feature-card"
+  [class.feature-card-no-image]="!data().image?.url"
+>
+  @if (data().image?.url) {
+    <img
+      class="feature-card-image"
+      [src]="data().image?.url"
+      [alt]="translateKeys() ? (data().title | translate) : data().title"
+      loading="lazy"
+      decoding="async"
+    />
+  }
 
   <div class="feature-card-body">
-    <h3 class="feature-card-title">{{ data().title | translate }}</h3>
-    <p class="feature-card-description">{{ data().description | translate }}</p>
+    @if (translateKeys()) {
+      <h3 class="feature-card-title">{{ data().title | translate }}</h3>
+      <p class="feature-card-description">{{ data().short_description | translate }}</p>
+    } @else {
+      <h3 class="feature-card-title">{{ data().title }}</h3>
+      <p class="feature-card-description">{{ data().short_description }}</p>
+    }
   </div>
 </article>

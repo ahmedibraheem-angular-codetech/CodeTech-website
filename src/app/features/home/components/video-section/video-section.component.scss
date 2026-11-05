@@ -1,30 +1,34 @@
 @use '../../../../../styles/abstracts/mixin' as *;
+
 .home-video-section {
   padding-bottom: var(--space-section);
-
 }
 
 .video-container {
-  border: 5px solid  var(--color-background);
+  border: 5px solid var(--color-background);
   border-radius: var(--border-radius);
-
-  padding: 0px;
-
+  padding: 0;
 }
+
 .video-mosaic {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 38.9375rem;
   overflow: hidden;
   border-radius: var(--border-radius);
-  border: 5px solid  #CAE3FD;
+  border: 5px solid #cae3fd;
   background-color: var(--color-primary);
 }
 
 .video-mosaic-image {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .video-play {
@@ -68,7 +72,18 @@
   -webkit-mask: url('/assets/icons/play.svg') center / contain no-repeat;
 }
 
+@include below(991.98px) {
+  .video-mosaic {
+    max-height: 28rem;
+  }
+}
+
 @include below(767.98px) {
+  .video-mosaic {
+    aspect-ratio: 16 / 10;
+    max-height: 18rem;
+  }
+
   .video-play {
     width: 4rem;
     height: 4rem;
@@ -77,5 +92,27 @@
   .video-play-icon {
     width: 1.25rem;
     height: 1.25rem;
+  }
+}
+
+@include below(575.98px) {
+  .video-mosaic {
+    aspect-ratio: 4 / 3;
+    max-height: 14.5rem;
+  }
+
+  .video-container,
+  .video-mosaic {
+    border-width: 3px;
+  }
+
+  .video-play {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .video-play-icon {
+    width: 1rem;
+    height: 1rem;
   }
 }

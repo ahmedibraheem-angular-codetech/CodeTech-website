@@ -1,74 +1,141 @@
-@if (hero(); as hero) {
-  <ct-product-hero-section [data]="hero" (ctaClick)="goToContact()" />
-
-  @if (stats(); as stats) {
-    <ct-product-stats-section [data]="stats" />
-  }
-
-  @if (challenges(); as challenges) {
-    <ct-product-challenges-section [data]="challenges" />
-  }
-
-  @if (solution(); as solution) {
-    <ct-product-solution-section [data]="solution" (ctaClick)="goToContact()" />
-  }
-
-  @if (choose(); as choose) {
-    <ct-product-reasons-section [data]="choose" />
-  }
-
-  @if (features(); as features) {
-    <ct-product-features-section [data]="features" />
-  }
-
-  @if (modules(); as modules) {
-    <ct-product-modules-section [data]="modules" (exploreClick)="goToContact()" />
-  }
-
-  @if (offer(); as offer) {
-    <ct-product-offer-section [data]="offer" />
-  }
-
-  @if (results(); as results) {
-    <ct-product-results-section [data]="results" />
-  }
-
-  @if (interfaces(); as interfaces) {
-    <ct-product-interfaces-section [data]="interfaces" />
-  }
-
-  @if (steps(); as steps) {
-    <ct-product-steps-section [data]="steps" />
-  }
-
-  @if (industries(); as industries) {
-    <ct-product-industries-section [data]="industries" />
-  }
-
-  @if (technologies(); as technologies) {
-    <ct-technologies-section
-      [label]="technologies.label"
-      [title]="technologies.title"
-      [items]="technologies.items"
-      [tools]="technologies.tools"
-    />
-  }
-
-  @if (faq(); as faq) {
-    <ct-faq-section
-      [label]="faq.label"
-      [title]="faq.title"
-      [items]="faq.items"
-      [linkLabel]="'common.viewAllFaq' | translate"
-      linkRoute="/faq"
-      [value]="faq.items[0]?.id ?? null"
-    />
-  }
-} @else {
-  <section class="product-missing">
-    <div class="container">
-      <h1 class="product-missing-title">{{ missing().title }}</h1>
-      <a class="product-missing-link" routerLink="/products">{{ missing().back }}</a>
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <ct-skeleton width="100%" height="20rem" radius="1rem" />
+    <div class="mt-4 d-flex gap-3">
+      <ct-skeleton width="100%" height="10rem" />
+      <ct-skeleton width="100%" height="10rem" />
+      <ct-skeleton width="100%" height="10rem" />
     </div>
   </section>
+} @else if (status() === 'notFound') {
+  <section class="product-missing">
+    <div class="container">
+      <h1 class="product-missing-title">{{ 'products.notFound' | translate }}</h1>
+      <a class="product-missing-link" routerLink="/products">{{ 'products.back' | translate }}</a>
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (product(); as detail) {
+  <ct-product-hero-section
+    [title]="detail.title"
+    [description]="detail.description"
+    [image]="detail.cover"
+    [imageAlt]="detail.cover_alt"
+    [imageTitle]="detail.cover_title"
+    [buttonLabel]="'products.detail.demo' | translate"
+    (ctaClick)="goToContact()"
+  />
+
+  @if (detail.stats.length) {
+    <ct-product-stats-section
+      [label]="'products.detail.stats.label' | translate"
+      [title]="'products.detail.stats.title' | translate"
+      [items]="detail.stats"
+    />
+  }
+
+  @if (detail.challenges.length) {
+    <ct-product-challenges-section
+      [label]="'products.detail.challenges.label' | translate"
+      [title]="'products.detail.challenges.title' | translate"
+      [items]="detail.challenges"
+    />
+  }
+
+  @if (detail.solution_title) {
+    <ct-product-solution-section
+      [title]="detail.solution_title"
+      [description]="detail.solution_description"
+      [image]="detail.solution_image"
+      [buttonLabel]="'products.detail.solution.cta' | translate"
+      (ctaClick)="goToContact()"
+    />
+  }
+
+  @if (detail.reasons.length) {
+    <ct-product-reasons-section
+      [label]="'products.detail.reasons.label' | translate"
+      [title]="'products.detail.reasons.title' | translate"
+      [items]="detail.reasons"
+    />
+  }
+
+  @if (detail.advantages.length) {
+    <ct-product-features-section
+      [label]="'products.detail.advantages.label' | translate"
+      [title]="'products.detail.advantages.title' | translate"
+      [items]="detail.advantages"
+    />
+  }
+
+  @if (detail.modules.length) {
+    <ct-product-modules-section
+      [label]="'products.detail.modules.label' | translate"
+      [title]="'products.detail.modules.title' | translate"
+      [exploreLabel]="'products.detail.modules.explore' | translate"
+      [items]="detail.modules"
+      (exploreClick)="goToContact()"
+    />
+  }
+
+  @if (detail.offerings.length) {
+    <ct-product-offer-section
+      [label]="'products.detail.offerings.label' | translate"
+      [title]="'products.detail.offerings.title' | translate"
+      [items]="detail.offerings"
+    />
+  }
+
+  @if (detail.results.length) {
+    <ct-product-results-section
+      [label]="'products.detail.results.label' | translate"
+      [title]="'products.detail.results.title' | translate"
+      [items]="detail.results"
+    />
+  }
+
+  @if (detail.identity_items.length) {
+    <ct-product-interfaces-section
+      [label]="'products.detail.identity.label' | translate"
+      [title]="'products.detail.identity.title' | translate"
+      [aboutLabel]="'products.detail.identity.about' | translate"
+      [items]="detail.identity_items"
+    />
+  }
+
+  @if (detail.workflow_steps.length) {
+    <ct-product-steps-section
+      [label]="'products.detail.workflow.label' | translate"
+      [title]="'products.detail.workflow.title' | translate"
+      [items]="detail.workflow_steps"
+    />
+  }
+
+  @if (detail.sectors.length) {
+    <ct-product-industries-section
+      [label]="'products.detail.sectors.label' | translate"
+      [title]="'products.detail.sectors.title' | translate"
+      [items]="detail.sectors"
+    />
+  }
+
+  @if (detail.integrations.length) {
+    <ct-technologies-section
+      [label]="'products.detail.integrations.label' | translate"
+      [title]="'products.detail.integrations.title' | translate"
+      [tools]="detail.integrations"
+    />
+  }
+
+  @if (detail.faqs.length) {
+    <ct-faq-section
+      [label]="'products.faq.label' | translate"
+      [title]="'products.faq.title' | translate"
+      [items]="detail.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="detail.faqs[0]?.id ?? null"
+    />
+  }
 }

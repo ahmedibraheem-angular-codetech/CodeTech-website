@@ -1,4 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,7 +8,7 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -16,11 +17,15 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { filter } from 'rxjs';
+import { catchError, filter, of, switchMap, tap } from 'rxjs';
+import { PageLoadStatus } from '../../api/api.model';
+import { LanguageService } from '../../i18n/language.service';
 import { NetworkService } from '../../network/network.service';
 import { OfflinePageComponent } from '../../offline/offline-page.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
+import { LayoutData } from '../models/layout.model';
+import { LayoutService } from '../services/layout.service';
 
 @Component({
   selector: 'ct-main-layout',
@@ -35,15 +40,43 @@ export class MainLayoutComponent {
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
-
+  private readonly language = inject(LanguageService);
+  private readonly layoutService = inject(LayoutService);
   readonly network = inject(NetworkService);
   readonly pagePhase = signal<'idle' | 'leave' | 'enter'>('idle');
+  readonly layoutStatus = signal<PageLoadStatus>('loading');
+  readonly layout = signal<LayoutData | null>(null);
 
   private enterTimer: ReturnType<typeof setTimeout> | null = null;
   private isFirstNav = true;
   private pendingPathChange = false;
 
   constructor() {
+    toObservable(this.language.currentLang)
+      .pipe(
+        tap(() => this.layoutStatus.set('loading')),
+        switchMap(() =>
+          this.layoutService.getLayout().pipe(
+            catchError((error: unknown) => {
+              this.layout.set(null);
+              this.layoutStatus.set(
+                error instanceof HttpErrorResponse && error.status === 0 ? 'error' : 'error'
+              );
+              return of(null);
+            })
+          )
+        ),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe((response) => {
+        if (!response) {
+          return;
+        }
+
+        this.layout.set(response.data);
+        this.layoutStatus.set('success');
+      });
+
     if (!this.isBrowser) {
       return;
     }

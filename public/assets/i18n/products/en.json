@@ -7,6 +7,75 @@
       "contact": "Contact us"
     },
     "notFound": "Product not found",
-    "back": "Back to products"
+    "back": "Back to products",
+    "list": {
+      "label": "Our journey",
+      "title": "CodeTech products",
+      "explore": "Explore product"
+    },
+    "why": {
+      "label": "Our advantages",
+      "title": "Why CodeTech products?"
+    },
+    "sectors": {
+      "label": "Our sectors",
+      "title": "Target sectors"
+    },
+    "faq": {
+      "label": "FAQ",
+      "title": "Frequently asked questions"
+    },
+    "detail": {
+      "demo": "Request a demo",
+      "stats": {
+        "label": "Numbers and statistics",
+        "title": "The product in numbers"
+      },
+      "challenges": {
+        "label": "Facing these challenges?",
+        "title": "If you face one of these problems,\nyou are in the right place to solve it."
+      },
+      "solution": {
+        "cta": "Request a demo"
+      },
+      "reasons": {
+        "label": "Our advantages",
+        "title": "Why choose this product?"
+      },
+      "advantages": {
+        "label": "What sets the product apart",
+        "title": "Key features"
+      },
+      "modules": {
+        "label": "Modules",
+        "title": "System modules",
+        "explore": "Explore module"
+      },
+      "offerings": {
+        "label": "About the product",
+        "title": "What can this product offer you?"
+      },
+      "results": {
+        "label": "Results",
+        "title": "Results you will achieve"
+      },
+      "identity": {
+        "label": "Digital identity",
+        "title": "System interfaces",
+        "about": "About the product"
+      },
+      "workflow": {
+        "label": "Steps",
+        "title": "How does the system work?"
+      },
+      "sectors": {
+        "label": "Sectors that fit this product",
+        "title": "Target sectors"
+      },
+      "integrations": {
+        "label": "Our tools",
+        "title": "Integrated with"
+      }
+    }
   }
 }

@@ -8,7 +8,7 @@ import {
   untracked,
 } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductInterfaceItem, ProductInterfacesSection } from '../../model/products.model';
+import { ProductImageItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-interfaces-section',
@@ -19,12 +19,15 @@ import { ProductInterfaceItem, ProductInterfacesSection } from '../../model/prod
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductInterfacesSectionComponent {
-  readonly data = input.required<ProductInterfacesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly aboutLabel = input('');
+  readonly items = input<ProductImageItem[]>([]);
 
   private readonly activeIndex = signal(0);
 
   readonly activeItem = computed(() => {
-    const items = this.data().items;
+    const items = this.items();
     if (!items.length) {
       return null;
     }
@@ -38,8 +41,8 @@ export class ProductInterfacesSectionComponent {
   });
 
   readonly tabRows = computed(() => {
-    const items = this.data().items;
-    const rows: ProductInterfaceItem[][] = [];
+    const items = this.items();
+    const rows: ProductImageItem[][] = [];
 
     for (let index = 0; index < items.length; index += 3) {
       rows.push(items.slice(index, index + 3));
@@ -50,13 +53,13 @@ export class ProductInterfacesSectionComponent {
 
   constructor() {
     effect(() => {
-      this.data().items;
+      this.items();
       untracked(() => this.activeIndex.set(0));
     });
   }
 
-  select(item: ProductInterfaceItem): void {
-    const index = this.data().items.findIndex((entry) => entry.id === item.id);
+  select(item: ProductImageItem): void {
+    const index = this.items().findIndex((entry) => entry.id === item.id);
     if (index < 0 || index === this.activeIndex()) {
       return;
     }
@@ -64,7 +67,7 @@ export class ProductInterfacesSectionComponent {
     this.activeIndex.set(index);
   }
 
-  isActive(item: ProductInterfaceItem): boolean {
+  isActive(item: ProductImageItem): boolean {
     return this.activeItem()?.id === item.id;
   }
 }

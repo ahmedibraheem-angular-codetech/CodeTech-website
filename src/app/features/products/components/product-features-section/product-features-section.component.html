@@ -2,13 +2,13 @@
   <div class="container">
     <div class="product-features-panel">
       <div class="product-features-intro">
-        <ct-divider [label]="data().label" />
-        <h2 id="product-features-title" class="product-features-title">{{ data().title }}</h2>
+        <ct-divider [label]="label()" />
+        <h2 id="product-features-title" class="product-features-title">{{ title() }}</h2>
       </div>
 
       <div class="product-features-grid">
         <div class="row g-0">
-          @for (item of data().items; track item.id; let i = $index) {
+          @for (item of items(); track item.id; let i = $index) {
             <div
               class="col-12 product-features-cell"
               [class.col-md-6]="i < 4"
@@ -19,9 +19,9 @@
             >
               <ct-info-card
                 class="product-features-card"
-                [icon]="item.iconSrc"
+                [icon]="item.icon?.url ?? ''"
                 [minHeight]="'13rem'"
-                [data]="{ title: item.title, description: item.description }"
+                [data]="{ title: item.title, description: item.short_description }"
               />
             </div>
           }

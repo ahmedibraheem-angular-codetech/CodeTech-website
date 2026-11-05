@@ -1,6 +1,7 @@
 <section
   class="services-section"
   aria-labelledby="services-section-title"
+  [attr.aria-busy]="loading() ? 'true' : null"
 >
   <div class="services-section-inner">
     <div class="services-header container">
@@ -14,15 +15,28 @@
         </h2>
       </div>
 
-      <ct-slider-arrows
-        class="services-header-arrows"
-        [canPrev]="canPrev()"
-        [canNext]="canNext()"
-        (prev)="prev()"
-        (next)="next()"
-      />
+      @if (!loading()) {
+        <ct-slider-arrows
+          class="services-header-arrows"
+          [canPrev]="canPrev()"
+          [canNext]="canNext()"
+          (prev)="prev()"
+          (next)="next()"
+        />
+      }
     </div>
 
+    @if (loading()) {
+      <div class="container">
+        <div class="row g-3">
+          @for (item of skeletonSlots; track item) {
+            <div class="col-12 col-sm-6 col-xl-3">
+              <ct-card-skeleton variant="info" />
+            </div>
+          }
+        </div>
+      </div>
+    } @else {
     <div class="container services-slider-wrap">
       <div #swiperRoot class="swiper services-swiper">
         <div class="swiper-wrapper">
@@ -31,8 +45,8 @@
               <div class="services-column">
                 @for (service of column; track service.id) {
                   <ct-info-card
-                    [icon]="service.icon"
-                    [data]="{ title: service.title, description: service.description }"
+                    [icon]="service.icon?.url ?? ''"
+                    [data]="{ title: service.name, description: service.description }"
                   />
                 }
               </div>
@@ -41,5 +55,6 @@
         </div>
       </div>
     </div>
+    }
   </div>
 </section>

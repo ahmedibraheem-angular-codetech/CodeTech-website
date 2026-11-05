@@ -18,6 +18,34 @@
         "title": "Service details",
         "description": "Full service content will be connected to the API. This page is ready for the selected service slug.",
         "cta": "Start your project"
+      },
+      "whyNeeded": {
+        "label": "Why this service",
+        "title": "Why do you need this service?"
+      },
+      "solutions": {
+        "label": "What we offer",
+        "title": "Solutions designed for your business needs"
+      },
+      "stages": {
+        "label": "Steps",
+        "title": "Service stages"
+      },
+      "features": {
+        "label": "Our features",
+        "title": "Why CodeTech?"
+      },
+      "projects": {
+        "label": "Our projects",
+        "title": "Related projects"
+      },
+      "sectors": {
+        "label": "Our sectors",
+        "title": "Target sectors"
+      },
+      "notFound": {
+        "title": "Service not found",
+        "back": "Back to services"
       }
     }
   }

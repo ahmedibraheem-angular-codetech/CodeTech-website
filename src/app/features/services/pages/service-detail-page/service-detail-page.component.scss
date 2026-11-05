@@ -1,0 +1,13 @@
+@use '../../../../../styles/abstracts/mixin' as *;
+
+.service-missing {
+  padding-block: 9.5rem var(--space-section);
+}
+
+.service-missing-title {
+  @include missing-title;
+}
+
+.service-missing-link {
+  @include missing-link;
+}

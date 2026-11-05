@@ -7,38 +7,49 @@
       <div class="row g-5 align-items-stretch">
         <div class="col-lg-5">
           <div class="why-needed-visual">
-            <img
-              class="why-needed-image"
-              [src]="data().imageSrc"
-              [alt]="data().imageAlt | translate"
-              loading="lazy"
-              decoding="async"
-            />
+            @if (image()?.url) {
+              <img
+                class="why-needed-image"
+                [src]="image()?.url"
+                [alt]="title()"
+                loading="lazy"
+                decoding="async"
+              />
+            }
 
-            <p class="why-needed-caption">
-              {{ data().imageCaption | translate }}
-            </p>
+            @if (imageText()) {
+              <p class="why-needed-caption">
+                {{ imageText() }}
+              </p>
+            }
           </div>
         </div>
 
         <div class="col-lg-7 why-needed-panel">
           <div class="why-needed-copy">
-            <ct-divider [label]="data().label | translate" />
+            <ct-divider [label]="label()" />
 
             <h2 id="why-needed-section-title" class="why-needed-title">
-              {{ data().title | translate }}
+              {{ title() }}
             </h2>
 
             <ul class="why-needed-cards">
-              @for (item of data().items; track item.id) {
+              @for (item of needs(); track item.id) {
                 <li class="why-needed-card">
-                  <span class="why-needed-card-icon-wrap" aria-hidden="true">
-                    <span
-                      class="why-needed-card-icon"
-                      [style.--why-needed-icon]="'url(\'' + item.iconSrc + '\')'"
-                    ></span>
-                  </span>
-                  <span class="why-needed-card-title">{{ item.title | translate }}</span>
+                  @if (item.icon?.url) {
+                    <span class="why-needed-card-icon-wrap" aria-hidden="true">
+                      <img
+                        class="why-needed-card-icon"
+                        [src]="item.icon!.url"
+                        alt=""
+                        width="24"
+                        height="24"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </span>
+                  }
+                  <span class="why-needed-card-title">{{ item.title }}</span>
                 </li>
               }
             </ul>

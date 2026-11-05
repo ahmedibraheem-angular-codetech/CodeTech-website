@@ -10,6 +10,7 @@ import {
   ElementRef,
   inject,
   Injector,
+  input,
   model,
   output,
   PLATFORM_ID,
@@ -22,10 +23,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { AppLanguage, LanguageService } from '../../../i18n/language.service';
+import { LayoutProductItem, LayoutServiceItem } from '../../models/layout.model';
 import {
   HEADER_NAV_LINKS,
-  HEADER_PRODUCTS,
-  HEADER_SERVICES,
   type MegaMenuId,
   type NavLinkItem,
 } from '../header.nav.config';
@@ -70,11 +70,20 @@ export class MobileNavigationComponent {
   private previousBodyOverflow = '';
 
   readonly visible = model(false);
+  readonly logoUrl = input('/assets/images/logo.svg');
+  readonly itemsServices = input<LayoutServiceItem[]>([]);
+  readonly itemsProducts = input<LayoutProductItem[]>([]);
   readonly ctaClicked = output<void>();
 
   readonly navLinks = HEADER_NAV_LINKS;
-  readonly services = HEADER_SERVICES;
-  readonly products = HEADER_PRODUCTS;
+  readonly serviceList = computed(() => {
+    const value = this.itemsServices();
+    return Array.isArray(value) ? value : [];
+  });
+  readonly productList = computed(() => {
+    const value = this.itemsProducts();
+    return Array.isArray(value) ? value : [];
+  });
 
   readonly openDropdown = signal<MegaMenuId | null>(null);
   readonly isLangOpen = signal(false);

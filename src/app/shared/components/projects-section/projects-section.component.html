@@ -1,4 +1,8 @@
-<section class="projects-section" aria-labelledby="projects-section-title">
+<section
+  class="projects-section"
+  aria-labelledby="projects-section-title"
+  [attr.aria-busy]="loading() ? 'true' : null"
+>
   <div class="container">
     <div class="projects-header">
       <div class="projects-header-intro">
@@ -8,22 +12,33 @@
         </h2>
       </div>
 
-      <ct-slider-arrows
-        class="projects-header-arrows"
-        [canPrev]="canPrev()"
-        [canNext]="canNext()"
-        (prev)="prev()"
-        (next)="next()"
-      />
+      @if (!loading()) {
+        <ct-slider-arrows
+          class="projects-header-arrows"
+          [canPrev]="canPrev()"
+          [canNext]="canNext()"
+          (prev)="prev()"
+          (next)="next()"
+        />
+      }
     </div>
 
+    @if (loading()) {
+      <div class="row g-3">
+        @for (item of skeletonSlots; track item) {
+          <div class="col-12 col-md-4">
+            <ct-card-skeleton variant="project" />
+          </div>
+        }
+      </div>
+    } @else {
     <div #swiperRoot class="swiper projects-swiper">
       <div class="swiper-wrapper">
         @for (project of projects(); track project.id; let i = $index) {
           <div class="swiper-slide projects-slide">
             <ct-project-card
               [data]="project"
-              [link]="link()"
+              [link]="link() || '/projects/' + project.slug"
               [showTools]="showTools()"
               [active]="activeIndex() === i"
             />
@@ -31,5 +46,6 @@
         }
       </div>
     </div>
+    }
   </div>
 </section>

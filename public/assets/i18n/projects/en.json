@@ -5,8 +5,65 @@
       "description": "Discover how CodeTech helped government entities and companies build digital systems and products that solve real challenges, improve operational efficiency, and deliver measurable results.",
       "cta": "Start your project"
     },
+    "stats": {
+      "label": "Numbers and statistics",
+      "title": "CodeTech in numbers"
+    },
+    "featured": {
+      "label": "Our projects",
+      "title": "Latest projects",
+      "cta": "View case study"
+    },
     "list": {
-      "label": "Our Projects"
+      "label": "Our Projects",
+      "title": "All projects",
+      "all": "All",
+      "empty": "No projects in this category.",
+      "pagination": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "detail": {
+      "cta": "Start your project",
+      "notFound": {
+        "title": "Project not found",
+        "back": "Back to projects"
+      },
+      "overview": {
+        "label": "About the project",
+        "title": "Digital solutions designed for business growth"
+      },
+      "challenges": {
+        "label": "Challenges",
+        "title": "Key project challenges"
+      },
+      "solutions": {
+        "label": "Services delivered",
+        "title": "The solution we delivered"
+      },
+      "screens": {
+        "title": "Project screens"
+      },
+      "features": {
+        "label": "Features",
+        "title": "Key project features"
+      },
+      "interfaces": {
+        "label": "Digital identity",
+        "title": "Project interfaces"
+      },
+      "results": {
+        "label": "Figures and statistics",
+        "title": "Results achieved"
+      },
+      "technologies": {
+        "label": "Our tools",
+        "title": "Technologies used"
+      },
+      "similar": {
+        "label": "Our projects",
+        "title": "Similar projects"
+      }
     }
   }
 }

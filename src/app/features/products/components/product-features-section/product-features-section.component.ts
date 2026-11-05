@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { InfoCardComponent } from '../../../../shared/components/info-card/info-card.component';
-import { ProductFeaturesSection } from '../../model/products.model';
+import { ProductIconItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-features-section',
@@ -12,7 +12,9 @@ import { ProductFeaturesSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductFeaturesSectionComponent {
-  readonly data = input.required<ProductFeaturesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductIconItem[]>([]);
 
   isRowEnd(index: number): boolean {
     if (index < 4) {
@@ -23,7 +25,7 @@ export class ProductFeaturesSectionComponent {
   }
 
   isLastRow(index: number): boolean {
-    const total = this.data().items.length;
+    const total = this.items().length;
     const rest = Math.max(total - 4, 0);
 
     if (rest === 0) {

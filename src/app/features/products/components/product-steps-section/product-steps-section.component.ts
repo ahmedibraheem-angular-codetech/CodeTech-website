@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { StepCardComponent } from '../../../../shared/components/step-card/step-card.component';
-import { ProductStepsSection } from '../../model/products.model';
+import { ProductImageItem } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-steps-section',
@@ -12,5 +12,7 @@ import { ProductStepsSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductStepsSectionComponent {
-  readonly data = input.required<ProductStepsSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductImageItem[]>([]);
 }

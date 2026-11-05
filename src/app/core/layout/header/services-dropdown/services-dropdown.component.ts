@@ -13,10 +13,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import {
-  HEADER_SERVICES,
-  type ServiceMegaItem,
-} from '../header.nav.config';
+import { LayoutServiceItem } from '../../models/layout.model';
 
 @Component({
   selector: 'ct-services-dropdown',
@@ -30,12 +27,18 @@ export class ServicesDropdownComponent {
   private readonly router = inject(Router);
 
   readonly isOpen = input(false);
+  /** Mapped service rows from GET /layout → data.services */
+  readonly items = input<LayoutServiceItem[]>([]);
   readonly closed = output<void>();
   readonly ctaClicked = output<void>();
 
-  readonly services = HEADER_SERVICES;
-
   private readonly hoverSlug = signal<string | null>(null);
+
+  /** Always an array for @for — never a signal/object. */
+  readonly list = computed(() => {
+    const value = this.items();
+    return Array.isArray(value) ? value : [];
+  });
 
   private readonly routeSlug = toSignal(
     this.router.events.pipe(
@@ -46,9 +49,8 @@ export class ServicesDropdownComponent {
     { initialValue: this.readRouteSlug() },
   );
 
-  /** Route child wins; hover preview while browsing the mega menu. */
   readonly activeSlug = computed(
-    () => this.hoverSlug() ?? this.routeSlug() ?? this.services[0]?.slug ?? '',
+    () => this.hoverSlug() ?? this.routeSlug() ?? this.list()[0]?.slug ?? '',
   );
 
   constructor() {
@@ -59,7 +61,7 @@ export class ServicesDropdownComponent {
     });
   }
 
-  setActive(item: ServiceMegaItem): void {
+  setActive(item: LayoutServiceItem): void {
     this.hoverSlug.set(item.slug);
   }
 
@@ -79,6 +81,6 @@ export class ServicesDropdownComponent {
     }
 
     const slug = path.slice('/services/'.length).split('/')[0] ?? '';
-    return this.services.some((service) => service.slug === slug) ? slug : null;
+    return this.list().some((service) => service.slug === slug) ? slug : null;
   }
 }

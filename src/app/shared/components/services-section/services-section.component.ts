@@ -18,6 +18,7 @@ import Swiper from 'swiper';
 import { LanguageService } from '../../../core/i18n/language.service';
 import { DividerComponent } from '../divider/divider.component';
 import { InfoCardComponent } from '../info-card/info-card.component';
+import { CardSkeletonComponent } from '../skeleton/card-skeleton.component';
 import { SliderArrowsComponent } from '../slider-arrows/slider-arrows.component';
 import { ServiceCardItem } from './services-section.model';
 
@@ -26,7 +27,7 @@ const SERVICE_ROWS = 2;
 @Component({
   selector: 'ct-services-section',
   standalone: true,
-  imports: [DividerComponent, InfoCardComponent, SliderArrowsComponent],
+  imports: [CardSkeletonComponent, DividerComponent, InfoCardComponent, SliderArrowsComponent],
   templateUrl: './services-section.component.html',
   styleUrl: './services-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,6 +47,9 @@ export class ServicesSectionComponent {
   readonly label = input('');
   readonly title = input('');
   readonly services = input<ServiceCardItem[]>([]);
+  /** Shows shared info-card skeletons while the service list is still loading. */
+  readonly loading = input(false);
+  readonly skeletonSlots = [1, 2, 3, 4];
   /** When true, shows the branded dark background image (home). */
   readonly showBackground = input(true);
 
@@ -83,15 +87,20 @@ export class ServicesSectionComponent {
         });
 
         effect(() => {
+          const isLoading = this.loading();
           this.serviceColumns();
-          untracked(() => this.refreshSwiper());
+          untracked(() => {
+            if (isLoading) {
+              this.destroySwiper();
+              return;
+            }
+
+            queueMicrotask(() => this.mountSwiper());
+          });
         });
       });
 
-      this.destroyRef.onDestroy(() => {
-        this.swiper?.destroy(true, true);
-        this.swiper = undefined;
-      });
+      this.destroyRef.onDestroy(() => this.destroySwiper());
     });
   }
 
@@ -130,9 +139,28 @@ export class ServicesSectionComponent {
     });
   }
 
+  private destroySwiper(): void {
+    if (!this.swiper || this.swiper.destroyed) {
+      this.swiper = undefined;
+      return;
+    }
+
+    this.swiper.destroy(true, false);
+    this.swiper = undefined;
+  }
+
   private mountSwiper(): void {
+    if (this.loading()) {
+      return;
+    }
+
     const host = this.swiperRoot()?.nativeElement;
     if (!host) {
+      return;
+    }
+
+    if (this.swiper && !this.swiper.destroyed) {
+      this.refreshSwiper();
       return;
     }
 

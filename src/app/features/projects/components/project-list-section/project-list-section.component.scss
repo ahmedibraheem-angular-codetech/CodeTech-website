@@ -20,7 +20,8 @@
 .project-list-filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  justify-content: space-between;
+  row-gap: 5px;
   @include reset-list;
   background-color: var(--color-background);
   padding: 4px;
@@ -54,9 +55,7 @@
   flex: none;
   width: 20px;
   height: 20px;
-  background-color: currentColor;
-  mask: center / contain no-repeat;
-  -webkit-mask: center / contain no-repeat;
+  object-fit: contain;
 }
 
 .project-list-empty {

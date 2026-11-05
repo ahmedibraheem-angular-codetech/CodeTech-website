@@ -7,16 +7,15 @@ import {
   viewChild,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
 import { DividerComponent } from '../divider/divider.component';
 import { FaqItem } from './faq-section.model';
 
-type FaqValue = string | number | string[] | number[] | null | undefined;
+type FaqValue = number | number[] | null | undefined;
 
 @Component({
   selector: 'ct-faq-section',
   standalone: true,
-  imports: [DividerComponent, RouterLink, TranslatePipe],
+  imports: [DividerComponent, RouterLink],
   templateUrl: './faq-section.component.html',
   styleUrl: './faq-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,19 +34,19 @@ export class FaqSectionComponent {
   /** Active panel value. Pass a panel `id` to open one by default. */
   readonly value = model<FaqValue>(null);
 
-  isOpen(id: string): boolean {
+  isOpen(id: number): boolean {
     const current = this.value();
     if (Array.isArray(current)) {
-      return current.includes(id as never);
+      return current.includes(id);
     }
     return current === id;
   }
 
-  toggle(id: string): void {
+  toggle(id: number): void {
     this.value.set(this.isOpen(id) ? undefined : id);
   }
 
-  onHeaderKeydown(event: KeyboardEvent, id: string): void {
+  onHeaderKeydown(event: KeyboardEvent, id: number): void {
     switch (event.code) {
       case 'ArrowDown':
         this.focusSibling(event.currentTarget as HTMLElement, 1);

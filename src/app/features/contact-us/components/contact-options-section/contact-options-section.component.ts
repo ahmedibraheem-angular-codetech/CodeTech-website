@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
+import { ContactIntent } from '../../models/contact-api.model';
 
 @Component({
   selector: 'ct-contact-options-section',
@@ -12,9 +13,9 @@ import { DividerComponent } from '../../../../shared/components/divider/divider.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactOptionsSectionComponent {
-  readonly formClick = output<void>();
+  readonly intentSelect = output<ContactIntent>();
 
-  goToForm(): void {
-    this.formClick.emit();
+  select(intent: ContactIntent): void {
+    this.intentSelect.emit(intent);
   }
 }

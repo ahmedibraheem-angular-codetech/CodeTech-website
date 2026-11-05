@@ -1,18 +1,28 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, ViewEncapsulation } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { map } from 'rxjs';
 import { LanguageService } from '../../../../core/i18n/language.service';
+import { bindResolvedPage } from '../../../../core/routing/bind-resolved-page';
+import { PageErrorStateComponent } from '../../../../shared/components/page-state/page-error-state.component';
 import { PageHeroComponent } from '../../../../shared/components/page-hero/page-hero.component';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe';
 import { RelatedArticlesSectionComponent } from '../../components/related-articles-section/related-articles-section.component';
-import { getBlogArticleDetails } from '../../mocup/blog.mock';
+import { BlogArticleDetail } from '../../models/blog-api.model';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   selector: 'ct-article-details',
   standalone: true,
-  imports: [PageHeroComponent, RelatedArticlesSectionComponent, RouterLink, TranslatePipe],
+  imports: [
+    LocalizedDatePipe,
+    PageErrorStateComponent,
+    PageHeroComponent,
+    RelatedArticlesSectionComponent,
+    RouterLink,
+    SkeletonComponent,
+    TranslatePipe,
+  ],
   templateUrl: './article-details.component.html',
   styleUrl: './article-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,30 +30,16 @@ import { getBlogArticleDetails } from '../../mocup/blog.mock';
 })
 export class ArticleDetailsComponent {
   private readonly route = inject(ActivatedRoute);
-  private readonly language = inject(LanguageService);
-  private readonly title = inject(Title);
-  private readonly sanitizer = inject(DomSanitizer);
-
-  readonly slug = toSignal(
-    this.route.paramMap.pipe(map((params) => params.get('slug') ?? '')),
-    { initialValue: this.route.snapshot.paramMap.get('slug') ?? '' },
+  private readonly blogService = inject(BlogService);
+  private readonly resolved = bindResolvedPage<BlogArticleDetail>(() =>
+    this.blogService.getArticle(this.route.snapshot.paramMap.get('slug') ?? ''),
   );
 
-  readonly details = computed(() => getBlogArticleDetails(this.slug(), this.language.currentLang()));
+  readonly lang = inject(LanguageService).currentLang;
+  readonly status = this.resolved.status;
+  readonly article = this.resolved.page;
 
-  readonly safeHtml = computed(() => {
-    const html = this.details()?.html;
-    return html ? this.sanitizer.bypassSecurityTrustHtml(html) : null;
-  });
-
-  constructor() {
-    effect(() => {
-      const page = this.details();
-      if (!page) {
-        return;
-      }
-
-      this.title.setTitle(`${page.seoTitle} | CodeTech`);
-    });
+  retry(): void {
+    this.resolved.retry();
   }
 }

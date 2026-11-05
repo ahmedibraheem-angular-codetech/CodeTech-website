@@ -1,6 +1,6 @@
+/** FAQ item from Laravel API lists. */
 export interface FaqItem {
-  id: string;
-  number: string;
+  id: number;
   question: string;
   answer: string;
 }

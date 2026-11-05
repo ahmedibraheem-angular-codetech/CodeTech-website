@@ -8,14 +8,15 @@
     <ul class="industries-grid">
       @for (item of items(); track item.id) {
         <li class="industries-card">
-          <img
-            class="industries-image"
-            [src]="item.imageSrc"
-            [alt]="item.imageAlt | translate"
-            loading="lazy"
-            decoding="async"
-          />
-          <h3 class="visually-hidden">{{ item.title | translate }}</h3>
+          @if (item.image?.url) {
+            <img
+              class="industries-image"
+              [src]="item.image?.url"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          }
         </li>
       }
     </ul>

@@ -3,13 +3,13 @@
     <div class="row g-0 align-items-stretch product-interfaces-body">
       <div class="col-12 col-lg-6 product-interfaces-content">
         <header class="product-interfaces-intro">
-          <ct-divider [label]="data().label" />
+          <ct-divider [label]="label()" />
           <h2 id="product-interfaces-title" class="product-interfaces-title">
-            {{ data().title }}
+            {{ title() }}
           </h2>
         </header>
 
-        <div class="product-interfaces-tabs" role="tablist" [attr.aria-label]="data().title">
+        <div class="product-interfaces-tabs" role="tablist" [attr.aria-label]="title()">
           @for (row of tabRows(); track $index) {
             <div class="product-interfaces-tabs-row">
               @for (item of row; track item.id) {
@@ -21,7 +21,7 @@
                   [attr.aria-selected]="isActive(item)"
                   (click)="select(item)"
                 >
-                  {{ item.tabLabel }}
+                  {{ item.title }}
                 </button>
               }
             </div>
@@ -30,9 +30,9 @@
 
         @for (active of activeItems(); track active.id) {
           <article class="product-interfaces-about">
-            <h3 class="product-interfaces-about-label">{{ active.aboutLabel }}</h3>
+            <h3 class="product-interfaces-about-label">{{ aboutLabel() }}</h3>
             <span class="product-interfaces-about-line" aria-hidden="true"></span>
-            <p class="product-interfaces-about-description">{{ active.description }}</p>
+            <p class="product-interfaces-about-description">{{ active.short_description }}</p>
           </article>
         }
       </div>
@@ -40,15 +40,17 @@
       <div class="col-12 col-lg-6 product-interfaces-media-col">
         @for (active of activeItems(); track active.id) {
           <div class="product-interfaces-media">
-            <img
-              class="product-interfaces-image"
-              [src]="active.imageSrc"
-              [alt]="active.imageAlt"
-              width="605"
-              height="480"
-              loading="lazy"
-              decoding="async"
-            />
+            @if (active.image?.url) {
+              <img
+                class="product-interfaces-image"
+                [src]="active.image?.url"
+                [alt]="active.title"
+                width="605"
+                height="480"
+                loading="lazy"
+                decoding="async"
+              />
+            }
           </div>
         }
       </div>

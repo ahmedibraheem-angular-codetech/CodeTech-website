@@ -154,11 +154,13 @@
 
 .service-desc {
   display: block;
+  max-width: 100%;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   color: var(--color-text-secondary);
+  @include text-ellipsis;
 }
 
 .service-item:hover .service-desc,

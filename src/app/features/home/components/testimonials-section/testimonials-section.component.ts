@@ -20,7 +20,7 @@ import { Autoplay } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { HomeTestimonialItem } from '../../model/home.model';
+import { HomeTestimonial } from '../../models/home-api.model';
 
 const MAX_RATING = 5;
 
@@ -42,8 +42,8 @@ export class TestimonialsSectionComponent {
 
   readonly label = input('');
   readonly title = input('');
-  readonly testimonials = input<HomeTestimonialItem[]>([]);
-  readonly play = output<HomeTestimonialItem>();
+  readonly testimonials = input<HomeTestimonial[]>([]);
+  readonly play = output<HomeTestimonial>();
 
   readonly stars = Array.from({ length: MAX_RATING }, (_, index) => index + 1);
 
@@ -94,7 +94,7 @@ export class TestimonialsSectionComponent {
       return;
     }
 
-    const testimonial = this.testimonials().find((item) => item.id === id);
+    const testimonial = this.testimonials().find((item) => String(item.id) === id);
     if (testimonial) {
       this.play.emit(testimonial);
     }

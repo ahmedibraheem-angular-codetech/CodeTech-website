@@ -3,10 +3,10 @@
     <div class="row g-4 align-items-center justify-content-between">
       <div class="col-lg-5">
         <div class="product-hero-copy">
-          <h1 id="product-hero-title" class="product-hero-title">{{ data().title }}</h1>
-          <p class="product-hero-description">{{ data().description }}</p>
+          <h1 id="product-hero-title" class="product-hero-title">{{ title() }}</h1>
+          <p class="product-hero-description">{{ description() }}</p>
           <ct-button
-            [label]="data().buttonLabel"
+            [label]="buttonLabel()"
             variant="dark"
             icon="double-alt-arrow-left"
             layout="spread"
@@ -18,13 +18,16 @@
 
       <div class="col-lg-5">
         <div class="product-hero-media">
-          <img
-            class="product-hero-image"
-            [src]="data().imageSrc"
-            [alt]="data().imageAlt"
-            fetchpriority="high"
-            decoding="async"
-          />
+          @if (image()?.url) {
+            <img
+              class="product-hero-image"
+              [src]="image()?.url"
+              [alt]="imageAlt() ?? title()"
+              [attr.title]="imageTitle() || null"
+              fetchpriority="high"
+              decoding="async"
+            />
+          }
         </div>
       </div>
     </div>

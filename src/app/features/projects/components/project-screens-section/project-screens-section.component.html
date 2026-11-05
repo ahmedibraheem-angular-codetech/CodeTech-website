@@ -1,16 +1,16 @@
-<section class="project-screens" [attr.aria-label]="data().title">
+<section class="project-screens" [attr.aria-label]="title()">
   <div class="container">
     <div class="project-screens-gallery">
       <div class="project-screens-thumbs-clip">
       <div #thumbsRoot class="swiper project-screens-thumbs">
         <div class="swiper-wrapper">
-          @for (item of data().items; track item.id) {
+          @for (item of items(); track item.id) {
             <div class="swiper-slide project-screens-thumb-slide">
-              <button type="button" class="project-screens-thumb" [attr.aria-label]="item.imageAlt">
+              <button type="button" class="project-screens-thumb" [attr.aria-label]="title()">
                 <img
                   class="project-screens-thumb-image"
-                  [src]="item.imageSrc"
-                  [alt]="item.imageAlt"
+                  [src]="item.image.url"
+                  [alt]="title()"
                   loading="lazy"
                   decoding="async"
                 />
@@ -23,13 +23,13 @@
 
       <div #mainRoot class="swiper project-screens-main">
         <div class="swiper-wrapper">
-          @for (item of data().items; track item.id) {
+          @for (item of items(); track item.id) {
             <div class="swiper-slide project-screens-main-slide">
               <article class="project-screens-main-card">
                 <img
                   class="project-screens-main-image"
-                  [src]="item.imageSrc"
-                  [alt]="item.imageAlt"
+                  [src]="item.image.url"
+                  [alt]="title()"
                   loading="lazy"
                   decoding="async"
                 />

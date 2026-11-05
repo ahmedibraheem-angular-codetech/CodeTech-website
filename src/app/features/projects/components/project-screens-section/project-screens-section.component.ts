@@ -15,7 +15,7 @@ import {
 import Swiper from 'swiper';
 import { Autoplay, Thumbs } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
-import { ProjectScreensSection } from '../../model/projects.model';
+import { ProjectGalleryItem } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-screens-section',
@@ -38,7 +38,9 @@ export class ProjectScreensSectionComponent {
   private swiperKey = '';
   private destroyed = false;
 
-  readonly data = input.required<ProjectScreensSection>();
+  /** Used as the section label and as alt text for gallery images. */
+  readonly title = input('');
+  readonly items = input.required<ProjectGalleryItem[]>();
 
   constructor() {
     afterNextRender(() => {
@@ -64,8 +66,8 @@ export class ProjectScreensSectionComponent {
 
   private currentSwiperKey(): string {
     const dir = this.language.isRtl() ? 'rtl' : 'ltr';
-    const slides = this.data()
-      .items.map((item) => `${item.id}:${item.imageSrc}`)
+    const slides = this.items()
+      .map((item) => `${item.id}:${item.image.url}`)
       .join('|');
 
     return `${dir}:${slides}`;

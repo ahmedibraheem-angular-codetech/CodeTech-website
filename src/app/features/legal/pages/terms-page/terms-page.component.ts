@@ -1,19 +1,36 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LanguageService } from '../../../../core/i18n/language.service';
+import { bindResolvedPage } from '../../../../core/routing/bind-resolved-page';
 import { PageHeroComponent } from '../../../../shared/components/page-hero/page-hero.component';
+import { PageErrorStateComponent } from '../../../../shared/components/page-state/page-error-state.component';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
 import { TermsDocumentSectionComponent } from '../../components/terms-document-section/terms-document-section.component';
-import { TERMS_DOCUMENT } from '../../mocup/terms.mock';
+import { LegalDocument } from '../../models/legal-api.model';
+import { LegalService } from '../../services/legal.service';
 
 @Component({
   selector: 'ct-terms-page',
   standalone: true,
-  imports: [PageHeroComponent, TermsDocumentSectionComponent, TranslatePipe],
+  imports: [
+    PageErrorStateComponent,
+    PageHeroComponent,
+    TermsDocumentSectionComponent,
+    SkeletonComponent,
+    TranslatePipe,
+  ],
   templateUrl: './terms-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TermsPageComponent {
-  private readonly language = inject(LanguageService);
+  private readonly legalService = inject(LegalService);
+  private readonly resolved = bindResolvedPage<LegalDocument>(() =>
+    this.legalService.getLegalDocument('terms'),
+  );
 
-  readonly document = computed(() => TERMS_DOCUMENT[this.language.currentLang()]);
+  readonly status = this.resolved.status;
+  readonly document = this.resolved.page;
+
+  retry(): void {
+    this.resolved.retry();
+  }
 }

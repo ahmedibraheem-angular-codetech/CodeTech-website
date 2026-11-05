@@ -17,7 +17,7 @@
 
         <div class="col-lg-8">
           <div #accordionRoot class="faq-accordion">
-            @for (item of items(); track item.id) {
+            @for (item of items(); track item.id; let i = $index) {
               <div class="faq-item" [class.faq-item-open]="isOpen(item.id)">
                 <div
                   class="faq-item-trigger"
@@ -30,8 +30,8 @@
                   (keydown)="onHeaderKeydown($event, item.id)"
                 >
                   <span class="faq-item-header">
-                    <span class="faq-item-number" dir="ltr">-{{ item.number }}</span>
-                    <span class="faq-item-question">{{ item.question | translate }}</span>
+                    <span class="faq-item-number" dir="ltr">-{{ i + 1 }}</span>
+                    <span class="faq-item-question">{{ item.question }}</span>
                   </span>
 
                   <span
@@ -49,7 +49,7 @@
                 >
                   <div class="faq-item-motion">
                     <div class="faq-item-body">
-                      <p class="faq-item-answer">{{ item.answer | translate }}</p>
+                      <p class="faq-item-answer">{{ item.answer }}</p>
                     </div>
                   </div>
                 </div>

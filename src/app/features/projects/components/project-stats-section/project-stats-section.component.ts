@@ -12,12 +12,12 @@ import {
   untracked,
 } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProjectStatItem, ProjectStatsSection } from '../../model/projects.model';
+import { ProjectStat } from '../../models/projects-api.model';
 
 const COUNT_DURATION_MS = 1000;
 
 interface CountTarget {
-  id: string;
+  id: number;
   prefix: string;
   suffix: string;
   target: number;
@@ -42,10 +42,21 @@ export class ProjectStatsSectionComponent {
   private frame = 0;
   private ready = false;
 
-  readonly data = input.required<ProjectStatsSection>();
-  private readonly displayed = signal<Readonly<Record<string, string>>>({});
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input.required<ProjectStat[]>();
+  private readonly displayed = signal<Readonly<Record<number, string>>>({});
 
-  countLabel(item: ProjectStatItem): string {
+  /** Decorative assets by card position; the API only supplies title and value. */
+  readonly mediaImageSrc = '/assets/images/products/stat-bars.svg';
+  readonly cardIconSrcs: readonly string[] = [
+    '',
+    '',
+    '/assets/icons/projects/rocket.svg',
+    '/assets/icons/projects/sectors.svg',
+  ];
+
+  countLabel(item: ProjectStat): string {
     const current = this.displayed();
     return item.id in current ? current[item.id] : item.value;
   }
@@ -57,7 +68,7 @@ export class ProjectStatsSectionComponent {
     });
 
     effect(() => {
-      this.data();
+      this.items();
       if (!this.ready) {
         return;
       }
@@ -114,7 +125,7 @@ export class ProjectStatsSectionComponent {
     const tick = (now: number): void => {
       const progress = Math.min((now - start) / COUNT_DURATION_MS, 1);
       const eased = 1 - (1 - progress) ** 3;
-      const next: Record<string, string> = {};
+      const next: Record<number, string> = {};
 
       for (const target of targets) {
         next[target.id] =
@@ -137,7 +148,7 @@ export class ProjectStatsSectionComponent {
   private countTargets(): CountTarget[] {
     const targets: CountTarget[] = [];
 
-    for (const item of this.data().items) {
+    for (const item of this.items()) {
       const target = parseCount(item);
       if (target) {
         targets.push(target);
@@ -160,7 +171,7 @@ export class ProjectStatsSectionComponent {
   }
 }
 
-function parseCount(item: ProjectStatItem): CountTarget | null {
+function parseCount(item: ProjectStat): CountTarget | null {
   const match = /^(\D*?)(\d+(?:\.\d+)?)(.*)$/.exec(item.value.trim());
   if (!match) {
     return null;

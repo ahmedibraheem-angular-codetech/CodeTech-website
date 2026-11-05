@@ -5,36 +5,40 @@
 >
   <a
     class="compact-card-link"
-    [routerLink]="['/blog', article().seo.slug]"
-    [attr.aria-label]="('blog.readArticle' | translate) + ' ' + (article().title | translate)"
+    [routerLink]="['/blog', article().slug]"
+    [attr.aria-label]="('blog.readArticle' | translate) + ' ' + article().title"
   >
-    <img
-      class="compact-card-image"
-      [src]="article().thumbnail.src"
-      [alt]="article().thumbnail.alt | translate"
-      loading="lazy"
-      decoding="async"
-    />
-    <span class="compact-card-badge">{{ article().category | translate }}</span>
+    @if (article().thumbnail?.url; as thumbnailUrl) {
+      <img
+        class="compact-card-image"
+        [src]="thumbnailUrl"
+        [alt]="article().thumbnail_alt ?? ''"
+        loading="lazy"
+        decoding="async"
+      />
+    }
+    <span class="compact-card-badge">{{ article().category.name }}</span>
 
     <div class="compact-card-body">
       <h3 class="compact-card-title" [id]="'compact-article-' + article().id">
-        {{ article().title | translate }}
+        {{ article().title }}
       </h3>
-      <p class="compact-card-excerpt">{{ article().excerpt | translate }}</p>
+      <p class="compact-card-excerpt">{{ article().excerpt }}</p>
 
       <div class="compact-card-meta">
         <span class="compact-card-meta-item">
           <span class="compact-card-meta-badge" aria-hidden="true">
             <span class="compact-card-icon compact-card-icon-calendar"></span>
           </span>
-          <time [attr.datetime]="article().publishedAt">{{ article().publishedAtLabel | translate }}</time>
+          <time [attr.datetime]="article().published_at">
+            {{ article().published_at | localizedDate: lang() }}
+          </time>
         </span>
         <span class="compact-card-meta-item">
           <span class="compact-card-meta-badge" aria-hidden="true">
             <span class="compact-card-icon compact-card-icon-clock"></span>
           </span>
-          {{ article().readingTime | translate }}
+          {{ 'blog.readingTime' | translate: { count: article().reading_time_minutes } }}
         </span>
       </div>
 
@@ -42,16 +46,17 @@
 
       <div class="compact-card-footer">
         <div class="compact-card-author">
-          <img
-            class="compact-card-avatar"
-            [src]="article().author.avatarSrc"
-            [alt]="article().author.avatarAlt | translate"
-            loading="lazy"
-            decoding="async"
-          />
+          @if (article().author.photo?.url; as photoUrl) {
+            <img
+              class="compact-card-avatar"
+              [src]="photoUrl"
+              [alt]="article().author.name"
+              loading="lazy"
+              decoding="async"
+            />
+          }
           <div>
-            <p class="compact-card-author-name">{{ article().author.name | translate }}</p>
-            <p class="compact-card-author-role">{{ article().author.role | translate }}</p>
+            <p class="compact-card-author-name">{{ article().author.name }}</p>
           </div>
         </div>
 

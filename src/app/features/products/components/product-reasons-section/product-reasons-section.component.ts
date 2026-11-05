@@ -19,7 +19,7 @@ import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { InfoCardComponent } from '../../../../shared/components/info-card/info-card.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { ProductReasonsSection } from '../../model/products.model';
+import { ProductReasonItem } from '../../models/products-api.model';
 
 const MAX_SLIDES_PER_VIEW = 4.5;
 
@@ -39,7 +39,9 @@ export class ProductReasonsSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<ProductReasonsSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductReasonItem[]>([]);
 
   readonly canPrev = signal(false);
   readonly canNext = signal(true);
@@ -55,7 +57,7 @@ export class ProductReasonsSectionComponent {
         });
 
         effect(() => {
-          this.data().items;
+          this.items();
           untracked(() => this.remountSwiper());
         });
       });
@@ -106,7 +108,7 @@ export class ProductReasonsSectionComponent {
     this.destroySwiper();
 
     const dir = this.language.isRtl() ? 'rtl' : 'ltr';
-    const loop = this.canUseLoop(this.data().items.length);
+    const loop = this.canUseLoop(this.items().length);
     host.setAttribute('dir', dir);
 
     this.swiper = new Swiper(host, {

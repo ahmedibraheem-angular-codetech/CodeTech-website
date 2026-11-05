@@ -1,0 +1,11 @@
+<img
+  #image
+  class="animated-hero-image"
+  [src]="imageSrc()"
+  alt=""
+  decoding="async"
+/>
+<canvas #canvas class="animated-hero-canvas" aria-hidden="true"></canvas>
+<div class="animated-hero-content">
+  <ng-content />
+</div>

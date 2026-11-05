@@ -1,6 +1,7 @@
+import { ApiFile } from '../../../core/api/api.model';
+
+/** Sector card from the Laravel API (`id`, `image`). */
 export interface IndustryItem {
-  id: string;
-  title: string;
-  imageSrc: string;
-  imageAlt: string;
+  id: number;
+  image: ApiFile | null;
 }

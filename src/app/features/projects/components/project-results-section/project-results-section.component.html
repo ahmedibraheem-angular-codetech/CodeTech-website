@@ -2,18 +2,26 @@
   <div class="container">
     <div class="project-results-panel">
       <header class="project-results-intro">
-        <ct-divider [label]="data().label" />
-        <h2 id="project-results-title" class="project-results-title">{{ data().title }}</h2>
+        <ct-divider [label]="label()" />
+        <h2 id="project-results-title" class="project-results-title">{{ title() }}</h2>
       </header>
 
       <div class="project-results-grid">
-        @for (item of data().items; track item.id) {
-          <article class="project-results-card" [class]="'project-results-card project-results-card-' + item.id">
+        @for (item of items(); track item.id; let i = $index) {
+          <article class="project-results-card" [class]="'project-results-card project-results-card-' + areas[i]">
             <div class="project-results-head">
               <p class="project-results-value">{{ item.value }}</p>
-              <img class="project-results-icon" [src]="item.iconSrc" alt="" />
+              @if (item.icon?.url) {
+                <img
+                  class="project-results-icon"
+                  [src]="item.icon?.url"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              }
             </div>
-            <p class="project-results-label">{{ item.label }}</p>
+            <p class="project-results-label">{{ item.title }}</p>
           </article>
         }
       </div>

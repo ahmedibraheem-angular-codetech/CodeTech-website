@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProductChallengesSection } from '../../model/products.model';
+import { ProductChallenge } from '../../models/products-api.model';
 
 @Component({
   selector: 'ct-product-challenges-section',
@@ -11,9 +11,17 @@ import { ProductChallengesSection } from '../../model/products.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductChallengesSectionComponent {
-  readonly data = input.required<ProductChallengesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input<ProductChallenge[]>([]);
 
-  iconMask(src: string): string {
-    return `url('${src}')`;
+  /** Visual emphasis by position (first card dark, third brand) — UI only. */
+  tone(index: number): 'dark' | 'brand' | 'light' {
+    if (index === 0) {
+      return 'dark';
+    }
+
+    return index === 2 ? 'brand' : 'light';
   }
+
 }

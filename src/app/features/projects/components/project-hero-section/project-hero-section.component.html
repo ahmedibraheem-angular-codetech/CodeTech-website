@@ -3,10 +3,10 @@
     <div class="row g-4 align-items-center justify-content-between">
       <div class="col-lg-5">
         <div class="project-hero-copy">
-          <h1 id="project-hero-title" class="project-hero-title">{{ data().title }}</h1>
-          <p class="project-hero-description">{{ data().description }}</p>
+          <h1 id="project-hero-title" class="project-hero-title">{{ project().title }}</h1>
+          <p class="project-hero-description">{{ project().description }}</p>
           <ct-button
-            [label]="data().buttonLabel"
+            [label]="buttonLabel()"
             variant="dark"
             icon="double-alt-arrow-left"
             layout="spread"
@@ -20,8 +20,8 @@
         <div class="project-hero-media">
           <img
             class="project-hero-image"
-            [src]="data().imageSrc"
-            [alt]="data().imageAlt"
+            [src]="imageSrc()"
+            [alt]="imageAlt()"
             fetchpriority="high"
             decoding="async"
           />

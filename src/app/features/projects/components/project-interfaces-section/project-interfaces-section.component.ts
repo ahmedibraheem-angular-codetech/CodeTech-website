@@ -8,7 +8,7 @@ import {
   untracked,
 } from '@angular/core';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { ProjectInterfaceItem, ProjectInterfacesSection } from '../../model/projects.model';
+import { ProjectIdentityItem } from '../../models/projects-api.model';
 
 @Component({
   selector: 'ct-project-interfaces-section',
@@ -19,12 +19,14 @@ import { ProjectInterfaceItem, ProjectInterfacesSection } from '../../model/proj
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectInterfacesSectionComponent {
-  readonly data = input.required<ProjectInterfacesSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly items = input.required<ProjectIdentityItem[]>();
 
   private readonly activeIndex = signal(0);
 
   readonly activeItem = computed(() => {
-    const items = this.data().items;
+    const items = this.items();
     if (!items.length) {
       return null;
     }
@@ -38,8 +40,8 @@ export class ProjectInterfacesSectionComponent {
   });
 
   readonly tabRows = computed(() => {
-    const items = this.data().items;
-    const rows: ProjectInterfaceItem[][] = [];
+    const items = this.items();
+    const rows: ProjectIdentityItem[][] = [];
 
     for (let index = 0; index < items.length; index += 3) {
       rows.push(items.slice(index, index + 3));
@@ -50,13 +52,13 @@ export class ProjectInterfacesSectionComponent {
 
   constructor() {
     effect(() => {
-      this.data().items;
+      this.items();
       untracked(() => this.activeIndex.set(0));
     });
   }
 
-  select(item: ProjectInterfaceItem): void {
-    const index = this.data().items.findIndex((entry) => entry.id === item.id);
+  select(item: ProjectIdentityItem): void {
+    const index = this.items().findIndex((entry) => entry.id === item.id);
     if (index < 0 || index === this.activeIndex()) {
       return;
     }
@@ -64,7 +66,7 @@ export class ProjectInterfacesSectionComponent {
     this.activeIndex.set(index);
   }
 
-  isActive(item: ProjectInterfaceItem): boolean {
+  isActive(item: ProjectIdentityItem): boolean {
     return this.activeItem()?.id === item.id;
   }
 }

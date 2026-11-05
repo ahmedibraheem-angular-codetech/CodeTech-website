@@ -1,19 +1,20 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, computed, DestroyRef, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter } from 'rxjs';
-import { LanguageService } from '../../core/i18n/language.service';
+import { bindResolvedPage } from '../../core/routing/bind-resolved-page';
 import { FaqSectionComponent } from '../../shared/components/faq-section/faq-section.component';
+import { PageErrorStateComponent } from '../../shared/components/page-state/page-error-state.component';
 import { PageHeroComponent } from '../../shared/components/page-hero/page-hero.component';
+import { SkeletonComponent } from '../../shared/components/skeleton/skeleton.component';
 import { ContactChannelsSectionComponent } from './components/contact-channels-section/contact-channels-section.component';
 import { ContactFormSectionComponent } from './components/contact-form-section/contact-form-section.component';
 import { ContactOptionsSectionComponent } from './components/contact-options-section/contact-options-section.component';
 import { ContactStepsSectionComponent } from './components/contact-steps-section/contact-steps-section.component';
-import { CONTACT_CHANNELS, CONTACT_COORDINATES } from './mocup/contact-channels.mock';
-import { CONTACT_FAQ } from './mocup/contact-faq.mock';
-import { CONTACT_SERVICES } from './mocup/contact-services.mock';
+import { ContactIntent, ContactPageData } from './models/contact-api.model';
+import { ContactService } from './services/contact.service';
 
 @Component({
   selector: 'ct-contact-us-page',
@@ -24,7 +25,9 @@ import { CONTACT_SERVICES } from './mocup/contact-services.mock';
     ContactOptionsSectionComponent,
     ContactStepsSectionComponent,
     FaqSectionComponent,
+    PageErrorStateComponent,
     PageHeroComponent,
+    SkeletonComponent,
     TranslatePipe,
   ],
   templateUrl: './contact-us-page.component.html',
@@ -32,12 +35,19 @@ import { CONTACT_SERVICES } from './mocup/contact-services.mock';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactUsPageComponent {
-  private readonly language = inject(LanguageService);
+  private readonly contactService = inject(ContactService);
   private readonly document = inject(DOCUMENT);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly resolved = bindResolvedPage<ContactPageData>(() =>
+    this.contactService.getContactPage(),
+  );
   private scrollTimer: number | null = null;
   private hashScrollStarted = false;
+
+  readonly status = this.resolved.status;
+  readonly page = this.resolved.page;
+  readonly intent = signal<ContactIntent>('project');
 
   constructor() {
     const destroyRef = inject(DestroyRef);
@@ -53,12 +63,12 @@ export class ContactUsPageComponent {
       .subscribe(() => this.scrollToFormIfRequested());
   }
 
-  readonly channels = CONTACT_CHANNELS;
-  readonly coordinates = CONTACT_COORDINATES;
-  readonly faqItems = CONTACT_FAQ;
-  readonly services = computed(() => CONTACT_SERVICES[this.language.currentLang()]);
+  retry(): void {
+    this.resolved.retry();
+  }
 
-  goToForm(): void {
+  selectIntent(intent: ContactIntent): void {
+    this.intent.set(intent);
     this.scrollToForm('smooth');
   }
 
@@ -71,7 +81,7 @@ export class ContactUsPageComponent {
     this.scrollWhenReady();
   }
 
-  private scrollWhenReady(remaining = 20): void {
+  private scrollWhenReady(remaining = 100): void {
     const view = this.document.defaultView;
     if (!view) {
       return;

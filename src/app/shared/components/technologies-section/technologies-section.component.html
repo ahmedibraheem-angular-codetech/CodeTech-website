@@ -35,8 +35,8 @@
               @if (cell.tool; as tool) {
                 <img
                   class="technologies-icon"
-                  [src]="tool.iconSrc"
-                  [alt]="tool.name | translate"
+                  [src]="tool.image?.url ?? tool.iconSrc"
+                  [alt]="(tool.name ?? '') | translate"
                   loading="lazy"
                   decoding="async"
                 />

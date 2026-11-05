@@ -21,15 +21,17 @@
       @for (client of logos(); track client.id) {
         <div class="swiper-slide clients-slide">
           <article class="client-card">
-            <img
-              class="client-card-logo"
-              [src]="client.src"
-              [alt]="client.name"
-              width="128"
-              height="100"
-              loading="lazy"
-              decoding="async"
-            />
+            @if (client.logo?.url) {
+              <img
+                class="client-card-logo"
+                [src]="client.logo!.url"
+                alt=""
+                width="128"
+                height="100"
+                loading="lazy"
+                decoding="async"
+              />
+            }
           </article>
         </div>
       }

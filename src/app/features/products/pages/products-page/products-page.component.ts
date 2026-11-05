@@ -1,43 +1,48 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LanguageService } from '../../../../core/i18n/language.service';
+import { bindResolvedPage } from '../../../../core/routing/bind-resolved-page';
 import { FaqSectionComponent } from '../../../../shared/components/faq-section/faq-section.component';
 import { IndustriesSectionComponent } from '../../../../shared/components/industries-section/industries-section.component';
 import { PageHeroComponent } from '../../../../shared/components/page-hero/page-hero.component';
+import { PageErrorStateComponent } from '../../../../shared/components/page-state/page-error-state.component';
+import { SkeletonComponent } from '../../../../shared/components/skeleton/skeleton.component';
 import { ProductListSectionComponent } from '../../components/product-list-section/product-list-section.component';
 import { ProductReasonsSectionComponent } from '../../components/product-reasons-section/product-reasons-section.component';
-import {
-  getProductFaqSection,
-  getProductIndustriesSection,
-  getProductListSection,
-  getProductReasonsSection,
-} from '../../mocup/products-list.mock';
+import { ProductsPageData } from '../../models/products-api.model';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'ct-products-page',
   standalone: true,
   imports: [
+    FaqSectionComponent,
+    IndustriesSectionComponent,
+    PageErrorStateComponent,
     PageHeroComponent,
     ProductListSectionComponent,
     ProductReasonsSectionComponent,
-    IndustriesSectionComponent,
-    FaqSectionComponent,
+    SkeletonComponent,
     TranslatePipe,
   ],
   templateUrl: './products-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsPageComponent {
+  private readonly productsService = inject(ProductsService);
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
-  private readonly language = inject(LanguageService);
+  private readonly resolved = bindResolvedPage<ProductsPageData>(() =>
+    this.productsService.getProductsPage(),
+  );
 
-  readonly productList = computed(() => getProductListSection(this.language.currentLang()));
-  readonly productReasons = computed(() => getProductReasonsSection(this.language.currentLang()));
-  readonly productIndustries = computed(() => getProductIndustriesSection(this.language.currentLang()));
-  readonly productFaq = computed(() => getProductFaqSection(this.language.currentLang()));
+  readonly status = this.resolved.status;
+  readonly page = this.resolved.page;
+
+  retry(): void {
+    this.resolved.retry();
+  }
 
   scrollToProducts(): void {
     const section = this.document.getElementById('product-list');

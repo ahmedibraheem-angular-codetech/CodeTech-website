@@ -7,13 +7,15 @@
       <div class="row align-items-stretch g-3">
         <div class="col-12 col-lg-6 d-flex">
           <div class="overview-visual">
-            <img
-              class="overview-image"
-              [src]="data().imageSrc"
-              [alt]="data().imageAlt | translate"
-              loading="lazy"
-              decoding="async"
-            />
+            @if (data().image?.url) {
+              <img
+                class="overview-image"
+                [src]="data().image?.url"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            }
           </div>
         </div>
 
@@ -28,10 +30,10 @@
               </h2>
 
               <ul class="overview-list">
-                @for (item of data().philosophyItems; track $index) {
+                @for (item of data().philosophy_points; track $index) {
                   <li class="overview-list-item">
                     <span class="overview-check" aria-hidden="true"></span>
-                    <span>{{ item | translate }}</span>
+                    <span>{{ item }}</span>
                   </li>
                 }
               </ul>
@@ -41,10 +43,10 @@
               <h2 class="overview-card-title">{{ marketTitle() }}</h2>
 
               <ul class="overview-list overview-list--grid">
-                @for (item of data().marketItems; track $index) {
+                @for (item of data().target_market_points; track $index) {
                   <li class="overview-list-item">
                     <span class="overview-check" aria-hidden="true"></span>
-                    <span>{{ item | translate }}</span>
+                    <span>{{ item }}</span>
                   </li>
                 }
               </ul>

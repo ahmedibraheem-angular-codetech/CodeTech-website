@@ -12,4 +12,6 @@ import { FeatureCardData } from './feature-card.model';
 })
 export class FeatureCardComponent {
   readonly data = input.required<FeatureCardData>();
+  /** Static i18n content passes translation keys; API content is already localized. */
+  readonly translateKeys = input(false);
 }

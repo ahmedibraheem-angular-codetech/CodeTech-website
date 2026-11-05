@@ -8,7 +8,11 @@
     <div class="row g-4 align-items-stretch">
       <div class="col-lg-6">
         <h2 id="contact-form-title" class="contact-form-title">
-          {{ 'contactUs.form.title' | translate }}
+          @if (intent() === 'project') {
+            {{ 'contactUs.options.items.project.title' | translate }}
+          } @else {
+            {{ 'contactUs.options.items.products.title' | translate }}
+          }
         </h2>
 
         <form class="contact-form" [formGroup]="form" novalidate (ngSubmit)="submit()">
@@ -18,7 +22,7 @@
                 <span class="contact-required" aria-hidden="true">*</span>
                 {{ 'contactUs.form.fullName' | translate }}
               </label>
-              <div class="contact-field" [class.contact-field--invalid]="isInvalid('fullName')">
+              <div class="contact-field" [class.contact-field--invalid]="isInvalid('name')">
                 <img
                   class="contact-field-icon"
                   src="/assets/icons/contact-us/form-user.svg"
@@ -30,23 +34,23 @@
                   id="contact-full-name"
                   class="contact-field-control"
                   type="text"
-                  formControlName="fullName"
+                  formControlName="name"
                   autocomplete="name"
                   [placeholder]="'contactUs.form.fullNamePlaceholder' | translate"
                 />
               </div>
-              <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('fullName')">
+              <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('name')">
                 <p
                   class="contact-form-error"
-                  [attr.role]="isInvalid('fullName') ? 'alert' : null"
-                  [attr.aria-hidden]="isInvalid('fullName') ? null : true"
+                  [attr.role]="isInvalid('name') ? 'alert' : null"
+                  [attr.aria-hidden]="isInvalid('name') ? null : true"
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.2" />
                     <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                     <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
                   </svg>
-                  <span>{{ 'contactUs.form.error' | translate }}</span>
+                  <span>{{ serverError('name') ?? ('contactUs.form.error' | translate) }}</span>
                 </p>
               </div>
             </div>
@@ -56,7 +60,7 @@
                 <span class="contact-required" aria-hidden="true">*</span>
                 {{ 'contactUs.form.organization' | translate }}
               </label>
-              <div class="contact-field" [class.contact-field--invalid]="isInvalid('organizationName')">
+              <div class="contact-field" [class.contact-field--invalid]="isInvalid('organization')">
                 <img
                   class="contact-field-icon"
                   src="/assets/icons/contact-us/form-building.svg"
@@ -68,26 +72,26 @@
                   id="contact-organization"
                   class="contact-field-control"
                   type="text"
-                  formControlName="organizationName"
+                  formControlName="organization"
                   autocomplete="organization"
                   [placeholder]="'contactUs.form.organizationPlaceholder' | translate"
                 />
               </div>
               <div
                 class="contact-form-error-slot"
-                [class.contact-form-error-slot--open]="isInvalid('organizationName')"
+                [class.contact-form-error-slot--open]="isInvalid('organization')"
               >
                 <p
                   class="contact-form-error"
-                  [attr.role]="isInvalid('organizationName') ? 'alert' : null"
-                  [attr.aria-hidden]="isInvalid('organizationName') ? null : true"
+                  [attr.role]="isInvalid('organization') ? 'alert' : null"
+                  [attr.aria-hidden]="isInvalid('organization') ? null : true"
                 >
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                     <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.2" />
                     <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                     <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
                   </svg>
-                  <span>{{ 'contactUs.form.error' | translate }}</span>
+                  <span>{{ serverError('organization') ?? ('contactUs.form.error' | translate) }}</span>
                 </p>
               </div>
             </div>
@@ -126,7 +130,7 @@
                     <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                     <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
                   </svg>
-                  <span>{{ 'contactUs.form.error' | translate }}</span>
+                  <span>{{ serverError('phone') ?? ('contactUs.form.error' | translate) }}</span>
                 </p>
               </div>
             </div>
@@ -135,7 +139,7 @@
               <label class="contact-label" for="contact-email">
                 {{ 'contactUs.form.email' | translate }}
               </label>
-              <div class="contact-field">
+              <div class="contact-field" [class.contact-field--invalid]="isInvalid('email')">
                 <img
                   class="contact-field-icon"
                   src="/assets/icons/contact-us/form-email.svg"
@@ -152,33 +156,51 @@
                   [placeholder]="'contactUs.form.emailPlaceholder' | translate"
                 />
               </div>
+              <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('email')">
+                <p
+                  class="contact-form-error"
+                  [attr.role]="isInvalid('email') ? 'alert' : null"
+                  [attr.aria-hidden]="isInvalid('email') ? null : true"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.2" />
+                    <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                    <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
+                  </svg>
+                  <span>{{ serverError('email') ?? ('contactUs.form.error' | translate) }}</span>
+                </p>
+              </div>
             </div>
 
             <div class="col-12">
-              <span class="contact-label" id="contact-services-label">
-                {{ 'contactUs.form.service' | translate }}
+              <span class="contact-label" id="contact-option-label">
+                <span class="contact-required" aria-hidden="true">*</span>
+                @if (intent() === 'project') {
+                  {{ 'contactUs.form.service' | translate }}
+                } @else {
+                  {{ 'contactUs.form.product' | translate }}
+                }
               </span>
               <div class="contact-select-wrap">
                 <button
                   type="button"
                   class="contact-select"
-                  [class.contact-select--open]="servicesOpen()"
+                  [class.contact-select--open]="optionsOpen()"
                   aria-haspopup="listbox"
-                  [attr.aria-expanded]="servicesOpen()"
-                  aria-labelledby="contact-services-label"
-                  (click)="toggleServices()"
+                  [attr.aria-expanded]="optionsOpen()"
+                  aria-labelledby="contact-option-label"
+                  (click)="toggleOptions()"
                 >
                   <span
                     class="contact-select-label"
-                    [class.contact-select-label--empty]="!serviceIds().length"
+                    [class.contact-select-label--empty]="selectedId() === null"
                   >
-                    @if (allSelected()) {
-                      {{ 'contactUs.form.serviceAll' | translate }}
-                    } @else if (selectedSummary().count > 1) {
-                      {{ selectedSummary().name }}
-                      <span class="contact-select-count" dir="ltr">+{{ selectedSummary().count }}</span>
+                    @if (selectedId() !== null) {
+                      {{ selectedLabel() }}
+                    } @else if (intent() === 'project') {
+                      {{ 'contactUs.form.servicePlaceholder' | translate }}
                     } @else {
-                      {{ selectedSummary().name || ('contactUs.form.servicePlaceholder' | translate) }}
+                      {{ 'contactUs.form.productPlaceholder' | translate }}
                     }
                   </span>
                   <svg class="contact-select-arrow" viewBox="0 0 16 16" aria-hidden="true">
@@ -193,46 +215,23 @@
                   </svg>
                 </button>
 
-                @if (servicesOpen()) {
+                @if (optionsOpen()) {
                   <ul
                     class="contact-services-panel"
                     animate.enter="contact-services-panel-enter"
                     animate.leave="contact-services-panel-leave"
                     role="listbox"
-                    aria-multiselectable="true"
+                    aria-labelledby="contact-option-label"
                   >
-                    <li>
-                      <button
-                        type="button"
-                        class="contact-service-option contact-service-option--all"
-                        [class.contact-service-option--selected]="allSelected()"
-                        role="option"
-                        [attr.aria-selected]="allSelected()"
-                        (click)="toggleAllServices()"
-                      >
-                        <span class="contact-service-check" aria-hidden="true">
-                          <svg viewBox="0 0 12 10" fill="none">
-                            <path
-                              d="M1.4 5.1 4.3 8 10.6 1.7"
-                              stroke="currentColor"
-                              stroke-width="1.6"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <span>{{ 'contactUs.form.serviceAll' | translate }}</span>
-                      </button>
-                    </li>
-                    @for (service of services(); track service.id) {
+                    @for (option of options(); track option.id) {
                       <li>
                         <button
                           type="button"
                           class="contact-service-option"
-                          [class.contact-service-option--selected]="isServiceSelected(service.id)"
+                          [class.contact-service-option--selected]="selectedId() === option.id"
                           role="option"
-                          [attr.aria-selected]="isServiceSelected(service.id)"
-                          (click)="toggleService(service.id)"
+                          [attr.aria-selected]="selectedId() === option.id"
+                          (click)="selectOption(option.id)"
                         >
                           <span class="contact-service-check" aria-hidden="true">
                             <svg viewBox="0 0 12 10" fill="none">
@@ -245,12 +244,26 @@
                               />
                             </svg>
                           </span>
-                          <span>{{ service.label }}</span>
+                          <span>{{ option.label }}</span>
                         </button>
                       </li>
                     }
                   </ul>
                 }
+              </div>
+              <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('optionId')">
+                <p
+                  class="contact-form-error"
+                  [attr.role]="isInvalid('optionId') ? 'alert' : null"
+                  [attr.aria-hidden]="isInvalid('optionId') ? null : true"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.2" />
+                    <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                    <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
+                  </svg>
+                  <span>{{ serverError('optionId') ?? ('contactUs.form.error' | translate) }}</span>
+                </p>
               </div>
             </div>
 
@@ -262,9 +275,25 @@
                 id="contact-brief"
                 class="contact-brief"
                 rows="4"
-                formControlName="brief"
+                formControlName="message"
                 [placeholder]="'contactUs.form.briefPlaceholder' | translate"
               ></textarea>
+              @if (serverError('message'); as messageError) {
+                <p class="contact-form-error" role="alert">
+                  <span>{{ messageError }}</span>
+                </p>
+              }
+            </div>
+
+            <div class="contact-honeypot" aria-hidden="true">
+              <label for="contact-website">Website</label>
+              <input
+                id="contact-website"
+                type="text"
+                formControlName="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
             </div>
           </div>
 
@@ -275,6 +304,7 @@
             width="100%"
             icon="double-alt-arrow-left"
             shadowColor=""
+            [disabled]="submitting()"
             [label]="'contactUs.form.submit' | translate"
           />
         </form>
@@ -282,24 +312,40 @@
 
       <div class="col-lg-6 contact-form-column contact-form-column--map">
         <div class="contact-map">
-          <iframe
-            class="contact-map-frame"
-            [title]="'contactUs.form.mapLabel' | translate"
-            [src]="mapUrl()"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          @if (mapEmbedUrl(); as embedUrl) {
+            <iframe
+              class="contact-map-frame"
+              [title]="contact().location_name"
+              [src]="embedUrl"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
 
-          <div class="contact-map-zoom">
-            <button type="button" (click)="zoomIn()">
-              <span class="visually-hidden">{{ 'contactUs.form.zoomIn' | translate }}</span>
-              +
-            </button>
-            <button type="button" (click)="zoomOut()">
-              <span class="visually-hidden">{{ 'contactUs.form.zoomOut' | translate }}</span>
-              −
-            </button>
-          </div>
+            @if (canZoom()) {
+              <div class="contact-map-zoom">
+                <button type="button" (click)="zoomIn()">
+                  <span class="visually-hidden">{{ 'contactUs.form.zoomIn' | translate }}</span>
+                  +
+                </button>
+                <button type="button" (click)="zoomOut()">
+                  <span class="visually-hidden">{{ 'contactUs.form.zoomOut' | translate }}</span>
+                  −
+                </button>
+              </div>
+            }
+          } @else if (mapLinkUrl(); as linkUrl) {
+            <div class="contact-map-fallback">
+              <p class="contact-map-location">{{ contact().location_name }}</p>
+              <a
+                class="contact-map-link"
+                [href]="linkUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ 'contactUs.form.mapOpen' | translate }}
+              </a>
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -307,6 +353,7 @@
 
   @if (submitResult(); as result) {
     <div
+      #resultRoot
       class="contact-result"
       animate.enter="contact-result-enter"
       animate.leave="contact-result-leave"
@@ -333,6 +380,12 @@
           <p class="contact-result-message">
             {{ 'contactUs.form.successMessage' | translate }}
           </p>
+          @if (reference(); as referenceNumber) {
+            <p class="contact-result-reference">
+              {{ 'contactUs.form.referenceLabel' | translate }}:
+              <span dir="ltr">{{ referenceNumber }}</span>
+            </p>
+          }
           <ct-button
             [label]="'contactUs.form.successAction' | translate"
             variant="primary"
@@ -353,7 +406,15 @@
             {{ 'contactUs.form.failureTitle' | translate }}
           </h3>
           <p class="contact-result-message">
-            {{ 'contactUs.form.failureMessage' | translate }}
+            @if (result === 'rateLimited') {
+              @if (retryAfterSeconds(); as seconds) {
+                {{ 'contactUs.form.rateLimitMessage' | translate: { seconds: seconds } }}
+              } @else {
+                {{ 'contactUs.form.rateLimitGeneric' | translate }}
+              }
+            } @else {
+              {{ 'contactUs.form.failureMessage' | translate }}
+            }
           </p>
           <ct-button
             [label]="'contactUs.form.failureAction' | translate"

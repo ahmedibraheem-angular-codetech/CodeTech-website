@@ -2,8 +2,8 @@
   <div class="container">
     <header class="product-reasons-header">
       <div class="product-reasons-intro">
-        <ct-divider [label]="data().label" variant="white" />
-        <h2 id="product-reasons-title" class="product-reasons-title">{{ data().title }}</h2>
+        <ct-divider [label]="label()" variant="white" />
+        <h2 id="product-reasons-title" class="product-reasons-title">{{ title() }}</h2>
       </div>
 
       <ct-slider-arrows
@@ -16,13 +16,13 @@
 
     <div #swiperRoot class="swiper product-reasons-swiper">
       <div class="swiper-wrapper">
-        @for (item of data().items; track item.id) {
+        @for (item of items(); track item.id) {
           <div class="swiper-slide product-reasons-slide">
             <ct-info-card
               class="product-reasons-card"
-              [icon]="item.iconSrc"
+              [icon]="item.icon?.url ?? ''"
               [minHeight]="'22rem'"
-              [data]="{ title: item.title, description: item.description }"
+              [data]="{ title: item.title, description: item.short_description ?? item.description ?? '' }"
             />
           </div>
         }

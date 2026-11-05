@@ -1,12 +1,9 @@
 @use '../../../../../styles/abstracts/mixin' as *;
+
 .home-hero {
   width: 100%;
   min-height: 100vh;
-  min-height: 100dvh;
-  background-image: url('/assets/images/header/hero-home-bg.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: var(--color-primary);
 }
 
 .home-hero-row {
@@ -78,7 +75,12 @@
 }
 
 @include below(767.98px) {
+  .home-hero {
+    min-height: 100svh;
+  }
+
   .home-hero-row {
+    min-height: 100svh;
     padding-top: 6.5rem;
   }
 

@@ -17,7 +17,7 @@ import Swiper from 'swiper';
 import { Autoplay, EffectCoverflow } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
-import { AboutValuesSection } from '../../model/about.model';
+import { AboutValueItem } from '../../static/about-static.content';
 
 @Component({
   selector: 'ct-about-values-section',
@@ -36,7 +36,7 @@ export class AboutValuesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<AboutValuesSection>();
+  readonly items = input<AboutValueItem[]>([]);
   readonly label = input('');
   readonly title = input('');
 
@@ -78,7 +78,7 @@ export class AboutValuesSectionComponent {
 
   private mountSwiper(): void {
     const host = this.swiperRoot().nativeElement;
-    const slideCount = this.data().items.length;
+    const slideCount = this.items().length;
     const dir = this.language.isRtl() ? 'rtl' : 'ltr';
     const centerIndex = Math.floor(slideCount / 2);
 

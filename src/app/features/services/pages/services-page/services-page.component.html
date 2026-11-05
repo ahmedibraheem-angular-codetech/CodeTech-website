@@ -5,20 +5,34 @@
   (ctaClick)="goToContact()"
 />
 
-<ct-services-section
-  [showBackground]="false"
-  [label]="'services.list.label' | translate"
-  [title]="'services.list.title' | translate"
-  [services]="servicesList.items"
-/>
+@if (status() === 'loading') {
+  <section class="container py-5" aria-busy="true" aria-label="Loading">
+    <div class="d-flex gap-3">
+      <ct-skeleton width="100%" height="16rem" radius="1rem" />
+      <ct-skeleton width="100%" height="16rem" radius="1rem" />
+      <ct-skeleton width="100%" height="16rem" radius="1rem" />
+    </div>
+  </section>
+} @else if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
+} @else if (page(); as services) {
+  @if (services.services.length) {
+    <ct-services-section
+      [showBackground]="false"
+      [label]="'services.list.label' | translate"
+      [title]="'services.list.title' | translate"
+      [services]="services.services"
+    />
+  }
 
-@if (servicesList.faq.isPublished) {
-  <ct-faq-section
-    [label]="'services.faq.label' | translate"
-    [title]="'services.faq.title' | translate"
-    [items]="servicesList.faq.items"
-    [linkLabel]="'common.viewAllFaq' | translate"
-    linkRoute="/faq"
-    value="cms"
-  />
+  @if (services.faqs.length) {
+    <ct-faq-section
+      [label]="'services.faq.label' | translate"
+      [title]="'services.faq.title' | translate"
+      [items]="services.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="services.faqs[0]?.id ?? null"
+    />
+  }
 }

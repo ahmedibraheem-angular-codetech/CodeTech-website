@@ -23,6 +23,7 @@ export const FOOTER_QUICK_LINKS: readonly FooterLinkItem[] = [
   { id: 'about', labelKey: 'header.nav.about', route: '/about' },
   { id: 'services', labelKey: 'header.nav.services', route: '/services' },
   { id: 'products', labelKey: 'header.nav.products', route: '/products' },
+  { id: 'projects', labelKey: 'header.nav.projects', route: '/projects' },
   { id: 'blog', labelKey: 'header.nav.blog', route: '/blog' },
   { id: 'contact', labelKey: 'header.nav.contact', route: '/contact-us' },
 ] as const;

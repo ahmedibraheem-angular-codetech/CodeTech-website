@@ -1,16 +1,16 @@
 <section class="product-steps" aria-labelledby="product-steps-title">
   <div class="container">
-    <ct-divider [label]="data().label" />
+    <ct-divider [label]="label()" />
 
-    <h2 id="product-steps-title" class="product-steps-title">{{ data().title }}</h2>
+    <h2 id="product-steps-title" class="product-steps-title">{{ title() }}</h2>
 
     <div class="row g-2 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-6">
-      @for (item of data().items; track item.id) {
+      @for (item of items(); track item.id; let i = $index) {
         <div class="col">
           <ct-step-card
-            [number]="item.number"
+            [number]="(i + 1).toString().padStart(2, '0')"
             [title]="item.title"
-            [description]="item.description"
+            [description]="item.short_description"
           />
         </div>
       }

@@ -1,49 +1,39 @@
-<article class="project-card">
+<article class="project-card" [class.is-active]="active()">
   <div class="project-card-media">
-    <img
-      class="project-card-image"
-      [src]="data().imageSrc"
-      [alt]="data().imageAlt | translate"
-      loading="lazy"
-      decoding="async"
-    />
-
-    @if (flag(); as flag) {
-      <span class="project-card-flag">
-        @if (flag.icon) {
-          <span
-            class="project-card-icon"
-            aria-hidden="true"
-            [style.--ct-project-icon]="iconMask(flag.icon)"
-          ></span>
-        }
-        {{ flag.label | translate }}
-      </span>
+    @if (imageSrc()) {
+      <img
+        class="project-card-image"
+        [src]="imageSrc()"
+        [alt]="imageAlt()"
+        loading="lazy"
+        decoding="async"
+      />
     }
   </div>
 
   <div class="project-card-body">
     <h3 class="project-card-name">
-      @if (link(); as link) {
-        <a class="project-card-link" [routerLink]="link">{{ data().name | translate }}</a>
-      } @else {
-        {{ data().name | translate }}
-      }
+      <a class="project-card-link" [routerLink]="detailLink()">{{ data().title }}</a>
     </h3>
-    <p class="project-card-description">{{ data().description | translate }}</p>
+    <p class="project-card-description">{{ data().description }}</p>
 
-    @if (tools().length) {
+    @if (tags().length) {
       <ul class="project-card-tools">
-        @for (tool of tools(); track tool.id) {
+        @for (tag of tags(); track tag.id) {
           <li class="project-card-tool">
-            @if (tool.icon) {
-              <span
+            @if (tag.icon?.url) {
+              <img
                 class="project-card-icon"
+                [src]="tag.icon!.url"
+                alt=""
+                width="20"
+                height="20"
+                loading="lazy"
+                decoding="async"
                 aria-hidden="true"
-                [style.--ct-project-icon]="iconMask(tool.icon)"
-              ></span>
+              />
             }
-            {{ tool.name | translate }}
+            {{ tag.title }}
           </li>
         }
       </ul>

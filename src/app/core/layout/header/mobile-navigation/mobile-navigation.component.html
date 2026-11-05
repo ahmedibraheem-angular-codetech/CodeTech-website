@@ -23,7 +23,7 @@
         <div class="mobile-nav-top">
           <a routerLink="/" class="mobile-nav-logo" (click)="onNavigate()">
             <img
-              src="/assets/images/logo.svg"
+              [src]="logoUrl()"
               [alt]="'header.logoAlt' | translate"
               width="160"
               height="28"
@@ -80,7 +80,7 @@
                               </span>
                             </a>
                           </li>
-                          @for (service of services; track service.slug) {
+                          @for (service of serviceList(); track service.id) {
                             <li>
                               <a
                                 class="mobile-nav-sublink"
@@ -89,10 +89,10 @@
                                 (click)="onNavigate()"
                               >
                                 <span class="mobile-nav-sublink-title">
-                                  {{ service.titleKey | translate }}
+                                  {{ service.name }}
                                 </span>
                                 <span class="mobile-nav-sublink-desc">
-                                  {{ service.descKey | translate }}
+                                  {{ service.description }}
                                 </span>
                               </a>
                             </li>
@@ -115,7 +115,7 @@
                               </span>
                             </a>
                           </li>
-                          @for (product of products; track product.slug) {
+                          @for (product of productList(); track product.id) {
                             <li>
                               <a
                                 class="mobile-nav-sublink"
@@ -124,10 +124,10 @@
                                 (click)="onNavigate()"
                               >
                                 <span class="mobile-nav-sublink-title">
-                                  {{ product.titleKey | translate }}
+                                  {{ product.title }}
                                 </span>
                                 <span class="mobile-nav-sublink-desc">
-                                  {{ product.descKey | translate }}
+                                  {{ product.description }}
                                 </span>
                               </a>
                             </li>

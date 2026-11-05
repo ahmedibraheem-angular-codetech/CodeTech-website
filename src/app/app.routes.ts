@@ -7,8 +7,18 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', loadComponent: () => import('./features/home/home-page.component').then((m) => m.HomePageComponent), title: 'CodeTech | Technology that moves business forward' },
-      { path: 'about', loadComponent: () => import('./features/about/about-page.component').then((m) => m.AboutPageComponent), title: 'About CodeTech' },
+      {
+        path: '',
+        loadComponent: () =>
+          import('./features/home/home-page.component').then((m) => m.HomePageComponent),
+        title: 'CodeTech | Technology that moves business forward',
+      },
+      {
+        path: 'about',
+        loadComponent: () =>
+          import('./features/about/about-page.component').then((m) => m.AboutPageComponent),
+        title: 'About CodeTech',
+      },
       {
         path: 'services',
         loadChildren: () =>
@@ -49,4 +59,3 @@ export const routes: Routes = [
     ],
   },
 ];
-

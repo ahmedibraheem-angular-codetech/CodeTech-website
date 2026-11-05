@@ -13,19 +13,18 @@ import {
   untracked,
   viewChild,
 } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import Swiper from 'swiper';
 import { Autoplay } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { BlogRelatedSection } from '../../model/blog.model';
+import { BlogArticleCard } from '../../models/blog-api.model';
 import { CompactArticleCardComponent } from '../compact-article-card/compact-article-card.component';
 
 @Component({
   selector: 'ct-related-articles-section',
   standalone: true,
-  imports: [CompactArticleCardComponent, DividerComponent, SliderArrowsComponent, TranslatePipe],
+  imports: [CompactArticleCardComponent, DividerComponent, SliderArrowsComponent],
   templateUrl: './related-articles-section.component.html',
   styleUrl: './related-articles-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,7 +37,9 @@ export class RelatedArticlesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<BlogRelatedSection>();
+  readonly label = input('');
+  readonly title = input('');
+  readonly articles = input.required<BlogArticleCard[]>();
 
   readonly canPrev = signal(true);
   readonly canNext = signal(true);
@@ -54,7 +55,7 @@ export class RelatedArticlesSectionComponent {
         });
 
         effect(() => {
-          this.data().articles;
+          this.articles();
           untracked(() => this.refreshSwiper());
         });
       });

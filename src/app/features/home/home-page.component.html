@@ -1,90 +1,117 @@
-@if (home.hero.isPublished) {
-  <ct-hero-section [data]="home.hero" />
+<ct-hero-section
+  [data]="{
+    brand: ('home.brand' | translate),
+    title: ('home.title' | translate),
+    description: ('home.description' | translate)
+  }"
+/>
+
+@if (status() === 'error') {
+  <ct-page-error-state (retry)="retry()" />
 }
 
-@if (home.clients.isPublished) {
-  <ct-clients-section
-    [logos]="home.clients.logos"
-    [label]="'home.clients.brand' | translate"
-    [title]="'home.clients.title' | translate"
-  />
+@if (page(); as home) {
+  @if (home.partners.length) {
+    <ct-clients-section
+      [logos]="home.partners"
+      [label]="'home.clients.brand' | translate"
+      [title]="'home.clients.title' | translate"
+    />
+  }
+
+  @if (home.intro_video.is_visible) {
+    <ct-video-section [videoUrl]="home.intro_video.video?.url ?? ''" />
+  }
+
+  @if (home.vision_2030; as vision) {
+    <ct-content-media-section
+      [data]="{
+        id: 'home-vision',
+        label: ('home.vision.label' | translate),
+        title: vision.title,
+        description: vision.description,
+        items: vision.points,
+        image: vision.image
+      }"
+    />
+  }
+
+  @if (home.about; as about) {
+    <ct-content-media-section
+      [data]="{
+        id: 'home-about',
+        label: ('home.about.label' | translate),
+        title: about.title,
+        description: about.description,
+        items: about.points,
+        image: about.image
+      }"
+      [showButton]="true"
+      [buttonLabel]="'home.aboutCta' | translate"
+      (ctaClick)="goAbout()"
+    />
+  }
 }
 
-@if (home.video.isPublished) {
-  <ct-video-section
-    [imageSrc]="home.video.imageSrc"
-    [videoUrl]="home.video.videoUrl"
-  />
-}
-
-@if (home.vision.isPublished) {
-  <ct-content-media-section [data]="home.vision" />
-}
-
-@if (home.about.isPublished) {
-  <ct-content-media-section
-    [data]="home.about"
-    [showButton]="true"
-    [buttonLabel]="'home.aboutCta' | translate"
-  />
-}
-
-@if (home.services.isPublished) {
+@if (status() === 'loading' || (page()?.services?.length ?? 0) > 0) {
   <ct-services-section
     [showBackground]="true"
+    [loading]="status() === 'loading'"
     [label]="'home.services.label' | translate"
     [title]="'home.services.title' | translate"
-    [services]="home.services.items"
+    [services]="page()?.services ?? []"
   />
 }
 
-@if (home.products.isPublished) {
-  <ct-products-section
-    [label]="'home.products.label' | translate"
-    [title]="'home.products.title' | translate"
-    [products]="home.products.items"
-  />
+@if (page(); as home) {
+  @if (home.products.length) {
+    <ct-products-section
+      [label]="'home.products.label' | translate"
+      [title]="'home.products.title' | translate"
+      [products]="home.products"
+    />
+  }
 }
 
-@if (home.journey.isPublished) {
-  <ct-journey-section
-    [label]="'home.journey.label' | translate"
-    [title]="'home.journey.title' | translate"
-    [cards]="home.journey.cards"
-  />
-}
+<ct-journey-section
+  [label]="'home.journey.label' | translate"
+  [title]="'home.journey.title' | translate"
+  [cards]="journeyCards"
+/>
 
-@if (home.features.isPublished) {
-  <ct-features-section
-    [label]="'home.features.label' | translate"
-    [title]="'home.features.title' | translate"
-    [features]="home.features.items"
-  />
-}
+<ct-features-section
+  [label]="'home.features.label' | translate"
+  [title]="'home.features.title' | translate"
+  [features]="featureItems"
+  [translateKeys]="true"
+/>
 
-@if (home.projects.isPublished) {
+@if (status() === 'loading' || (page()?.projects?.length ?? 0) > 0) {
   <ct-projects-section
+    [loading]="status() === 'loading'"
     [label]="'home.projects.label' | translate"
     [title]="'home.projects.title' | translate"
-    [projects]="home.projects.items"
+    [projects]="page()?.projects ?? []"
   />
 }
 
-@if (home.testimonials.isPublished) {
-  <ct-testimonials-section
-    [label]="'home.testimonials.label' | translate"
-    [title]="'home.testimonials.title' | translate"
-    [testimonials]="home.testimonials.items"
-  />
-}
+@if (page(); as home) {
+  @if (home.testimonials.length) {
+    <ct-testimonials-section
+      [label]="'home.testimonials.label' | translate"
+      [title]="'home.testimonials.title' | translate"
+      [testimonials]="home.testimonials"
+    />
+  }
 
-@if (home.faq.isPublished) {
-  <ct-faq-section
-    [label]="'home.faq.label' | translate"
-    [title]="'home.faq.title' | translate"
-    [items]="home.faq.items"
-    [linkLabel]="'common.viewAllFaq' | translate"
-    linkRoute="/faq"
-    value="cms"
-  />
+  @if (home.faqs.length) {
+    <ct-faq-section
+      [label]="'home.faq.label' | translate"
+      [title]="'home.faq.title' | translate"
+      [items]="home.faqs"
+      [linkLabel]="'common.viewAllFaq' | translate"
+      linkRoute="/faq"
+      [value]="home.faqs[0]?.id ?? null"
+    />
+  }
 }

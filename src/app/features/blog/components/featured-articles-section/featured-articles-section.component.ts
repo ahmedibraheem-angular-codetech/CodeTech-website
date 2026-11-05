@@ -21,21 +21,22 @@ import { Autoplay } from 'swiper/modules';
 import { LanguageService } from '../../../../core/i18n/language.service';
 import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 import { SliderArrowsComponent } from '../../../../shared/components/slider-arrows/slider-arrows.component';
-import { BlogArticle, BlogFeaturedSection } from '../../model/blog.model';
+import { BlogArticleCard } from '../../models/blog-api.model';
+import { LocalizedDatePipe } from '../../../../shared/pipes/localized-date.pipe';
 import { CompactArticleCardComponent } from '../compact-article-card/compact-article-card.component';
 
 const ARTICLES_PER_SLIDE = 5;
 
 interface FeaturedSlide {
-  id: string;
-  featured: BlogArticle;
-  compact: BlogArticle[];
+  id: number;
+  featured: BlogArticleCard;
+  compact: BlogArticleCard[];
 }
 
 @Component({
   selector: 'ct-featured-articles-section',
   standalone: true,
-  imports: [CompactArticleCardComponent, DividerComponent, RouterLink, SliderArrowsComponent, TranslatePipe],
+  imports: [LocalizedDatePipe, CompactArticleCardComponent, DividerComponent, RouterLink, SliderArrowsComponent, TranslatePipe],
   templateUrl: './featured-articles-section.component.html',
   styleUrl: './featured-articles-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,10 +49,14 @@ export class FeaturedArticlesSectionComponent {
 
   private swiper: Swiper | undefined;
 
-  readonly data = input.required<BlogFeaturedSection>();
+  readonly lang = this.language.currentLang;
+
+  readonly label = input('');
+  readonly title = input('');
+  readonly articles = input.required<BlogArticleCard[]>();
 
   readonly slides = computed(() => {
-    const articles = this.data().articles;
+    const articles = this.articles();
     const slides: FeaturedSlide[] = [];
 
     for (let index = 0; index < articles.length; index += ARTICLES_PER_SLIDE) {

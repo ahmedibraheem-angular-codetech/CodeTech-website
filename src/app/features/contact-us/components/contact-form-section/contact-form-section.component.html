@@ -168,35 +168,39 @@
 
           <div class="col-12">
             <span class="contact-label" [attr.id]="optionLabelId()">
-              @if (intent() === 'inquiry') {
-                <span class="contact-required" aria-hidden="true">*</span>
-              }
+              <span class="contact-required" aria-hidden="true">*</span>
               @if (intent() === 'project') {
                 {{ 'contactUs.form.service' | translate }}
               } @else {
                 {{ 'contactUs.form.product' | translate }}
               }
             </span>
-            <div class="contact-select-wrap">
+            <div class="contact-select-wrap" #selectRoot>
               <button
                 type="button"
                 class="contact-select"
                 [class.contact-select--open]="optionsOpen()"
                 aria-haspopup="listbox"
                 [attr.aria-expanded]="optionsOpen()"
+                [attr.aria-invalid]="isInvalid('optionIds') ? true : null"
                 [attr.aria-labelledby]="optionLabelId()"
                 (click)="toggleOptions()"
               >
-                <span
-                  class="contact-select-label"
-                  [class.contact-select-label--empty]="selectedId() === null"
-                >
-                  @if (selectedId() !== null) {
-                    {{ selectedLabel() }}
-                  } @else if (intent() === 'project') {
-                    {{ 'contactUs.form.servicePlaceholder' | translate }}
-                  } @else {
-                    {{ 'contactUs.form.productPlaceholder' | translate }}
+                <span class="contact-select-summary">
+                  <span
+                    class="contact-select-label"
+                    [class.contact-select-label--empty]="selectedIds().length === 0"
+                  >
+                    @if (selectedIds().length) {
+                      {{ primarySelectedLabel() }}
+                    } @else if (intent() === 'project') {
+                      {{ 'contactUs.form.servicePlaceholder' | translate }}
+                    } @else {
+                      {{ 'contactUs.form.productPlaceholder' | translate }}
+                    }
+                  </span>
+                  @if (extraSelectedCount() > 0) {
+                    <span class="contact-select-count">+{{ extraSelectedCount() }}</span>
                   }
                 </span>
                 <svg class="contact-select-arrow" viewBox="0 0 16 16" aria-hidden="true">
@@ -217,6 +221,7 @@
                   animate.enter="contact-services-panel-enter"
                   animate.leave="contact-services-panel-leave"
                   role="listbox"
+                  aria-multiselectable="true"
                   [attr.aria-labelledby]="optionLabelId()"
                 >
                   @for (option of options(); track option.id) {
@@ -224,10 +229,10 @@
                       <button
                         type="button"
                         class="contact-service-option"
-                        [class.contact-service-option--selected]="selectedId() === option.id"
+                        [class.contact-service-option--selected]="isSelected(option.id)"
                         role="option"
-                        [attr.aria-selected]="selectedId() === option.id"
-                        (click)="selectOption(option.id)"
+                        [attr.aria-selected]="isSelected(option.id)"
+                        (click)="toggleOption(option.id)"
                       >
                         <span class="contact-service-check" aria-hidden="true">
                           <svg viewBox="0 0 12 10" fill="none">
@@ -247,18 +252,18 @@
                 </ul>
               }
             </div>
-            <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('optionId')">
+            <div class="contact-form-error-slot" [class.contact-form-error-slot--open]="isInvalid('optionIds')">
               <p
                 class="contact-form-error"
-                [attr.role]="isInvalid('optionId') ? 'alert' : null"
-                [attr.aria-hidden]="isInvalid('optionId') ? null : true"
+                [attr.role]="isInvalid('optionIds') ? 'alert' : null"
+                [attr.aria-hidden]="isInvalid('optionIds') ? null : true"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.2" />
                   <path d="M8 7.1V11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
                   <circle cx="8" cy="5.15" r="0.7" fill="currentColor" />
                 </svg>
-                <span>{{ serverError('optionId') ?? ('contactUs.form.error' | translate) }}</span>
+                <span>{{ serverError('optionIds') ?? ('contactUs.form.error' | translate) }}</span>
               </p>
             </div>
           </div>

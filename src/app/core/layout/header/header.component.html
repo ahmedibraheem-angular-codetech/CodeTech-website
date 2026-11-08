@@ -14,7 +14,19 @@
     </a>
 
     <nav class="ct-header-nav" [attr.aria-label]="'header.logoAlt' | translate">
-      <ul class="ct-header-nav-list">
+      <ul #navList class="ct-header-nav-list">
+        <li
+          #navIndicator
+          class="ct-header-nav-indicator"
+          [class.is-visible]="navMarkersVisible()"
+          aria-hidden="true"
+        ></li>
+        <li
+          #navLine
+          class="ct-header-nav-line"
+          [class.is-visible]="navMarkersVisible()"
+          aria-hidden="true"
+        ></li>
         @for (link of navLinks; track link.id) {
           <li class="ct-header-nav-item">
             @if (link.mega) {

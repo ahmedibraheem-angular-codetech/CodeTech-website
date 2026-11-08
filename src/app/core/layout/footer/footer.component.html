@@ -39,7 +39,7 @@
                         height="28"
                         aria-hidden="true"
                       />
-                      <span>{{ item.label }}</span>
+                      <span class="ct-footer-contact-label" [attr.dir]="item.id === 'phone' ? 'ltr' : null">{{ item.label }}</span>
                     </a>
                   } @else {
                     <span class="ct-footer-contact-item">
@@ -51,7 +51,7 @@
                         height="28"
                         aria-hidden="true"
                       />
-                      <span>{{ item.label }}</span>
+                      <span class="ct-footer-contact-label" [attr.dir]="item.id === 'phone' ? 'ltr' : null">{{ item.label }}</span>
                     </span>
                   }
                 </li>

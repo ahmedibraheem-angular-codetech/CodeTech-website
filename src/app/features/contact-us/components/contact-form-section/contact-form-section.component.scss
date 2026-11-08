@@ -1,7 +1,7 @@
 @use '../../../../../styles/abstracts/mixin' as *;
 .contact-form-section {
   position: relative;
-  overflow-x: clip;
+  overflow: visible;
   scroll-margin-top: 7rem;
   background-color: var(--color-white);
 }
@@ -168,6 +168,13 @@
   border-color: var(--color-brand);
 }
 
+.contact-select-summary {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
 .contact-select-label {
   min-width: 0;
   @include text-ellipsis;
@@ -180,7 +187,9 @@
 
 .contact-select-count {
   display: inline-block;
+  flex: none;
   margin-inline-start: 0.35rem;
+  color: var(--color-primary);
 }
 
 .contact-select-arrow {
@@ -200,12 +209,12 @@
   z-index: 3;
   inset-inline: 0;
   top: calc(100% + 0.45rem);
-  max-height: 280px;
+  height: auto;
   margin: 0;
   padding-block: 0.35rem;
   padding-inline-start: 0.35rem;
   padding-inline-end: 0.7rem;
-  overflow-y: auto;
+  overflow: visible;
   border: 1px solid color-mix(in srgb, var(--color-button-light) 70%, var(--color-white));
   border-radius: 16px;
   background: var(--color-white);

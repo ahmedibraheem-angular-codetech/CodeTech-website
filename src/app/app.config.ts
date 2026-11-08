@@ -8,12 +8,13 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { apiLanguageInterceptor } from './core/http/api-language.interceptor';
 import { DEFAULT_LANGUAGE, LanguageService } from './core/i18n/language.service';
+import { ScrollPositionService } from './core/scroll/scroll-position.service';
 import { SeoRouteListener } from './core/seo/seo-route.listener';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' })),
+    provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'disabled', anchorScrolling: 'enabled' })),
     provideHttpClient(withFetch(), withInterceptors([apiLanguageInterceptor])),
     provideClientHydration(withEventReplay()),
     {
@@ -43,6 +44,9 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => inject(LanguageService).init()),
     provideAppInitializer(() => {
       inject(SeoRouteListener).init();
+    }),
+    provideAppInitializer(() => {
+      inject(ScrollPositionService).init();
     }),
   ]
 };

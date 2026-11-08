@@ -35,7 +35,7 @@ export interface ProjectRequestBody {
   organization: string;
   phone: string;
   email: string | null;
-  service_id: number | null;
+  service_ids: number[];
   message: string | null;
   website: string;
 }
@@ -45,7 +45,7 @@ export interface ProductInquiryBody {
   organization: string;
   phone: string;
   email: string | null;
-  product_id: number;
+  product_ids: number[];
   message: string | null;
   website: string;
 }

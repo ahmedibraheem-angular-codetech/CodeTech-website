@@ -1,12 +1,18 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
+  effect,
   ElementRef,
   HostListener,
+  PLATFORM_ID,
   computed,
   inject,
   input,
   signal,
+  viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
@@ -59,7 +65,13 @@ export class HeaderComponent {
   private readonly languageService = inject(LanguageService);
   private readonly router = inject(Router);
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+  private readonly navList = viewChild<ElementRef<HTMLElement>>('navList');
+  private readonly navIndicator = viewChild<ElementRef<HTMLElement>>('navIndicator');
+  private readonly navLine = viewChild<ElementRef<HTMLElement>>('navLine');
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
+  private navMotionReady = false;
 
   /** Site chrome payload from GET /layout (services + products drive mega menus). */
   readonly layout = input<LayoutData | null>(null);
@@ -70,6 +82,7 @@ export class HeaderComponent {
   readonly openMega = signal<MegaMenuId | null>(null);
   readonly isLangOpen = signal(false);
   readonly isMobileNavOpen = signal(false);
+  readonly navMarkersVisible = signal(false);
 
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -166,6 +179,35 @@ export class HeaderComponent {
       }));
   });
 
+  constructor() {
+    if (!this.isBrowser) {
+      return;
+    }
+
+    afterNextRender(() => {
+      this.placeNavMarkers(false);
+
+      const list = this.navList()?.nativeElement;
+      if (!list) {
+        return;
+      }
+
+      const observer = new ResizeObserver(() => this.placeNavMarkers(this.navMotionReady));
+      observer.observe(list);
+      this.destroyRef.onDestroy(() => observer.disconnect());
+
+      const onResize = () => this.placeNavMarkers(this.navMotionReady);
+      window.addEventListener('resize', onResize, { passive: true });
+      this.destroyRef.onDestroy(() => window.removeEventListener('resize', onResize));
+    });
+
+    effect(() => {
+      this.currentUrl();
+      this.currentLang();
+      requestAnimationFrame(() => this.placeNavMarkers(this.navMotionReady));
+    });
+  }
+
   /** Parent stays active for listing and child detail routes (e.g. /services/:slug). */
   isNavActive(link: NavLinkItem): boolean {
     const path = this.currentUrl().split('?')[0] ?? '';
@@ -259,5 +301,54 @@ export class HeaderComponent {
       clearTimeout(this.closeTimer);
       this.closeTimer = null;
     }
+  }
+
+  private placeNavMarkers(animate: boolean): void {
+    const list = this.navList()?.nativeElement;
+    const indicator = this.navIndicator()?.nativeElement;
+    const line = this.navLine()?.nativeElement;
+    if (!list || !indicator || !line) {
+      return;
+    }
+
+    const active = list.querySelector<HTMLElement>('.ct-header-nav-link.is-active');
+    const label = active?.querySelector<HTMLElement>('.ct-header-nav-label');
+    if (!active || !label) {
+      this.navMarkersVisible.set(false);
+      return;
+    }
+
+    const listRect = list.getBoundingClientRect();
+    const linkRect = active.getBoundingClientRect();
+    const labelRect = label.getBoundingClientRect();
+    const isRtl = getComputedStyle(list).direction === 'rtl';
+    const lineWidth = labelRect.width * 0.61;
+    const lineX = isRtl
+      ? labelRect.right - listRect.left - lineWidth
+      : labelRect.left - listRect.left;
+    const fontSize = Number.parseFloat(getComputedStyle(list).fontSize) || 16;
+    const lineY = labelRect.bottom - listRect.top + fontSize * 0.4 - 2;
+
+    indicator.classList.toggle('is-instant', !animate);
+    line.classList.toggle('is-instant', !animate);
+
+    indicator.style.width = `${linkRect.width}px`;
+    indicator.style.height = `${linkRect.height}px`;
+    indicator.style.transform = `translate3d(${linkRect.left - listRect.left}px, ${linkRect.top - listRect.top}px, 0)`;
+
+    line.style.width = `${lineWidth}px`;
+    line.style.transform = `translate3d(${lineX}px, ${lineY}px, 0)`;
+
+    this.navMarkersVisible.set(true);
+
+    if (this.navMotionReady) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      this.navMotionReady = true;
+      indicator.classList.remove('is-instant');
+      line.classList.remove('is-instant');
+    });
   }
 }

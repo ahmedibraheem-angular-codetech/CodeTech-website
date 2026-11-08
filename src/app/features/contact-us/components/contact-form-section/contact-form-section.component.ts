@@ -17,7 +17,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
@@ -31,7 +31,12 @@ import {
 import { ContactService } from '../../services/contact.service';
 
 type SubmitResult = 'success' | 'error' | 'rateLimited';
-type FormField = 'name' | 'organization' | 'phone' | 'email' | 'optionId' | 'message';
+type FormField = 'name' | 'organization' | 'phone' | 'email' | 'optionIds' | 'message';
+
+function requiredIds(control: AbstractControl): ValidationErrors | null {
+  const value = control.value as number[];
+  return value.length > 0 ? null : { required: true };
+}
 
 @Component({
   selector: 'ct-contact-form-section',
@@ -67,7 +72,7 @@ export class ContactFormSectionComponent {
     organization: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.email],
-    optionId: [null as number | null],
+    optionIds: [[] as number[], requiredIds],
     message: [''],
     website: [''],
   });
@@ -79,17 +84,20 @@ export class ContactFormSectionComponent {
       : this.products().map((product) => ({ id: product.id, label: product.title })),
   );
 
-  readonly selectedLabel = computed(() => {
-    const selectedId = this.selectedId();
-    return this.options().find((option) => option.id === selectedId)?.label ?? '';
+  readonly selectedIds = signal<number[]>([]);
+
+  readonly primarySelectedLabel = computed(() => {
+    const firstId = this.selectedIds()[0];
+    return this.options().find((option) => option.id === firstId)?.label ?? '';
   });
 
-  readonly selectedId = signal<number | null>(null);
+  readonly extraSelectedCount = computed(() => Math.max(this.selectedIds().length - 1, 0));
   readonly titleId = computed(() => `${this.sectionId()}-title`);
   readonly optionLabelId = computed(() => `${this.sectionId()}-option-label`);
   readonly resultTitleId = computed(() => `${this.sectionId()}-result-title`);
 
   private readonly resultRoot = viewChild<ElementRef<HTMLElement>>('resultRoot');
+  private readonly selectRoot = viewChild<ElementRef<HTMLElement>>('selectRoot');
   private resultNode: HTMLElement | null = null;
 
   constructor() {
@@ -104,12 +112,9 @@ export class ContactFormSectionComponent {
     });
 
     effect(() => {
-      const requiresOption = this.intent() === 'inquiry';
-      const optionControl = this.form.controls.optionId;
-      optionControl.setValidators(requiresOption ? Validators.required : []);
-      optionControl.updateValueAndValidity({ emitEvent: false });
-      this.selectedId.set(null);
-      optionControl.reset(null);
+      this.intent();
+      this.selectedIds.set([]);
+      this.form.controls.optionIds.reset([]);
       this.optionsOpen.set(false);
     });
 
@@ -151,18 +156,34 @@ export class ContactFormSectionComponent {
   }
 
   serverError(field: FormField): string | null {
-    return this.serverErrors()[this.apiField(field)] ?? null;
+    const errors = this.serverErrors();
+    const key = this.apiField(field);
+    if (errors[key]) {
+      return errors[key];
+    }
+
+    const nestedKey = Object.keys(errors).find((name) => name.startsWith(`${key}.`));
+    return nestedKey ? errors[nestedKey] : null;
   }
 
   toggleOptions(): void {
-    this.optionsOpen.update((open) => !open);
+    const nextOpen = !this.optionsOpen();
+    this.optionsOpen.set(nextOpen);
+    if (!nextOpen) {
+      this.form.controls.optionIds.markAsTouched();
+    }
   }
 
-  selectOption(id: number): void {
-    this.selectedId.set(id);
-    this.form.controls.optionId.setValue(id);
-    this.form.controls.optionId.markAsTouched();
-    this.optionsOpen.set(false);
+  isSelected(id: number): boolean {
+    return this.selectedIds().includes(id);
+  }
+
+  toggleOption(id: number): void {
+    const current = this.selectedIds();
+    const next = current.includes(id) ? current.filter((item) => item !== id) : [...current, id];
+    this.selectedIds.set(next);
+    this.form.controls.optionIds.setValue(next);
+    this.form.controls.optionIds.markAsTouched();
   }
 
   submit(): void {
@@ -175,9 +196,9 @@ export class ContactFormSectionComponent {
     }
 
     const value = this.form.getRawValue();
-    const optionId = value.optionId;
+    const optionIds = value.optionIds;
 
-    if (this.intent() === 'inquiry' && optionId === null) {
+    if (optionIds.length === 0) {
       return;
     }
 
@@ -194,8 +215,8 @@ export class ContactFormSectionComponent {
 
     const request$ =
       this.intent() === 'project'
-        ? this.contactService.submitProjectRequest({ ...common, service_id: optionId })
-        : this.contactService.submitInquiry({ ...common, product_id: optionId as number });
+        ? this.contactService.submitProjectRequest({ ...common, service_ids: optionIds })
+        : this.contactService.submitInquiry({ ...common, product_ids: optionIds });
 
     request$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
@@ -226,12 +247,34 @@ export class ContactFormSectionComponent {
   onEscape(): void {
     if (this.submitResult()) {
       this.closeResult();
+      return;
     }
+
+    if (this.optionsOpen()) {
+      this.optionsOpen.set(false);
+      this.form.controls.optionIds.markAsTouched();
+    }
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.optionsOpen()) {
+      return;
+    }
+
+    const target = event.target;
+    const root = this.selectRoot()?.nativeElement;
+    if (!(target instanceof Node) || !root || root.contains(target)) {
+      return;
+    }
+
+    this.optionsOpen.set(false);
+    this.form.controls.optionIds.markAsTouched();
   }
 
   private onSuccess(body: ContactSubmissionResponse | null): void {
     this.reference.set(body?.data?.reference ?? null);
-    this.selectedId.set(null);
+    this.selectedIds.set([]);
     this.form.reset();
     this.submitResult.set('success');
   }
@@ -272,8 +315,8 @@ export class ContactFormSectionComponent {
   }
 
   private apiField(field: FormField): string {
-    if (field === 'optionId') {
-      return this.intent() === 'project' ? 'service_id' : 'product_id';
+    if (field === 'optionIds') {
+      return this.intent() === 'project' ? 'service_ids' : 'product_ids';
     }
 
     return field;

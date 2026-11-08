@@ -101,6 +101,12 @@
   height: 28px;
 }
 
+.ct-footer-contact-label[dir='ltr'] {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: start;
+}
+
 .ct-footer-heading {
   width:50%;
   margin: 0 0 1.25rem;
@@ -142,10 +148,27 @@
   flex: none;
   width: 28px;
   height: 28px;
+  transition: transform 0.2s ease;
 }
 
-.ct-footer-link-icon:dir(ltr) {
+:dir(ltr) .ct-footer-link-icon {
   transform: scaleX(-1);
+}
+
+.ct-footer-link:hover .ct-footer-link-icon,
+.ct-footer-link:focus-visible .ct-footer-link-icon {
+  transform: translateX(-0.35rem);
+}
+
+:dir(ltr) .ct-footer-link:hover .ct-footer-link-icon,
+:dir(ltr) .ct-footer-link:focus-visible .ct-footer-link-icon {
+  transform: scaleX(-1) translateX(-0.35rem);
+}
+
+@include reduced-motion {
+  .ct-footer-link-icon {
+    transition: none;
+  }
 }
 
 .ct-footer-bottom {

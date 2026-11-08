@@ -9,7 +9,6 @@ import { routes } from './app.routes';
 import { apiLanguageInterceptor } from './core/http/api-language.interceptor';
 import { DEFAULT_LANGUAGE, LanguageService } from './core/i18n/language.service';
 import { ScrollPositionService } from './core/scroll/scroll-position.service';
-import { SeoRouteListener } from './core/seo/seo-route.listener';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -42,9 +41,6 @@ export const appConfig: ApplicationConfig = {
       }),
     }),
     provideAppInitializer(() => inject(LanguageService).init()),
-    provideAppInitializer(() => {
-      inject(SeoRouteListener).init();
-    }),
     provideAppInitializer(() => {
       inject(ScrollPositionService).init();
     }),

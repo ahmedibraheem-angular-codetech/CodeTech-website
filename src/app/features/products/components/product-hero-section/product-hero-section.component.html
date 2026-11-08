@@ -24,7 +24,7 @@
               [src]="image()?.url"
               [alt]="imageAlt() ?? title()"
               [attr.title]="imageTitle() || null"
-              fetchpriority="high"
+              loading="lazy"
               decoding="async"
             />
           }

@@ -14,4 +14,6 @@ export class FeatureCardComponent {
   readonly data = input.required<FeatureCardData>();
   /** Static i18n content passes translation keys; API content is already localized. */
   readonly translateKeys = input(false);
+  /** Eager starts the download with the page. Lazy waits until the card is near the screen. */
+  readonly imageLoading = input<'lazy' | 'eager'>('lazy');
 }

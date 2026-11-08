@@ -17,8 +17,8 @@ import {
   Router,
   RouterOutlet,
 } from '@angular/router';
-import { catchError, filter, of, switchMap, tap } from 'rxjs';
-import { PageLoadStatus } from '../../api/api.model';
+import { catchError, filter, forkJoin, of, switchMap, tap } from 'rxjs';
+import { ApiProjectCard, PageLoadStatus } from '../../api/api.model';
 import { LanguageService } from '../../i18n/language.service';
 import { NetworkService } from '../../network/network.service';
 import { OfflinePageComponent } from '../../offline/offline-page.component';
@@ -46,6 +46,7 @@ export class MainLayoutComponent {
   readonly pagePhase = signal<'idle' | 'leave' | 'enter'>('idle');
   readonly layoutStatus = signal<PageLoadStatus>('loading');
   readonly layout = signal<LayoutData | null>(null);
+  readonly projects = signal<ApiProjectCard[]>([]);
 
   private enterTimer: ReturnType<typeof setTimeout> | null = null;
   private isFirstNav = true;
@@ -56,24 +57,31 @@ export class MainLayoutComponent {
       .pipe(
         tap(() => this.layoutStatus.set('loading')),
         switchMap(() =>
-          this.layoutService.getLayout().pipe(
-            catchError((error: unknown) => {
-              this.layout.set(null);
-              this.layoutStatus.set(
-                error instanceof HttpErrorResponse && error.status === 0 ? 'error' : 'error'
-              );
-              return of(null);
-            })
-          )
+          forkJoin({
+            layout: this.layoutService.getLayout().pipe(
+              catchError((error: unknown) => {
+                this.layout.set(null);
+                this.layoutStatus.set(
+                  error instanceof HttpErrorResponse && error.status === 0 ? 'error' : 'error'
+                );
+                return of(null);
+              }),
+            ),
+            projects: this.layoutService.getMenuProjects().pipe(
+              catchError(() => of(null)),
+            ),
+          }),
         ),
         takeUntilDestroyed(this.destroyRef)
       )
-      .subscribe((response) => {
-        if (!response) {
+      .subscribe(({ layout, projects }) => {
+        this.projects.set(projects?.data ?? []);
+
+        if (!layout) {
           return;
         }
 
-        this.layout.set(response.data);
+        this.layout.set(layout.data);
         this.layoutStatus.set('success');
       });
 

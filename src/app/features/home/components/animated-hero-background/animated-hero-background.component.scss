@@ -3,6 +3,7 @@
   position: relative;
   width: 100%;
   min-height: inherit;
+  overflow: hidden;
 }
 
 .animated-hero-image,
@@ -19,6 +20,11 @@
   object-position: center center;
 }
 
+.animated-hero-image:dir(ltr),
+.animated-hero-canvas:dir(ltr) {
+  transform: scaleX(-1);
+}
+
 .animated-hero-canvas {
   display: block;
 }
@@ -32,11 +38,19 @@
   .animated-hero-image {
     object-position: 60% center;
   }
+
+  .animated-hero-image:dir(ltr) {
+    object-position: 40% center;
+  }
 }
 
 @media (max-width: 991.98px) {
   .animated-hero-image {
     object-position: 68% center;
+  }
+
+  .animated-hero-image:dir(ltr) {
+    object-position: 32% center;
   }
 }
 
@@ -44,17 +58,29 @@
   .animated-hero-image {
     object-position: 72% center;
   }
+
+  .animated-hero-image:dir(ltr) {
+    object-position: 28% center;
+  }
 }
 
 @media (max-width: 575.98px) {
   .animated-hero-image {
     object-position: 78% center;
   }
+
+  .animated-hero-image:dir(ltr) {
+    object-position: 22% center;
+  }
 }
 
 @media (max-width: 389.98px) {
   .animated-hero-image {
     object-position: 82% center;
+  }
+
+  .animated-hero-image:dir(ltr) {
+    object-position: 18% center;
   }
 }
 

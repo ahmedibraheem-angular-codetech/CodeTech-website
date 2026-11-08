@@ -12,11 +12,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
+import { ApiProjectCard } from '../../api/api.model';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { AppLanguage, LanguageService } from '../../i18n/language.service';
 import {
   LayoutData,
   LayoutProductItem,
+  LayoutProjectItem,
   LayoutServiceItem,
 } from '../models/layout.model';
 import {
@@ -26,6 +28,7 @@ import {
 } from './header.nav.config';
 import { MobileNavigationComponent } from './mobile-navigation/mobile-navigation.component';
 import { ProductsDropdownComponent } from './products-dropdown/products-dropdown.component';
+import { ProjectsDropdownComponent } from './projects-dropdown/projects-dropdown.component';
 import { ServicesDropdownComponent } from './services-dropdown/services-dropdown.component';
 
 interface LangOption {
@@ -45,6 +48,7 @@ const FALLBACK_LOGO = '/assets/images/logo.svg';
     ButtonComponent,
     ServicesDropdownComponent,
     ProductsDropdownComponent,
+    ProjectsDropdownComponent,
     MobileNavigationComponent,
   ],
   templateUrl: './header.component.html',
@@ -59,6 +63,8 @@ export class HeaderComponent {
 
   /** Site chrome payload from GET /layout (services + products drive mega menus). */
   readonly layout = input<LayoutData | null>(null);
+  /** First page from GET /projects. */
+  readonly projects = input<ApiProjectCard[]>([]);
 
   readonly navLinks = HEADER_NAV_LINKS;
   readonly openMega = signal<MegaMenuId | null>(null);
@@ -96,6 +102,7 @@ export class HeaderComponent {
 
   readonly isServicesOpen = computed(() => this.openMega() === 'services');
   readonly isProductsOpen = computed(() => this.openMega() === 'products');
+  readonly isProjectsOpen = computed(() => this.openMega() === 'projects');
 
   /** Header mark stays static — do not use layout site.logo. */
   readonly logoUrl = FALLBACK_LOGO;
@@ -136,6 +143,26 @@ export class HeaderComponent {
         imageUrl:
           product.thumbnail?.url ?? '/assets/images/header/products/product-1.svg',
         route: `/products/${product.slug}`,
+      }));
+  });
+
+  /** GET /projects — same card shape as the products menu. */
+  readonly projectMenuItems = computed((): LayoutProjectItem[] => {
+    const projects = this.projects();
+    if (!Array.isArray(projects)) {
+      return [];
+    }
+
+    return projects
+      .filter((project) => typeof project.slug === 'string' && project.slug.length > 0)
+      .map((project) => ({
+        id: project.id,
+        slug: project.slug,
+        title: project.title,
+        description: project.description,
+        imageUrl:
+          project.thumbnail?.url ?? '/assets/images/header/products/product-1.svg',
+        route: `/projects/${project.slug}`,
       }));
   });
 

@@ -100,6 +100,41 @@
                         </ul>
                       }
 
+                      @if (link.mega === 'projects') {
+                        <ul class="mobile-nav-sublist">
+                          <li>
+                            <a
+                              class="mobile-nav-sublink"
+                              [routerLink]="link.route"
+                              routerLinkActive="is-active"
+                              [routerLinkActiveOptions]="{ exact: true }"
+                              (click)="onNavigate()"
+                            >
+                              <span class="mobile-nav-sublink-title">
+                                {{ link.labelKey | translate }}
+                              </span>
+                            </a>
+                          </li>
+                          @for (project of projectList(); track project.id) {
+                            <li>
+                              <a
+                                class="mobile-nav-sublink"
+                                [routerLink]="project.route"
+                                routerLinkActive="is-active"
+                                (click)="onNavigate()"
+                              >
+                                <span class="mobile-nav-sublink-title">
+                                  {{ project.title }}
+                                </span>
+                                <span class="mobile-nav-sublink-desc">
+                                  {{ project.description }}
+                                </span>
+                              </a>
+                            </li>
+                          }
+                        </ul>
+                      }
+
                       @if (link.mega === 'products') {
                         <ul class="mobile-nav-sublist">
                           <li>

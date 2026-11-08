@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -15,6 +15,10 @@ import { ContactOptionsSectionComponent } from './components/contact-options-sec
 import { ContactStepsSectionComponent } from './components/contact-steps-section/contact-steps-section.component';
 import { ContactIntent, ContactPageData } from './models/contact-api.model';
 import { ContactService } from './services/contact.service';
+
+const PROJECT_FORM_ID = 'contact-project-form';
+const INQUIRY_FORM_ID = 'contact-inquiry-form';
+const LEGACY_FORM_HASH = 'contact-form';
 
 @Component({
   selector: 'ct-contact-us-page',
@@ -44,10 +48,10 @@ export class ContactUsPageComponent {
   );
   private scrollTimer: number | null = null;
   private hashScrollStarted = false;
+  private pendingFormId = PROJECT_FORM_ID;
 
   readonly status = this.resolved.status;
   readonly page = this.resolved.page;
-  readonly intent = signal<ContactIntent>('project');
 
   constructor() {
     const destroyRef = inject(DestroyRef);
@@ -68,8 +72,8 @@ export class ContactUsPageComponent {
   }
 
   selectIntent(intent: ContactIntent): void {
-    this.intent.set(intent);
-    this.scrollToForm('smooth');
+    this.pendingFormId = intent === 'inquiry' ? INQUIRY_FORM_ID : PROJECT_FORM_ID;
+    this.scrollWhenReady(this.pendingFormId, 'smooth');
   }
 
   private scrollToFormIfRequested(): void {
@@ -78,10 +82,15 @@ export class ContactUsPageComponent {
     }
 
     this.hashScrollStarted = true;
-    this.scrollWhenReady();
+    this.pendingFormId = this.resolveHashFormId();
+    this.scrollWhenReady(this.pendingFormId, 'auto');
   }
 
-  private scrollWhenReady(remaining = 100): void {
+  private scrollWhenReady(
+    formId: string,
+    behavior: ScrollBehavior,
+    remaining = 100,
+  ): void {
     const view = this.document.defaultView;
     if (!view) {
       return;
@@ -89,29 +98,52 @@ export class ContactUsPageComponent {
 
     this.clearScrollTimer();
 
-    const section = this.document.getElementById('contact-form');
+    const section = this.findFormSection(formId);
     const ready = (section?.getBoundingClientRect().height ?? 0) > 0;
     if (!ready) {
       if (remaining > 0) {
-        this.scrollTimer = view.setTimeout(() => this.scrollWhenReady(remaining - 1), 50);
+        this.scrollTimer = view.setTimeout(
+          () => this.scrollWhenReady(formId, behavior, remaining - 1),
+          50,
+        );
       }
       return;
     }
 
     this.scrollTimer = view.setTimeout(() => {
       this.scrollTimer = null;
-      this.scrollToForm('auto');
+      this.scrollToForm(formId, behavior);
     }, 0);
   }
 
   private shouldScrollToForm(): boolean {
     const hash = this.document.location?.hash.replace(/^#/, '') ?? '';
-    return this.route.snapshot.fragment === 'contact-form' || hash === 'contact-form';
+    const fragment = this.route.snapshot.fragment ?? '';
+    return (
+      fragment === LEGACY_FORM_HASH ||
+      fragment === PROJECT_FORM_ID ||
+      fragment === INQUIRY_FORM_ID ||
+      hash === LEGACY_FORM_HASH ||
+      hash === PROJECT_FORM_ID ||
+      hash === INQUIRY_FORM_ID
+    );
   }
 
-  private scrollToForm(behavior: ScrollBehavior): void {
+  private resolveHashFormId(): string {
+    const hash = this.document.location?.hash.replace(/^#/, '') ?? '';
+    const fragment = this.route.snapshot.fragment ?? '';
+    const target = fragment || hash;
+
+    if (target === INQUIRY_FORM_ID) {
+      return INQUIRY_FORM_ID;
+    }
+
+    return PROJECT_FORM_ID;
+  }
+
+  private scrollToForm(formId: string, behavior: ScrollBehavior): void {
     const view = this.document.defaultView;
-    const section = this.document.getElementById('contact-form');
+    const section = this.findFormSection(formId);
     if (!view || !section) {
       return;
     }
@@ -120,18 +152,22 @@ export class ContactUsPageComponent {
     const resolved: ScrollBehavior = reduceMotion ? 'auto' : behavior;
     const headerHeight = this.document.querySelector('ct-header')?.getBoundingClientRect().height ?? 0;
     const top = section.getBoundingClientRect().top + view.scrollY - headerHeight - 16;
-    const root = this.document.documentElement;
-    const previousBehavior = root.style.scrollBehavior;
-
-    if (resolved === 'auto') {
-      root.style.scrollBehavior = 'auto';
-    }
 
     view.scrollTo({ top: Math.max(0, top), behavior: resolved });
+  }
 
-    if (resolved === 'auto') {
-      root.style.scrollBehavior = previousBehavior;
+  private findFormSection(formId: string): HTMLElement | null {
+    const byId = this.document.getElementById(formId);
+    if (byId) {
+      return byId;
     }
+
+    const sections = this.document.querySelectorAll<HTMLElement>('.contact-form-section');
+    if (formId === INQUIRY_FORM_ID) {
+      return sections.item(1);
+    }
+
+    return sections.item(0);
   }
 
   private clearScrollTimer(): void {
@@ -143,4 +179,3 @@ export class ContactUsPageComponent {
     this.scrollTimer = null;
   }
 }
-

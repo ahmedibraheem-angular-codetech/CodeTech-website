@@ -142,6 +142,11 @@
       [items]="productMenuItems()"
       (closed)="closeMega()"
     />
+    <ct-projects-dropdown
+      [isOpen]="isProjectsOpen()"
+      [items]="projectMenuItems()"
+      (closed)="closeMega()"
+    />
   </div>
 
 </header>
@@ -151,6 +156,7 @@
   [logoUrl]="logoUrl"
   [itemsServices]="serviceMenuItems()"
   [itemsProducts]="productMenuItems()"
+  [itemsProjects]="projectMenuItems()"
   (visibleChange)="isMobileNavOpen.set($event)"
   (ctaClicked)="onCtaClick()"
 />

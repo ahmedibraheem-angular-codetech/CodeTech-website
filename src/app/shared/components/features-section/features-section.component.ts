@@ -17,4 +17,5 @@ export class FeaturesSectionComponent {
   readonly features = input<FeatureItem[]>([]);
   /** Static i18n content passes translation keys; API content is already localized. */
   readonly translateKeys = input(false);
+  readonly imageLoading = input<'lazy' | 'eager'>('lazy');
 }

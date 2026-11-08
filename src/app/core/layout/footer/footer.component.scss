@@ -1,12 +1,31 @@
 @use '../../../../styles/abstracts/mixin' as *;
 .ct-footer {
+  position: relative;
+  overflow: hidden;
   margin-block-start: var(--space-section);
   color: var(--color-white);
   background-color: #00162b;
+}
+
+.ct-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   background-image: url('/assets/images/footer-bg.jpg');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
+}
+
+.ct-footer:dir(ltr)::before {
+  transform: scaleX(-1);
+}
+
+.ct-footer > * {
+  position: relative;
+  z-index: 1;
 }
 
 .ct-footer-panel {

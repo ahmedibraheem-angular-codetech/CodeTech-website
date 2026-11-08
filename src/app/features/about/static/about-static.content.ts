@@ -1,7 +1,6 @@
 import { FeatureItem } from '../../../shared/components/features-section/features-section.model';
 
-const FEATURE_IMAGE =
-  '/assets/images/fake-image/b4dae8e1c56f95eb1799534160129eacdb13b0fa.png';
+const WHY_IMAGES = '/assets/images/home/why';
 const VALUES_IMAGES = '/assets/images/about';
 
 /** Static value card — copy lives in i18n, not in the API. */
@@ -45,5 +44,5 @@ export const ABOUT_FEATURE_ITEMS: FeatureItem[] = FEATURE_IDS.map((id) => ({
   id,
   title: `about.features.items.${id}.title`,
   short_description: `about.features.items.${id}.description`,
-  image: { url: FEATURE_IMAGE },
+  image: { url: `${WHY_IMAGES}/${id}.png` },
 }));

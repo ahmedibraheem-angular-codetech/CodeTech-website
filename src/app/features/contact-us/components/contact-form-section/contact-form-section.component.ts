@@ -17,14 +17,11 @@ import {
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { LanguageService } from '../../../../core/i18n/language.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import {
-  ContactInfo,
   ContactIntent,
   ContactProductOption,
   ContactServiceOption,
@@ -35,11 +32,6 @@ import { ContactService } from '../../services/contact.service';
 
 type SubmitResult = 'success' | 'error' | 'rateLimited';
 type FormField = 'name' | 'organization' | 'phone' | 'email' | 'optionId' | 'message';
-
-const MAP_HOSTS: readonly string[] = ['www.google.com', 'google.com', 'maps.google.com'];
-const MIN_ZOOM = 8;
-const MAX_ZOOM = 18;
-const DEFAULT_ZOOM = 14;
 
 @Component({
   selector: 'ct-contact-form-section',
@@ -52,20 +44,17 @@ const DEFAULT_ZOOM = 14;
 export class ContactFormSectionComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly contactService = inject(ContactService);
-  private readonly language = inject(LanguageService);
-  private readonly sanitizer = inject(DomSanitizer);
   private readonly changeDetector = inject(ChangeDetectorRef);
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
 
+  readonly sectionId = input.required<string>();
   readonly intent = input.required<ContactIntent>();
   readonly services = input.required<ContactServiceOption[]>();
   readonly products = input.required<ContactProductOption[]>();
-  readonly contact = input.required<ContactInfo>();
 
-  readonly zoom = signal(DEFAULT_ZOOM);
   readonly optionsOpen = signal(false);
   readonly submitting = signal(false);
   readonly submitResult = signal<SubmitResult | null>(null);
@@ -78,7 +67,7 @@ export class ContactFormSectionComponent {
     organization: ['', Validators.required],
     phone: ['', Validators.required],
     email: ['', Validators.email],
-    optionId: [null as number | null, Validators.required],
+    optionId: [null as number | null],
     message: [''],
     website: [''],
   });
@@ -96,39 +85,12 @@ export class ContactFormSectionComponent {
   });
 
   readonly selectedId = signal<number | null>(null);
-
-  readonly mapEmbedUrl = computed<SafeResourceUrl | null>(() => {
-    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
-    if (!url) {
-      return null;
-    }
-
-    if (url.pathname.startsWith('/maps/embed')) {
-      return this.sanitizer.bypassSecurityTrustResourceUrl(url.toString());
-    }
-
-    const query = url.searchParams.get('query') ?? url.searchParams.get('q');
-    if (!query) {
-      return null;
-    }
-
-    const embed = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${this.zoom()}&hl=${this.language.currentLang()}&output=embed`;
-    return this.sanitizer.bypassSecurityTrustResourceUrl(embed);
-  });
+  readonly titleId = computed(() => `${this.sectionId()}-title`);
+  readonly optionLabelId = computed(() => `${this.sectionId()}-option-label`);
+  readonly resultTitleId = computed(() => `${this.sectionId()}-result-title`);
 
   private readonly resultRoot = viewChild<ElementRef<HTMLElement>>('resultRoot');
   private resultNode: HTMLElement | null = null;
-
-  readonly mapLinkUrl = computed(() => {
-    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
-    return url ? url.toString() : null;
-  });
-
-  /** Zoom only applies to query based embeds; ready-made embed URLs keep their own zoom. */
-  readonly canZoom = computed(() => {
-    const url = this.parseGoogleMapsUrl(this.contact().google_maps_url);
-    return !!url && !url.pathname.startsWith('/maps/embed');
-  });
 
   constructor() {
     this.form.statusChanges.pipe(takeUntilDestroyed()).subscribe(() => {
@@ -142,9 +104,12 @@ export class ContactFormSectionComponent {
     });
 
     effect(() => {
-      this.intent();
+      const requiresOption = this.intent() === 'inquiry';
+      const optionControl = this.form.controls.optionId;
+      optionControl.setValidators(requiresOption ? Validators.required : []);
+      optionControl.updateValueAndValidity({ emitEvent: false });
       this.selectedId.set(null);
-      this.form.controls.optionId.reset(null);
+      optionControl.reset(null);
       this.optionsOpen.set(false);
     });
 
@@ -159,6 +124,10 @@ export class ContactFormSectionComponent {
       this.resultNode?.remove();
       this.resultNode = null;
     });
+  }
+
+  fieldId(suffix: string): string {
+    return `${this.sectionId()}-${suffix}`;
   }
 
   /** Keep the dialog centered on the viewport, outside transformed page content. */
@@ -196,14 +165,6 @@ export class ContactFormSectionComponent {
     this.optionsOpen.set(false);
   }
 
-  zoomIn(): void {
-    this.zoom.update((value) => Math.min(value + 1, MAX_ZOOM));
-  }
-
-  zoomOut(): void {
-    this.zoom.update((value) => Math.max(value - 1, MIN_ZOOM));
-  }
-
   submit(): void {
     this.form.markAllAsTouched();
     this.optionsOpen.set(false);
@@ -215,7 +176,8 @@ export class ContactFormSectionComponent {
 
     const value = this.form.getRawValue();
     const optionId = value.optionId;
-    if (optionId === null) {
+
+    if (this.intent() === 'inquiry' && optionId === null) {
       return;
     }
 
@@ -233,7 +195,7 @@ export class ContactFormSectionComponent {
     const request$ =
       this.intent() === 'project'
         ? this.contactService.submitProjectRequest({ ...common, service_id: optionId })
-        : this.contactService.submitInquiry({ ...common, product_id: optionId });
+        : this.contactService.submitInquiry({ ...common, product_id: optionId as number });
 
     request$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (response) => {
@@ -315,17 +277,6 @@ export class ContactFormSectionComponent {
     }
 
     return field;
-  }
-
-  private parseGoogleMapsUrl(value: string): URL | null {
-    try {
-      const url = new URL(value);
-      const isGoogleMaps =
-        url.protocol === 'https:' && MAP_HOSTS.includes(url.hostname) && url.pathname.startsWith('/maps');
-      return isGoogleMaps ? url : null;
-    } catch {
-      return null;
-    }
   }
 
   private syncPageScroll(locked: boolean): void {

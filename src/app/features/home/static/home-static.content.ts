@@ -2,8 +2,7 @@ import { FeatureItem } from '../../../shared/components/features-section/feature
 import { JourneyCard } from '../../../shared/components/journey-section/journey-section.model';
 
 const JOURNEY_IMAGES = '/assets/images/fake-image';
-const FEATURE_IMAGE =
-  '/assets/images/fake-image/b4dae8e1c56f95eb1799534160129eacdb13b0fa.png';
+const WHY_IMAGES = '/assets/images/home/why';
 
 /** Static journey timeline — not supplied by the API. */
 export const HOME_JOURNEY_CARDS: JourneyCard[] = [
@@ -86,48 +85,48 @@ export const HOME_FEATURE_ITEMS: FeatureItem[] = [
     id: 'grow',
     title: 'home.features.items.grow.title',
     short_description: 'home.features.items.grow.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/grow.png` },
   },
   {
     id: 'understand',
     title: 'home.features.items.understand.title',
     short_description: 'home.features.items.understand.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/understand.png` },
   },
   {
     id: 'quality',
     title: 'home.features.items.quality.title',
     short_description: 'home.features.items.quality.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/quality.png` },
   },
   {
     id: 'product',
     title: 'home.features.items.product.title',
     short_description: 'home.features.items.product.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/product.png` },
   },
   {
     id: 'expertise',
     title: 'home.features.items.expertise.title',
     short_description: 'home.features.items.expertise.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/expertise.png` },
   },
   {
     id: 'connect',
     title: 'home.features.items.connect.title',
     short_description: 'home.features.items.connect.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/connect.png` },
   },
   {
     id: 'integrate',
     title: 'home.features.items.integrate.title',
     short_description: 'home.features.items.integrate.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/integrate.png` },
   },
   {
     id: 'partner',
     title: 'home.features.items.partner.title',
     short_description: 'home.features.items.partner.description',
-    image: { url: FEATURE_IMAGE },
+    image: { url: `${WHY_IMAGES}/partner.png` },
   },
 ];

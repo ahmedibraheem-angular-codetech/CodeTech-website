@@ -7,7 +7,8 @@
       class="feature-card-image"
       [src]="data().image?.url"
       [alt]="translateKeys() ? (data().title | translate) : data().title"
-      loading="lazy"
+      [attr.loading]="imageLoading()"
+      [attr.fetchpriority]="imageLoading() === 'eager' ? 'low' : null"
       decoding="async"
     />
   }

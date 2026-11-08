@@ -23,7 +23,11 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { AppLanguage, LanguageService } from '../../../i18n/language.service';
-import { LayoutProductItem, LayoutServiceItem } from '../../models/layout.model';
+import {
+  LayoutProductItem,
+  LayoutProjectItem,
+  LayoutServiceItem,
+} from '../../models/layout.model';
 import {
   HEADER_NAV_LINKS,
   type MegaMenuId,
@@ -73,6 +77,7 @@ export class MobileNavigationComponent {
   readonly logoUrl = input('/assets/images/logo.svg');
   readonly itemsServices = input<LayoutServiceItem[]>([]);
   readonly itemsProducts = input<LayoutProductItem[]>([]);
+  readonly itemsProjects = input<LayoutProjectItem[]>([]);
   readonly ctaClicked = output<void>();
 
   readonly navLinks = HEADER_NAV_LINKS;
@@ -82,6 +87,10 @@ export class MobileNavigationComponent {
   });
   readonly productList = computed(() => {
     const value = this.itemsProducts();
+    return Array.isArray(value) ? value : [];
+  });
+  readonly projectList = computed(() => {
+    const value = this.itemsProjects();
     return Array.isArray(value) ? value : [];
   });
 

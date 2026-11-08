@@ -80,7 +80,9 @@ export class AnimatedHeroBackgroundComponent implements OnDestroy {
       return;
     }
     const bounds = this.pointerTarget.getBoundingClientRect();
-    this.pointerX = event.clientX - bounds.left;
+    const localX = event.clientX - bounds.left;
+    // Canvas is mirrored in LTR, so map the pointer into unflipped canvas space.
+    this.pointerX = this.isLtr() ? bounds.width - localX : localX;
     this.pointerY = event.clientY - bounds.top;
     this.pointerActive = true;
   };
@@ -353,6 +355,11 @@ export class AnimatedHeroBackgroundComponent implements OnDestroy {
 
   private clear(): void {
     this.context?.clearRect(0, 0, this.width, this.height);
+  }
+
+  private isLtr(): boolean {
+    const root = this.host.nativeElement.ownerDocument?.documentElement;
+    return (root?.getAttribute('dir') ?? root?.dir ?? 'rtl') === 'ltr';
   }
 
   private streamStart(): number {

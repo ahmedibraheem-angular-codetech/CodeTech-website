@@ -35,7 +35,7 @@ export interface ProjectRequestBody {
   organization: string;
   phone: string;
   email: string | null;
-  service_id: number;
+  service_id: number | null;
   message: string | null;
   website: string;
 }

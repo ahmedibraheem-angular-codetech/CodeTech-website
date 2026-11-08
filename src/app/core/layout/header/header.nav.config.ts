@@ -1,4 +1,4 @@
-export type MegaMenuId = 'services' | 'products';
+export type MegaMenuId = 'services' | 'products' | 'projects';
 
 export interface NavLinkItem {
   readonly id: string;
@@ -22,7 +22,12 @@ export const HEADER_NAV_LINKS: readonly NavLinkItem[] = [
     route: '/products',
     mega: 'products',
   },
-  { id: 'projects', labelKey: 'header.nav.projects', route: '/projects' },
+  {
+    id: 'projects',
+    labelKey: 'header.nav.projects',
+    route: '/projects',
+    mega: 'projects',
+  },
   { id: 'blog', labelKey: 'header.nav.blog', route: '/blog' },
   { id: 'contact', labelKey: 'header.nav.contact', route: '/contact-us' },
 ] as const;

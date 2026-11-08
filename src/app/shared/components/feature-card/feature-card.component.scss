@@ -12,6 +12,7 @@
   padding: var(--space-md);
   overflow: hidden;
   border-radius: var(--border-radius);
+  background-color: var(--color-primary);
   isolation: isolate;
 
   &::after {

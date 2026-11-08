@@ -50,6 +50,15 @@ export interface LayoutProductItem {
   route: string;
 }
 
+export interface LayoutProjectItem {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  route: string;
+}
+
 export interface LayoutContactItem {
   id: string;
   icon: string;

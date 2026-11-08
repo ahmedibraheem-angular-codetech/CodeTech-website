@@ -1,32 +1,25 @@
 @use '../../../../../styles/abstracts/mixin' as *;
 .contact-form-section {
   position: relative;
-  padding-bottom: 48px;
   overflow-x: clip;
   scroll-margin-top: 7rem;
+  background-color: var(--color-white);
 }
 
-.contact-form-split {
-  position: absolute;
-  inset: 0;
+.contact-form-layout {
+  align-items: stretch;
+}
+
+.contact-form-column-form {
   display: flex;
-  pointer-events: none;
-}
-
-.contact-form-half {
-  flex: 1 1 50%;
-}
-
-.contact-form-half-form {
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-inline-start: 5rem;
+  padding-inline-end: 2.5rem;
   background-color: var(--color-background);
-}
-
-.contact-form-half-map {
-  background-color:  var(--color-white);
-}
-
-.contact-form-section .container {
-  position: relative;
+  border-end-start-radius: 2.25rem;
 }
 
 .contact-form-title {
@@ -509,83 +502,17 @@
 }
 
 .contact-map {
-  position: relative;
-  height: 104%;
-  min-height: 36rem;
-  overflow: hidden;
-  border-radius: 24px;
-  background-color: var(--color-background);
+  width: 100%;
+  height: auto;
 }
 
-.contact-map-frame {
+.contact-map-image {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 36rem;
-  border: 0;
-}
-
-.contact-map-zoom {
-  position: absolute;
-  z-index: 2;
-  bottom: 1rem;
-  inset-inline-end: 1rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 12px;
-  background: var(--color-white);
-  box-shadow: 0 8px 24px rgb(0 41 81 / 12%);
-}
-
-.contact-map-zoom button {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 0;
-  background: var(--color-white);
-  color: var(--color-text-secondary);
-  font-size: 22px;
-  line-height: 1;
-}
-
-.contact-map-zoom button + button {
-  border-top: 1px solid var(--color-button-light);
-}
-
-.contact-map-fallback {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-sm);
-  height: 100%;
-  min-height: 36rem;
-  padding: var(--space-md);
-  text-align: center;
-}
-
-.contact-map-location {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--color-primary);
-}
-
-.contact-map-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding-inline: var(--space-md);
-  border-radius: 12px;
-  background-color: var(--color-brand);
-  color: var(--color-white);
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .contact-honeypot {
@@ -604,32 +531,26 @@
   color: var(--color-primary);
 }
 
-.contact-form-column--map {
+.contact-form-column-map {
   position: relative;
   z-index: 0;
 }
 
 @include below(991.98px) {
-  .contact-form-split {
-    display: none;
+  .contact-form-column-form {
+    padding-inline: 1.25rem;
+    padding-block: 2rem;
+    border-end-start-radius: 0;
   }
 
-  .contact-form-section {
-    background-color: var(--color-white);
-  }
+ 
 
-  .contact-form-column--map::before {
+  .contact-form-column-map::before {
     @include full-bleed-background;
   }
 
   .contact-form-title {
     font-size: 1.75rem;
-  }
-
-  .contact-map,
-  .contact-map-frame,
-  .contact-map-fallback {
-    min-height: 22rem;
   }
 }
 

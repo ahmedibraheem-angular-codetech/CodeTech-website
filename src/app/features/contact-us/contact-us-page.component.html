@@ -20,10 +20,17 @@
   <ct-page-error-state (retry)="retry()" />
 } @else if (page(); as contact) {
   <ct-contact-form-section
-    [intent]="intent()"
+    sectionId="contact-project-form"
+    intent="project"
     [services]="contact.services"
     [products]="contact.products"
-    [contact]="contact.contact"
+  />
+
+  <ct-contact-form-section
+    sectionId="contact-inquiry-form"
+    intent="inquiry"
+    [services]="contact.services"
+    [products]="contact.products"
   />
 
   <ct-contact-channels-section [contact]="contact.contact" />

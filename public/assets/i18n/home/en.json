@@ -3,20 +3,20 @@
     "ctaStart": "Start your project",
     "ctaExplore": "Explore our services",
     "clients": {
-      "brand": "Our success",
-      "title": "Our clients"
+      "brand": "Our Success",
+      "title": "Our Clients"
     },
     "video": {
-      "label": "CodeTech video",
+      "label": "CodeTech Video",
       "play": "Play video"
     },
     "aboutCta": "Learn more about us",
     "journey": {
-      "label": "Our journey",
-      "title": "Working with CodeTech",
+      "label": "Our Journey",
+      "title": "Working With CodeTech",
       "steps": {
         "analysis": {
-          "title": "Needs analysis",
+          "title": "Needs Analysis",
           "description": "Initial requirements document and a clear scope"
         },
         "planning": {
@@ -40,81 +40,81 @@
           "description": "A ready-to-use solution with agreed handover documents."
         },
         "support": {
-          "title": "Support & growth",
+          "title": "Support & Growth",
           "description": "Ongoing operation and a continuous improvement plan as needed"
         }
       }
     },
     "projects": {
-      "label": "Our projects",
-      "title": "Latest projects"
+      "label": "Our Projects",
+      "title": "Latest Projects"
     },
     "testimonials": {
-      "label": "Our clients",
-      "title": "Client testimonials",
+      "label": "Our Clients",
+      "title": "Client Testimonials",
       "play": "Play client testimonial video"
     },
     "faq": {
-      "label": "Common questions",
-      "title": "Frequently asked questions"
+      "label": "Common Questions",
+      "title": "Frequently Asked Questions"
     },
     "features": {
-      "label": "Our features",
+      "label": "Our Features",
       "title": "Why CodeTech?",
       "items": {
         "grow": {
-          "title": "Solutions that grow with your business",
+          "title": "Solutions That Grow with Your Business",
           "description": "We build scalable systems that support growth without rebuilding from scratch.",
           "imageAlt": "Scalable solutions"
         },
         "understand": {
-          "title": "We understand your business first",
+          "title": "We Understand Your Business First",
           "description": "We start by understanding your reality and needs, then design the right solution.",
           "imageAlt": "Understanding the business"
         },
         "quality": {
-          "title": "Quality you can rely on",
+          "title": "Quality You Can Rely On",
           "description": "Clear development and testing standards to keep the solution stable and performant.",
           "imageAlt": "Reliable quality"
         },
         "product": {
-          "title": "From idea to a complete digital product",
+          "title": "From Idea to a Complete Digital Product",
           "description": "From idea to launch, we design and build a digital product ready to use.",
           "imageAlt": "Complete digital product"
         },
         "expertise": {
-          "title": "Technical expertise that makes a difference",
+          "title": "Technical Expertise That Makes a Difference",
           "description": "A specialized team that chooses the right technologies and delivers them professionally.",
           "imageAlt": "Technical expertise"
         },
         "connect": {
-          "title": "We connect your business to systems and platforms",
+          "title": "We Connect Your Business to Systems and Platforms",
           "description": "Smooth integrations that link your systems to work platforms and external services.",
           "imageAlt": "System connections"
         },
         "integrate": {
-          "title": "We simplify technical complexity for your team",
+          "title": "We Simplify Technical Complexity for Your Team",
           "description": "We turn complex processes into clear systems that are easy for your team to use.",
           "imageAlt": "Simplified technology"
         },
         "partner": {
-          "title": "We build a long-term technical partnership",
+          "title": "We Build a Long-Term Technical Partnership",
           "description": "We stay with you after launch with support and continuous improvement for lasting growth.",
           "imageAlt": "Technical partnership"
         }
       }
     },
     "products": {
-      "label": "Highest quality",
-      "title": "Our technical products",
+      "label": "Highest Quality",
+      "title": "Our Technical Products",
       "cta": "View product"
     },
     "services": {
-      "label": "What we offer",
+      "label": "What We Offer",
       "title": "CodeTech Services"
     },
     "brand": "CodeTech",
-    "title": "We Develop Digital Solutions That help Your Business Growth",
+    "title": "We Develop Digital Solutions That Help Your Business Growth",
     "description": "We help organizations and companies develop their systems, automate operations, and build digital products that support digital transformation and deliver lasting value.",
     "vision": {
       "label": "Kingdom Vision",

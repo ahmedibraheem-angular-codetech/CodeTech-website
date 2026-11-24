@@ -1,22 +1,22 @@
 {
   "projects": {
     "hero": {
-      "title": "Success stories that reflect the impact of our digital solutions",
+      "title": "Success Stories That Reflect the Impact of Our Digital Solutions",
       "description": "Discover how CodeTech helped government entities and companies build digital systems and products that solve real challenges, improve operational efficiency, and deliver measurable results.",
       "cta": "Start your project"
     },
     "stats": {
-      "label": "Numbers and statistics",
-      "title": "CodeTech in numbers"
+      "label": "Numbers and Statistics",
+      "title": "CodeTech in Numbers"
     },
     "featured": {
-      "label": "Our projects",
-      "title": "Latest projects",
+      "label": "Our Projects",
+      "title": "Latest Projects",
       "cta": "View case study"
     },
     "list": {
       "label": "Our Projects",
-      "title": "All projects",
+      "title": "All Projects",
       "all": "All",
       "empty": "No projects in this category.",
       "pagination": "Pagination",
@@ -26,43 +26,43 @@
     "detail": {
       "cta": "Start your project",
       "notFound": {
-        "title": "Project not found",
+        "title": "Project Not Found",
         "back": "Back to projects"
       },
       "overview": {
-        "label": "About the project",
-        "title": "Digital solutions designed for business growth"
+        "label": "About the Project",
+        "title": "Digital Solutions Designed for Business Growth"
       },
       "challenges": {
         "label": "Challenges",
-        "title": "Key project challenges"
+        "title": "Key Project Challenges"
       },
       "solutions": {
-        "label": "Services delivered",
-        "title": "The solution we delivered"
+        "label": "Services Delivered",
+        "title": "The Solution We Delivered"
       },
       "screens": {
-        "title": "Project screens"
+        "title": "Project Screens"
       },
       "features": {
         "label": "Features",
-        "title": "Key project features"
+        "title": "Key Project Features"
       },
       "interfaces": {
-        "label": "Digital identity",
-        "title": "Project interfaces"
+        "label": "Digital Identity",
+        "title": "Project Interfaces"
       },
       "results": {
-        "label": "Figures and statistics",
-        "title": "Results achieved"
+        "label": "Figures and Statistics",
+        "title": "Results Achieved"
       },
       "technologies": {
-        "label": "Our tools",
-        "title": "Technologies used"
+        "label": "Our Tools",
+        "title": "Technologies Used"
       },
       "similar": {
-        "label": "Our projects",
-        "title": "Similar projects"
+        "label": "Our Projects",
+        "title": "Similar Projects"
       }
     }
   }

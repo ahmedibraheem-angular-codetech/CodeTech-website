@@ -1,7 +1,7 @@
 {
   "products": {
     "hero": {
-      "title": "Digital solutions designed to grow your business",
+      "title": "Digital Solutions Designed to Grow Your Business",
       "description": "Explore CodeTech products built to simplify operations, improve efficiency, and support digital transformation across sectors.",
       "button": "Explore products",
       "contact": "Contact us"
@@ -9,72 +9,72 @@
     "notFound": "Product not found",
     "back": "Back to products",
     "list": {
-      "label": "Our journey",
-      "title": "CodeTech products",
+      "label": "Our Journey",
+      "title": "CodeTech Products",
       "explore": "Explore product"
     },
     "why": {
-      "label": "Our advantages",
-      "title": "Why CodeTech products?"
+      "label": "Our Advantages",
+      "title": "Why CodeTech Products?"
     },
     "sectors": {
-      "label": "Our sectors",
-      "title": "Target sectors"
+      "label": "Our Sectors",
+      "title": "Target Sectors"
     },
     "faq": {
       "label": "FAQ",
-      "title": "Frequently asked questions"
+      "title": "Frequently Asked Questions"
     },
     "detail": {
       "demo": "Request a demo",
       "stats": {
-        "label": "Numbers and statistics",
-        "title": "The product in numbers"
+        "label": "Numbers and Statistics",
+        "title": "The Product in Numbers"
       },
       "challenges": {
-        "label": "Facing these challenges?",
-        "title": "If you face one of these problems,\nyou are in the right place to solve it."
+        "label": "Facing These Challenges?",
+        "title": "If You Face One of These Problems,\nYou Are in the Right Place to Solve It."
       },
       "solution": {
         "cta": "Request a demo"
       },
       "reasons": {
-        "label": "Our advantages",
-        "title": "Why choose this product?"
+        "label": "Our Advantages",
+        "title": "Why Choose This Product?"
       },
       "advantages": {
-        "label": "What sets the product apart",
-        "title": "Key features"
+        "label": "What Sets the Product Apart",
+        "title": "Key Features"
       },
       "modules": {
         "label": "Modules",
-        "title": "System modules",
+        "title": "System Modules",
         "explore": "Explore module"
       },
       "offerings": {
-        "label": "About the product",
-        "title": "What can this product offer you?"
+        "label": "About the Product",
+        "title": "What Can This Product Offer You?"
       },
       "results": {
         "label": "Results",
-        "title": "Results you will achieve"
+        "title": "Results You Will Achieve"
       },
       "identity": {
-        "label": "Digital identity",
-        "title": "System interfaces",
+        "label": "Digital Identity",
+        "title": "System Interfaces",
         "about": "About the product"
       },
       "workflow": {
         "label": "Steps",
-        "title": "How does the system work?"
+        "title": "How Does the System Work?"
       },
       "sectors": {
-        "label": "Sectors that fit this product",
-        "title": "Target sectors"
+        "label": "Sectors That Fit This Product",
+        "title": "Target Sectors"
       },
       "integrations": {
-        "label": "Our tools",
-        "title": "Integrated with"
+        "label": "Our Tools",
+        "title": "Integrated With"
       }
     }
   }

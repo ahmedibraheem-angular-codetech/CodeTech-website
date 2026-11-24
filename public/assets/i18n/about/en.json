@@ -1,31 +1,31 @@
 {
   "about": {
     "hero": {
-      "title": "Transform your manual operations into smart automated processes",
+      "title": "Transform Your Manual Operations into Smart Automated Processes",
       "description": "We help organizations automate daily procedures and operations, connect different systems, and reduce manual intervention — raising efficiency, increasing productivity, and limiting operational errors.",
       "cta": "Start your project"
     },
     "overview": {
       "philosophy": {
-        "title": "Company philosophy"
+        "title": "Company Philosophy"
       },
       "market": {
-        "title": "Target market"
+        "title": "Target Market"
       }
     },
     "visionMission": {
-      "label": "Our vision and mission",
-      "title": "Toward a thriving digital future",
+      "label": "Our Vision and Mission",
+      "title": "Toward a Thriving Digital Future",
       "vision": {
-        "title": "Our vision"
+        "title": "Our Vision"
       },
       "mission": {
-        "title": "Our mission"
+        "title": "Our Mission"
       }
     },
     "values": {
       "label": "Principles",
-      "title": "Our values",
+      "title": "Our Values",
       "items": {
         "sustainability": {
           "title": "Sustainability",
@@ -55,66 +55,66 @@
       }
     },
     "features": {
-      "label": "Our features",
+      "label": "Our Features",
       "title": "Why CodeTech?",
       "items": {
         "grow": {
-          "title": "Solutions that grow with your business",
+          "title": "Solutions That Grow with Your Business",
           "description": "We build scalable systems that support growth without rebuilding from scratch.",
           "imageAlt": "Scalable solutions"
         },
         "understand": {
-          "title": "We understand your business first",
+          "title": "We Understand Your Business First",
           "description": "We start by understanding your reality and needs, then design the right solution.",
           "imageAlt": "Understanding the business"
         },
         "quality": {
-          "title": "Quality you can rely on",
+          "title": "Quality You Can Rely On",
           "description": "Clear development and testing standards to keep the solution stable and performant.",
           "imageAlt": "Reliable quality"
         },
         "product": {
-          "title": "From idea to a complete digital product",
+          "title": "From Idea to a Complete Digital Product",
           "description": "From idea to launch, we design and build a digital product ready to use.",
           "imageAlt": "Complete digital product"
         },
         "expertise": {
-          "title": "Technical expertise that makes a difference",
+          "title": "Technical Expertise That Makes a Difference",
           "description": "A specialized team that chooses the right technologies and delivers them professionally.",
           "imageAlt": "Technical expertise"
         },
         "connect": {
-          "title": "We connect your business to systems and platforms",
+          "title": "We Connect Your Business to Systems and Platforms",
           "description": "Smooth integrations that link your systems to work platforms and external services.",
           "imageAlt": "System connections"
         },
         "integrate": {
-          "title": "We simplify technical complexity for your team",
+          "title": "We Simplify Technical Complexity for Your Team",
           "description": "We turn complex processes into clear systems that are easy for your team to use.",
           "imageAlt": "Simplified technology"
         },
         "partner": {
-          "title": "We build a long-term technical partnership",
+          "title": "We Build a Long-Term Technical Partnership",
           "description": "We stay with you after launch with support and continuous improvement for lasting growth.",
           "imageAlt": "Technical partnership"
         }
       }
     },
     "services": {
-      "label": "Our services",
-      "title": "What do we offer our clients?"
+      "label": "Our Services",
+      "title": "What Do We Offer Our Clients?"
     },
     "clients": {
-      "label": "Our success",
-      "title": "Our clients"
+      "label": "Our Success",
+      "title": "Our Clients"
     },
     "founder": {
-      "label": "The founder",
-      "title": "Founder and CEO"
+      "label": "The Founder",
+      "title": "Founder And CEO"
     },
     "team": {
-      "label": "Behind the scenes",
-      "title": "Our team"
+      "label": "Behind The Scenes",
+      "title": "Our Team"
     }
   }
 }

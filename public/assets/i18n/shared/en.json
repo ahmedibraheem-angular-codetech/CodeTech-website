@@ -4,12 +4,12 @@
     "next": "Next",
     "viewAllFaq": "View all questions",
     "error": {
-      "title": "Something went wrong",
+      "title": "Something Went Wrong",
       "description": "We could not load this content right now. Please try again.",
       "retry": "Try again"
     },
     "empty": {
-      "title": "No results found",
+      "title": "No Results Found",
       "description": "There is nothing to show here yet."
     }
   },
@@ -35,7 +35,7 @@
       "en": "English"
     },
     "mega": {
-      "promoTitle": "Turn your idea into a real product your customers use every day.",
+      "promoTitle": "Turn Your Idea into a Real Product Your Customers Use Every Day.",
       "promoCta": "Start your project",
       "viewProduct": "View product",
       "viewProject": "View project",
@@ -45,7 +45,7 @@
   },
   "footer": {
     "header": {
-      "title": "Your tech partner starts here",
+      "title": "Your Tech Partner Starts Here",
       "description": "Share your vision, and we’ll turn it into a complete digital solution that combines innovation, quality, and scalability — aligned with your business goals.",
       "cta": "Start your project"
     },
@@ -72,13 +72,13 @@
     "copyright": "© {{year}} CodeTech. All rights reserved."
   },
   "notFound": {
-    "title": "Sorry, page not found",
+    "title": "Sorry, Page Not Found",
     "description": "The link you are trying to open is unavailable or has been moved. You can return to the home page and continue browsing.",
     "home": "Back to home",
     "illustrationAlt": "Page not found illustration"
   },
   "offline": {
-    "title": "No internet connection",
+    "title": "No Internet Connection",
     "description": "It looks like the internet connection is unavailable right now. Please check your network and try again, or contact us if the problem continues.",
     "home": "Back to home",
     "illustrationAlt": "No internet connection illustration"

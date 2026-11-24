@@ -1,50 +1,50 @@
 {
   "services": {
     "hero": {
-      "title": "Integrated technical solutions that support your business growth with precision and professionalism",
+      "title": "Integrated Technical Solutions That Support Your Business Growth with Precision and Professionalism",
       "description": "We offer a complete set of digital and technical services — from systems, websites, and apps to business automation, integration, and cloud solutions — to help you build more efficient and scalable solutions.",
       "cta": "Start your project"
     },
     "list": {
-      "label": "What we offer",
+      "label": "What We Offer",
       "title": "CodeTech Services"
     },
     "faq": {
       "label": "FAQ",
-      "title": "Frequently asked questions"
+      "title": "Frequently Asked Questions"
     },
     "detail": {
       "hero": {
-        "title": "Service details",
+        "title": "Service Details",
         "description": "Full service content will be connected to the API. This page is ready for the selected service slug.",
         "cta": "Start your project"
       },
       "whyNeeded": {
-        "label": "Why this service",
-        "title": "Why do you need this service?"
+        "label": "Why This Service",
+        "title": "Why Do You Need This Service?"
       },
       "solutions": {
-        "label": "What we offer",
-        "title": "Solutions designed for your business needs"
+        "label": "What We Offer",
+        "title": "Solutions Designed for Your Business Needs"
       },
       "stages": {
         "label": "Steps",
-        "title": "Service stages"
+        "title": "Service Stages"
       },
       "features": {
-        "label": "Our features",
+        "label": "Our Features",
         "title": "Why CodeTech?"
       },
       "projects": {
-        "label": "Our projects",
-        "title": "Related projects"
+        "label": "Our Projects",
+        "title": "Related Projects"
       },
       "sectors": {
-        "label": "Our sectors",
-        "title": "Target sectors"
+        "label": "Our Sectors",
+        "title": "Target Sectors"
       },
       "notFound": {
-        "title": "Service not found",
+        "title": "Service Not Found",
         "back": "Back to services"
       }
     }

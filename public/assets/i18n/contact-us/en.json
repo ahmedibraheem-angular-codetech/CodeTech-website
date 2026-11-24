@@ -1,7 +1,7 @@
 {
   "contactUs": {
     "hero": {
-      "title": "From idea to implementation, we start here the step",
+      "title": "From Idea to Implementation, We Start Here the Step",
       "description": "Share details of your project, and our CodeTech team will review your needs and contact you to determine the most suitable technical solutions.",
       "cta": "Start your project"
     },
@@ -9,24 +9,24 @@
       "items": {
         "project": {
           "category": "Services",
-          "title": "Start a new project",
+          "title": "Start a New Project",
           "description": "If you want to build a system, website, or app — or improve work processes — tell us what you need so we can define the right starting point together.",
           "buttonLabel": "Start now"
         },
         "products": {
           "category": "Products",
-          "title": "Product inquiry",
+          "title": "Product Inquiry",
           "description": "Learn about CodeTech products, discuss fit for your team and business, and explore customization and operation options based on the product.",
           "buttonLabel": "Inquire now"
         }
       }
     },
     "channels": {
-      "title": "Need to reach the CodeTech team right away?",
+      "title": "Need to Reach the CodeTech Team Right Away?",
       "description": "Contact us and we will reply as soon as possible",
       "items": {
         "phone": {
-          "label": "Call us:"
+          "label": "Call Us:"
         },
         "email": {
           "label": "Email:"
@@ -37,38 +37,38 @@
       }
     },
     "faq": {
-      "label": "Common questions",
-      "title": "Frequently asked questions"
+      "label": "Common Questions",
+      "title": "Frequently Asked Questions"
     },
     "steps": {
       "label": "Steps",
-      "title": "What happens after submitting the request?",
+      "title": "What Happens After Submitting the Request?",
       "items": {
         "01": {
-          "title": "Request received",
+          "title": "Request Received",
           "description": "We receive your details and needs so we can start the follow-up."
         },
         "02": {
-          "title": "Needs review",
+          "title": "Needs Review",
           "description": "We review the information and identify what is needed to understand the scope of work."
         },
         "03": {
-          "title": "Contacting you",
+          "title": "Contacting You",
           "description": "We reach out through the right channel to arrange a discussion of your needs."
         },
         "04": {
-          "title": "Project discussion",
+          "title": "Project Discussion",
           "description": "We discuss goals, users, priorities, integrations, and the expected timeline."
         },
         "05": {
-          "title": "Sending the right offer",
+          "title": "Sending the Right Offer",
           "description": "We present an offer covering solution scope, deliverables, cost, timeline, and assumptions."
         }
       }
     },
     "form": {
-      "title": "Contact form",
-      "fullName": "Full name",
+      "title": "Contact Form",
+      "fullName": "Full Name",
       "fullNamePlaceholder": "Enter your full name",
       "organization": "Organization",
       "organizationPlaceholder": "Enter your company or organization",

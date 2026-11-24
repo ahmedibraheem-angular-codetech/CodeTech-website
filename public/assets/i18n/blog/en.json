@@ -18,17 +18,17 @@
     "readingTime": "{{count}} min read",
     "categoryLabel": "Category",
     "featured": {
-      "label": "Key articles",
-      "title": "Featured articles"
+      "label": "Key Articles",
+      "title": "Featured Articles"
     },
     "listing": {
-      "label": "Latest news",
-      "title": "All articles",
+      "label": "Latest News",
+      "title": "All Articles",
       "all": "All articles"
     },
     "related": {
-      "label": "You may like",
-      "title": "Related articles"
+      "label": "You May Like",
+      "title": "Related Articles"
     }
   }
 }

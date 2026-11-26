@@ -12,12 +12,21 @@
   padding-block-end: var(--space-section);
 }
 
+:host-context(html[lang='en']) .page-hero-inner {
+  max-width: 55rem;
+}
+
 .page-hero-title {
   margin: 0;
   font-size: var(--font-hero);
   line-height: 1.35;
   color: var(--color-white);
   white-space: pre-line;
+}
+
+:host-context(html[lang='en']) .page-hero-title {
+  font-size: clamp(2rem, 5vw, 74px);
+  font-weight: 600;
 }
 
 .page-hero-description {
@@ -69,6 +78,10 @@
   .page-hero-title {
     font-size: var(--font-section);
   }
+
+  :host-context(html[lang='en']) .page-hero-title {
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
+  }
 }
 
 @include below(575.98px) {
@@ -78,5 +91,9 @@
 
   .page-hero-title {
     font-size: var(--font-title);
+  }
+
+  :host-context(html[lang='en']) .page-hero-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 }

@@ -2,7 +2,7 @@
   <ct-animated-hero-background imageSrc="/assets/images/header/hero-home-bg.webp">
   <div class="container">
     <div class="row home-hero-row align-items-end">
-      <div class="col-12 col-lg-6 col-xl-5 home-hero-copy mb-5">
+      <div [class]="copyColClass()">
         <ct-divider [label]="data().brand | translate" variant="white" />
         <h1 class="hero-titile">
           @for (word of titleWords(); track $index + word) {

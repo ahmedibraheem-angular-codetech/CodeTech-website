@@ -10,7 +10,7 @@
   --color-text-tertiary: #6f8bac;
   --color-button-light: #dce3eb;
 
-  // font families 
+  // font families
   --font-heading: 'Milan Display', sans-serif;
   --font-body: 'Thmanyah Sans', sans-serif;
 
@@ -43,6 +43,11 @@
   --btn-padding-inline: 1.5rem; // 24px
   --btn-icon-size: 1.5rem; // 24px
   --btn-shadow-offset: 2px;
+}
+
+html[lang='en'] {
+  --font-heading: 'Lufga', sans-serif;
+  --font-body: 'Lufga', sans-serif;
 }
 
 $font-heading: 'Milan Display', sans-serif;

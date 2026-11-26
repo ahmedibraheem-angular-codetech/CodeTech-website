@@ -7,15 +7,15 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { environment } from './src/environments/environment';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-const API_BASE_URL =
-  process.env['API_BASE_URL'] ?? 'https://webdash.codetech-sa-dev.com/api/v1';
-const SITE_ORIGIN = process.env['SITE_ORIGIN'] ?? 'https://codetech-sa.com';
+const API_BASE_URL = process.env['API_BASE_URL'] ?? environment.apiUrl;
+const SITE_ORIGIN = process.env['SITE_ORIGIN'] ?? environment.siteUrl;
 
 const FIXED_PAGES = [
   '/',

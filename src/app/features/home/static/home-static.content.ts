@@ -16,7 +16,7 @@ export const HOME_JOURNEY_CARDS: JourneyCard[] = [
   {
     id: 'analysis-image',
     type: 'image',
-    imageSrc: `${JOURNEY_IMAGES}/journey-magnify.svg`,
+    imageSrc: `${JOURNEY_IMAGES}/journey-magnify.webp`,
     imageAlt: 'home.journey.steps.analysis.title',
   },
   {
@@ -45,7 +45,7 @@ export const HOME_JOURNEY_CARDS: JourneyCard[] = [
   {
     id: 'planning-image',
     type: 'image',
-    imageSrc: `${JOURNEY_IMAGES}/journey-stairs.svg`,
+    imageSrc: `${JOURNEY_IMAGES}/journey-stairs.webp`,
     imageAlt: 'home.journey.steps.planning.title',
   },
   {
@@ -74,7 +74,7 @@ export const HOME_JOURNEY_CARDS: JourneyCard[] = [
   {
     id: 'launch-image',
     type: 'image',
-    imageSrc: `${JOURNEY_IMAGES}/journey-arrow.svg`,
+    imageSrc: `${JOURNEY_IMAGES}/journey-arrow.webp`,
     imageAlt: 'home.journey.steps.launch.title',
   },
 ];

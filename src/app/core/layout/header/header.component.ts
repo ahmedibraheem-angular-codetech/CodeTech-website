@@ -154,7 +154,7 @@ export class HeaderComponent {
         title: product.title,
         description: product.short_description || product.description,
         imageUrl:
-          product.thumbnail?.url ?? '/assets/images/header/products/product-1.svg',
+          product.thumbnail?.url ?? '/assets/images/header/products/product-1.webp',
         route: `/products/${product.slug}`,
       }));
   });
@@ -174,7 +174,7 @@ export class HeaderComponent {
         title: project.title,
         description: project.description,
         imageUrl:
-          project.thumbnail?.url ?? '/assets/images/header/products/product-1.svg',
+          project.thumbnail?.url ?? '/assets/images/header/products/product-1.webp',
         route: `/projects/${project.slug}`,
       }));
   });

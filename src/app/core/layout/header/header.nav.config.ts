@@ -22,12 +22,13 @@ export const HEADER_NAV_LINKS: readonly NavLinkItem[] = [
     route: '/products',
     mega: 'products',
   },
-  {
-    id: 'projects',
-    labelKey: 'header.nav.projects',
-    route: '/projects',
-    mega: 'projects',
-  },
+  // Projects tab is hidden for now. Uncomment to show it again.
+  // {
+  //   id: 'projects',
+  //   labelKey: 'header.nav.projects',
+  //   route: '/projects',
+  //   mega: 'projects',
+  // },
   { id: 'blog', labelKey: 'header.nav.blog', route: '/blog' },
   { id: 'contact', labelKey: 'header.nav.contact', route: '/contact-us' },
 ] as const;
